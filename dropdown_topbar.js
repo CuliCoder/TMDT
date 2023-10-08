@@ -29,3 +29,15 @@ cart.addEventListener("click", function (e) {
 place_check_cart.addEventListener("click", function (e) {
   if (e.target == e.currentTarget) showdropdown_cart();
 });
+//mobile
+let search_mobile = document.querySelector(".search-mobile");
+search_mobile.addEventListener("click", function (e) {
+  console.log(e.target);
+  if (e.target == e.currentTarget) {
+    showdropdown_search();
+  }
+});
+let close_drop_down = document.querySelector(".bx-x");
+close_drop_down.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) showdropdown_search();
+});

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Host</title>
+  </head>
+  <body>
+    <input class="text" type="text" />
+    <input class="submit" type="submit" onclick="getdata()" />
+    <p class="output"></p>
+  </body>
+  <script>
+    let text = document.querySelector(".text");
+    let submit = document.querySelector(".submit");
+    let output = document.querySelector(".output");
+    function getdata() {
+      sessionStorage.setItem("text", text.value);
+      console.log(text.value);
+      output.innerHTML = text.value;
+    }
+  </script>
+</html>
