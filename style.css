@@ -222,7 +222,7 @@ input {
 .close {
   display: none;
 }
-@media (max-width: 350px) {
+@media (max-width: 380px) {
   .header {
     display: none;
   }
