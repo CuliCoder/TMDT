@@ -222,7 +222,7 @@ input {
 .close {
   display: none;
 }
-@media (max-width: 400px) {
+@media (max-width: 350px) {
   .header {
     display: none;
   }
@@ -232,13 +232,13 @@ input {
     z-index: 3;
     text-align: center;
     background-color: #272424;
-    width: 400px;
+    width: 320px;
     height: 48px;
     box-shadow: 0 0 10px;
     top: 0;
   }
   .item-top-bar {
-    width: 400px;
+    width: 320px;
     position: absolute;
     left: 0;
     font-size: 20px;
@@ -252,18 +252,18 @@ input {
 
   .left-ads img,
   .left-ads {
-    width: 380px;
+    width: 300px;
     height: 63.86px;
   }
   .left-ads {
-    margin: 30px 0 0 0;
+    margin: 20px 0 0 0;
   }
   .left,
   .right {
     display: none;
   }
   .control-ads {
-    width: 380px;
+    width: 300px;
     height: 85px;
   }
   .list-dot {
@@ -281,13 +281,17 @@ input {
   .search-place div .close {
     color: white;
     display: block;
-    width: 40px;
+    width: 30px;
     float: right;
-    height: 40px;
-    font-size: 40px;
+    height: 30px;
+    font-size: 30px;
     margin: 5px;
   }
   .search-place div form {
     margin-left: 50px;
+    font-size: 25px;
+  }
+  .search-place div form input {
+    font-size: 17px;
   }
 }
