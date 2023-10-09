@@ -33,13 +33,24 @@ place_check_cart.addEventListener("click", function (e) {
 });
 //mobile
 let search_mobile = document.querySelector(".search-mobile");
+let cart_mobile = document.querySelector(".cart-mobile");
+let close_drop_down_search = document.querySelector(".bx-x-search");
+let close_drop_down_cart = document.querySelector(".bx-x-cart");
+//search
 search_mobile.addEventListener("click", function (e) {
   console.log(e.target);
   if (e.target == e.currentTarget) {
     showdropdown_search();
   }
 });
-let close_drop_down = document.querySelector(".bx-x");
-close_drop_down.addEventListener("click", function (e) {
+
+close_drop_down_search.addEventListener("click", function (e) {
   if (e.target == e.currentTarget) showdropdown_search();
+});
+//cart
+cart_mobile.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) showdropdown_cart();
+});
+close_drop_down_cart.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) showdropdown_cart();
 });
