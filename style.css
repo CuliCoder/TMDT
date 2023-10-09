@@ -232,16 +232,16 @@ input {
     z-index: 3;
     text-align: center;
     background-color: #272424;
-    width: 320px;
-    height: 48px;
+    width: 100%;
+    height: 13%;
     box-shadow: 0 0 10px;
     top: 0;
   }
   .item-top-bar {
-    width: 320px;
+    width: 100%;
     position: absolute;
     left: 0;
-    font-size: 20px;
+    font-size: 120%;
   }
   .logo {
     transform: translateX(-40px);
@@ -250,21 +250,24 @@ input {
     display: none;
   }
 
-  .left-ads img,
   .left-ads {
-    width: 300px;
-    height: 63.86px;
+    width: 100%;
+    height: 100%;
   }
   .left-ads {
-    margin: 20px 0 0 0;
+    position: absolute;
+    top: 17%;
+    height: 17.2%;
+    margin: 0;
+    width: 90%;
   }
   .left,
   .right {
     display: none;
   }
   .control-ads {
-    width: 300px;
-    height: 85px;
+    width: 100%;
+    height: 130%;
   }
   .list-dot {
     opacity: 1;
@@ -275,23 +278,30 @@ input {
   }
   .search-place {
     z-index: 4;
-    height: 425px;
+    height: 100%;
     top: 0;
   }
   .search-place div .close {
     color: white;
     display: block;
-    width: 30px;
+    width: 7%;
     float: right;
-    height: 30px;
-    font-size: 30px;
-    margin: 5px;
+    height: 7%;
+    font-size: 200%;
+    transform: translate(-45%, 13%);
   }
   .search-place div form {
-    margin-left: 50px;
-    font-size: 25px;
+    transform: translate(-100%);
+    font-size: 160%;
   }
   .search-place div form input {
-    font-size: 17px;
+    font-size: 90%;
+  }
+  .img-ads {
+    height: 100%;
+  }
+  .img-ads img {
+    width: 100%;
+    height: 100%;
   }
 }
