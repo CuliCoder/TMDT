@@ -36,6 +36,9 @@ let search_mobile = document.querySelector(".search-mobile");
 let cart_mobile = document.querySelector(".cart-mobile");
 let close_drop_down_search = document.querySelector(".bx-x-search");
 let close_drop_down_cart = document.querySelector(".bx-x-cart");
+let menu_drop_mobile = document.querySelector(".menu-drop");
+let close_drop_down_menu = document.querySelector(".bx-x-menu");
+let menu_header_mobile = document.querySelector(".bx-menu");
 //search
 search_mobile.addEventListener("click", function (e) {
   console.log(e.target);
@@ -53,4 +56,14 @@ cart_mobile.addEventListener("click", function (e) {
 });
 close_drop_down_cart.addEventListener("click", function (e) {
   if (e.target == e.currentTarget) showdropdown_cart();
+});
+//menu
+function showdropdown_menu() {
+  menu_drop_mobile.classList.toggle("show-drop-down");
+}
+menu_header_mobile.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) showdropdown_menu();
+});
+close_drop_down_menu.addEventListener("click", function (e) {
+  if (e.target == e.currentTarget) showdropdown_menu();
 });
