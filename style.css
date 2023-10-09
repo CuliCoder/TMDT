@@ -364,6 +364,7 @@ input {
   }
   .menu-drop {
     position: absolute;
+    display: block;
     background-color: #272424;
     width: 100%;
     transition: transform 0.5s;
