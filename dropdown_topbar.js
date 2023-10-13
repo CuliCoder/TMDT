@@ -1,11 +1,13 @@
 let search = document.querySelector(".bx-search");
 let search_place = document.querySelector(".search-place");
+let search_box = document.querySelector(".search-box");
 let cart = document.querySelector(".bx-shopping-bag");
 let place_check_cart = document.querySelector(".check-cart");
 let input_search = document.querySelector(".input-search");
+let search_text = document.querySelector(".search-text");
 function showdropdown_search() {
-  search_place.classList.toggle("show-drop-down");
-  if (search_place.classList.contains("show-drop-down")) input_search.focus();
+  search_box.classList.toggle("show-drop-down");
+  if (search_box.classList.contains("show-drop-down")) search_text.focus();
 }
 function showdropdown_cart() {
   place_check_cart.classList.toggle("show-drop-down");
@@ -24,8 +26,7 @@ search_place.addEventListener("click", function (e) {
 cart.addEventListener("click", function (e) {
   if (e.target == e.currentTarget) {
     showdropdown_cart();
-    if (search_place.classList.contains("show-drop-down"))
-      showdropdown_search();
+    if (search_box.classList.contains("show-drop-down")) showdropdown_search();
   }
 });
 //responsive
