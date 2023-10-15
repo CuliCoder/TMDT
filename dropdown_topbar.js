@@ -30,13 +30,14 @@ cart.addEventListener("click", function (e) {
   }
 });
 //responsive
-let width;
-$(window).resize(function () {
-  width = $(window).width();
-  console.log(width);
-});
+// let width;
+// $(window).resize(function () {
+//   width = $(window).width();
+//   console.log(width);
+// });
 place_check_cart.addEventListener("click", function (e) {
-  if (width > 400) if (e.target == e.currentTarget) showdropdown_cart();
+  // if (width > 400)
+  if (e.target == e.currentTarget) showdropdown_cart();
 });
 //mobile
 let search_mobile = document.querySelector(".search-mobile");

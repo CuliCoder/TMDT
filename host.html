@@ -6,19 +6,24 @@
     <title>Host</title>
   </head>
   <body>
-    <input class="text" type="text" />
-    <input class="submit" type="submit" onclick="getdata()" />
-    <p class="output"></p>
+    <input class="product-title" type="text" placeholder="Tên sản phẩm" />
+    <input class="product-img" type="text" placeholder="link ảnh" />
+    <input class="product-price-show" type="text" placeholder="giá hiển thị" />
+    <input class="product-price-origin" type="text" placeholder="giá gốc" />
+    <button type="submit" onclick="getdata()">add product</button>
   </body>
   <script>
-    let text = document.querySelector(".text");
-    let submit = document.querySelector(".submit");
-    let output = document.querySelector(".output");
+    let product_title = document.querySelector(".product-title");
+    let product_img = document.querySelector(".product-img");
+    let product_price_show = document.querySelector(".product-price-show");
+    let product_price_origin = document.querySelector(".product-price-origin");
     function getdata() {
-      sessionStorage.setItem("text", text.value);
-      console.log(text.value);
-      output.innerHTML = text.value;
-      window.location = "TEST.HTML";
+      localStorage.setItem("add-product", "true");
+      localStorage.setItem("product-title", product_title.value);
+      localStorage.setItem("product-img", product_img.value);
+      localStorage.setItem("product-price-show", product_price_show.value);
+      localStorage.setItem("product-price-origin", product_price_origin.value);
+      console.log(product_title.value);
     }
   </script>
 </html>
