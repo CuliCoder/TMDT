@@ -30,6 +30,7 @@ let products = [
     price_origin: "5790000",
   },
 ];
+
 let json_products;
 if (localStorage.getItem("add-product") == null) {
   json_products = JSON.stringify(products);

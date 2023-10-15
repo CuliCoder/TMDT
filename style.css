@@ -43,8 +43,18 @@ img {
   border-radius: 30px;
   height: 30px;
 }
+.logo a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .logo a {
+  display: block;
+  max-width: 70%;
   margin: auto;
+}
+.logo {
+  display: flex;
 }
 .item-top-bar {
   display: flex;
@@ -55,13 +65,7 @@ img {
 .item-top-bar div {
   font-size: 20px;
 }
-.logo {
-  height: 44px;
-  display: flex;
-}
-.logo a img {
-  width: 140px;
-}
+
 .animation-unline a {
   position: relative;
   transition: 0.5s;
