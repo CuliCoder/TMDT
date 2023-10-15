@@ -31,7 +31,7 @@ let products = [
   },
 ];
 let json_products;
-if (localStorage.getItem("add-product") == "false") {
+if (localStorage.getItem("add-product") == false) {
   json_products = JSON.stringify(products);
   console.log(json_products);
   localStorage.setItem("json-products", json_products);
@@ -75,7 +75,7 @@ if (localStorage.getItem("add-product") == "true") {
   };
   products = JSON.parse(localStorage.getItem("json-products"));
   products.push(new_product);
-  //localStorage.setItem("add-product", "false");
+  localStorage.setItem("add-product", "false");
   json_products = JSON.stringify(products);
   localStorage.setItem("json-products", json_products);
 }
@@ -84,4 +84,7 @@ products = JSON.parse(localStorage.getItem("json-products"));
 console.log(products);
 document.querySelector(".all-products").innerHTML = products.map(show).join("");
 
-// https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg Xiaomi Redmi Note 12 8GB 128GB 4990000 5790000
+// link ảnh:https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg
+//tên sp:Xiaomi Redmi Note 12 8GB 128GB
+//giá hiển thị:4990000
+//giá gốc:5790000
