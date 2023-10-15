@@ -31,7 +31,7 @@ let products = [
   },
 ];
 let json_products;
-if (localStorage.getItem("add-product") == false) {
+if (localStorage.getItem("add-product") == null) {
   json_products = JSON.stringify(products);
   console.log(json_products);
   localStorage.setItem("json-products", json_products);
