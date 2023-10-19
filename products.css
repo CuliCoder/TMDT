@@ -104,3 +104,19 @@
     height: 48px;
   }
 }
+.list-page {
+  padding: 10px;
+  text-align: center;
+  list-style: none;
+}
+.list-page li {
+  border: solid;
+  padding: 10px;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.list-page .page-current {
+  background-color: #272424;
+  color: white;
+}
