@@ -23,7 +23,6 @@ function btn_delete(item, index) {
       products.splice(index, 1);
       localStorage.setItem("json-products", JSON.stringify(products));
       loadPage();
-      delete_Product();
       checkDeleteProduct();
     }
   });
@@ -120,7 +119,7 @@ function loadPage() {
     document.querySelector(".products").innerHTML += showProducts(products[i]);
   }
   list = document.querySelectorAll(".products .item");
-
+  delete_Product();
   loadItem();
 }
 function showProducts(item) {
