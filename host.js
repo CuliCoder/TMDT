@@ -3,12 +3,39 @@ let product_brand = document.getElementById("brand");
 let choose_img = document.getElementById("choose-img");
 let product_price_show = document.getElementById("product-price-show");
 let product_price_origin = document.getElementById("product-price-origin");
-let products = JSON.parse(localStorage.getItem("json-products"));
 let img_add = document.querySelector(".img-add");
 let limit = 12;
 let thisPage = 1;
 let list;
 let notification = document.querySelector(".notification");
+
+function delete_Product() {
+  list.forEach(btn_delete);
+}
+function btn_delete(item, index) {
+  item.querySelector(".delete-product").addEventListener("click", () => {
+    console.log(index);
+    let products = JSON.parse(localStorage.getItem("json-products"));
+    let result = confirm(
+      "Bạn có chắc muốn xóa sản phẩm với id " + products[index].productId + "?"
+    );
+    if (result) {
+      products.splice(index, 1);
+      localStorage.setItem("json-products", JSON.stringify(products));
+      loadPage();
+      delete_Product();
+      checkDeleteProduct();
+    }
+  });
+}
+function checkDeleteProduct() {
+  notification.innerHTML = "";
+  let ntf_complete = document.createElement("div");
+  ntf_complete.innerHTML = '<i class="bx bx-check"></i>Xoá sản phẩm thành công';
+  ntf_complete.classList.add("complete");
+  notification.appendChild(ntf_complete);
+  ntf_complete.style.animation = "showNotification 3s linear";
+}
 function checkInputForAddproductForm() {
   notification.innerHTML = "";
   if (product_title.value == "" || product_price_show.value == "") {
@@ -56,6 +83,7 @@ function changeImg(file) {
 }
 
 function addProduct() {
+  let products = JSON.parse(localStorage.getItem("json-products"));
   let new_product = {
     img: img_add.src,
     title: product_title.value,
@@ -77,6 +105,7 @@ function addProduct() {
 }
 loadPage();
 function loadPage() {
+  let products = JSON.parse(localStorage.getItem("json-products"));
   document.querySelector(".products").innerHTML = `<li class="top-list">
   <ul>
     <li>#ID</li>
@@ -127,6 +156,7 @@ function loadItem() {
   }
   listPage();
 }
+delete_Product();
 function listPage() {
   let count = Math.ceil(list.length / limit);
   document.querySelector(".list-page").innerHTML = "";
