@@ -8,6 +8,35 @@ let img_add = document.querySelector(".img-add");
 let limit = 12;
 let thisPage = 1;
 let list;
+let notification = document.querySelector(".notification");
+function checkInputForAddproductForm() {
+  notification.innerHTML = "";
+  if (product_title.value == "" || product_price_show.value == "") {
+    let ntf_error = document.createElement("div");
+    ntf_error.innerHTML =
+      '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
+    ntf_error.classList.add("error");
+    notification.appendChild(ntf_error);
+    ntf_error.style.animation = "showNotification 3s linear";
+  } else if (
+    isNaN(product_price_show.value) ||
+    isNaN(product_price_origin.value)
+  ) {
+    let ntf_error = document.createElement("div");
+    ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
+    ntf_error.classList.add("error");
+    notification.appendChild(ntf_error);
+    ntf_error.style.animation = "showNotification 3s linear";
+  } else {
+    let ntf_complete = document.createElement("div");
+    ntf_complete.innerHTML =
+      '<i class="bx bx-check"></i>Thêm sản phẩm thành công';
+    ntf_complete.classList.add("complete");
+    notification.appendChild(ntf_complete);
+    ntf_complete.style.animation = "showNotification 3s linear";
+    addProduct();
+  }
+}
 function changeImg(file) {
   const reader = new FileReader();
   reader.onload = (evt) => {

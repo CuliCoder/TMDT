@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="host.css" />
     <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="item/listmanagerproduct.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Host</title>
   </head>
   <body>
@@ -68,9 +72,17 @@
           <img class="img-add" src="img/imgs/Thêm ảnh 358 x 358.png " alt="" />
           <!-- img/imgs/Thêm ảnh 358 x 358.png -->
         </div>
-        <button type="button" onclick="addProduct()">Thêm sản phẩm</button>
+        <button type="button" onclick="checkInputForAddproductForm()">
+          Thêm sản phẩm
+        </button>
         <button type="reset">Reset</button>
       </form>
+      <div class="notification">
+        <!-- <div class="error">
+          <i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin
+        </div> -->
+        <!-- <div><i class="bx bx-check"></i>Thêm sản phẩm thành công</div> -->
+      </div>
     </div>
     <div class="list-products grid wide">
       <p>Danh sách sản phẩm</p>

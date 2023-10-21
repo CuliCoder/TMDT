@@ -49,3 +49,49 @@
   height: 30px;
   box-shadow: 0 0 2px;
 }
+.notification {
+  visibility: hidden;
+  position: fixed;
+  height: 45px;
+  z-index: 2;
+  top: 10px;
+  right: 100px;
+  color: white;
+}
+.notification div {
+  visibility: hidden;
+  padding: 10px;
+  animation: showNotification 3s linear;
+}
+.notification .bx-check {
+  border-radius: 50%;
+  border: solid white;
+  background-color: white;
+  color: rgb(10, 199, 10);
+  margin-right: 3px;
+}
+.error {
+  background-color: rgb(205, 5, 5);
+}
+.complete {
+  background-color: rgb(10, 199, 10);
+}
+.notification .bx-x {
+  border-radius: 50%;
+  border: solid white;
+  background-color: white;
+  color: rgb(205, 5, 5);
+  margin-right: 3px;
+}
+@keyframes showNotification {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
