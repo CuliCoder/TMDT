@@ -27,6 +27,15 @@ function checkInputForAddproductForm() {
     ntf_error.classList.add("error");
     notification.appendChild(ntf_error);
     ntf_error.style.animation = "showNotification 3s linear";
+  } else if (
+    parseInt(product_price_origin.value) < parseInt(product_price_show.value)
+  ) {
+    let ntf_error = document.createElement("div");
+    ntf_error.innerHTML =
+      '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
+    ntf_error.classList.add("error");
+    notification.appendChild(ntf_error);
+    ntf_error.style.animation = "showNotification 3s linear";
   } else {
     let ntf_complete = document.createElement("div");
     ntf_complete.innerHTML =
