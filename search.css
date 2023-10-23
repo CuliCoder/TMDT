@@ -10,12 +10,13 @@
   position: fixed;
   z-index: 10;
 }
+
 .search-bg .search-box {
   background-color: white;
   max-width: 300px;
-  margin: 50px auto;
+  margin: 30px auto;
   padding: 10px;
-  height: 510px;
+  height: 550px;
   animation: search_box 0.5s linear;
 }
 @keyframes search_box {
@@ -64,7 +65,7 @@
   background-color: #dfdfdf;
 }
 .list-page-search {
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   list-style: none;
 }
@@ -72,7 +73,7 @@
   border: solid;
   padding: 5px;
   display: inline-block;
-  margin: 0 5px;
+  margin: 0 2px;
   cursor: pointer;
   height: 25px;
   font-size: 10px;
