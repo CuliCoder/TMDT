@@ -108,11 +108,11 @@ Prefix class:
   max-width: 91.66667%;
 }
 /* tablet and PC low resolution */
-@media (min-width: 740px) and (max-width: 1023px) {
+/* @media (min-width: 740px) and (max-width: 1023px) {
   .wide {
     width: 644px;
   }
-}
+} */
 /* > =tablet */
 @media (min-width: 740px) {
   .row {

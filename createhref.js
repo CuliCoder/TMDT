@@ -1,18 +1,26 @@
 createForBrand();
 function createForBrand() {
   let listBrand = ["apple", "samsung", "xiaomi", "oppo", "realme"];
-  let item_top_bar = document.querySelector(".item-top-bar");
-  let tmp = "";
-  for (let i = 0; i < listBrand.length; i++)
-    tmp +=
-      '<div class="trademark-Apple animation-unline"><a href="mainpage.html?' +
+  let betweenHeader = document.getElementsByClassName("brand");
+  for (let i = 0; i < listBrand.length; i++) {
+    betweenHeader[i].innerHTML =
+      '<a href="mainpage.html?' +
       listBrand[i] +
       '">' +
       listBrand[i].toUpperCase() +
-      "</a></div>";
-  item_top_bar.innerHTML = tmp;
+      "</a>";
+    console.log(betweenHeader[i].children);
+  }
+  // tmp +=
+  // '<div class="trademark-Apple animation-unline"><a href="mainpage.html?' +
+  // listBrand[i] +
+  // '">' +
+  //  listBrand[i].toUpperCase() +
+  //  "</a></div>";
+  // item_top_bar.innerHTML = tmp;
+  showProductBrand();
 }
-showProductBrand();
+
 function showProductBrand() {
   let tmp = location.href.split("?");
   if (tmp.length == 2) {

@@ -109,7 +109,7 @@
   text-align: center;
   list-style: none;
 }
-.list-page li {
+.products .list-page li {
   border: solid;
   padding: 10px;
   display: inline-block;

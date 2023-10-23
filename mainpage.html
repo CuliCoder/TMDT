@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./responsive.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="search.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script
       src="https://kit.fontawesome.com/459a7e2db3.js"
@@ -94,49 +96,53 @@
     <div class="container">
       <div class="header">
         <div class="grid wide">
-          <div class="row">
-            <div class="logo col l-2 m-2" style="display: flex">
-              <a col l-2 m-2 href="./mainpage.html"
-                ><img
-                  src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-              /></a>
-            </div>
-            <div class="item-top-bar col l-8 m-8" style="display: flex">
-              <div class="trademark-Apple animation-unline">
-                <a href="">APPLE</a>
-              </div>
-              <div class="trademark-Samsung animation-unline">
-                <a href="">SAMSUNG</a>
-              </div>
-              <div class="trademark-Xiaomi animation-unline">
-                <a href="">XIAOMI</a>
-              </div>
-              <div class="trademark-Oppo animation-unline">
-                <a href="">OPPO</a>
-              </div>
-              <div class="trademark-Realme animation-unline">
-                <a href="">REALME</a>
-              </div>
-            </div>
-            <div class="menu-header col l-2 m-2" style="display: flex">
-              <div class="search">
-                <i class="bx bx-search btn-search"></i>
-              </div>
-              <div class="cart">
-                <i class="bx bx-shopping-bag"></i>
-              </div>
-              <div class="user">
-                <a href="host.html"><i class="bx bx-user"></i></a>
-              </div>
-            </div>
+          <div class="logo" style="display: flex">
+            <a href="./mainpage.html"
+              ><img
+                src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
+            /></a>
+          </div>
+          <div class="brand animation-unline">
+            <a href="">APPLE</a>
+          </div>
+          <div class="brand animation-unline">
+            <a href="">SAMSUNG</a>
+          </div>
+          <div class="brand animation-unline">
+            <a href="">XIAOMI</a>
+          </div>
+          <div class="brand animation-unline">
+            <a href="">OPPO</a>
+          </div>
+          <div class="brand animation-unline">
+            <a href="">REALME</a>
+          </div>
+          <div class="search">
+            <i class="bx bx-search btn-search"></i>
+          </div>
+          <div class="cart">
+            <i class="bx bx-shopping-bag"></i>
+          </div>
+          <div class="user">
+            <a href="host.html"><i class="bx bx-user"></i></a>
           </div>
         </div>
       </div>
-      <form class="search-box row col l-3 l-o-9 m-3 m-o-9">
+      <div class="search-bg hide">
+        <div class="search-box">
+          <div class="search">
+            <label for="search"><i class="bx bx-search"></i></label>
+            <input id="search" type="text" placeholder="Tìm kiếm ..." />
+          </div>
+          <div class="products"></div>
+          <ul class="list-page-search"></ul>
+        </div>
+      </div>
+      <!-- <form class="search-box row col l-3 l-o-9 m-3 m-o-9">
         <input class="search-text" type="text" placeholder="Search" required />
         <i class="bx bx-search"></i>
-      </form>
-      <div class="search-place">
+      </form> -->
+      <!-- <div class="search-place">
         <div>
           <div class="close"><i class="bx bx-x bx-x-search"></i></div>
           <form>
@@ -148,7 +154,7 @@
             />
           </form>
         </div>
-      </div>
+      </div> -->
       <div class="check-cart">
         <div class="container-cart grid wide">
           <div class="close"><i class="bx bx-x bx-x-cart"></i></div>
@@ -435,4 +441,5 @@
   <script src="addproduct.js"></script>
   <script src="createhref.js"></script>
   <script src="listpage.js"></script>
+  <script src="search.js"></script>
 </html>
