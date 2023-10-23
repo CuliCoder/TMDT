@@ -23,7 +23,7 @@ function search() {
           '" alt="" /><div class="info"><div class="title">' +
           json_product[i].title +
           '</div><div class="price-show">' +
-          json_product[i].price_show +
+          price_format(json_product[i].price_show) +
           "</div></div></div>";
     list_search = document.querySelectorAll(
       ".search-bg .products .item-product"
@@ -74,4 +74,15 @@ function listPage_search() {
 function changePage_search(i) {
   thisPage_search = i;
   loadItem_search();
+}
+function price_format(price) {
+  if (price == "") return "";
+  let price_str = "";
+  let tmp = price;
+  for (i = price.length; i > 3; i -= 3) {
+    price_str = "." + tmp.slice(-3) + price_str;
+    tmp = tmp.substr(0, i - 3);
+  }
+  tmp = tmp.slice(0);
+  return tmp + price_str + "₫";
 }
