@@ -74,7 +74,7 @@ a {
   font-size: 20px;
 }
 .cart:hover,
-.header .search:hover,
+.header .search:hover i,
 .user:hover a {
   color: rgb(168, 168, 168);
   cursor: pointer;

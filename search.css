@@ -51,6 +51,7 @@
   width: 100%;
   display: flex;
   margin-top: 10px;
+  cursor: pointer;
 }
 .search-bg .info {
   width: 100%;
