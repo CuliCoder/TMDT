@@ -3,13 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="editproduct.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="editproduct-bg">
-      <div class="editproduct-box">
-        <img src="" alt="" />
+      <form class="editproduct-box">
+        <img class="img-edit" src="./img/imgs/Thêm ảnh 358 x 358.png" alt="" />
+        <label for="edit-title">Tên sản phẩm</label>
+        <input
+          id="edit-title"
+          name="edit-title"
+          type="text"
+          placeholder="Tên sản phẩm"
+          size="30px"
+        />
+        <label for="edit-brand">Hãng điện thoại</label>
+        <select id="edit-brand">
+          <option value="APPLE">APPLE</option>
+          <option value="SAMSUNG">SAMSUNG</option>
+          <option value="XIAOMI">XIAOMI</option>
+          <option value="OPPO">OPPO</option>
+          <option value="REALME">REALME</option>
+        </select>
+        <label for="ed-product-price-show">Giá hiển thị</label>
+        <input
+          id="ed-product-price-show"
+          type="text"
+          name="ed-product-price-show"
+          value=""
+          placeholder="Nhập giá hiển thị"
+          size="30px"
+        />
+        <label for="ed-product-price-origin">Giá gốc</label>
+        <input
+          id="ed-product-price-origin"
+          name="ed-product-price-origin"
+          value=""
+          type="text"
+          placeholder="Nhập giá gốc nếu có"
+          size="30px"
+        />
+
+        <label for="edit-img">Thêm ảnh</label>
+        <input
+          id="edit-img"
+          value=""
+          name="edit-img"
+          type="file"
+          onchange="changeImg(this)"
+        />
+        <button type="button" onclick="checkInputForForm()">
+          Sửa sản phẩm
+        </button>
+        <button type="reset">Reset</button>
+      </form>
+      <div class="notification">
+        <!-- <div class="error">
+          <i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin
+        </div> -->
+        <!-- <div><i class="bx bx-check"></i>Sửa sản phẩm thành công</div> -->
       </div>
     </div>
   </body>
+  <script src="host.js"></script>
 </html>

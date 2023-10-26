@@ -1,3 +1,5 @@
+//create
+//add product
 let product_title = document.getElementById("product-title");
 let product_brand = document.getElementById("brand");
 let choose_img = document.getElementById("choose-img");
@@ -8,9 +10,52 @@ let limit = 12;
 let thisPage = 1;
 let list;
 let notification = document.querySelector(".notification");
-
+//edit
+let img_edit = document.querySelector(".img-edit");
+let edit_product_bg = document.querySelector(".editproduct-bg");
+let edit_title = document.getElementById("edit-title");
+let edit_brand = document.getElementById("edit-brand");
+let edit_price_show = document.getElementById("ed-product-price-show");
+let edit_price_origin = document.getElementById("ed-product-price-origin");
+let indexCurrent;
+//function
 function delete_Product() {
   list.forEach(btn_delete);
+}
+function edit_Product() {
+  list.forEach(btn_edit);
+}
+function btn_edit(item, index) {
+  item.querySelector(".edit-product").addEventListener("click", () => {
+    let products = JSON.parse(localStorage.getItem("json-products"));
+    indexCurrent = index;
+    edit_product_bg.classList.toggle("hide");
+    img_edit.src = products[index].img;
+    edit_brand.value = products[index].brand;
+    edit_title.value = products[index].title;
+    edit_price_show.value = products[index].price_show;
+    edit_price_origin.value = products[index].price_origin;
+  });
+}
+function edit(indexCurrent) {
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  products[indexCurrent].img = img_edit.src;
+  products[indexCurrent].title = edit_title.value;
+  products[indexCurrent].brand = edit_brand.value;
+  products[indexCurrent].price_show = edit_price_show.value;
+  products[indexCurrent].price_origin = edit_price_origin.value;
+  localStorage.setItem("json-products", JSON.stringify(products));
+  loadPage();
+}
+close_edit_box();
+function close_edit_box() {
+  let btn_close = document.querySelector(".close-edit-box");
+  btn_close.addEventListener("click", () => {
+    edit_product_bg.classList.toggle("hide");
+  });
+  edit_product_bg.addEventListener("click", (e) => {
+    if (e.target == e.currentTarget) edit_product_bg.classList.toggle("hide");
+  });
 }
 function btn_delete(item, index) {
   item.querySelector(".delete-product").addEventListener("click", () => {
@@ -35,48 +80,87 @@ function checkDeleteProduct() {
   notification.appendChild(ntf_complete);
   ntf_complete.style.animation = "showNotification 3s linear";
 }
-function checkInputForAddproductForm() {
+//Add or Edit
+function checkInputForForm() {
   notification.innerHTML = "";
-  if (product_title.value == "" || product_price_show.value == "") {
-    let ntf_error = document.createElement("div");
-    ntf_error.innerHTML =
-      '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
-    ntf_error.classList.add("error");
-    notification.appendChild(ntf_error);
-    ntf_error.style.animation = "showNotification 3s linear";
-  } else if (
-    isNaN(product_price_show.value) ||
-    isNaN(product_price_origin.value)
-  ) {
-    let ntf_error = document.createElement("div");
-    ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
-    ntf_error.classList.add("error");
-    notification.appendChild(ntf_error);
-    ntf_error.style.animation = "showNotification 3s linear";
-  } else if (
-    parseInt(product_price_origin.value) < parseInt(product_price_show.value)
-  ) {
-    let ntf_error = document.createElement("div");
-    ntf_error.innerHTML =
-      '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
-    ntf_error.classList.add("error");
-    notification.appendChild(ntf_error);
-    ntf_error.style.animation = "showNotification 3s linear";
+  if (!edit_product_bg.classList.contains("hide")) {
+    if (edit_title.value == "" || edit_price_show.value == "") {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML =
+        '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else if (isNaN(edit_price_show.value) || isNaN(edit_price_origin.value)) {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else if (
+      parseInt(edit_price_origin.value) < parseInt(edit_price_show.value)
+    ) {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML =
+        '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else {
+      let ntf_complete = document.createElement("div");
+
+      ntf_complete.innerHTML =
+        '<i class="bx bx-check"></i>Sửa sản phẩm thành công';
+
+      ntf_complete.classList.add("complete");
+      notification.appendChild(ntf_complete);
+      ntf_complete.style.animation = "showNotification 3s linear";
+      edit(indexCurrent);
+    }
   } else {
-    let ntf_complete = document.createElement("div");
-    ntf_complete.innerHTML =
-      '<i class="bx bx-check"></i>Thêm sản phẩm thành công';
-    ntf_complete.classList.add("complete");
-    notification.appendChild(ntf_complete);
-    ntf_complete.style.animation = "showNotification 3s linear";
-    addProduct();
+    if (product_title.value == "" || product_price_show.value == "") {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML =
+        '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else if (
+      isNaN(product_price_show.value) ||
+      isNaN(product_price_origin.value)
+    ) {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else if (
+      parseInt(product_price_origin.value) < parseInt(product_price_show.value)
+    ) {
+      let ntf_error = document.createElement("div");
+      ntf_error.innerHTML =
+        '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
+      ntf_error.classList.add("error");
+      notification.appendChild(ntf_error);
+      ntf_error.style.animation = "showNotification 3s linear";
+    } else {
+      let ntf_complete = document.createElement("div");
+      ntf_complete.innerHTML =
+        '<i class="bx bx-check"></i>Thêm sản phẩm thành công';
+      ntf_complete.classList.add("complete");
+      notification.appendChild(ntf_complete);
+      ntf_complete.style.animation = "showNotification 3s linear";
+      addProduct();
+    }
   }
 }
 function changeImg(file) {
   const reader = new FileReader();
   reader.onload = (evt) => {
     console.log(evt.target.result);
-    img_add.src = evt.target.result;
+    if (!edit_product_bg.classList.contains("hide"))
+      img_edit.src = evt.target.result;
+    else img_add.src = evt.target.result;
   };
   reader.readAsDataURL(file.files[0]);
 }
@@ -120,6 +204,7 @@ function loadPage() {
   }
   list = document.querySelectorAll(".products .item");
   delete_Product();
+  edit_Product();
   loadItem();
 }
 function showProducts(item) {
