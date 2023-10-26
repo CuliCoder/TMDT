@@ -206,7 +206,6 @@ if (localStorage.getItem("json-products") == null) {
     products[i].productId = productId_start + i + 1;
   products.reverse();
   let json_products = JSON.stringify(products);
-  console.log(json_products);
   localStorage.setItem("json-products", json_products);
 }
 function price_format(price) {
@@ -254,7 +253,7 @@ function show(item) {
 //   localStorage.setItem("json-products", json_products);
 // }
 let tmp = location.href.split("?");
-showProductMainPage();
+window.onload = showProductMainPage();
 function showProductMainPage() {
   if (tmp.length != 2) {
     products = JSON.parse(localStorage.getItem("json-products"));
