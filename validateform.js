@@ -16,8 +16,8 @@ let address = document.querySelector("#address");
 let username = document.querySelector("#username");
 let password = document.querySelector("#password");
 let confirm_password = document.querySelector("#confirm-password");
-let signup = document.querySelector(".validateform-bg .btn-submit");
-let login = document.querySelector(".validateform-bg .btn-login-submit");
+let signup = document.querySelector(".validateform-bg .signup form");
+let login = document.querySelector(".validateform-bg .login form");
 let login_username = document.querySelector("#login-username");
 let login_password = document.querySelector("#login-password");
 function showError(input, message) {
@@ -94,7 +94,8 @@ function checkSameUserName(username) {
   showSuccess(username);
   return false;
 }
-signup.addEventListener("click", function () {
+signup.addEventListener("submit", (e) => {
+  e.preventDefault();
   let isEmpty = checkEmpty([
     fullname,
     address,
@@ -185,7 +186,8 @@ function checkWrongAccount(login_username, login_password) {
   }
   return true;
 }
-login.addEventListener("click", () => {
+login.addEventListener("submit", (e) => {
+  e.preventDefault();
   let isEmpty = checkEmpty([login_username, login_password]);
   let isWrongAccount = checkWrongAccount(login_username, login_password);
   if (!isEmpty && !isWrongAccount) {

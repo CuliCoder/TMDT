@@ -28,7 +28,6 @@ function search() {
     list_search = document.querySelectorAll(
       ".search-bg .products .item-product"
     );
-    console.log(list_search);
     loadItem_search();
   });
 }

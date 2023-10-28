@@ -91,7 +91,7 @@ a {
   font-size: 18px;
   transform-origin: top;
 
-  animation: user-drop-down 0.5s linear;
+  animation: user-drop-down 0.25s linear;
 }
 .user-drop-down .fullname-user {
   display: flex;
