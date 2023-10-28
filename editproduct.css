@@ -29,9 +29,10 @@
 .editproduct-bg label {
   display: block;
 }
-input {
+.editproduct-bg input {
   border: none;
   outline: none;
+  width: 100%;
 }
 .editproduct-bg .editproduct-box :not(:first-child) {
   margin-top: 7px;

@@ -253,7 +253,7 @@ function show(item) {
 //   localStorage.setItem("json-products", json_products);
 // }
 let tmp = location.href.split("?");
-window.onload = showProductMainPage();
+showProductMainPage();
 function showProductMainPage() {
   if (tmp.length != 2) {
     products = JSON.parse(localStorage.getItem("json-products"));

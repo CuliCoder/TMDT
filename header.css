@@ -75,7 +75,55 @@ a {
 }
 .cart:hover,
 .header .search:hover i,
-.user:hover a {
+.user:hover {
   color: rgb(168, 168, 168);
   cursor: pointer;
+}
+.user-drop-down {
+  position: fixed;
+  z-index: 9;
+  width: 300px;
+  top: 32.7px;
+  right: 0;
+  background-color: #272424;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  transform-origin: top;
+
+  animation: user-drop-down 0.5s linear;
+}
+.user-drop-down .fullname-user {
+  display: flex;
+}
+.user-drop-down p {
+  display: flex;
+  align-items: center;
+}
+.user-drop-down > div {
+  user-select: none;
+  border-radius: 10px;
+  padding: 10px 5px;
+}
+.user-drop-down i {
+  margin-right: 10px;
+  border-radius: 50%;
+  border: solid white;
+  padding: 5px;
+  color: black;
+  background-color: white;
+}
+.user-drop-down div:not(:first-child):hover {
+  background-color: rgb(70, 69, 69);
+  cursor: pointer;
+}
+@keyframes user-drop-down {
+  from {
+    opacity: 0;
+    transform: translateY(-500px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

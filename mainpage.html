@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="products.css" />
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="search.css" />
+    <link rel="stylesheet" href="validateform.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script
       src="https://kit.fontawesome.com/459a7e2db3.js"
@@ -124,8 +125,88 @@
             <i class="bx bx-shopping-bag"></i>
           </div>
           <div class="user">
-            <a href="host.html"><i class="bx bx-user"></i></a>
+            <!-- <a href="host.html"></a> -->
+            <i class="bx bx-user"></i>
           </div>
+        </div>
+      </div>
+      <div class="validateform-bg hide">
+        <div class="validateform-box signup hide">
+          <i class="bx bx-left-arrow-alt"></i>
+          <i class="bx bx-x"></i>
+          <form>
+            <h1>Đăng Ký</h1>
+            <div class="form-control">
+              <input id="fullname" type="text" placeholder="Họ và tên" />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input id="address" type="text" placeholder="Địa chỉ" />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input
+                id="phone-number"
+                type="text"
+                placeholder="Số điện thoại"
+              />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input id="username" type="text" placeholder="Tên đăng nhập" />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input id="password" type="password" placeholder="Mật khẩu" />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input
+                id="confirm-password"
+                type="password"
+                placeholder="Nhập lại mật khẩu"
+              />
+              <small></small>
+              <span></span>
+            </div>
+            <button type="button" class="btn-submit">Đăng Ký Ngay</button>
+          </form>
+        </div>
+        <div class="validateform-box login">
+          <form>
+            <i class="bx bx-x"></i>
+            <h1>Đăng Nhập</h1>
+            <div class="form-control">
+              <input
+                id="login-username"
+                type="text"
+                placeholder="Tên đăng nhập"
+              />
+              <small></small>
+              <span></span>
+            </div>
+            <div class="form-control">
+              <input
+                id="login-password"
+                type="password"
+                placeholder="Mật khẩu"
+              />
+              <small></small>
+              <span></span>
+            </div>
+            <button type="button" class="btn-login-submit">
+              Đăng Nhập Ngay
+            </button>
+            <div class="signup-link">
+              Bạn chưa có tài khoản?
+              <p>Đăng ký</p>
+            </div>
+          </form>
         </div>
       </div>
       <div class="search-bg hide">
@@ -188,7 +269,14 @@
           </div>
         </div>
       </div>
-
+      <div class="user-drop-down hide">
+        <div class="fullname-user">
+          <div><i class="bx bx-user"></i></div>
+          <p>Nguyễn Công Trung</p>
+        </div>
+        <div class="manage"><i class="bx bx-cog"></i>Quản lý</div>
+        <div class="log-out"><i class="bx bx-log-out"></i>Đăng xuất</div>
+      </div>
       <div class="product-ads row grid wide">
         <div class="left-ads row col l-6 m-6">
           <div class="img-ads">
@@ -442,4 +530,5 @@
   <script src="createhref.js"></script>
   <script src="listpage.js"></script>
   <script src="search.js"></script>
+  <script src="validateform.js"></script>
 </html>

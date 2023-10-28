@@ -110,6 +110,7 @@
   list-style: none;
 }
 .products .list-page li {
+  user-select: none;
   border: solid;
   padding: 10px;
   display: inline-block;

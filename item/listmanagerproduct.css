@@ -5,6 +5,7 @@
 }
 li {
   list-style: none;
+  overflow: hidden;
 }
 .top-list ul,
 .item ul {
@@ -105,6 +106,7 @@ li img {
   list-style: none;
 }
 .list-page li {
+  user-select: none;
   border: solid;
   padding: 10px;
   display: inline-block;

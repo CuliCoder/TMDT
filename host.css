@@ -23,14 +23,15 @@
 }
 .add-product form {
   margin: 0 auto;
-  max-width: 32%;
-  padding: 50px 0;
+  max-width: 500px;
+  padding: 50px;
 }
 .add-product form label {
   display: block;
 }
 .add-product form input {
   line-height: 30px;
+  width: 100%;
   border: none;
   border-bottom: solid;
   outline: none;

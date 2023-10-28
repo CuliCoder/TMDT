@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="validateform.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="validateform-bg">
+      <div class="validateform-box signup hide">
+        <i class="bx bx-left-arrow-alt"></i>
+        <i class="bx bx-x"></i>
+        <form>
+          <h1>Đăng Ký</h1>
+          <div class="form-control">
+            <input id="fullname" type="text" placeholder="Họ và tên" />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input id="address" type="text" placeholder="Địa chỉ" />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input id="phone-number" type="text" placeholder="Số điện thoại" />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input id="username" type="text" placeholder="Tên đăng nhập" />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input id="password" type="password" placeholder="Mật khẩu" />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input
+              id="confirm-password"
+              type="password"
+              placeholder="Nhập lại mật khẩu"
+            />
+            <small></small>
+            <span></span>
+          </div>
+          <button type="button" class="btn-submit">Đăng Ký Ngay</button>
+        </form>
+      </div>
+      <div class="validateform-box login">
+        <form>
+          <i class="bx bx-x"></i>
+          <h1>Đăng Nhập</h1>
+          <div class="form-control">
+            <input
+              id="login-username"
+              type="text"
+              placeholder="Tên đăng nhập"
+            />
+            <small></small>
+            <span></span>
+          </div>
+          <div class="form-control">
+            <input id="login-password" type="password" placeholder="Mật khẩu" />
+            <small></small>
+            <span></span>
+          </div>
+          <button type="button" class="btn-login-submit">Đăng Nhập Ngay</button>
+          <div class="signup-link">
+            Bạn chưa có tài khoản?
+            <p>Đăng ký</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="validateform.js"></script>
+</html>
