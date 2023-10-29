@@ -216,5 +216,5 @@ document.querySelector(".log-out").addEventListener("click", () => {
 document
   .querySelector(".user-drop-down .manage")
   .addEventListener("click", () => {
-    location.href = "host.html";
+    location.href = "product_page.html";
   });

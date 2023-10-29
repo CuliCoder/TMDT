@@ -281,3 +281,26 @@ function price_format(price) {
   tmp = tmp.slice(0);
   return tmp + price_str + "₫";
 }
+//header
+let header_bar = document.querySelector(".header>div").children;
+header_bar[1].addEventListener("click", () => {
+  location.href = "mainpage.html";
+});
+header_bar[2].addEventListener("click", () => {
+  location.href = "product_page.html";
+});
+header_bar[3].addEventListener("click", () => {
+  location.href = "order_page.html";
+});
+header_bar[4].addEventListener("click", () => {
+  location.href = "customers_page.html";
+});
+header_bar[5].addEventListener("click", () => {
+  location.href = "statistics_page.html";
+});
+let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+header_bar[6].children[1].innerHTML = userLogin.FullName;
+header_bar[6].addEventListener("click", () => {
+  localStorage.removeItem("userLogin");
+  location.href = "mainpage.html";
+});

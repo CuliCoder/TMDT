@@ -83,14 +83,14 @@ a {
   position: fixed;
   z-index: 9;
   width: 300px;
-  top: 32.7px;
-  right: 0;
+  top: 33px;
+  right: 10px;
   background-color: #272424;
   color: white;
   padding: 10px;
   font-size: 18px;
   transform-origin: top;
-
+  border-radius: 10px;
   animation: user-drop-down 0.25s linear;
 }
 .user-drop-down .fullname-user {
