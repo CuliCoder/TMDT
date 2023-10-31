@@ -12,14 +12,17 @@
   max-width: 150px;
   max-height: 150px;
 }
-.add-product p {
+.add-product p,
+.search-product-bg p {
   font-weight: 900;
   font-size: 30px;
 }
-.add-product {
+.add-product,
+.search-product-bg {
   font-size: 20px;
-  padding: 50px auto;
   box-shadow: 0 0 2px;
+  position: relative;
+  top: 50px;
 }
 .add-product form {
   margin: 0 auto;
@@ -102,4 +105,25 @@
 }
 .hide {
   display: none;
+}
+.search-product-bg {
+  width: 100%;
+  top: 70px;
+}
+.search-product-bg .search-box {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px 40px;
+}
+.search-product-bg .search {
+  display: flex;
+  border-radius: 5px;
+  border: solid;
+  padding: 5px;
+  margin: 10px 0;
+}
+.search-product-bg input {
+  width: 100%;
+  outline: none;
+  border: none;
 }

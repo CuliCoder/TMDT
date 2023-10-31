@@ -17,24 +17,105 @@ let edit_title = document.getElementById("edit-title");
 let edit_brand = document.getElementById("edit-brand");
 let edit_price_show = document.getElementById("ed-product-price-show");
 let edit_price_origin = document.getElementById("ed-product-price-origin");
-let indexCurrent;
-//function
+//search
+let search_text = document.querySelector("#search-product");
+let search_brand = document.querySelector("#search-brand");
+search_brand.addEventListener("change", (e) => {
+  document.querySelector(".products").innerHTML = `<li class="top-list">
+  <ul>
+    <li>#ID</li>
+    <li>ẢNH</li>
+    <li>TÊN SẢN PHẨM</li>
+    <li>HÃNG ĐIỆN THOẠI</li>
+    <li>GIÁ</li>
+    <li></li>
+  </ul>
+</li>`;
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  if (e.target.value == "")
+    for (let i = 0; i < products.length; i++) {
+      if (
+        products[i].title
+          .toLowerCase()
+          .includes(search_text.value.trim().toLowerCase())
+      )
+        document.querySelector(".products").innerHTML += showProducts(
+          products[i]
+        );
+    }
+  else
+    for (let i = 0; i < products.length; i++) {
+      if (
+        products[i].title
+          .toLowerCase()
+          .includes(search_text.value.trim().toLowerCase()) &&
+        e.target.value == products[i].brand
+      )
+        document.querySelector(".products").innerHTML += showProducts(
+          products[i]
+        );
+    }
+  list = document.querySelectorAll(".products .item");
+  delete_Product();
+  edit_Product();
+  loadItem();
+});
+search_text.addEventListener("input", (e) => {
+  let txt = e.target.value.trim().toLowerCase();
+  document.querySelector(".products").innerHTML = `<li class="top-list">
+  <ul>
+    <li>#ID</li>
+    <li>ẢNH</li>
+    <li>TÊN SẢN PHẨM</li>
+    <li>HÃNG ĐIỆN THOẠI</li>
+    <li>GIÁ</li>
+    <li></li>
+  </ul>
+</li>`;
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  if (search_brand.value == "")
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].title.toLowerCase().includes(txt))
+        document.querySelector(".products").innerHTML += showProducts(
+          products[i]
+        );
+    }
+  else
+    for (let i = 0; i < products.length; i++) {
+      if (
+        products[i].title.toLowerCase().includes(txt) &&
+        search_brand.value == products[i].brand
+      )
+        document.querySelector(".products").innerHTML += showProducts(
+          products[i]
+        );
+    }
+  list = document.querySelectorAll(".products .item");
+  delete_Product();
+  edit_Product();
+  loadItem();
+});
+//delete && edit
 function delete_Product() {
   list.forEach(btn_delete);
 }
 function edit_Product() {
   list.forEach(btn_edit);
 }
-function btn_edit(item, index) {
+let index_edit;
+function btn_edit(item) {
   item.querySelector(".edit-product").addEventListener("click", () => {
     let products = JSON.parse(localStorage.getItem("json-products"));
-    indexCurrent = index;
+    let id_product = item.querySelectorAll("ul li")[0].innerHTML;
+    for (let i = 0; i < products.length; i++) {
+      if (id_product == products[i].productId) index_edit = i;
+    }
     edit_product_bg.classList.toggle("hide");
-    img_edit.src = products[index].img;
-    edit_brand.value = products[index].brand;
-    edit_title.value = products[index].title;
-    edit_price_show.value = products[index].price_show;
-    edit_price_origin.value = products[index].price_origin;
+    img_edit.src = products[index_edit].img;
+    edit_brand.value = products[index_edit].brand;
+    edit_title.value = products[index_edit].title;
+    edit_price_show.value = products[index_edit].price_show;
+    edit_price_origin.value = products[index_edit].price_origin;
   });
 }
 function edit(indexCurrent) {
@@ -57,103 +138,77 @@ function close_edit_box() {
     if (e.target == e.currentTarget) edit_product_bg.classList.toggle("hide");
   });
 }
-function btn_delete(item, index) {
+function btn_delete(item) {
   item.querySelector(".delete-product").addEventListener("click", () => {
-    console.log(index);
     let products = JSON.parse(localStorage.getItem("json-products"));
+    let id_product = item.querySelectorAll("ul li")[0].innerHTML;
+    let indexCurrent;
+    for (let i = 0; i < products.length; i++) {
+      if (id_product == products[i].productId) indexCurrent = i;
+    }
     let result = confirm(
-      "Bạn có chắc muốn xóa sản phẩm với id " + products[index].productId + "?"
+      "Bạn có chắc muốn xóa sản phẩm với id " +
+        products[indexCurrent].productId +
+        "?"
     );
     if (result) {
-      products.splice(index, 1);
+      products.splice(indexCurrent, 1);
       localStorage.setItem("json-products", JSON.stringify(products));
       loadPage();
-      checkDeleteProduct();
+      notification.innerHTML = "";
+      showSuccess("Xóa sản phẩm thành công");
     }
   });
 }
-function checkDeleteProduct() {
-  notification.innerHTML = "";
+//notification
+function showError(message) {
+  let ntf_error = document.createElement("div");
+  ntf_error.innerHTML = '<i class="bx bx-x"></i>' + message;
+  ntf_error.classList.add("error");
+  notification.appendChild(ntf_error);
+  ntf_error.style.animation = "showNotification 3s linear";
+}
+function showSuccess(message) {
   let ntf_complete = document.createElement("div");
-  ntf_complete.innerHTML = '<i class="bx bx-check"></i>Xoá sản phẩm thành công';
+  ntf_complete.innerHTML = '<i class="bx bx-check"></i>' + message;
   ntf_complete.classList.add("complete");
   notification.appendChild(ntf_complete);
   ntf_complete.style.animation = "showNotification 3s linear";
 }
-//Add or Edit
 function checkInputForForm() {
   notification.innerHTML = "";
   if (!edit_product_bg.classList.contains("hide")) {
     if (edit_title.value == "" || edit_price_show.value == "") {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML =
-        '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Vui lòng nhập đầy đủ thông tin");
     } else if (isNaN(edit_price_show.value) || isNaN(edit_price_origin.value)) {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Giá không hợp lệ");
     } else if (
       parseInt(edit_price_origin.value) < parseInt(edit_price_show.value)
     ) {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML =
-        '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Giá hiển thị phải thấp hơn giá gốc");
     } else {
-      let ntf_complete = document.createElement("div");
-
-      ntf_complete.innerHTML =
-        '<i class="bx bx-check"></i>Sửa sản phẩm thành công';
-
-      ntf_complete.classList.add("complete");
-      notification.appendChild(ntf_complete);
-      ntf_complete.style.animation = "showNotification 3s linear";
-      edit(indexCurrent);
+      showSuccess("Sửa sản phẩm thành công");
+      edit(index_edit);
     }
   } else {
     if (product_title.value == "" || product_price_show.value == "") {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML =
-        '<i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Vui lòng nhập đầy đủ thông tin");
     } else if (
       isNaN(product_price_show.value) ||
       isNaN(product_price_origin.value)
     ) {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML = '<i class="bx bx-x"></i>Giá không hợp lệ';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Giá không hợp lệ");
     } else if (
       parseInt(product_price_origin.value) < parseInt(product_price_show.value)
     ) {
-      let ntf_error = document.createElement("div");
-      ntf_error.innerHTML =
-        '<i class="bx bx-x"></i>Giá hiển thị phải thấp hơn giá gốc';
-      ntf_error.classList.add("error");
-      notification.appendChild(ntf_error);
-      ntf_error.style.animation = "showNotification 3s linear";
+      showError("Giá hiển thị phải thấp hơn giá gốc");
     } else {
-      let ntf_complete = document.createElement("div");
-      ntf_complete.innerHTML =
-        '<i class="bx bx-check"></i>Thêm sản phẩm thành công';
-      ntf_complete.classList.add("complete");
-      notification.appendChild(ntf_complete);
-      ntf_complete.style.animation = "showNotification 3s linear";
+      showSuccess("Thêm sản phẩm thành công");
       addProduct();
     }
   }
 }
+//img
 function changeImg(file) {
   const reader = new FileReader();
   reader.onload = (evt) => {
@@ -164,7 +219,7 @@ function changeImg(file) {
   };
   reader.readAsDataURL(file.files[0]);
 }
-
+//add product
 function addProduct() {
   let products = JSON.parse(localStorage.getItem("json-products"));
   let new_product = {
@@ -178,14 +233,9 @@ function addProduct() {
   products[0].productId = products[1].productId + 1;
   let json_products = JSON.stringify(products);
   localStorage.setItem("json-products", json_products);
-  //localStorage.setItem("add-product", "true");
-  // localStorage.setItem("product-title", product_title.value);
-  // localStorage.setItem("product-img", product_img.value);
-  // localStorage.setItem("product-price-show", product_price_show.value);
-  // localStorage.setItem("product-price-origin", product_price_origin.value);
-  // console.log(product_title.value);
   loadPage();
 }
+//load page
 loadPage();
 function loadPage() {
   let products = JSON.parse(localStorage.getItem("json-products"));
@@ -240,7 +290,6 @@ function loadItem() {
   }
   listPage();
 }
-delete_Product();
 function listPage() {
   let count = Math.ceil(list.length / limit);
   document.querySelector(".list-page").innerHTML = "";
@@ -283,21 +332,18 @@ function price_format(price) {
 }
 //header
 let header_bar = document.querySelector(".header>div").children;
-header_bar[1].addEventListener("click", () => {
-  location.href = "mainpage.html";
-});
-header_bar[2].addEventListener("click", () => {
-  location.href = "product_page.html";
-});
-header_bar[3].addEventListener("click", () => {
-  location.href = "order_page.html";
-});
-header_bar[4].addEventListener("click", () => {
-  location.href = "customers_page.html";
-});
-header_bar[5].addEventListener("click", () => {
-  location.href = "statistics_page.html";
-});
+let arr_href = [
+  "mainpage.html",
+  "product_page.html",
+  "order_page.html",
+  "customers_page.html",
+  "statistics_page.html",
+];
+for (let i = 1; i < header_bar.length - 1; i++) {
+  header_bar[i].addEventListener("click", () => {
+    location.href = arr_href[i - 1];
+  });
+}
 let userLogin = JSON.parse(localStorage.getItem("userLogin"));
 header_bar[6].children[1].innerHTML = userLogin.FullName;
 header_bar[6].addEventListener("click", () => {
