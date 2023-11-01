@@ -348,5 +348,5 @@ let userLogin = JSON.parse(localStorage.getItem("userLogin"));
 header_bar[6].children[1].innerHTML = userLogin.FullName;
 header_bar[6].addEventListener("click", () => {
   localStorage.removeItem("userLogin");
-  location.href = "mainpage.html";
+  location.href = "index.html";
 });

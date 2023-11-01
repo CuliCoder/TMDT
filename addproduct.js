@@ -257,7 +257,6 @@ showProductMainPage();
 function showProductMainPage() {
   if (tmp.length != 2) {
     products = JSON.parse(localStorage.getItem("json-products"));
-    console.log(products);
     document.querySelector(".all-products").innerHTML = products
       .map(show)
       .join("");

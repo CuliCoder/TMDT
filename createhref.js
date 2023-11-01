@@ -9,7 +9,6 @@ function createForBrand() {
       '">' +
       listBrand[i].toUpperCase() +
       "</a>";
-    console.log(betweenHeader[i].children);
   }
   // tmp +=
   // '<div class="trademark-Apple animation-unline"><a href="mainpage.html?' +
