@@ -333,7 +333,7 @@ function price_format(price) {
 //header
 let header_bar = document.querySelector(".header>div").children;
 let arr_href = [
-  "mainpage.html",
+  "index.html",
   "product_page.html",
   "order_page.html",
   "customers_page.html",
