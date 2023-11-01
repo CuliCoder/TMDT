@@ -112,7 +112,6 @@ signup.addEventListener("submit", (e) => {
   if (isusernameLength) {
     isSameUserName = checkSameUserName(username);
   }
-  console.log(isSameUserName);
   if (
     isEmpty == false &&
     isusernameLength &&

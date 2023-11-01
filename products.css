@@ -112,6 +112,7 @@
 .products .list-page li {
   user-select: none;
   border: solid;
+  border-radius: 15px;
   padding: 10px;
   display: inline-block;
   margin: 0 5px;
