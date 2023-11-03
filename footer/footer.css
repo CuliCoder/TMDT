@@ -1,0 +1,59 @@
+*{
+  box-sizing: border-box;   
+  font-family: sans-serif;
+}
+body{
+    margin: 0;
+}
+.footer{
+    background-color: #272424;
+    height: 350px;
+}
+.ftmain{
+    height: 310px;
+}
+.ftlogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.ftlogo img{
+    width: 300px;
+}
+.footer .ftchild{
+    height: 310px;
+}
+.ftchild{
+    color: aliceblue;
+}
+.ftchild p{
+    font-size: 20px;
+}
+.ftchild ul li{
+    margin-bottom: 20px;
+}
+.ftbot{
+ display: flex;
+ justify-content: center;
+ height: 40px;
+}
+.ftbot p{
+    color: aliceblue;
+    width: 50%;
+    border-top: 2px solid aliceblue;
+    text-align: center;
+}
+.listhv li:hover
+{
+    transition: 0.3s;
+    cursor: pointer;
+    color: rgb(255, 42, 42);
+    margin-left: 12px;
+    font-size: 20px;
+}
+.listhv a{
+    color: aliceblue;
+    text-decoration: none;
+}
+

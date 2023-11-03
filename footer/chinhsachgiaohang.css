@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+.boxcsgh{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.tgnhanhang{
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+}
+table {
+        border-collapse: collapse;
+}
+.boxcsgh table, th, td{
+    border: 1px solid #dedede;
+    margin: 0;
+}
+.hdtable{
+    background-color:#5a6753 ;
+    height: 50px;
+}
+td{
+    height: 30px;
+    padding: 10px;
+}
+.boxcsgh p{
+    margin: 10 0 10 0;
+}
