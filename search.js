@@ -17,14 +17,17 @@ function search() {
     let json_product = JSON.parse(localStorage.getItem("json-products"));
     for (let i = 0; i < json_product.length; i++)
       if (json_product[i].title.toLowerCase().includes(txt_search))
-        document.querySelector(".search-bg .products").innerHTML +=
-          '<div class="item-product"><img src="' +
-          json_product[i].img +
-          '" alt="" /><div class="info"><div class="title">' +
-          json_product[i].title +
-          '</div><div class="price-show">' +
-          price_format(json_product[i].price_show) +
-          "</div></div></div>";
+        document.querySelector(
+          ".search-bg .products"
+        ).innerHTML += `<div class="item-product" onclick="showProductInfo(${
+          json_product[i].productId
+        })"><img src="${
+          json_product[i].img
+        }" alt="" /><div class="info"><div class="title">${
+          json_product[i].title
+        }</div><div class="price-show">${price_format(
+          json_product[i].price_show
+        )}</div></div></div>`;
     list_search = document.querySelectorAll(
       ".search-bg .products .item-product"
     );
@@ -57,7 +60,7 @@ function listPage_search() {
     let newPage = document.createElement("li");
     newPage.innerText = i;
     if (i == thisPage_search) newPage.classList.add("page-current");
-    newPage.setAttribute("onclick", "changePage_search(" + i + ")");
+    newPage.setAttribute("onclick");
     document.querySelector(".search-bg .list-page-search").appendChild(newPage);
   }
   if (thisPage_search != count) {
@@ -85,3 +88,22 @@ function price_format(price) {
   tmp = tmp.slice(0);
   return tmp + price_str + "₫";
 }
+function showProductInfo(id_product) {
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].productId == id_product) {
+      localStorage.setItem("ProductInfo", JSON.stringify(products[i]));
+    }
+  }
+  location.href = "chitietsanpham.html";
+}
+document.querySelector(".header .cart").addEventListener("click", () => {
+  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+  if (userLogin == null) {
+    alert("Vui lòng đăng nhập!");
+  } else if (userLogin != null && userLogin.status != "Hoạt động") {
+    alert("Tài khoản bị khóa không thể vào giỏ hàng!");
+  } else {
+    location.href = "giohang.html";
+  }
+});

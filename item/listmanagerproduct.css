@@ -18,8 +18,9 @@ li {
   font-weight: 900;
   text-align: center;
   background-color: white;
-  box-shadow: 0 0 10px;
   padding: 10px 30px;
+  border: solid;
+  border-radius: 10px;
 }
 .list-products > p {
   font-size: 40px;
@@ -32,6 +33,10 @@ li {
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
+}
+.top-list {
+  background-color: #272424;
+  color: white;
 }
 .top-list ul > li:not(:last-child) {
   border-right: 1px solid black;
@@ -71,19 +76,25 @@ li {
 }
 .item ul li:nth-child(2) {
   width: 10%;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .item ul li:nth-child(3) {
   width: 40%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 .item ul li:nth-child(4) {
   width: 15%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 .item ul li:nth-child(5) {
   width: 20%;
+  padding: 5px;
 }
 .item ul li:nth-child(6) {
   width: 5%;
@@ -130,6 +141,9 @@ li button {
   border: none;
   font-size: 10px;
   overflow: hidden;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
 }
 .delete-product {
   background-color: red;

@@ -24,9 +24,8 @@ a {
   height: 100%;
 }
 .logo a {
-  max-width: 100%;
-  max-height: 25px;
-  object-fit: cover;
+  display: block;
+  height: 100%;
 }
 .logo {
   padding: 3px;

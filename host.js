@@ -6,6 +6,9 @@ let choose_img = document.getElementById("choose-img");
 let product_price_show = document.getElementById("product-price-show");
 let product_price_origin = document.getElementById("product-price-origin");
 let img_add = document.querySelector(".img-add");
+let info = document.querySelectorAll(
+  ".add-product form > div:nth-child(2) input"
+);
 let limit = 12;
 let thisPage = 1;
 let list;
@@ -17,6 +20,9 @@ let edit_title = document.getElementById("edit-title");
 let edit_brand = document.getElementById("edit-brand");
 let edit_price_show = document.getElementById("ed-product-price-show");
 let edit_price_origin = document.getElementById("ed-product-price-origin");
+let info_edit = document.querySelectorAll(
+  ".editproduct-box form > div:nth-child(2) input"
+);
 //search
 let search_text = document.querySelector("#search-product");
 let search_brand = document.querySelector("#search-brand");
@@ -56,8 +62,7 @@ search_brand.addEventListener("change", (e) => {
         );
     }
   list = document.querySelectorAll(".products .item");
-  delete_Product();
-  edit_Product();
+
   loadItem();
 });
 search_text.addEventListener("input", (e) => {
@@ -91,32 +96,36 @@ search_text.addEventListener("input", (e) => {
         );
     }
   list = document.querySelectorAll(".products .item");
-  delete_Product();
-  edit_Product();
+
   loadItem();
 });
 //delete && edit
-function delete_Product() {
-  list.forEach(btn_delete);
-}
-function edit_Product() {
-  list.forEach(btn_edit);
-}
 let index_edit;
-function btn_edit(item) {
-  item.querySelector(".edit-product").addEventListener("click", () => {
-    let products = JSON.parse(localStorage.getItem("json-products"));
-    let id_product = item.querySelectorAll("ul li")[0].innerHTML;
-    for (let i = 0; i < products.length; i++) {
-      if (id_product == products[i].productId) index_edit = i;
+function btn_edit(id_product) {
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  for (let i = 0; i < products.length; i++) {
+    if (id_product == products[i].productId) {
+      index_edit = i;
+      edit_product_bg.classList.toggle("hide");
+      img_edit.src = products[i].img;
+      edit_brand.value = products[i].brand;
+      edit_title.value = products[i].title;
+      edit_price_show.value = products[i].price_show;
+      edit_price_origin.value = products[i].price_origin;
+      info_edit[0].value = products[i].screen_size;
+      info_edit[1].value = products[i].screen_technology;
+      info_edit[2].value = products[i].rear_camera;
+      info_edit[3].value = products[i].front_camera;
+      info_edit[4].value = products[i].Chipset;
+      info_edit[5].value = products[i].RAM_capacit;
+      info_edit[6].value = products[i].internal_storage;
+      info_edit[7].value = products[i].Pin;
+      info_edit[8].value = products[i].SIM_card;
+      info_edit[9].value = products[i].OS;
+      info_edit[10].value = products[i].screen_resolution;
+      info_edit[11].value = products[i].screen_features;
     }
-    edit_product_bg.classList.toggle("hide");
-    img_edit.src = products[index_edit].img;
-    edit_brand.value = products[index_edit].brand;
-    edit_title.value = products[index_edit].title;
-    edit_price_show.value = products[index_edit].price_show;
-    edit_price_origin.value = products[index_edit].price_origin;
-  });
+  }
 }
 function edit(indexCurrent) {
   let products = JSON.parse(localStorage.getItem("json-products"));
@@ -125,8 +134,19 @@ function edit(indexCurrent) {
   products[indexCurrent].brand = edit_brand.value;
   products[indexCurrent].price_show = edit_price_show.value;
   products[indexCurrent].price_origin = edit_price_origin.value;
+  products[indexCurrent].screen_size = info_edit[0].value;
+  products[indexCurrent].screen_technology = info_edit[1].value;
+  products[indexCurrent].rear_camera = info_edit[2].value;
+  products[indexCurrent].front_camera = info_edit[3].value;
+  products[indexCurrent].Chipset = info_edit[4].value;
+  products[indexCurrent].RAM_capacit = info_edit[5].value;
+  products[indexCurrent].internal_storage = info_edit[6].value;
+  products[indexCurrent].Pin = info_edit[7].value;
+  products[indexCurrent].SIM_card = info_edit[8].value;
+  products[indexCurrent].OS = info_edit[9].value;
+  products[indexCurrent].screen_resolution = info_edit[10].value;
+  products[indexCurrent].screen_features = info_edit[11].value;
   localStorage.setItem("json-products", JSON.stringify(products));
-  loadPage();
 }
 close_edit_box();
 function close_edit_box() {
@@ -138,30 +158,24 @@ function close_edit_box() {
     if (e.target == e.currentTarget) edit_product_bg.classList.toggle("hide");
   });
 }
-function btn_delete(item) {
-  item.querySelector(".delete-product").addEventListener("click", () => {
-    let products = JSON.parse(localStorage.getItem("json-products"));
-    let id_product = item.querySelectorAll("ul li")[0].innerHTML;
-    let indexCurrent;
-    for (let i = 0; i < products.length; i++) {
-      if (id_product == products[i].productId) indexCurrent = i;
-    }
-    let result = confirm(
-      "Bạn có chắc muốn xóa sản phẩm với id " +
-        products[indexCurrent].productId +
-        "?"
-    );
-    if (result) {
-      products.splice(indexCurrent, 1);
-      localStorage.setItem("json-products", JSON.stringify(products));
-      loadPage();
-      notification.innerHTML = "";
-      showSuccess("Xóa sản phẩm thành công");
-    }
-  });
+function btn_delete(id_product) {
+  let result = confirm(
+    "Bạn có chắc muốn xóa sản phẩm với id " + id_product + "?"
+  );
+  let products = JSON.parse(localStorage.getItem("json-products"));
+  for (let i = 0; i < products.length; i++) {
+    if (id_product == products[i].productId)
+      if (result) {
+        products.splice(i, 1);
+        localStorage.setItem("json-products", JSON.stringify(products));
+        loadPage();
+        showSuccess("Xóa sản phẩm thành công");
+      }
+  }
 }
 //notification
 function showError(message) {
+  notification.innerHTML = "";
   let ntf_error = document.createElement("div");
   ntf_error.innerHTML = '<i class="bx bx-x"></i>' + message;
   ntf_error.classList.add("error");
@@ -169,6 +183,7 @@ function showError(message) {
   ntf_error.style.animation = "showNotification 3s linear";
 }
 function showSuccess(message) {
+  notification.innerHTML = "";
   let ntf_complete = document.createElement("div");
   ntf_complete.innerHTML = '<i class="bx bx-check"></i>' + message;
   ntf_complete.classList.add("complete");
@@ -176,7 +191,6 @@ function showSuccess(message) {
   ntf_complete.style.animation = "showNotification 3s linear";
 }
 function checkInputForForm() {
-  notification.innerHTML = "";
   if (!edit_product_bg.classList.contains("hide")) {
     if (edit_title.value == "" || edit_price_show.value == "") {
       showError("Vui lòng nhập đầy đủ thông tin");
@@ -228,6 +242,18 @@ function addProduct() {
     brand: product_brand.value,
     price_show: product_price_show.value,
     price_origin: product_price_origin.value,
+    screen_size: info[0].value,
+    screen_technology: info[1].value,
+    rear_camera: info[2].value,
+    front_camera: info[3].value,
+    Chipset: info[4].value,
+    RAM_capacit: info[5].value,
+    internal_storage: info[6].value,
+    Pin: info[7].value,
+    SIM_card: info[8].value,
+    OS: info[9].value,
+    screen_resolution: info[10].value,
+    screen_features: info[11].value,
   };
   products.unshift(new_product);
   products[0].productId = products[1].productId + 1;
@@ -253,8 +279,7 @@ function loadPage() {
     document.querySelector(".products").innerHTML += showProducts(products[i]);
   }
   list = document.querySelectorAll(".products .item");
-  delete_Product();
-  edit_Product();
+
   loadItem();
 }
 function showProducts(item) {
@@ -274,8 +299,12 @@ function showProducts(item) {
               <p class="price-origin">${price_format(item.price_origin)}</p>
             </li>
             <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
+              <button type="submit" class="delete-product" onclick="btn_delete(${
+                item.productId
+              })">X</button>
+              <button type="submit" class="edit-product" onclick="btn_edit(${
+                item.productId
+              })">SỬA</button>
             </li>
           </ul>
         </li>`;

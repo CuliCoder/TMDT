@@ -26,56 +26,78 @@
       <!-- <div><i class="bx bx-check"></i>Thêm sản phẩm thành công</div> -->
     </div>
     <div class="editproduct-bg hide">
-      <form class="editproduct-box">
+      <div class="editproduct-box">
         <div class="close-edit-box">
           <i class="bx bx-x"></i>
         </div>
-        <img class="img-edit" src="./img/imgs/Thêm ảnh 358 x 358.png" alt="" />
-        <label for="edit-title">Tên sản phẩm</label>
-        <input
-          id="edit-title"
-          name="edit-title"
-          type="text"
-          placeholder="Tên sản phẩm"
-        />
-        <label for="edit-brand">Hãng điện thoại</label>
-        <select id="edit-brand">
-          <option value="APPLE">APPLE</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-        </select>
-        <label for="ed-product-price-show">Giá hiển thị</label>
-        <input
-          id="ed-product-price-show"
-          type="text"
-          name="ed-product-price-show"
-          value=""
-          placeholder="Nhập giá hiển thị"
-        />
-        <label for="ed-product-price-origin">Giá gốc</label>
-        <input
-          id="ed-product-price-origin"
-          name="ed-product-price-origin"
-          value=""
-          type="text"
-          placeholder="Nhập giá gốc nếu có"
-        />
+        <form>
+          <div>
+            <img
+              class="img-edit"
+              src="./img/imgs/Thêm ảnh 358 x 358.png"
+              alt=""
+            />
+            <label for="edit-title">Tên sản phẩm</label>
+            <input
+              id="edit-title"
+              name="edit-title"
+              type="text"
+              placeholder="Tên sản phẩm"
+            />
+            <label for="edit-brand">Hãng điện thoại</label>
+            <select id="edit-brand">
+              <option value="APPLE">APPLE</option>
+              <option value="SAMSUNG">SAMSUNG</option>
+              <option value="XIAOMI">XIAOMI</option>
+              <option value="OPPO">OPPO</option>
+              <option value="REALME">REALME</option>
+            </select>
+            <label for="ed-product-price-show">Giá hiển thị</label>
+            <input
+              id="ed-product-price-show"
+              type="text"
+              name="ed-product-price-show"
+              value=""
+              placeholder="Nhập giá hiển thị"
+            />
+            <label for="ed-product-price-origin">Giá gốc</label>
+            <input
+              id="ed-product-price-origin"
+              name="ed-product-price-origin"
+              value=""
+              type="text"
+              placeholder="Nhập giá gốc nếu có"
+            />
 
-        <label for="edit-img">Thêm ảnh</label>
-        <input
-          id="edit-img"
-          value=""
-          name="edit-img"
-          type="file"
-          onchange="changeImg(this)"
-        />
-        <button type="button" onclick="checkInputForForm()">
-          Sửa sản phẩm
-        </button>
-        <button type="reset">Reset</button>
-      </form>
+            <label for="edit-img">Thêm ảnh</label>
+            <input
+              id="edit-img"
+              value=""
+              name="edit-img"
+              type="file"
+              onchange="changeImg(this)"
+            />
+          </div>
+          <div>
+            <input type="text" placeholder="Kích thước màn hình" />
+            <input type="text" placeholder="Công nghệ màn hình" />
+            <input type="text" placeholder="Camera sau" />
+            <input type="text" placeholder="Camera trước" />
+            <input type="text" placeholder="Chipset" />
+            <input type="text" placeholder="Dung lượng RAM" />
+            <input type="text" placeholder="Bộ nhớ trong" />
+            <input type="text" placeholder="Pin" />
+            <input type="text" placeholder="Thẻ SIM" />
+            <input type="text" placeholder="Hệ điều hành" />
+            <input type="text" placeholder="Độ phân giải màn hình" />
+            <input type="text" placeholder="Tính năng màn hình" />
+            <button type="button" onclick="checkInputForForm()">
+              Sửa sản phẩm
+            </button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="header">
       <div class="grid wide">
@@ -109,60 +131,62 @@
     </div>
     <div class="add-product grid wide">
       <form>
-        <p>THÊM SẢN PHẨM</p>
-        <label for="product-title">Tên sản phẩm</label>
-        <input id="product-title" type="text" placeholder="Tên sản phẩm" />
-        <label for="brand">Hãng điện thoại</label>
-        <select id="brand">
-          <option value="APPLE">APPLE</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-        </select>
-        <label for="product-price-show">Giá hiển thị</label>
-        <input
-          id="product-price-show"
-          type="text"
-          name="product-price-show"
-          value=""
-          placeholder="Nhập giá hiển thị"
-        />
-        <label for="product-price-origin">Giá gốc</label>
-        <input
-          id="product-price-origin"
-          name="product-price-origin"
-          value=""
-          type="text"
-          placeholder="Nhập giá gốc nếu có"
-        />
-
-        <label for="choose-img">Thêm ảnh</label>
-        <input
-          id="choose-img"
-          value=""
-          name="choose-img"
-          type="file"
-          onchange="changeImg(this)"
-        />
-        <!-- <label for="link-img">Link ảnh (nếu có)</label>
-        <input
-          id="link-img"
-          type="text"
-          value=""
-          name="link-img"
-          placeholder="Nhập link ảnh"
-          
-          onchange="changeImg_link(this)"
-        /> -->
-        <div class="product-img">
+        <div>
+          <p>THÊM SẢN PHẨM</p>
+          <label for="product-title">Tên sản phẩm</label>
+          <input id="product-title" type="text" placeholder="Tên sản phẩm" />
+          <label for="brand">Hãng điện thoại</label>
+          <select id="brand">
+            <option value="APPLE">APPLE</option>
+            <option value="SAMSUNG">SAMSUNG</option>
+            <option value="XIAOMI">XIAOMI</option>
+            <option value="OPPO">OPPO</option>
+            <option value="REALME">REALME</option>
+          </select>
+          <label for="product-price-show">Giá hiển thị</label>
+          <input
+            id="product-price-show"
+            type="text"
+            name="product-price-show"
+            value=""
+            placeholder="Nhập giá hiển thị"
+          />
+          <label for="product-price-origin">Giá gốc</label>
+          <input
+            id="product-price-origin"
+            name="product-price-origin"
+            value=""
+            type="text"
+            placeholder="Nhập giá gốc nếu có"
+          />
+          <label for="choose-img">Thêm ảnh</label>
+          <input
+            id="choose-img"
+            value=""
+            name="choose-img"
+            type="file"
+            onchange="changeImg(this)"
+          />
           <img class="img-add" src="img/imgs/Thêm ảnh 358 x 358.png " alt="" />
-          <!-- img/imgs/Thêm ảnh 358 x 358.png -->
         </div>
-        <button type="button" onclick="checkInputForForm()">
-          Thêm sản phẩm
-        </button>
-        <button type="reset">Reset</button>
+        <div>
+          <input type="text" placeholder="Kích thước màn hình" />
+          <input type="text" placeholder="Công nghệ màn hình" />
+          <input type="text" placeholder="Camera sau" />
+          <input type="text" placeholder="Camera trước" />
+          <input type="text" placeholder="Chipset" />
+          <input type="text" placeholder="Dung lượng RAM" />
+          <input type="text" placeholder="Bộ nhớ trong" />
+          <input type="text" placeholder="Pin" />
+          <input type="text" placeholder="Thẻ SIM" />
+          <input type="text" placeholder="Hệ điều hành" />
+          <input type="text" placeholder="Độ phân giải màn hình" />
+          <input type="text" placeholder="Tính năng màn hình" />
+          <button type="button" onclick="checkInputForForm()">
+            Thêm sản phẩm
+          </button>
+          <button type="reset">Reset</button>
+        </div>
       </form>
     </div>
     <div class="search-product-bg grid wide">

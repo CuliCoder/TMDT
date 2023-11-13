@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="host.css" />
     <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="item/listmanagerproduct.css" />
-    <link rel="stylesheet" href="editproduct.css" />
     <link rel="stylesheet" href="headerhost.css" />
+    <link rel="stylesheet" href="order_page.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -19,63 +17,39 @@
     <title>Quản lý đơn hàng</title>
   </head>
   <body>
-    <div class="notification">
-      <!-- <div class="error">
-        <i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin
-      </div> -->
-      <!-- <div><i class="bx bx-check"></i>Thêm sản phẩm thành công</div> -->
-    </div>
-    <div class="editproduct-bg hide">
-      <form class="editproduct-box">
-        <div class="close-edit-box">
-          <i class="bx bx-x"></i>
+    <div class="info-order-bg hide">
+      <div class="info-order-box">
+        <i class="bx bx-x"></i>
+        <p>Thông tin đơn hàng</p>
+        <div class="infor">
+          <span>Sản phẩm:</span>
+          <span>${listUsers[i].FullName}</span>
         </div>
-        <img class="img-edit" src="./img/imgs/Thêm ảnh 358 x 358.png" alt="" />
-        <label for="edit-title">Tên sản phẩm</label>
-        <input
-          id="edit-title"
-          name="edit-title"
-          type="text"
-          placeholder="Tên sản phẩm"
-        />
-        <label for="edit-brand">Hãng điện thoại</label>
-        <select id="edit-brand">
-          <option value="APPLE">APPLE</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-        </select>
-        <label for="ed-product-price-show">Giá hiển thị</label>
-        <input
-          id="ed-product-price-show"
-          type="text"
-          name="ed-product-price-show"
-          value=""
-          placeholder="Nhập giá hiển thị"
-        />
-        <label for="ed-product-price-origin">Giá gốc</label>
-        <input
-          id="ed-product-price-origin"
-          name="ed-product-price-origin"
-          value=""
-          type="text"
-          placeholder="Nhập giá gốc nếu có"
-        />
-
-        <label for="edit-img">Thêm ảnh</label>
-        <input
-          id="edit-img"
-          value=""
-          name="edit-img"
-          type="file"
-          onchange="changeImg(this)"
-        />
-        <button type="button" onclick="checkInputForForm()">
-          Sửa sản phẩm
-        </button>
-        <button type="reset">Reset</button>
-      </form>
+        <div class="infor">
+          <span>Ngày tạo đơn:</span>
+          <span>${listUsers[i].FullName}</span>
+        </div>
+        <div class="infor">
+          <span>Tên khách hàng:</span>
+          <span>${listUsers[i].FullName}</span>
+        </div>
+        <div class="infor">
+          <span>Địa chỉ:</span>
+          <span>${listUsers[i].Address}</span>
+        </div>
+        <div class="infor">
+          <span>Số điện thoại:</span>
+          <span>${listUsers[i].PhoneNumber}</span>
+        </div>
+        <div class="infor">
+          <span>Tổng tiền:</span>
+          <span>${listUsers[i].user}</span>
+        </div>
+        <div class="infor">
+          <span>Tình trạng:</span>
+          <span>${listUsers[i].password}</span>
+        </div>
+      </div>
     </div>
     <div class="header">
       <div class="grid wide">
@@ -107,185 +81,50 @@
         </div>
       </div>
     </div>
-    <div class="add-product grid wide">
-      <form>
-        <p>THÊM SẢN PHẨM</p>
-        <label for="product-title">Tên sản phẩm</label>
-        <input id="product-title" type="text" placeholder="Tên sản phẩm" />
-        <label for="brand">Hãng điện thoại</label>
-        <select id="brand">
-          <option value="APPLE">APPLE</option>
-          <option value="SAMSUNG">SAMSUNG</option>
-          <option value="XIAOMI">XIAOMI</option>
-          <option value="OPPO">OPPO</option>
-          <option value="REALME">REALME</option>
-        </select>
-        <label for="product-price-show">Giá hiển thị</label>
-        <input
-          id="product-price-show"
-          type="text"
-          name="product-price-show"
-          value=""
-          placeholder="Nhập giá hiển thị"
-        />
-        <label for="product-price-origin">Giá gốc</label>
-        <input
-          id="product-price-origin"
-          name="product-price-origin"
-          value=""
-          type="text"
-          placeholder="Nhập giá gốc nếu có"
-        />
-
-        <label for="choose-img">Thêm ảnh</label>
-        <input
-          id="choose-img"
-          value=""
-          name="choose-img"
-          type="file"
-          onchange="changeImg(this)"
-        />
-        <!-- <label for="link-img">Link ảnh (nếu có)</label>
-        <input
-          id="link-img"
-          type="text"
-          value=""
-          name="link-img"
-          placeholder="Nhập link ảnh"
-          
-          onchange="changeImg_link(this)"
-        /> -->
-        <div class="product-img">
-          <img class="img-add" src="img/imgs/Thêm ảnh 358 x 358.png " alt="" />
-          <!-- img/imgs/Thêm ảnh 358 x 358.png -->
+    <div class="search-order-bg grid wide">
+      <div class="search-order-box">
+        <div class="search-date">
+          <label for="date-begin">Từ ngày</label>
+          <input type="date" id="date-begin" />
+          <label for="date-end">Đến ngày</label>
+          <input type="date" id="date-end" />
+          <button type="submit"><i class="bx bx-search btn-search"></i></button>
         </div>
-        <button type="button" onclick="checkInputForForm()">
-          Thêm sản phẩm
-        </button>
-        <button type="reset">Reset</button>
-      </form>
+        <div class="search-txt">
+          <select id="opt" onchange="check_option()">
+            <option value="orderId">Tìm theo mã đơn hàng</option>
+            <option value="user">Tìm theo tên đăng nhập</option>
+            <option value="status">Tìm theo trạng thái</option>
+          </select>
+          <input id="search-txt" type="text" placeholder="Mã đơn hàng" />
+          <select id="search-status" class="hide">
+            <option value="Đang chờ xử lý">Đang chờ xử lý</option>
+            <option value="Đơn hàng đã bị hủy">Đơn hàng đã bị hủy</option>
+            <option value="Đơn hàng đã được xác nhận">
+              Đơn hàng đã được xác nhận
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
-    <div class="list-products grid wide">
-      <p>Danh sách sản phẩm</p>
-      <ul class="products">
+    <div class="list-orders grid wide">
+      <p>DANH SÁCH ĐƠN HÀNG</p>
+      <div class="not-found hide">Không tìm thấy</div>
+      <ul class="orders">
         <li class="top-list">
           <ul>
-            <li>#ID</li>
-            <li>ẢNH</li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>HÃNG ĐIỆN THOẠI</li>
-            <li>GIÁ</li>
-            <li></li>
+            <li>Mã đơn hàng</li>
+            <li>Khách hàng</li>
+            <li>Sản phẩm</li>
+            <li>Tổng tiền</li>
+            <li>Ngày giờ</li>
+            <li>Trạng thái</li>
+            <li>Hành động</li>
           </ul>
         </li>
-        <!-- <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul> -->
-        <!-- </li> -->
       </ul>
       <ul class="list-page"></ul>
     </div>
   </body>
-  <script>
-    let header_bar = document.querySelector(".header>div").children;
-    console.log(header_bar);
-    let arr_href = [
-      "index.html",
-      "product_page.html",
-      "order_page.html",
-      "customers_page.html",
-      "statistics_page.html",
-    ];
-    for (let i = 1; i < header_bar.length - 1; i++) {
-      header_bar[i].addEventListener("click", () => {
-        location.href = arr_href[i - 1];
-      });
-    }
-    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-    header_bar[6].children[1].innerHTML = userLogin.FullName;
-    header_bar[6].addEventListener("click", () => {
-      localStorage.removeItem("userLogin");
-      location.href = "index.html";
-    });
-  </script>
+  <script src="order_page.js"></script>
 </html>

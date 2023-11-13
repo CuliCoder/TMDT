@@ -4,19 +4,12 @@ function createForBrand() {
   let betweenHeader = document.getElementsByClassName("brand");
   for (let i = 0; i < listBrand.length; i++) {
     betweenHeader[i].innerHTML =
-      '<a href="mainpage.html?' +
+      '<a href="index.html?' +
       listBrand[i] +
       '">' +
       listBrand[i].toUpperCase() +
       "</a>";
   }
-  // tmp +=
-  // '<div class="trademark-Apple animation-unline"><a href="mainpage.html?' +
-  // listBrand[i] +
-  // '">' +
-  //  listBrand[i].toUpperCase() +
-  //  "</a></div>";
-  // item_top_bar.innerHTML = tmp;
   showProductBrand();
 }
 
@@ -36,7 +29,7 @@ function showProductBrand() {
 }
 function show(item) {
   return `<div class="product col l-3 m-4 c-6">
-<div class="product-box">
+<div class="product-box" onclick="showProductInfo(${item.productId})">
   <div class="product-img">
     <img
       src="${item.img}"  alt="lỗi ảnh"
@@ -48,7 +41,7 @@ function show(item) {
       <p class="product-price-show">${price_format(item.price_show)}</p>
       <p class="product-price-origin">${price_format(item.price_origin)}</p>
     </div>
-    <a href="" class="product-btn">Mua ngay</a>
+    <a href="chitietsanpham.html" class="product-btn">Chi tiết</a>
   </div>
 </div>
 </div>`;

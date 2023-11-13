@@ -22,6 +22,9 @@
   padding: 40px;
   animation: validateForm 0.5s linear;
 }
+.validateform-box.signup i {
+  padding-top: 15px;
+}
 .validateform-box h1 {
   text-align: center;
 }

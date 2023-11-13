@@ -5,7 +5,10 @@ let users = [
     PhoneNumber: "0966421165",
     user: "admin",
     password: "admin",
-    DateSignUp: "28-10-2023",
+    cart: [],
+    order: [],
+    DateSignUp: "2023-11-13T03:52:37.202Z",
+    status: "Hoạt động",
   },
 ];
 if (localStorage.getItem("users") == null)
@@ -94,6 +97,19 @@ function checkSameUserName(username) {
   showSuccess(username);
   return false;
 }
+function checkIsSpace(input) {
+  for (let i = 0; i < input.value.length; i++) {
+    if (input.value[i] == " " || input.value[i] == "\t") {
+      showError(input, "Không được có khoảng trống");
+      return true;
+    }
+  }
+  return false;
+}
+function formatDate() {
+  let d = new Date();
+  return d.toISOString();
+}
 signup.addEventListener("submit", (e) => {
   e.preventDefault();
   let isEmpty = checkEmpty([
@@ -112,28 +128,32 @@ signup.addEventListener("submit", (e) => {
   if (isusernameLength) {
     isSameUserName = checkSameUserName(username);
   }
+  let isspace = checkIsSpace(username);
   if (
     isEmpty == false &&
     isusernameLength &&
     isphonenumber &&
     ispasswordLength &&
     ismatchPassword &&
-    isSameUserName == false
+    isSameUserName == false &&
+    isspace == false
   ) {
     let users = JSON.parse(localStorage.getItem("users"));
-    let d = new Date();
-    let DateSignUp =
-      d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+    let DateSignUp = formatDate();
     let newUser = {
       FullName: fullname.value,
       Address: address.value,
       PhoneNumber: phone_number.value,
       user: username.value,
       password: password.value,
+      cart: [],
+      order: [],
       DateSignUp: DateSignUp,
+      status: "Hoạt động",
     };
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
+    alert("Đăng ký thành công!");
     document.querySelector(".validateform-bg .signup").classList.toggle("hide");
     document.querySelector(".validateform-bg .login").classList.toggle("hide");
   }
@@ -209,7 +229,7 @@ document.querySelector(".header .user").addEventListener("click", () => {
   } else document.querySelector(".validateform-bg").classList.toggle("hide");
 });
 document.querySelector(".log-out").addEventListener("click", () => {
-  document.querySelector(".user-drop-down").classList.toggle("hide");
+  document.querySelector(".user-drop-down").classList.add("hide");
   localStorage.removeItem("userLogin");
 });
 document
@@ -217,3 +237,17 @@ document
   .addEventListener("click", () => {
     location.href = "product_page.html";
   });
+document
+  .querySelector(".user-drop-down .history-purchase")
+  .addEventListener("click", () => {
+    location.href = "purchase_history.html";
+  });
+document.querySelector(".container").addEventListener("click", (e) => {
+  if (
+    !document.querySelector(".user-drop-down").classList.contains("hide") &&
+    !document.querySelector(".user-drop-down").contains(e.target) &&
+    !document.querySelector(".header .user").contains(e.target)
+  ) {
+    document.querySelector(".user-drop-down").classList.add("hide");
+  }
+});
