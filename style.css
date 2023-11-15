@@ -362,3 +362,8 @@ input {
     cursor: default;
   }
 }
+.video {
+  position: relative;
+  top: 35px;
+  background-color: black;
+}

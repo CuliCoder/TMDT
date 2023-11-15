@@ -16,11 +16,9 @@ function createForBrand() {
 function showProductBrand() {
   let tmp = location.href.split("?");
   if (tmp.length == 2) {
+    document.querySelector(".video").innerHTML = "";
     document.querySelector(".all-products").innerHTML = "";
     let list_json = JSON.parse(localStorage.getItem("json-products"));
-
-    //console.log(list_json[1].brand);
-    //console.log(tmp[1].toUpperCase() == list_json[1].brand);
     for (let i = 0; i < list_json.length; i++) {
       if (tmp[1].toUpperCase() == list_json[i].brand)
         document.querySelector(".all-products").innerHTML += show(list_json[i]);

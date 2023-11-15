@@ -226,6 +226,5 @@ function cancel_order(orderId) {
       break;
     }
   }
-
   show_orders();
 }

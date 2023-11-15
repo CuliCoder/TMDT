@@ -33,16 +33,22 @@
 //   '",' +
 //   array[3] +
 //   '"' +
-//   "XIAOMI" +
+//   "OPPO" +
 //   '",' +
 //   array[4] +
 //   '"' +
 //   format(document.getElementsByClassName("tpt---sale-price")[1].innerHTML) +
-//   '",' +
-//   array[5] +
-//   '"' +
-//   format(document.getElementsByClassName("tpt---price")[0].innerHTML) +
 //   '",';
+// if (document.getElementsByClassName("tpt---price") == null) {
+//   console.log("true");
+//   tmp +=
+//     array[5] +
+//     '"' +
+//     format(document.getElementsByClassName("tpt---price")[0].innerHTML) +
+//     '",';
+// } else {
+//   tmp += array[5] + '"' + '",';
+// }
 // let index = 6;
 // for (
 //   let i = 0;
@@ -413,6 +419,262 @@ let products = [
     screen_features:
       "Tần số quét 120 Hz Độ sáng: 700 nit (HBM), 1200 nit (cao nhất) Corning Gorilla Glass 3 Gam màu rộng DCI-P3395 ppi Màn hình Sunlight Chế độ đọc 3.0",
   },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/r/e/reno10_5g_-_combo_product_-_blue.png",
+    title: " OPPO Reno10 5G 8GB 256GB ",
+    brand: "OPPO",
+    price_show: "10490000",
+    price_origin: "10990000",
+    screen_size: "6.7 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera góc rộng: 64MP; f/1.7, PDAF<br> Chụp Telephoto chân dung: 32 MP, f/2.0<br> Camera góc siêu rộng: 8 MP, f/2.2, Zoom quang lai 2X× và Xoom kỹ thuật số 20X",
+    front_camera: "Camera góc rộng: 32 MP, f/2.4",
+    Chipset: "MediaTek Dimensity 7050",
+    RAM_capacit: "8 GB",
+    internal_storage: "256 GB",
+    Pin: "5000 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 13",
+    screen_resolution: "1080 x 2412 pixels",
+    screen_features:
+      "1.07 tỷ màu, tần số quét 120Hz, HDR10+, tỷ lệ hiển thị 93%, 950 nits , viền cong 3D",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-find-n2-flip.png",
+    title: " OPPO Find N2 Flip ",
+    brand: "OPPO",
+    price_show: "18490000",
+    price_origin: "19990000",
+    screen_size: "6.8 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera góc rộng: 50MP, f/1.8, 23mm, PDAF <br> Camera góc siêu rộng 8MP, f/2.2, 112˚",
+    front_camera: "Camera góc rộng: 32MP, f/2.4, 22mm, AF",
+    Chipset: "MediaTek 9000+ (4nm)",
+    RAM_capacit: "8 GB",
+    internal_storage: "256 GB",
+    Pin: "4300 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 13",
+    screen_resolution: "1080 x 2520 pixels",
+    screen_features:
+      "Có thể gập lại <br>  Màn hình chính: FHD+ (2520×1080), 120Hz, 16,7 triệu màu, 403 PPI, 1200nit, AMOLED,  Kính siêu mỏng UTG<br>Màn hình phụ: 720×382, 30/60Hz, 250 PPI, 800nit, Corning Gorilla Glass 5",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-reno-8-5g.png",
+    title: " OPPO Reno8 5G (8GB 256GB) ",
+    brand: "OPPO",
+    price_show: "11990000",
+    price_origin: "13990000",
+    screen_size: "6.4 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera chính: 50 MP, f/1.8 <br> Camera phụ: 8 MP f/2.4 <br> Camera Marco: 2 MP f/2.2",
+    front_camera: " 32 MP, f/2.4",
+    Chipset: "MediaTek Dimensity 1300 8 nhân",
+    RAM_capacit: "8 GB",
+    internal_storage: "256 GB",
+    Pin: "Li-Po 4500 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 12",
+    screen_resolution: "1080 x 2400 pixels (FullHD+)</a>",
+    screen_features: "Kính cường lực Corning Gorilla Glass 5",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-reno-8t-4g-256gb.png",
+    title: " OPPO Reno8 T 4G 256GB ",
+    brand: "OPPO",
+    price_show: "7190000",
+    price_origin: "8490000",
+    screen_size: "6.4 inches",
+    screen_technology: "AMOLED",
+    rear_camera: "100MP (Chính) + 2MP (Kính hiển vi) + 2MP (Mono)",
+    front_camera: "32MP",
+    Chipset: "Helio G99, tối đa 2.2GHz",
+    RAM_capacit: "8 GB",
+    internal_storage: "256 GB",
+    Pin: "5000mAh (Typ)",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "ColorOS 13, nền tảng Android 13",
+    screen_resolution: "080 x 2400 pixels (FullHD+)",
+    screen_features: "16 triệu màu, 90Hz, Kính cường lực GG5",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-a58_1_1.png",
+    title: " OPPO A58 4G 6GB 128GB ",
+    brand: "OPPO",
+    price_show: "4990000",
+    price_origin: "",
+    screen_size: "6.72 inches",
+    screen_technology: "IPS LCD",
+    rear_camera: "50 MP,F/1.8 (chính) + 2 MP, F/2.4 (Xóa phông)",
+    front_camera: "8 MP, F/2.0",
+    Chipset: "Helio G85, tối đa 2.0GHz",
+    RAM_capacit: "6 GB",
+    internal_storage: "128 GB",
+    Pin: "5000mAh (Typ)",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "ColorOS 13.1, nền tảng Android 13",
+    screen_resolution: "1080 x 2400 pixels (FullHD+)</a>",
+    screen_features: "16 triệu màu, Kính cường lực Panda",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/f/i/find-n3-flip-vang_1.png",
+    title: " OPPO Find N3 Flip 12GB 256GB ",
+    brand: "OPPO",
+    price_show: "22990000",
+    price_origin: "",
+    screen_size: "6.8 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera chính: 50 MP, f/1.8, OIS <br> Camera góc rộng: 48 MP,  f/2.2<br> Tele: 32 MP,  f/2.0",
+    front_camera: "32 MP, f/2.4, FOV 90°, ống kính 5P; Hỗ trợ AF",
+    Chipset: "MediaTek Dimensity 9200",
+    RAM_capacit: "12 GB",
+    internal_storage: "256 GB",
+    Pin: "Li-Po 4300 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 13",
+    screen_resolution: "1080 x 2520 pixels",
+    screen_features:
+      "Màn hình chính: 6.8 inch, FHD+ (1080 x 2520 Pixels), tần số quét 120 Hz, 1.07 tỷ màu,1600 nits, Kính siêu mỏng Schott UTG<br> Màn hình phụ: 3.26 inch, AMOLED, 720 × 382 pixels, 16.7 triệu màu, độ sáng 900 nits, Kính cường lực GG7",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/f/i/find_n3_-_combo_product_-_gold.png",
+    title: " OPPO Find N3 16GB 512GB ",
+    brand: "OPPO",
+    price_show: "44990000",
+    price_origin: "",
+    screen_size: "7.82 inches",
+    screen_technology: "OLED",
+    rear_camera:
+      "Camera chính: 48MP, f/1.7, OIS<br>Camera góc rộng: 48MP, f/2.2<br>Camera Tele: 64MP, f/2.6",
+    front_camera: "Màn hình chính: 20MP, f/2.2 <br>Màn hình ngoài: 32MP, f/2.4",
+    Chipset: "Snapdragon 8 Gen 2 8 nhân",
+    RAM_capacit: "16 GB",
+    internal_storage: "512 GB",
+    Pin: "4805 mAh",
+    SIM_card: "Nano-SIM + eSIM",
+    OS: "Android 13",
+    screen_resolution: "2268 x 2440 pixels ",
+    screen_features:
+      "Màn hình chính: 7.82 inches, 2K+ (2268 x 2440 Pixels), OLED, 120Hz, 2800 nit, 1 tỷ màu, Kính UTG<br>Màn hình phụ: 6.31 inches, FHD+ (1116 x 2484 Pixels), 120Hz, Kính siêu mỏng Nanocrystal",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-a18.png",
+    title: " OPPO A18 4GB 128GB ",
+    brand: "OPPO",
+    price_show: "3990000",
+    price_origin: "",
+    screen_size: "6.56 inches",
+    screen_technology: "IPS LCD ",
+    rear_camera: "Camera chính: 8 MP,  f/2.0<br>Camera xóa phông: 2 MP,  f/2.4",
+    front_camera: "5 MP, f/2.2",
+    Chipset: "MediaTek Helio G85 8 nhân",
+    RAM_capacit: "4 GB",
+    internal_storage: "128 GB",
+    Pin: "5000mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 13",
+    screen_resolution: "720 x 1612 (HD+)",
+    screen_features:
+      "Tần số quét 90Hz, 16 triệu màu, Kính cường lực Panda, 720 nits, ",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-a55_1_.png",
+    title: " OPPO A77s ",
+    brand: "OPPO",
+    price_show: "4790000",
+    price_origin: "",
+    screen_size: "6.56 inches",
+    screen_technology: "IPS LCD",
+    rear_camera:
+      "Camera góc rộng: 50 MP, f/1.8, PDAF <br>Camera chân dung: 2 MP, f/2.4",
+    front_camera: "8 MP, f/2.0",
+    Chipset: "Snapdragon 680 4G",
+    RAM_capacit: "8 GB",
+    internal_storage: "128 GB",
+    Pin: "5,000mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: " Android 12",
+    screen_resolution: "720 x 1612 (HD+)",
+    screen_features: "90Hz, 480 nits (typ)",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/c/o/combo_product_-_black_-_reno7_4g.png",
+    title: " OPPO Reno7 4G (8GB - 128GB) ",
+    brand: "OPPO",
+    price_show: "6000000",
+    price_origin: "7990000",
+    screen_size: "6.43 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera chính: 64MP, f/1.7; FOV 79°; ống kính 6P; AF<br>Microscope: 2MP, f/3.3<br>Đơn sắc: 2MP, f/2.4",
+    front_camera: "32MP, f/2.4; FOV 85°",
+    Chipset: "Snapdragon™ 680",
+    RAM_capacit: "8 GB",
+    internal_storage: "128 GB",
+    Pin: "4500 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 11, ColorOS 12",
+    screen_resolution: "1080 x 2400 pixels (FullHD+)",
+    screen_features: "16,7 triệu màu, 409PPI, 90Hz",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-reno-7_1.png",
+    title: " OPPO Reno7 5G (8GB 256GB) ",
+    brand: "OPPO",
+    price_show: "7590000",
+    price_origin: "12990000",
+    screen_size: "6.43 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera chính: 64 MP, f/1.7, PDAF <br> Camera góc siêu rộng: 8 MP, f/2.25, 120˚ <br> Camera macro: 2 MP, f/2.4",
+    front_camera: "32MP f/2.4",
+    Chipset: "MediaTek Dimensity 900",
+    RAM_capacit: "8 GB",
+    internal_storage: "256 GB",
+    Pin: "Li-Po 4500 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 11, ColorOS 12",
+    screen_resolution: "1080 x 2400 pixels (FullHD+)",
+    screen_features:
+      "90Hz, 430 nits (typ), 600 nits (HDR), Corning Gorilla Glass 5, HDR10+, 16.7 triệu màu",
+  },
+  {
+    productId: 0,
+    img: "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/oppo-reno7-pro_1.png",
+    title: " OPPO Reno 7 Pro ",
+    brand: "OPPO",
+    price_show: "11190000",
+    price_origin: "18990000",
+    screen_size: "6.5 inches",
+    screen_technology: "AMOLED",
+    rear_camera:
+      "Camera góc rộng: 50MP (IMX766) <br> Camera góc siêu rộng: 8MP (IMX355) <br> Camera macro: 2MP (OmniVision OV02B10)",
+    front_camera: "32 MP, f/2.4",
+    Chipset: "MediaTek Dimensity 1200 Max 8 nhân",
+    RAM_capacit: "12 GB",
+    internal_storage: "256 GB",
+    Pin: "4500 mAh",
+    SIM_card: "2 SIM (Nano-SIM)",
+    OS: "Android 11, ColorOS 12",
+    screen_resolution: "1080 x 2400 pixels (FullHD+)",
+    screen_features:
+      "Tần số quét 90 Hz, Độ sáng tối đa: 920 nits, Kính cường lực Corning Gorilla Glass 5",
+  },
 ];
 if (localStorage.getItem("json-products") == null) {
   let productId_start = 100000;
@@ -468,7 +730,3 @@ function showProductInfo(id_product) {
   }
   location.href = "chitietsanpham.html";
 }
-// link ảnh:https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg
-//tên sp:Xiaomi Redmi Note 12 8GB 128GB
-//giá hiển thị:4990000
-//giá gốc:5790000

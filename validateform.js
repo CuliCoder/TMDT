@@ -251,3 +251,7 @@ document.querySelector(".container").addEventListener("click", (e) => {
     document.querySelector(".user-drop-down").classList.add("hide");
   }
 });
+function log_out() {
+  localStorage.removeItem("userLogin");
+  location.href = "index.html";
+}
