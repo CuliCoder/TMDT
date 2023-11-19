@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Chi tiết sản phẩm</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -12,21 +12,24 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="chitietsanpham.css" />
-    <link rel="stylesheet" href="header.css" />
-    <link rel="stylesheet" href="validateform.css" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="search.css" />
+    <link rel="stylesheet" href="css/chitietsanpham.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/validateform.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
   </head>
   <body>
     <div class="container">
+      <!-- header -->
       <div class="header">
         <div class="grid wide">
           <div class="logo">
-            <a href="./index.html"
-              ><img
-                src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            /></a>
+            <a href="./index.html"><img src="img/imgs/logo.png" /></a>
           </div>
           <div class="brand animation-unline">
             <a href="">APPLE</a>
@@ -52,24 +55,51 @@
           <div class="user">
             <i class="bx bx-user"></i>
           </div>
+          <div class="menu">
+            <i class="bx bx-menu"></i>
+          </div>
         </div>
       </div>
+      <!-- thông báo -->
       <div class="notification">
-        <!-- <div class="error">
-          <i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin
-        </div> -->
-        <!-- <div><i class="bx bx-check"></i>Thêm sản phẩm thành công</div> -->
+        <!-- hiển thị thông báo -->
       </div>
+      <!-- tìm kiếm sản phẩm-->
       <div class="search-bg hide">
         <div class="search-box">
+          <div class="close"><i class="bx bx-x"></i></div>
           <div class="search">
             <label for="search"><i class="bx bx-search"></i></label>
             <input id="search" type="text" placeholder="Tìm kiếm ..." />
           </div>
-          <div class="products"></div>
-          <ul class="list-page-search"></ul>
+          <div class="products">
+            <!-- các sản phẩm -->
+          </div>
+          <ul class="list-page-search">
+            <!-- nút chuyển trang -->
+          </ul>
         </div>
       </div>
+      <!-- Menu các hãng -->
+      <div class="menu-drop">
+        <div class="close"><i class="bx bx-x"></i></div>
+        <div class="item-menu">
+          <div class="brand animation-unline-tab">
+            <a href="">APPLE</a>
+          </div>
+          <div class="brand animation-unline-tab">
+            <a href="">SAMSUNG</a>
+          </div>
+          <div class="brand animation-unline-tab">
+            <a href="">XIAOMI</a>
+          </div>
+          <div class="brand animation-unline-tab"><a href="">OPPO</a></div>
+          <div class="brand animation-unline-tab">
+            <a href="">REALME</a>
+          </div>
+        </div>
+      </div>
+      <!-- Menu người dùng -->
       <div class="user-drop-down hide">
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
@@ -81,7 +111,9 @@
         </div>
         <div class="log-out"><i class="bx bx-log-out"></i>Đăng xuất</div>
       </div>
+      <!-- Form xác thực -->
       <div class="validateform-bg hide">
+        <!-- Form đăng ký -->
         <div class="validateform-box signup hide">
           <i class="bx bx-left-arrow-alt"></i>
           <i class="bx bx-x"></i>
@@ -128,6 +160,7 @@
             <button type="submit" class="btn-submit">Đăng Ký Ngay</button>
           </form>
         </div>
+        <!-- Form đăng nhập -->
         <div class="validateform-box login">
           <form>
             <i class="bx bx-x"></i>
@@ -160,9 +193,12 @@
           </form>
         </div>
       </div>
+      <!-- Chi tiết sản phẩm -->
       <div class="chitietsanpham grid wide">
         <div class="hdchitietsanpham">
-          <p>iPhone 14 Pro Max 128GB | Chính hãng VN/A</p>
+          <p>
+            <!-- tên sản phẩm -->
+          </p>
           <i class="fa-solid fa-star" style="color: #f59e0b"></i>
           <i class="fa-solid fa-star" style="color: #f59e0b"></i>
           <i class="fa-solid fa-star" style="color: #f59e0b"></i>
@@ -171,69 +207,7 @@
         </div>
         <div class="mainchitiet">
           <div class="boxchitiet">
-            <img
-              src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-14-pro_2__5.png"
-            />
-            <div class="inforchitiet">
-              <p>Thông số kỹ thuật</p>
-              <table class="tbthongsokithuat">
-                <tr class="bgr">
-                  <td>Kích thước màn hình</td>
-                  <td>6.7 inches</td>
-                </tr>
-                <tr>
-                  <td>Công nghệ màn hình</td>
-                  <td>Super Retina XDR OLED</td>
-                </tr>
-                <tr class="bgr">
-                  <td>Camera sau</td>
-                  <td>
-                    Camera chính: 48MP, 24 mm, ƒ/1.78, Camera góc siêu rộng: 12
-                    MP, 13 mm, ƒ/2.2 Camera Tele 5x: 12 MP, 120 mm, ƒ/2.8 Camera
-                    Tele 2x: 12 MP, 48 mm, ƒ/1.78
-                  </td>
-                </tr>
-                <tr>
-                  <td>Camera trước</td>
-                  <td>12MP, ƒ/1.9</td>
-                </tr>
-                <tr class="bgr">
-                  <td>Chipset</td>
-                  <td>A17 Pro</td>
-                </tr>
-                <tr>
-                  <td>Dung lượng RAM</td>
-                  <td>8 GB</td>
-                </tr>
-                <tr class="bgr">
-                  <td>Bộ nhớ trong</td>
-                  <td>256 GB</td>
-                </tr>
-                <tr>
-                  <td>Pin</td>
-                  <td>5000</td>
-                </tr>
-                <tr class="bgr">
-                  <td>Thẻ SIM</td>
-                  <td>2 SIM (nano‑SIM và eSIM)</td>
-                </tr>
-                <tr>
-                  <td>Hệ điều hành</td>
-                  <td>iOS 17</td>
-                </tr>
-                <tr class="bgr">
-                  <td>Độ phân giải màn hình</td>
-                  <td>2796 x 1290-pixel</td>
-                </tr>
-                <tr>
-                  <td>Tính năng màn hình</td>
-                  <td>
-                    Tốc độ làm mới 120Hz 460 ppi HDR True Tone Dải màu rộng (P3)
-                    Haptic Touch Tỷ lệ tương phản 2.000.000:1
-                  </td>
-                </tr>
-              </table>
-            </div>
+            <!-- hiển thị ảnh và chi tiết sản phẩm -->
           </div>
           <div class="price-color">
             <div class="hieuung">
@@ -253,8 +227,7 @@
               <option value="Đen">Đen</option>
             </select>
             <div class="price">
-              <p>20.000.000</p>
-              <p>19.000.000</p>
+              <!-- giá -->
             </div>
             <div class="muangay">
               <p>Mua Ngay</p>
@@ -269,8 +242,7 @@
       </div>
     </div>
   </body>
-  <script src="if_product.js"></script>
-  <script src="validateform.js"></script>
-  <script src="search.js"></script>
-  <script src="dropdown_topbar.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/chitietsanpham.js"></script>
+  <script src="js/header.js"></script>
 </html>

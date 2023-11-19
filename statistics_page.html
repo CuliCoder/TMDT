@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="headerhost.css" />
-    <link rel="stylesheet" href="statistics_page.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/headerhost.css" />
+    <link rel="stylesheet" href="css/statistics_page.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -15,15 +15,18 @@
       crossorigin="anonymous"
     ></script>
     <title>Thống kê</title>
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
   </head>
   <body>
+    <!-- header -->
     <div class="header">
       <div class="grid wide">
         <div class="logo">
-          <img
-            src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            alt=""
-          />
+          <img src="img/imgs/logo.png" alt="" />
         </div>
         <div class="home-page pages">
           <i class="fa-solid fa-house"></i><span>Trang chủ</span>
@@ -42,7 +45,9 @@
         </div>
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
-          <p>Nguyễn Công Trung</p>
+          <p>
+            <!-- tên người quản lý -->
+          </p>
           <span><i class="bx bx-log-out"></i>Đăng xuất</span>
         </div>
       </div>
@@ -50,31 +55,11 @@
     <div class="list-brands grid wide">
       <p>Thống kê doanh thu</p>
       <ul class="brands">
-        <li class="top-list">
-          <ul>
-            <li>STT</li>
-            <li>Hãng</li>
-            <li>Số lượng bán ra</li>
-            <li>Doanh thu</li>
-          </ul>
-        </li>
-        <li class="brand">
-          <ul>
-            <li>1</li>
-            <li>APPLE</li>
-            <li>10</li>
-            <li>10000000000</li>
-          </ul>
-        </li>
-        <li class="brand">
-          <ul>
-            <li>Tổng</li>
-            <li>10</li>
-            <li>10000000000</li>
-          </ul>
-        </li>
+        <!-- bảng thống kê -->
       </ul>
     </div>
   </body>
-  <script src="statistics_page.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/header_manage.js"></script>
+  <script src="js/statistics_page.js"></script>
 </html>

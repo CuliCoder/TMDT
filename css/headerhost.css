@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.header {
+  background-color: #272424;
+  position: fixed;
+  width: 100%;
+  height: 40px;
+  z-index: 10;
+}
+.header > div {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.header .logo img {
+  width: 100%;
+}
+.header .logo {
+  width: 10%;
+  padding: 10px;
+  object-fit: cover;
+}
+.header .pages {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 3px;
+  border-radius: 10px;
+  position: relative;
+  justify-content: center;
+}
+.header .pages span {
+  position: absolute;
+  display: none;
+  top: 105%;
+  z-index: 10;
+  background-color: #272424b3;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+.header .page-current span {
+  top: 115%;
+}
+.header .pages:hover:not(.page-current) {
+  background-color: rgb(70, 69, 69);
+}
+.header .pages:hover span {
+  display: block;
+}
+.header .pages i {
+  margin: 0 auto;
+  font-size: 20px;
+}
+.header .fullname-user {
+  max-width: 20%;
+  display: flex;
+  color: white;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+}
+.header .fullname-user i {
+  margin-right: 10px;
+}
+.header .fullname-user span {
+  display: none;
+  position: absolute;
+  user-select: none;
+  cursor: pointer;
+  z-index: 11;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgb(70, 69, 69);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+.header .fullname-user:hover span {
+  display: block;
+}
+.header .page-current {
+  border: none;
+  border-radius: 0;
+  color: rgb(168, 168, 168);
+  border-bottom: 3px solid rgb(168, 168, 168);
+}

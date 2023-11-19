@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="headerhost.css" />
-    <link rel="stylesheet" href="customers_page.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/headerhost.css" />
+    <link rel="stylesheet" href="css/customers_page.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -15,17 +15,24 @@
       crossorigin="anonymous"
     ></script>
     <title>Quản lý khách hàng</title>
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
   </head>
   <body>
-    <div class="notification"></div>
-    <div class="info-customer-bg hide"></div>
+    <div class="notification">
+      <!-- in thông báo -->
+    </div>
+    <div class="info-customer-bg hide">
+      <!-- thông tin khách hàng -->
+    </div>
+    <!-- header -->
     <div class="header">
       <div class="grid wide">
         <div class="logo">
-          <img
-            src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            alt=""
-          />
+          <img src="img/imgs/logo.png" alt="" />
         </div>
         <div class="home-page pages">
           <i class="fa-solid fa-house"></i><span>Trang chủ</span>
@@ -44,11 +51,14 @@
         </div>
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
-          <p>Nguyễn Công Trung</p>
+          <p>
+            <!-- tên người quản lý -->
+          </p>
           <span><i class="bx bx-log-out"></i>Đăng xuất</span>
         </div>
       </div>
     </div>
+    <!-- tìm kiếm khách hàng -->
     <div class="search-customer-bg grid wide">
       <div class="search-customer-box">
         <div class="search-date">
@@ -72,64 +82,19 @@
         </div>
       </div>
     </div>
+    <!-- danh sách khách hàng -->
     <div class="list-customers grid wide">
       <p>Danh sách khách hàng</p>
       <div class="not-found hide">Không tìm thấy</div>
       <ul class="customers">
-        <li class="top-list">
-          <ul>
-            <li>STT</li>
-            <li>HỌ TÊN</li>
-            <li>TÊN ĐĂNG NHẬP</li>
-            <li>NGÀY ĐĂNG KÝ</li>
-            <li>TRẠNG THÁI</li>
-            <li></li>
-          </ul>
-        </li>
-        <li class="customer">
-          <ul>
-            <li>1</li>
-            <li>Nguyễn Công Trung</li>
-            <li>trungnc</li>
-            <li>20-10-2023</li>
-            <li>
-              <div class="btn">
-                <button
-                  type="submit"
-                  class="lock-customer"
-                  onclick="lock_customer('${listUsers[i].user}')"
-                >
-                  <i class="bx bx-lock"></i>
-                </button>
-                <span>Khóa</span>
-              </div>
-              <div class="btn">
-                <button
-                  type="submit"
-                  class="delete-customer"
-                  onclick="delete_customer('${listUsers[i].user}')"
-                >
-                  <i class="bx bx-x"></i>
-                </button>
-                <span>Xóa</span>
-              </div>
-              <div class="btn">
-                <button
-                  type="submit"
-                  class="info-customer"
-                  onclick="info_customer('${listUsers[i].user}')"
-                >
-                  <i class="bx bx-search"></i>
-                </button>
-                <span>Thông tin</span>
-              </div>
-            </li>
-          </ul>
-        </li>
+        <!-- các khách hàng -->
       </ul>
-
-      <ul class="list-page"></ul>
+      <ul class="list-page">
+        <!-- nút phân trang -->
+      </ul>
     </div>
   </body>
-  <script src="customers_page.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/customers_page.js"></script>
+  <script src="js/header_manage.js"></script>
 </html>

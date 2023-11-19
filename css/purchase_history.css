@@ -1,0 +1,269 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.search-order-bg,
+.list-orders {
+  position: relative;
+  top: 50px;
+  width: 100%;
+}
+.list-orders p,
+.search-order-bg p,
+.info-order-bg p {
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+}
+
+.list-orders p {
+  margin-bottom: 10px;
+}
+.search-order-bg input,
+.search-order-bg label {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.search-order-bg > form {
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  border: solid;
+  margin: 0 auto;
+}
+.search-order-bg input {
+  padding: 5px;
+  border-radius: 5px;
+  border: solid;
+  outline: none;
+}
+.search-order-bg button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 45%;
+}
+.search-order-bg button:hover {
+  background-color: rgb(70, 69, 69);
+  cursor: pointer;
+}
+.list-orders {
+  top: 70px;
+  text-align: center;
+  padding: 10px 40px;
+  font-size: 12px;
+  font-weight: 900;
+  border: solid;
+  border-radius: 5px;
+}
+li {
+  list-style: none;
+  overflow: hidden;
+}
+.list-orders .top-list ul,
+.list-orders .order ul {
+  display: flex;
+  width: 100%;
+  border: none;
+}
+.orders > li:not(:last-child) {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.top-list {
+  background-color: #272424;
+  color: white;
+}
+.order ul li {
+  padding: 5px;
+}
+.top-list ul > li:not(:last-child) {
+  border-right: 1px solid black;
+}
+.order ul > li:not(:last-child) {
+  border-right: 1px solid black;
+}
+.orders > li:last-child {
+  border: solid 1px black;
+}
+.top-list ul li:nth-child(1) {
+  line-height: 30px;
+  width: 10%;
+}
+.top-list ul li:nth-child(2) {
+  line-height: 30px;
+  width: 20%;
+}
+.top-list ul li:nth-child(3) {
+  line-height: 30px;
+  width: 20%;
+}
+.top-list ul li:nth-child(4) {
+  width: 20%;
+  line-height: 30px;
+}
+.top-list ul li:nth-child(5) {
+  width: 15%;
+  line-height: 30px;
+}
+.top-list ul li:nth-child(6) {
+  width: 15%;
+  line-height: 30px;
+}
+
+.order ul li:nth-child(1) {
+  width: 10%;
+}
+.order ul li:nth-child(2) {
+  width: 20%;
+}
+.order ul li:nth-child(3) {
+  width: 20%;
+}
+.order ul li:nth-child(4) {
+  width: 20%;
+}
+.order ul li:nth-child(5) {
+  width: 15%;
+}
+.order ul li:nth-child(6) {
+  width: 15%;
+}
+.list-orders button {
+  border: none;
+  padding: 2px;
+  margin-top: 5px;
+  width: 90%;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+}
+.search-order-bg label {
+  font-weight: bold;
+}
+#date-begin,
+#date-end {
+  margin-top: 10px;
+  font-weight: bold;
+  height: 30px;
+}
+.list-orders .order ul li:not(:last-child) {
+  display: flex;
+  align-items: center;
+}
+.cancel-order-active {
+  background-color: red;
+  cursor: pointer;
+}
+.list-page {
+  padding: 10px;
+  text-align: center;
+  list-style: none;
+}
+.list-page li {
+  user-select: none;
+  border: solid;
+  padding: 10px;
+  border-radius: 15px;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.list-page .page-current {
+  background-color: #272424;
+  color: white;
+}
+@media (max-width: 1023px) {
+  .list-orders {
+    padding: 10px 0;
+  }
+}
+.notification .bx-check {
+  border-radius: 50%;
+  border: solid white;
+  background-color: white;
+  color: rgb(10, 199, 10);
+  margin-right: 3px;
+}
+.notification {
+  visibility: hidden;
+  position: fixed;
+  height: 45px;
+  z-index: 11;
+  top: 11px;
+  right: 100px;
+  color: white;
+}
+.notification div {
+  visibility: hidden;
+  padding: 10px;
+  animation: showNotification 3s linear;
+}
+.info-order-bg {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 11;
+  background-color: #79787899;
+}
+.info-order-bg .info-order-box {
+  width: 500px;
+  background-color: white;
+  font-size: 20px;
+  padding: 20px;
+  color: red;
+  border-radius: 10px;
+  margin: 150px auto;
+  animation: show-info-order 0.25s linear;
+}
+.info-order-bg .infor {
+  margin-top: 10px;
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+}
+.info-order-bg .info-order-box .infor span:nth-child(1) {
+  width: 35%;
+}
+.info-order-bg .infor span:nth-child(2) {
+  color: black;
+  width: 70%;
+}
+.info-order-bg i {
+  float: right;
+  color: black;
+  font-size: 30px;
+}
+.hide {
+  display: none;
+}
+@keyframes show-info-order {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.not-found {
+  font-size: 25px;
+  padding: 50px;
+  border: solid;
+  border-radius: 10px;
+}
+@media (max-width: 650px) {
+  .order ul li {
+    overflow-x: scroll;
+    padding: 0px;
+  }
+}

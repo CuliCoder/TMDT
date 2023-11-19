@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hongo(Mobile)</title>
-    <link rel="stylesheet" href="./responsive.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="products.css" />
-    <link rel="stylesheet" href="header.css" />
-    <link rel="stylesheet" href="search.css" />
-    <link rel="stylesheet" href="validateform.css" />
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/products.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/validateform.css" />
+    <link rel="stylesheet" href="css/slide_show.css" />
+    <link rel="stylesheet" href="css/footer.css" />
     <script
       src="https://kit.fontawesome.com/459a7e2db3.js"
       crossorigin="anonymous"
@@ -20,88 +21,18 @@
       rel="stylesheet"
     />
     <link
-      rel="apple-touch-icon"
-      sizes="57x57"
-      href="img/favicon/apple-icon-57x57.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="60x60"
-      href="img/favicon/apple-icon-60x60.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="72x72"
-      href="img/favicon/apple-icon-72x72.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="76x76"
-      href="img/favicon/apple-icon-76x76.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="img/favicon/apple-icon-114x114.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="img/favicon/apple-icon-120x120.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="144x144"
-      href="img/favicon/apple-icon-144x144.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="img/favicon/apple-icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="img/favicon/apple-icon-180x180.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="img/favicon/android-icon-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="img/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="img/favicon/favicon-96x96.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
+      rel="shortcut icon"
       href="img/favicon/favicon-16x16.png"
+      type="image/png"
     />
-    <link rel="manifest" href="img/favicon/manifest.json" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
     <div class="container">
+      <!-- header -->
       <div class="header">
         <div class="grid wide">
           <div class="logo">
-            <a href="./index.html"
-              ><img
-                src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            /></a>
+            <a href="./index.html"><img src="img/imgs/logo.png" /></a>
           </div>
           <div class="brand animation-unline">
             <a href="">APPLE</a>
@@ -127,9 +58,14 @@
           <div class="user">
             <i class="bx bx-user"></i>
           </div>
+          <div class="menu">
+            <i class="bx bx-menu"></i>
+          </div>
         </div>
       </div>
+      <!-- Form xác thực -->
       <div class="validateform-bg hide">
+        <!-- form đăng ký -->
         <div class="validateform-box signup hide">
           <i class="bx bx-left-arrow-alt"></i>
           <i class="bx bx-x"></i>
@@ -176,6 +112,7 @@
             <button type="submit" class="btn-submit">Đăng Ký Ngay</button>
           </form>
         </div>
+        <!-- form đăng nhập -->
         <div class="validateform-box login">
           <form>
             <i class="bx bx-x"></i>
@@ -208,66 +145,40 @@
           </form>
         </div>
       </div>
+      <!-- Tìm kiếm -->
       <div class="search-bg hide">
         <div class="search-box">
+          <div class="close"><i class="bx bx-x"></i></div>
           <div class="search">
             <label for="search"><i class="bx bx-search"></i></label>
             <input id="search" type="text" placeholder="Tìm kiếm ..." />
           </div>
-          <div class="products"></div>
+          <div class="products">
+            <!-- các sản phẩm -->
+          </div>
           <ul class="list-page-search"></ul>
         </div>
       </div>
-      <!-- <form class="search-box row col l-3 l-o-9 m-3 m-o-9">
-        <input class="search-text" type="text" placeholder="Search" required />
-        <i class="bx bx-search"></i>
-      </form> -->
-      <!-- <div class="search-place">
-        <div>
-          <div class="close"><i class="bx bx-x bx-x-search"></i></div>
-          <form>
-            <i class="bx bx-search"></i
-            ><input
-              class="input-search"
-              type="text"
-              placeholder="Tìm kiếm trên Hongo"
-            />
-          </form>
-        </div>
-      </div> -->
-      <div class="check-cart">
-        <div class="container-cart grid wide">
-          <div class="close"><i class="bx bx-x bx-x-cart"></i></div>
-
-          <div class="count-product">
-            <h1>Túi của bạn trống</h1>
-          </div>
-          <div class="check-order">
-            <a href="">
-              <i class="bx bxl-dropbox"></i>
-              <p>Tra cứu đơn hàng</p>
-            </a>
-          </div>
-        </div>
-      </div>
+      <!-- Menu các hãng -->
       <div class="menu-drop">
-        <div class="close"><i class="bx bx-x bx-x-menu"></i></div>
+        <div class="close"><i class="bx bx-x"></i></div>
         <div class="item-menu">
-          <div class="trademark-Apple animation-unline">
+          <div class="brand animation-unline-tab">
             <a href="">APPLE</a>
           </div>
-          <div class="trademark-Samsung animation-unline">
+          <div class="brand animation-unline-tab">
             <a href="">SAMSUNG</a>
           </div>
-          <div class="trademark-Xiaomi animation-unline">
+          <div class="brand animation-unline-tab">
             <a href="">XIAOMI</a>
           </div>
-          <div class="trademark-Oppo animation-unline"><a href="">OPPO</a></div>
-          <div class="trademark-Realme animation-unline">
+          <div class="brand animation-unline-tab"><a href="">OPPO</a></div>
+          <div class="brand animation-unline-tab">
             <a href="">REALME</a>
           </div>
         </div>
       </div>
+      <!-- Menu người dùng -->
       <div class="user-drop-down hide">
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
@@ -279,268 +190,119 @@
         </div>
         <div class="log-out"><i class="bx bx-log-out"></i>Đăng xuất</div>
       </div>
-
+      <!-- video -->
       <div class="video">
-        <video class="grid wide" controls loop autoplay preload="auto">
-          <source
-            src="video/y2mate.com - Samsung Galaxy S22 Series  Thách Thức Mọi Quy Chuẩn_720p.mp4"
-            type="video/mp4"
-          />
-          <p>Trình duyệt không hỗ trợ</p>
-        </video>
-      </div>
-      <div class="product-ads row grid wide">
-        <div class="left-ads row col l-6 m-6">
-          <div class="img-ads">
-            <div class="left" onclick="plusSlide_left(-1)">❮</div>
-            <div class="right" onclick="plusSlide_left(1)">❯</div>
-            <div class="list-dot">
-              <span class="ldot" onclick="currentSlide_left(1)"></span>
-              <span class="ldot" onclick="currentSlide_left(2)"></span>
-              <span class="ldot" onclick="currentSlide_left(3)"></span>
-              <span class="ldot" onclick="currentSlide_left(4)"></span>
-              <span class="ldot" onclick="currentSlide_left(5)"></span>
-              <span class="ldot" onclick="currentSlide_left(6)"></span>
-              <span class="ldot" onclick="currentSlide_left(7)"></span>
-            </div>
-
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/dt-tcl-moban-cate.jpg"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/690-300-max-hs-z5-cate-10.png"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/s23-ultra-th10-scate.png"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/m34-cate-th10-normal.png"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/galaxy-a05-a05s-cate.png"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-13t-seriess-cate1.jpg"
-            /></a>
-            <a href=""
-              ><img
-                class="lads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/oppo-find-n2-flip-cate-th10.png"
-            /></a>
-          </div>
+        <div>
+          <video controls loop autoplay muted>
+            <source
+              src="video/y2mate.com - Samsung Galaxy S22 Series  Thách Thức Mọi Quy Chuẩn_1080p.mp4"
+              type="video/mp4"
+            />
+            <p>Trình duyệt không hỗ trợ</p>
+          </video>
         </div>
-        <div class="right-ads row col l-6 m-6">
-          <div class="img-ads">
-            <div class="left" onclick="plusSlide_right(-1)">❮</div>
-            <div class="right" onclick="plusSlide_right(1)">❯</div>
-            <div class="list-dot">
-              <span class="rdot" onclick="currentSlide_right(1)"></span>
-              <span class="rdot" onclick="currentSlide_right(2)"></span>
-              <span class="rdot" onclick="currentSlide_right(3)"></span>
-              <span class="rdot" onclick="currentSlide_right(4)"></span>
-              <span class="rdot" onclick="currentSlide_right(5)"></span>
-              <span class="rdot" onclick="currentSlide_right(6)"></span>
-              <span class="rdot" onclick="currentSlide_right(7)"></span>
-            </div>
-
+      </div>
+      <!-- slide show -->
+      <div class="slide-show hide">
+        <div class="main">
+          <div class="img-feature">
             <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-13t-seriess-cate1.jpg"
-              />
+              <img src="img/imgs/slideshow/slideshow1.jpg" />
             </a>
             <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/oppo-find-n2-flip-cate-th10.png"
-              />
+              <img src="img/imgs/slideshow/slideshow2.jpg" />
             </a>
             <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/galaxy-a05-a05s-cate.png"
-              />
+              <img src="img/imgs/slideshow/slideshow3.jpg" />
             </a>
             <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/m34-cate-th10-normal.png"
-              />
+              <img src="img/imgs/slideshow/slideshow4.jpg" />
             </a>
-            <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/s23-ultra-th10-scate.png"
-              />
-            </a>
-            <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/690-300-max-hs-z5-cate-10.png"
-              />
-            </a>
-            <a href="">
-              <img
-                class="rads"
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:0/q:80/plain/https://dashboard.cellphones.com.vn/storage/dt-tcl-moban-cate.jpg"
-              />
-            </a>
+          </div>
+          <div class="control prev">❮</div>
+          <div class="control next">❯</div>
+        </div>
+        <!-- các nút chấm -->
+        <div class="list-dot">
+          <span class="dot active" onclick="dot(0)"></span>
+          <span class="dot" onclick="dot(1)"></span>
+          <span class="dot" onclick="dot(2)"></span>
+          <span class="dot" onclick="dot(3)"></span>
+        </div>
+      </div>
+      <!-- lọc -->
+      <div class="filter">
+        <!-- lọc theo giá -->
+        <div class="filter-price">
+          <div>
+            <i class="bx bx-chevron-right"></i>
+            <p>Mức giá điện thoại</p>
+          </div>
+          <div>
+            <a>Dưới 2 triệu</a>
+            <a>Từ 2 - 4 triệu</a>
+            <a>Từ 4 - 7 triệu</a>
+            <a>Từ 7 - 13 triệu</a>
+            <a>Từ 13 - 20 triệu</a>
+            <a>Trên 20 triệu</a>
           </div>
         </div>
       </div>
-
-      <div class="header-mobile">
-        <div class="top-bar">
-          <div class="item-top-bar">
-            <div class="logo">
-              <a href="./index.html"
-                ><img
-                  src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-              /></a>
-            </div>
-            <div class="search">
-              <i class="bx bx-search search-mobile"></i>
-            </div>
-            <div class="cart">
-              <i class="bx bx-shopping-bag cart-mobile"></i>
-            </div>
-            <div class="user">
-              <a href="host.html"><i class="bx bx-user"></i></a>
-            </div>
-            <div class="menu"><i class="bx bx-menu"></i></div>
-          </div>
-        </div>
-      </div>
+      <!-- Khung chứa các sản phẩm -->
       <div class="products grid wide">
         <div class="all-products row">
-          <!-- <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/a/galaxys23ultra_front_green_221122_2.jpg"
-                />
-              </div>
-              <div class="product-info">
-                <h3 class="product-title">Samsung Galaxy S23 Ultra 256GB</h3>
-                <div class="product-price">
-                  <p class="product-price-show">21.790.000₫</p>
-                  <p class="product-price-origin">31.990.000₫</p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_2__5.jpg"
-                />
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">
-                  iPhone 15 Pro Max 256GB | Chính hãng VN/A
-                </h4>
-                <div class="product-price">
-                  <p class="product-price-show">34.990.000₫</p>
-                  <p class="product-price-origin"></p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/v/n/vn_iphone_15_pink_pdp_image_position-1a_pink_color_2.jpg"
-                />
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">iPhone 15 128GB | Chính hãng VN/A</h4>
-                <div class="product-price">
-                  <p class="product-price-show">21.990.000₫</p>
-                  <p class="product-price-origin">22.990.000₫</p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/t/_/t_m_18.png"
-                />
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">
-                  iPhone 14 Pro Max 128GB | Chính hãng VN/A
-                </h4>
-                <div class="product-price">
-                  <p class="product-price-show">26.390.000₫</p>
-                  <p class="product-price-origin">29.990.000₫</p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                />
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">Xiaomi Redmi Note 12 8GB 128GB</h4>
-                <div class="product-price">
-                  <p class="product-price-show">4.990.000₫</p>
-                  <p class="product-price-origin">5.790.000₫</p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="product col l-3 m-4 c-6">
-            <div class="product-box">
-              <div class="product-img">
-                <img
-                  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/x/i/xiami-13t-xanh-01.jpg"
-                />
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">Xiaomi 13T 12GB 256GB</h4>
-                <div class="product-price">
-                  <p class="product-price-show">11.990.000₫</p>
-                  <p class="product-price-origin">12.990.000₫</p>
-                </div>
-                <a href="" class="product-btn">Mua ngay</a>
-              </div>
-            </div>
-          </div> -->
+          <!-- các sản phẩm -->
         </div>
         <ul class="list-page"></ul>
       </div>
+      <!-- footer -->
+      <div class="footer">
+        <div class="ft-main">
+          <div class="ftlogo">
+            <img
+              src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
+            />
+          </div>
+          <div class="ftcontent">
+            <div class="ftchild">
+              <p>Tổng đài hỗ trợ miễn phí</p>
+              <ul class="list">
+                <li>gọi mua hàng <b>0344790185</b>(7h30 - 22h00)</li>
+                <li>gọi khiếu nại <b>0344790185</b>(7h30 - 21h00)</li>
+                <li>gọi bảo hành <b>0344790185</b>(7h30 - 21h00)</li>
+              </ul>
+            </div>
+            <div class="ftchild">
+              <p>Thông tin và chính sách</p>
+              <ul class="listhv">
+                <a href="dscuahang.html"><li>Danh sách cửa hàng</li></a>
+                <a href="chinhsachgiaohang.html"
+                  ><li>Chính sách giao hàng</li></a
+                >
+                <a href="chinhsachbaohanh.html"><li>Chính sách bảo hành</li></a>
+                <a href="dscuahang.html"><li>Dành cho đại lý</li></a>
+              </ul>
+            </div>
+            <div class="ftchild">
+              <p>Thông tin liên hệ</p>
+              <ul class="list">
+                <li>gmail liên hệ: hoangtin21082004@gmail.com</li>
+                <li>Sdt: 0344790185</li>
+                <li>Địa chỉ: 273 An Dương Vương, P3, Quận 5, TPHCM</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ftbot">
+            <p>2023 © Copyright HONGO. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
-  <script src="autoslideads.js"></script>
-  <script src="dropdown_topbar.js"></script>
-  <script src="addproduct.js"></script>
-  <script src="createhref.js"></script>
-  <script src="listpage.js"></script>
-  <script src="search.js"></script>
-  <script src="validateform.js"></script>
+  <script src="js/data.js"></script>
+
+  <script src="js/create_href.js"></script>
+  <script src="js/mainpage.js"></script>
+  <script src="js/slideshow.js"></script>
+  <script src="js/header.js"></script>
 </html>

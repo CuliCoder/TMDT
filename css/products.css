@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.products {
+  font-size: 14px;
+  font-family: sans-serif;
+}
+.all-products {
+  margin-top: 30px;
+}
+.product {
+  display: flex;
+  justify-content: center;
+  max-height: 400px;
+  width: 19%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.product-box {
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 0 10px;
+  padding: 10px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.product-title {
+  display: block;
+  max-width: 257px;
+  min-height: 40px;
+}
+.product-price {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+}
+.product-price-show {
+  font-size: 20px;
+}
+.product-price-origin {
+  margin-left: 10px;
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #707070;
+}
+.product a:link,
+.product a:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: #ececec;
+  background-color: #d70018;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.product-img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.product-img {
+  max-width: 75%;
+}
+.product-info {
+  text-align: center;
+}
+.product-info,
+.product-btn,
+.product-img {
+  transition: all 0.3s;
+}
+.product:hover .product-img {
+  scale: 1.05;
+}
+.product:hover .product-info {
+  z-index: 1;
+}
+.product:hover .product-btn {
+  scale: 1.1;
+}
+.product-btn {
+  border-radius: 15px;
+}
+@media (min-width: 740px) {
+  .product-img {
+    max-width: 75%;
+  }
+}
+@media (max-width: 480px) {
+  .product-price-show {
+    font-size: 14px;
+  }
+  .product-price-origin {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+  .product-title {
+    width: 156px;
+    height: 55px;
+  }
+}
+.list-page {
+  padding: 10px;
+  text-align: center;
+  list-style: none;
+}
+.products .list-page li {
+  user-select: none;
+  border: solid;
+  border-radius: 15px;
+  padding: 10px;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.list-page .page-current {
+  background-color: #272424;
+  color: white;
+}

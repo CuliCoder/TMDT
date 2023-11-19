@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.footer {
+  background-color: #272424;
+  padding: 20px;
+}
+.ft-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ftlogo img {
+  width: 100%;
+  height: 100%;
+}
+.ftlogo {
+  width: 400px;
+  height: 100px;
+}
+li {
+  list-style: inside;
+}
+.ftcontent {
+  width: 790px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.footer .ftchild {
+  width: 200px;
+}
+.ftchild {
+  color: aliceblue;
+}
+.ftchild p {
+  font-size: 20px;
+}
+.ftchild ul li {
+  margin-bottom: 20px;
+}
+.ftbot {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 40px;
+}
+.ftbot p {
+  color: aliceblue;
+  width: 50%;
+  border-top: 2px solid aliceblue;
+  text-align: center;
+}
+.listhv li:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  color: rgb(255, 42, 42);
+  margin-left: 12px;
+  font-size: 20px;
+}
+.listhv a {
+  color: aliceblue;
+  text-decoration: none;
+}

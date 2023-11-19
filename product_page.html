@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="host.css" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="item/listmanagerproduct.css" />
-    <link rel="stylesheet" href="editproduct.css" />
-    <link rel="stylesheet" href="headerhost.css" />
+    <link rel="stylesheet" href="css/product_page.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/listmanagerproduct.css" />
+    <link rel="stylesheet" href="css/editproduct.css" />
+    <link rel="stylesheet" href="css/headerhost.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -17,14 +17,17 @@
       crossorigin="anonymous"
     ></script>
     <title>Quản lý sản phẩm</title>
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
   </head>
   <body>
     <div class="notification">
-      <!-- <div class="error">
-        <i class="bx bx-x"></i>Vui lòng nhập đầy đủ thông tin
-      </div> -->
-      <!-- <div><i class="bx bx-check"></i>Thêm sản phẩm thành công</div> -->
+      <!-- hiển thị thông báo -->
     </div>
+    <!-- box sửa sản phẩm -->
     <div class="editproduct-bg hide">
       <div class="editproduct-box">
         <div class="close-edit-box">
@@ -68,7 +71,6 @@
               type="text"
               placeholder="Nhập giá gốc nếu có"
             />
-
             <label for="edit-img">Thêm ảnh</label>
             <input
               id="edit-img"
@@ -99,13 +101,11 @@
         </form>
       </div>
     </div>
+    <!-- header -->
     <div class="header">
       <div class="grid wide">
         <div class="logo">
-          <img
-            src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            alt=""
-          />
+          <img src="img/imgs/logo.png" alt="" />
         </div>
         <div class="home-page pages">
           <i class="fa-solid fa-house"></i><span>Trang chủ</span>
@@ -124,11 +124,14 @@
         </div>
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
-          <p>Nguyễn Công Trung</p>
+          <p>
+            <!-- tên của người quản lý -->
+          </p>
           <span><i class="bx bx-log-out"></i>Đăng xuất</span>
         </div>
       </div>
     </div>
+    <!-- box thêm sản phẩm -->
     <div class="add-product grid wide">
       <form>
         <div>
@@ -189,6 +192,7 @@
         </div>
       </form>
     </div>
+    <!-- tìm kiếm sản phẩm -->
     <div class="search-product-bg grid wide">
       <div class="search-box">
         <p>Tìm kiếm sản phẩm</p>
@@ -210,103 +214,14 @@
     <div class="list-products grid wide">
       <p>Danh sách sản phẩm</p>
       <ul class="products">
-        <li class="top-list">
-          <ul>
-            <li>#ID</li>
-            <li>ẢNH</li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>HÃNG ĐIỆN THOẠI</li>
-            <li>GIÁ</li>
-            <li></li>
-          </ul>
-        </li>
-        <!-- <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul>
-        </li>
-        <li class="item">
-          <ul>
-            <li>#ID</li>
-            <li>
-              <img
-                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/_/7/_76666_7__3.jpg"
-                alt=""
-              />
-            </li>
-            <li>TÊN SẢN PHẨM</li>
-            <li>THƯƠNG HIỆU</li>
-            <li>
-              <p class="price-show">100000000000</p>
-              <p class="price-origin">GIÁ GỐC</p>
-            </li>
-            <li>
-              <button type="submit" class="delete-product">X</button>
-              <button type="submit" class="edit-product">SỬA</button>
-            </li>
-          </ul> -->
-        <!-- </li> -->
+        <!-- danh sách sản phẩm -->
       </ul>
-      <ul class="list-page"></ul>
+      <ul class="list-page">
+        <!-- nút phân trang -->
+      </ul>
     </div>
   </body>
-  <script src="host.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/header_manage.js"></script>
+  <script src="js/product_page.js"></script>
 </html>

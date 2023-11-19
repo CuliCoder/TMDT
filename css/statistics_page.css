@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.list-brands {
+  position: relative;
+  top: 50px;
+  width: 100%;
+}
+.list-brands p {
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.list-brands {
+  top: 70px;
+  text-align: center;
+  padding: 10px 40px;
+  font-size: 15px;
+  font-weight: 900;
+  border: solid;
+  border-radius: 5px;
+}
+li {
+  list-style: none;
+  overflow: hidden;
+  height: 40px;
+  line-height: 30px;
+}
+.list-brands .top-list ul,
+.list-brands .brand ul {
+  display: flex;
+  width: 100%;
+  border: none;
+}
+.brands > li:not(:last-child) {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.top-list {
+  background-color: #272424;
+  color: white;
+}
+.top-list ul > li:not(:last-child) {
+  border-right: 1px solid black;
+}
+.brand ul > li:not(:last-child) {
+  border-right: 1px solid black;
+}
+.brands > li:last-child {
+  border: solid 1px black;
+}
+.top-list ul li:nth-child(1) {
+  line-height: 30px;
+  width: 10%;
+}
+.top-list ul li:not(:first-child) {
+  line-height: 30px;
+  width: 30%;
+}
+.brand ul li:nth-child(1) {
+  width: 10%;
+}
+.brand ul li:not(:first-child) {
+  width: 30%;
+}
+.brand:last-child {
+  background-color: #999;
+  color: #272424;
+}
+.brand:last-child ul li:first-child {
+  width: 40%;
+}
+.brand:last-child ul li:not(:first-child) {
+  width: 30%;
+}

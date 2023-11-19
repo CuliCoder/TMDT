@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="headerhost.css" />
-    <link rel="stylesheet" href="order_page.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/headerhost.css" />
+    <link rel="stylesheet" href="css/order_page.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -15,49 +15,22 @@
       crossorigin="anonymous"
     ></script>
     <title>Quản lý đơn hàng</title>
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
   </head>
   <body>
+    <!-- hiển thị thông tin đơn hàng -->
     <div class="info-order-bg hide">
-      <div class="info-order-box">
-        <i class="bx bx-x"></i>
-        <p>Thông tin đơn hàng</p>
-        <div class="infor">
-          <span>Sản phẩm:</span>
-          <span>${listUsers[i].FullName}</span>
-        </div>
-        <div class="infor">
-          <span>Ngày tạo đơn:</span>
-          <span>${listUsers[i].FullName}</span>
-        </div>
-        <div class="infor">
-          <span>Tên khách hàng:</span>
-          <span>${listUsers[i].FullName}</span>
-        </div>
-        <div class="infor">
-          <span>Địa chỉ:</span>
-          <span>${listUsers[i].Address}</span>
-        </div>
-        <div class="infor">
-          <span>Số điện thoại:</span>
-          <span>${listUsers[i].PhoneNumber}</span>
-        </div>
-        <div class="infor">
-          <span>Tổng tiền:</span>
-          <span>${listUsers[i].user}</span>
-        </div>
-        <div class="infor">
-          <span>Tình trạng:</span>
-          <span>${listUsers[i].password}</span>
-        </div>
-      </div>
+      <!-- box thông tin -->
     </div>
+    <!-- header -->
     <div class="header">
       <div class="grid wide">
         <div class="logo">
-          <img
-            src="https://hongo.themezaa.com/shoes/wp-content/uploads/sites/8/2018/12/white-logo@2x.png"
-            alt=""
-          />
+          <img src="img/imgs/logo.png" alt="" />
         </div>
         <div class="home-page pages">
           <i class="fa-solid fa-house"></i><span>Trang chủ</span>
@@ -76,11 +49,14 @@
         </div>
         <div class="fullname-user">
           <div><i class="bx bx-user"></i></div>
-          <p>Nguyễn Công Trung</p>
+          <p>
+            <!-- tên người quản lý -->
+          </p>
           <span><i class="bx bx-log-out"></i>Đăng xuất</span>
         </div>
       </div>
     </div>
+    <!-- tìm kiếm đơn hàng -->
     <div class="search-order-bg grid wide">
       <div class="search-order-box">
         <div class="search-date">
@@ -107,24 +83,20 @@
         </div>
       </div>
     </div>
+    <!-- danh sách đơn hàng -->
     <div class="list-orders grid wide">
       <p>DANH SÁCH ĐƠN HÀNG</p>
       <div class="not-found hide">Không tìm thấy</div>
       <ul class="orders">
-        <li class="top-list">
-          <ul>
-            <li>Mã đơn hàng</li>
-            <li>Khách hàng</li>
-            <li>Sản phẩm</li>
-            <li>Tổng tiền</li>
-            <li>Ngày giờ</li>
-            <li>Trạng thái</li>
-            <li>Hành động</li>
-          </ul>
-        </li>
+        <!-- các đơn hàng -->
       </ul>
-      <ul class="list-page"></ul>
+      <ul class="list-page">
+        <!-- nút phân trang -->
+      </ul>
     </div>
   </body>
-  <script src="order_page.js"></script>
+  <script src="js/data.js"></script>
+
+  <script src="js/order_page.js"></script>
+  <script src="js/header_manage.js"></script>
 </html>
