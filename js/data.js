@@ -671,7 +671,7 @@ if (localStorage.getItem("json-products") == null) {
   let productId_start = 100000;
   for (let i = 0; i < products.length; i++) {
     products[i].productId = productId_start + i + 1;
-    products[i].img = "../img/imgs/products/" + products[i].productId + ".jpg";
+    products[i].img = "img/imgs/products/" + products[i].productId + ".jpg";
   }
   products.reverse();
   let json_products = JSON.stringify(products);
