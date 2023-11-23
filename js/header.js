@@ -134,10 +134,7 @@ function listPage_search() {
     let newPage = document.createElement("li");
     newPage.innerText = i;
     if (i == thisPage_search) newPage.classList.add("page-current");
-    newPage.setAttribute(
-      "onclick",
-      "changePage_search(" + (thisPage_search - 1) + ")"
-    );
+    newPage.setAttribute("onclick", "changePage_search(" + i + ")");
     document.querySelector(".search-bg .list-page-search").appendChild(newPage); //thêm vào phần hiển thị nút
   }
   //nếu khác trang cuối cùng thì xuất hiện nút "Sau"

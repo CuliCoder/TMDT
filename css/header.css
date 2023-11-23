@@ -83,12 +83,15 @@ a {
   color: rgb(168, 168, 168);
   cursor: pointer;
 }
+.header .user {
+  position: relative;
+}
 .user-drop-down {
-  position: fixed;
+  position: absolute;
   z-index: 9;
   width: 300px;
-  top: 35px;
-  right: 10px;
+  top: 110%;
+  right: 0;
   background-color: #272424;
   color: white;
   padding: 10px;
@@ -144,10 +147,10 @@ a {
   .menu {
     display: block;
   }
-  .cart,
-  .user,
-  .search,
-  .menu {
+  .cart i,
+  .user i,
+  .search i,
+  .menu i {
     flex-grow: 0.1;
     text-align: center;
   }
