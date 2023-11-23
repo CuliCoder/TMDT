@@ -14,6 +14,7 @@ function price_format(price) {
 showProductInfo();
 function showProductInfo() {
   let product = JSON.parse(localStorage.getItem("ProductInfo"));
+  document.querySelector(".hdchitietsanpham p").innerHTML = product.title;
   document.querySelector(".boxchitiet").innerHTML = `<img
   src="${product.img}"
 />

@@ -7,6 +7,8 @@
 .chitietsanpham {
   height: 100vh;
   width: 100%;
+  position: relative;
+  top: 40px;
 }
 .chitietsanpham .hdchitietsanpham {
   margin-left: 20px;
