@@ -156,3 +156,8 @@ li button {
     padding: 10px 0;
   }
 }
+@media (max-width: 1024px) {
+  .list-products {
+    top: 140px;
+  }
+}

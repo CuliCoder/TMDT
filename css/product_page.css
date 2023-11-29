@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 .add-product img {
   width: 50%;
 }
@@ -19,6 +20,7 @@
   position: relative;
   top: 50px;
 }
+
 .add-product form {
   display: flex;
   width: 100%;
@@ -146,5 +148,13 @@
   }
   .add-product img {
     width: 25%;
+  }
+}
+@media (max-width: 1024px) {
+  .add-product {
+    top: 110px;
+  }
+  .search-product-bg {
+    top: 125px;
   }
 }

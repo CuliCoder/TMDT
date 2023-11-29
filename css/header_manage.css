@@ -7,21 +7,22 @@
   background-color: #272424;
   position: fixed;
   width: 100%;
-  height: 40px;
+  height: 50px;
   z-index: 10;
 }
 .header > div {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .header .logo img {
   width: 100%;
+  object-fit: cover;
 }
 .header .logo {
   width: 10%;
   padding: 10px;
-  object-fit: cover;
 }
 .header .pages {
   width: 10%;
@@ -90,4 +91,19 @@
   border-radius: 0;
   color: rgb(168, 168, 168);
   border-bottom: 3px solid rgb(168, 168, 168);
+}
+@media (max-width: 1024px) {
+  .header .logo {
+    width: 100%;
+    text-align: center;
+  }
+  .header .logo img {
+    width: 10%;
+  }
+  .header {
+    height: 100px;
+  }
+  .header .fullname-user span {
+    font-size: 14px;
+  }
 }

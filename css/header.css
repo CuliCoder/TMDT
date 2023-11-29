@@ -67,7 +67,7 @@ a {
 .user,
 .search,
 .menu {
-  padding: 5px 0;
+  padding: 5px 5px;
   max-width: 10%;
 }
 .cart .bx,

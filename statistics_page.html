@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="css/headerhost.css" />
+    <link rel="stylesheet" href="css/header_manage.css" />
     <link rel="stylesheet" href="css/statistics_page.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -50,6 +50,16 @@
           </p>
           <span><i class="bx bx-log-out"></i>Đăng xuất</span>
         </div>
+      </div>
+    </div>
+    <!-- lọc theo ngày -->
+    <div class="search-date-bg grid wide">
+      <div class="search-box">
+        <label for="date-begin">Từ ngày</label>
+        <input type="date" id="date-begin" />
+        <label for="date-end">Đến ngày</label>
+        <input type="date" id="date-end" />
+        <button type="submit"><i class="bx bx-search btn-search"></i></button>
       </div>
     </div>
     <div class="list-brands grid wide">

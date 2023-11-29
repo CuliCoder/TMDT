@@ -5,7 +5,6 @@
 }
 .list-brands {
   position: relative;
-  top: 50px;
   width: 100%;
 }
 .list-brands p {
@@ -76,4 +75,42 @@ li {
 }
 .brand:last-child ul li:not(:first-child) {
   width: 30%;
+}
+.search-date-bg {
+  position: relative;
+  top: 70px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+.search-box input {
+  border: solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+.search-box label {
+  margin-left: 10px;
+}
+.search-box button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  user-select: none;
+}
+.search-box button:hover {
+  background-color: #272424;
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
+  .list-brands {
+    top: 130px;
+  }
+  .search-date-bg {
+    top: 120px;
+  }
 }

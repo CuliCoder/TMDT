@@ -374,3 +374,11 @@ li {
     border-radius: 0;
   }
 }
+@media (max-width: 1024px) {
+  .search-order-bg {
+    top: 110px;
+  }
+  .list-orders {
+    top: 120px;
+  }
+}
