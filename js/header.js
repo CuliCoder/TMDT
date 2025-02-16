@@ -1,3 +1,4 @@
+import axiosInstance from "./configAxios.js";
 //----------------tạo đường dẫn------------------
 //tạo đường dẫn cho mỗi hãng
 opt_brand();
@@ -370,31 +371,51 @@ document.querySelector(".validateform-bg").addEventListener("click", (e) => {
 //------------Đăng nhập---------------
 let userLogin;
 //check sai mật khẩu
-function checkWrongAccount(login_username, login_password) {
-  let users = JSON.parse(localStorage.getItem("users"));
-  for (i = 0; i < users.length; i++) {
-    if (login_username.value == users[i].user) {
-      if (login_password.value == users[i].password) {
-        //đúng mật khẩu sẽ lưu lại
-        userLogin = users[i];
-        showSuccess(login_password);
-        return false;
-      } else {
-        showError(login_password, "Sai mật khẩu");
-        return true;
-      }
+// async function checkWrongAccount(login_username, login_password) {
+// let users = JSON.parse(localStorage.getItem("users"));
+// for (i = 0; i < users.length; i++) {
+//   if (login_username.value == users[i].user) {
+//     if (login_password.value == users[i].password) {
+//       //đúng mật khẩu sẽ lưu lại
+//       userLogin = users[i];
+//       showSuccess(login_password);
+//       return false;
+//     } else {
+//       showError(login_password, "Sai mật khẩu");
+//       return true;
+//     }
+//   }
+// }
+// if (login_username.value != "") {
+//   showError(login_username, "Tài khoản chưa đăng ký");
+// }
+// return true;
+async function checkWrongAccount(login_username, login_password) {
+  try {
+    const res = await axiosInstance.post("/auth/login", {
+      username: login_username.value,
+      password: login_password.value,
+    });
+
+    if (res.data.error !== 0) {
+      showError(login_username, res.data.message);
+      return true;
+    } else {
+      console.log(res.data.data);
+      userLogin = res.data.data;
+      showSuccess(login_password);
+      return false;
     }
+  } catch (err) {
+    showError(login_password, err.message);
+    return true;
   }
-  if (login_username.value != "") {
-    showError(login_username, "Tài khoản chưa đăng ký");
-  }
-  return true;
 }
 //ấn nút đăng nhập
-login.addEventListener("submit", (e) => {
+login.addEventListener("submit", async (e) => {
   e.preventDefault();
   let isEmpty = checkEmpty([login_username, login_password]);
-  let isWrongAccount = checkWrongAccount(login_username, login_password);
+  let isWrongAccount = await checkWrongAccount(login_username, login_password);
   if (!isEmpty && !isWrongAccount) {
     //thỏa điều kiện sẽ up tài khoản đang đăng nhập lên localStorage
     localStorage.setItem("userLogin", JSON.stringify(userLogin));
@@ -408,8 +429,8 @@ document.querySelector(".header .user").addEventListener("click", () => {
     //đã đăng nhập sẽ hiển thị menu
     document.querySelector(".user-drop-down").classList.toggle("hide");
     document.querySelector(".user-drop-down .fullname-user p").innerHTML =
-      userLogin.FullName;
-    if (userLogin.user != "admin")
+      userLogin.fullname;
+    if (userLogin.role != "admin")
       //không phải admin sẽ không có phần quản lý
       document.querySelector(".user-drop-down .manage").classList.add("hide");
     else
