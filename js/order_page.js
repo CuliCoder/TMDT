@@ -1,18 +1,18 @@
+import axiosInstance from "./configAxios.js";
 let list;
 let limit = 12; //limit products a page
 let thispage = 1; //current page
 //show đơn hàng
-function show(order, user, products, date) {
+function show(order) {
   document.querySelector(
     ".list-orders .orders"
   ).innerHTML += `<li class="order">
   <ul>
-    <li>${order.orderId}</li>
-    <li>${user}</li>
-    <li>${products}</li>
-    <li>${price_format("" + order.total_price)}</li>
-    <li>${date}</li>
-    <li>${order.status}</li>
+    <li>${order.OrderID}</li>
+    <li>${order.UserID}</li>
+    <li>${order.TotalAmount}</li>
+    <li>${order.OrderDate}</li>
+    <li>${order.Status}</li>
     <li>
       <div class="btn">
         <button type="submit" class="confirm-order" onclick="confirm_order('${
@@ -42,51 +42,40 @@ function show(order, user, products, date) {
   </ul>
 </li>`;
 }
+async function dataOrder() {
+  try {
+    let res = await axiosInstance.get(`/orders`);
+    return res;
+  } catch (error) {
+    return null;
+  }
+}
 //danh sách đơn hàng
 show_orders();
-function show_orders() {
-  let users = JSON.parse(localStorage.getItem("users"));
+async function show_orders() {
+  let data = await dataOrder();
+  data = data.data;
+  if (!data) {
+    console.error("Không thể lấy dữ liệu đơn hàng");
+    return;
+  }
   document.querySelector(
     ".list-orders .orders"
   ).innerHTML = `<li class="top-list">
   <ul>
     <li>Mã đơn hàng</li>
-    <li>Khách hàng</li>
-    <li>Sản phẩm</li>
+    <li>UserID</li>
     <li>Tổng tiền</li>
     <li>Ngày giờ</li>
     <li>Trạng thái</li>
     <li>Hành động</li>
   </ul>
 </li>`;
-  for (let i = 0; i < users.length; i++) {
-    for (let j = 0; j < users[i].order.length; j++) {
-      let products = "";
-      let d = new Date(users[i].order[j].date_purchase);
-      for (let v = 0; v < users[i].order[j].products.length; v++) {
-        if (v == users[i].order[j].products.length - 1) {
-          products +=
-            users[i].order[j].products[v].name +
-            "-" +
-            users[i].order[j].products[v].color +
-            " [" +
-            users[i].order[j].products[v].quantity +
-            "]";
-        } else {
-          products +=
-            users[i].order[j].products[v].name +
-            "-" +
-            users[i].order[j].products[v].color +
-            " [" +
-            users[i].order[j].products[v].quantity +
-            "], ";
-        }
-      }
-      show(users[i].order[j], users[i].user, products, d.toLocaleString());
-    }
-  }
-  list = document.querySelectorAll(".list-orders .orders .order");
-  loaditem();
+for (let i = 0; i < data.length; i++) {
+  show(data[i]); // Hiển thị đơn hàng
+}
+list = document.querySelectorAll(".list-orders .orders .order"); // Danh sách đơn hàng được hiển thị
+loaditem(); // Phân trang
 }
 //định dạng giá
 function price_format(price) {
