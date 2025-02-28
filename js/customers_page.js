@@ -247,48 +247,8 @@ function changePage(i) {
   thispage = i;
   loaditem();
 }
-//--------tìm kiếm khách hàng--------
-
-//tìm kiếm theo phân loại
-function fn_search_user(text){
-  let filteredUsers = userList.filter((user) => {
-    let matchText = user.FullName.toLowerCase().includes(text.toLowerCase()) ||
-      user.Username.toLowerCase().includes(text.toLowerCase()) ||
-      user.PhoneNumber.includes(text);
-    return matchText;
-  });
-  // Cập nhật danh sách hiển thị
-  document.querySelector(".customers").innerHTML =
-    '<li class="top-list"><ul><li>STT</li><li>HỌ TÊN</li><li>TÊN ĐĂNG NHẬP</li><li>SỐ ĐIỆN THOẠI</li><li>TRẠNG THÁI</li><li></li></ul></li>';
-  for (let i = 0; i < filteredUsers.length; i++) {
-    show(i, filteredUsers[i]);
-  }
-  list = document.querySelectorAll(".list-customers .customer");
-  loaditem();
-}
-//tìm kiếm theo trạng thái
-function fn_search_status(option) {
-  let filteredUsers = userList.filter((user) => {
-    let option_now="";
-    if (user.status === "1") {
-      option_now = "Hoạt động";
-    }else{
-      option_now = "Bị khóa";
-    }
-    let matchText = option == option_now;
-    return matchText;
-  });
-  // Cập nhật danh sách hiển thị
-  document.querySelector(".customers").innerHTML =
-    '<li class="top-list"><ul><li>STT</li><li>HỌ TÊN</li><li>TÊN ĐĂNG NHẬP</li><li>SỐ ĐIỆN THOẠI</li><li>TRẠNG THÁI</li><li></li></ul></li>';
-  for (let i = 0; i < filteredUsers.length; i++) {
-    show(i, filteredUsers[i]);
-  }
-  list = document.querySelectorAll(".list-customers .customer");
-  loaditem();
-}
-
 //tùy chọn tìm kiếm
+
 let option;
 check_option();
 function check_option() {
@@ -309,14 +269,50 @@ function check_option() {
       break;
   }
 }
-//tìm theo ô input text
-document.querySelector("#search-txt").addEventListener("input", (e) => {
-  let text = e.target.value;
-  fn_search_user(text);
-});
-//tìm theo tùy chọn trạng thái
-document.querySelector("#search-status").addEventListener("change", (e) => {
-  let lua_chon = e.target.value;
-  console.log("hien tai"+typeof lua_chon);
-  fn_search_status(lua_chon);
-});
+//--------tìm kiếm khách hàng--------
+
+function search() {
+  let text = document.querySelector("#search-txt").value.trim().toLowerCase();
+  let lua_chon = document.querySelector("#search-status").value;
+  let date_from = document.querySelector("#date-begin").value;
+  let date_to = document.querySelector("#date-end").value;
+
+  let new_date_from = date_from ? new Date(date_from).toISOString().split("T")[0] : null;
+  let new_date_to = date_to ? new Date(date_to).toISOString().split("T")[0] : null;
+
+  console.log("Date from:", new_date_from, "Date to:", new_date_to);
+
+  let filteredUsers = userList.filter((user) => {
+    let matchText = !text || 
+      user.FullName.toLowerCase().includes(text) ||
+      user.Username.toLowerCase().includes(text) ||
+      user.PhoneNumber.includes(text);
+
+    let matchStatus = !lua_chon || 
+      (user.status === "1" ? "Hoạt động" : "Bị khóa") === lua_chon;
+
+    let newdate = user.CreatedAt ? new Date(user.CreatedAt).toISOString().split("T")[0] : null;
+    let matchDate = (!new_date_from && !new_date_to) || 
+      (newdate && new_date_from && newdate >= new_date_from) &&
+      (newdate && new_date_to && newdate <= new_date_to);
+
+    return matchText && matchStatus && matchDate;
+  });
+
+  // Cập nhật danh sách hiển thị
+  document.querySelector(".customers").innerHTML =
+    '<li class="top-list"><ul><li>STT</li><li>HỌ TÊN</li><li>TÊN ĐĂNG NHẬP</li><li>SỐ ĐIỆN THOẠI</li><li>TRẠNG THÁI</li><li></li></ul></li>';
+  
+  for (let i = 0; i < filteredUsers.length; i++) {
+    show(i, filteredUsers[i]);
+  }
+
+  list = document.querySelectorAll(".list-customers .customer");
+  loaditem();
+}
+
+// Lắng nghe sự kiện thay đổi trong các ô nhập để tự động tìm kiếm
+document.querySelector("#search-txt").addEventListener("input", search);
+document.querySelector("#search-status").addEventListener("change", search);
+document.querySelector("#btn-search").addEventListener("click",search);
+
