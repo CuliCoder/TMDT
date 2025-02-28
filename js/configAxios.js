@@ -2,7 +2,7 @@ import axios from 'https://cdn.jsdelivr.net/npm/axios@1.6.7/+esm';
 
 // Tạo một instance của Axios với cấu hình mặc định
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000', // Thay đổi thành URL cơ sở của API
+  baseURL: "http://localhost:3000", // Thay đổi thành URL cơ sở của API
   timeout: 10000, // Thời gian chờ tối đa cho mỗi request
   headers: {
     'Content-Type': 'application/json',

@@ -1,51 +1,69 @@
+import axiosInstance from "./configAxios.js";
+
 let limit = 12;
 let thisPage = 1;
 let list;
 let notification = document.querySelector(".notification"); //phần thông báo
 //danh sách sản phẩm
-loadPage();
-function loadPage() {
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  document.querySelector(".products").innerHTML = `<li class="top-list">
-  <ul>
-    <li>#ID</li>
-    <li>ẢNH</li>
-    <li>TÊN SẢN PHẨM</li>
-    <li>HÃNG ĐIỆN THOẠI</li>
-    <li>GIÁ</li>
-    <li></li>
-  </ul>
-</li>`;
-  for (let i = 0; i < products.length; i++) {
-    document.querySelector(".products").innerHTML += showProducts(products[i]); //show sản phẩm
+async function loadPage() {
+  try{
+    let productRes = await axiosInstance.get("/products");
+    let product = productRes.data;
+
+    let imageRes = await axiosInstance.get("/images");
+    let images = imageRes.data;
+
+    product.forEach((item) => {
+      let imageItem = images.find(img => img.ProductID === item.ProductID);
+      item.imageURL = imageItem && imageItem.ImageURL ? `http://localhost:3000/${imageItem.ImageURL}.jpg`: "default-image.jpg";
+    });
+    
+    let html = `
+      <li class="top-list">
+        <ul>
+          <li>#ID</li>
+          <li>ẢNH</li>
+          <li>TÊN SẢN PHẨM</li>
+          <li>HÃNG ĐIỆN THOẠI</li>
+          <li>GIÁ</li>
+          <li></li>
+        </ul>
+      </li>`;
+
+    product.forEach((item) => {
+      html += showProducts(item);
+    });
+
+    // Cập nhật toàn bộ danh sách sản phẩm một lần duy nhất
+    document.querySelector(".products").innerHTML = html;    
+    list = document.querySelectorAll(".products .item");
+    loadItem();
+  } catch(error){
+    console.error("Lỗi khi tải danh sách sản phẩm từ API:", error);
+    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
   }
-  list = document.querySelectorAll(".products .item");
-  loadItem();
 }
+loadPage();
 //show sản phẩm
 function showProducts(item) {
   return `<li class="item">
           <ul>
-            <li>${item.productId}</li>
+            <li>${item.ProductID}</li>
             <li>
               <img
-                src="${item.img}"
+                src="${item.imageURL}"
                 alt=""
               />
             </li>
-            <li>${item.title}</li>
-            <li>${item.brand}</li>
+            <li>${item.ProductName}</li>
+            <li>${item.Brand}</li>
             <li>
-              <p class="price-show">${price_format(item.price_show)}</p>
-              <p class="price-origin">${price_format(item.price_origin)}</p>
+              <p class="price-show">${price_format(item.Price_show)}</p>
+              <p class="price-origin">${price_format(item.Price_origin)}</p>
             </li>
             <li>
-              <button type="submit" class="delete-product" onclick="btn_delete(${
-                item.productId
-              })">X</button>
-              <button type="submit" class="edit-product" onclick="btn_edit(${
-                item.productId
-              })">SỬA</button>
+              <button type="submit" class="delete-product" data-id="${item.ProductID}">X</button>
+              <button type="submit" class="edit-product" data-id="${item.ProductID}">SỬA</button>
             </li>
           </ul>
         </li>`;
@@ -53,41 +71,70 @@ function showProducts(item) {
 //--------thêm sản phẩm-------
 let product_title = document.getElementById("product-title");
 let product_brand = document.getElementById("brand");
-let choose_img = document.getElementById("choose-img");
 let product_price_show = document.getElementById("product-price-show");
 let product_price_origin = document.getElementById("product-price-origin");
 let img_add = document.querySelector(".img-add");
-let info = document.querySelectorAll(
-  ".add-product form > div:nth-child(2) input"
+let info = document.querySelectorAll(".add-product form > div:nth-child(2) input"
 );
 //thêm sản phẩm
-function addProduct() {
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  let new_product = {
-    img: img_add.src,
-    title: product_title.value,
-    brand: product_brand.value,
-    price_show: product_price_show.value,
-    price_origin: product_price_origin.value,
-    screen_size: info[0].value,
-    screen_technology: info[1].value,
-    rear_camera: info[2].value,
-    front_camera: info[3].value,
-    Chipset: info[4].value,
-    RAM_capacit: info[5].value,
-    internal_storage: info[6].value,
-    Pin: info[7].value,
-    SIM_card: info[8].value,
-    OS: info[9].value,
-    screen_resolution: info[10].value,
-    screen_features: info[11].value,
-  };
-  products.unshift(new_product);
-  products[0].productId = products[1].productId + 1; //tạo id cho sản phẩm
-  let json_products = JSON.stringify(products);
-  localStorage.setItem("json-products", json_products);
-  loadPage();
+async function addProduct() {
+  try {
+    // Tạo dữ liệu sản phẩm
+    let new_product = {
+      ProductName: product_title.value,
+      Brand: product_brand.value,
+      Price_origin: parseFloat(product_price_origin.value),
+      Price_show: parseFloat(product_price_show.value),
+      StockQuantity: 10,
+      screen_size: info[0]?.value,
+      screen_technology: info[1]?.value,
+      rear_camera: info[2]?.value,
+      front_camera: info[3]?.value,
+      Chipset: info[4]?.value,
+      RAM_capacity: info[5]?.value,
+      internal_storage: info[6]?.value,
+      pin: info[7]?.value,
+      SIM_card: info[8]?.value,
+      OS: info[9]?.value,
+      screen_resolution: info[10]?.value,
+      screen_features: info[11]?.value,
+    };
+
+    console.log("Dữ liệu gửi đi:", new_product);
+    
+    // Gửi sản phẩm lên server trước
+    let productRes = await axiosInstance.post("/products", new_product);
+
+    if (productRes.data.success) {
+      let productId = productRes.data.product.ProductID; // Lấy ID sản phẩm vừa tạo
+
+      // Kiểm tra xem có ảnh không
+      let file = document.getElementById("choose-img").files[0];
+      if (file) {
+        let imageRes = await axiosInstance.post("/images", newImage);
+
+        if (imageRes.data.success) {
+          let ImageID = imageRes.data.data.ImageID; // Lấy imageId từ server
+          let imageURL = `/products/${100000 + ImageID}`; // Tạo đường dẫn đúng
+
+          // 4️⃣ Cập nhật lại ImageURL và đảm bảo ProductID khớp
+          await axiosInstance.post("/images/update", {
+            ProductID: productId, // Đảm bảo ProductID đúng
+            ImageID: imageURL
+          });
+
+          console.log("✅ Ảnh đã upload:", ImageID);
+        }
+      }
+
+      // Cập nhật danh sách sản phẩm ngay sau khi thêm
+      await showProductMainPage();
+    }
+  } catch (error) {
+    console.error("Lỗi khi thêm sản phẩm:", error);
+  }
 }
+
 //--------chỉnh sửa sản phẩm--------
 let img_edit = document.querySelector(".img-edit");
 let edit_product_bg = document.querySelector(".editproduct-bg");
@@ -98,56 +145,97 @@ let edit_price_origin = document.getElementById("ed-product-price-origin");
 let info_edit = document.querySelectorAll(
   ".editproduct-box form > div:nth-child(2) input"
 );
-let index_edit; //index của sản phẩm cần sửa
+let current_product_id; // Biến lưu ID sản phẩm đang chỉnh sửa
+
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("edit-product")) {
+    let productID = event.target.getAttribute("data-id");
+    btn_edit(productID);
+  }
+});
+
 //nút sửa
-function btn_edit(id_product) {
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  for (let i = 0; i < products.length; i++) {
-    if (id_product == products[i].productId) {
-      index_edit = i;
-      edit_product_bg.classList.toggle("hide");
-      img_edit.src = products[i].img;
-      edit_brand.value = products[i].brand;
-      edit_title.value = products[i].title;
-      edit_price_show.value = products[i].price_show;
-      edit_price_origin.value = products[i].price_origin;
-      info_edit[0].value = products[i].screen_size;
-      info_edit[1].value = products[i].screen_technology;
-      info_edit[2].value = products[i].rear_camera;
-      info_edit[3].value = products[i].front_camera;
-      info_edit[4].value = products[i].Chipset;
-      info_edit[5].value = products[i].RAM_capacit;
-      info_edit[6].value = products[i].internal_storage;
-      info_edit[7].value = products[i].Pin;
-      info_edit[8].value = products[i].SIM_card;
-      info_edit[9].value = products[i].OS;
-      info_edit[10].value = products[i].screen_resolution;
-      info_edit[11].value = products[i].screen_features;
-    }
+async function btn_edit(id_product) {
+  // Hiển thị box chỉnh sửa
+  edit_product_bg.classList.remove("hide");
+  try {
+      let response = await axiosInstance.get(`/products/${id_product}`);
+      let product = response.data;
+
+      // Lưu ID sản phẩm hiện tại
+      current_product_id = id_product;
+
+      // Điền dữ liệu vào form, khớp với tên thuộc tính từ showProducts
+      img_edit.src = product.imageURL || ""; // Dùng imageURL từ showProducts
+      edit_title.value = product.ProductName || "";
+      edit_brand.value = product.Brand || ""; // Giá trị phải khớp với các option trong select
+      edit_price_show.value = product.Price_show || "";
+      edit_price_origin.value = product.Price_origin || "";
+      info_edit[0].value = product.screen_size || "";
+      info_edit[1].value = product.screen_technology || "";
+      info_edit[2].value = product.rear_camera || "";
+      info_edit[3].value = product.front_camera || "";
+      info_edit[4].value = product.Chipset || "";
+      info_edit[5].value = product.RAM_capacit || "";
+      info_edit[6].value = product.internal_storage || "";
+      info_edit[7].value = product.pin || "";
+      info_edit[8].value = product.SIM_card || "";
+      info_edit[9].value = product.OS || "";
+      info_edit[10].value = product.screen_resolution || "";
+      info_edit[11].value = product.screen_features || "";
+
+  } catch (error) {
+      console.error('Lỗi khi lấy dữ liệu sản phẩm:', error);
   }
 }
-//thực hiện sửa
-function edit(indexCurrent) {
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  products[indexCurrent].img = img_edit.src;
-  products[indexCurrent].title = edit_title.value;
-  products[indexCurrent].brand = edit_brand.value;
-  products[indexCurrent].price_show = edit_price_show.value;
-  products[indexCurrent].price_origin = edit_price_origin.value;
-  products[indexCurrent].screen_size = info_edit[0].value;
-  products[indexCurrent].screen_technology = info_edit[1].value;
-  products[indexCurrent].rear_camera = info_edit[2].value;
-  products[indexCurrent].front_camera = info_edit[3].value;
-  products[indexCurrent].Chipset = info_edit[4].value;
-  products[indexCurrent].RAM_capacit = info_edit[5].value;
-  products[indexCurrent].internal_storage = info_edit[6].value;
-  products[indexCurrent].Pin = info_edit[7].value;
-  products[indexCurrent].SIM_card = info_edit[8].value;
-  products[indexCurrent].OS = info_edit[9].value;
-  products[indexCurrent].screen_resolution = info_edit[10].value;
-  products[indexCurrent].screen_features = info_edit[11].value;
-  localStorage.setItem("json-products", JSON.stringify(products));
+// thực hiện sửa
+async function edit(id_product) {
+  try {
+      let updatedProduct = {
+          img: img_edit.src,                    // Ảnh sản phẩm
+          ProductName: edit_title.value,             // Tiêu đề sản phẩm
+          Brand: edit_brand.value,             // Thương hiệu
+          Price_show: edit_price_show.value,   // Giá hiển thị
+          Price_origin: edit_price_origin.value, // Giá gốc
+          screen_size: info_edit[0].value,     // Kích thước màn hình
+          screen_technology: info_edit[1].value, // Công nghệ màn hình
+          rear_camera: info_edit[2].value,     // Camera sau
+          front_camera: info_edit[3].value,    // Camera trước
+          Chipset: info_edit[4].value,         // Chip xử lý
+          RAM_capacit: info_edit[5].value,     // Dung lượng RAM
+          internal_storage: info_edit[6].value, // Bộ nhớ trong
+          pin: info_edit[7].value,             // Dung lượng pin
+          SIM_card: info_edit[8].value,        // Thẻ SIM
+          OS: info_edit[9].value,              // Hệ điều hành
+          screen_resolution: info_edit[10].value, // Độ phân giải màn hình
+          screen_features: info_edit[11].value // Tính năng màn hình
+      };
+
+      let response = await axiosInstance.put(`/products/${id_product}`, updatedProduct,);
+
+      // Dữ liệu trả về từ server (đã được axios tự động phân tích)
+      let updatedData = response.data;
+
+      // Xử lý khi cập nhật thành công
+      console.log('Sản phẩm đã được cập nhật thành công:', updatedData);
+  } catch (error) {
+      console.error('Lỗi khi cập nhật sản phẩm:', error);
+  }
 }
+
+//đọc file ảnh
+window.changeImg = changeImg;
+function changeImg(input) {
+  let file = input.files[0]; // Lấy file ảnh
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      document.querySelector(".img-add").src = e.target.result; // Hiển thị ảnh
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
 //đóng box chỉnh sửa
 close_edit_box();
 function close_edit_box() {
@@ -159,102 +247,133 @@ function close_edit_box() {
     if (e.target == e.currentTarget) edit_product_bg.classList.toggle("hide");
   });
 }
+// gắn sự kiện nút xóa
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("delete-product")) {
+    let productID = event.target.getAttribute("data-id");
+    btn_delete(productID);
+  }
+});
+
 //----xóa sản phẩm------
-function btn_delete(id_product) {
-  let result = confirm(
-    "Bạn có chắc muốn xóa sản phẩm với id " + id_product + "?"
-  );
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  for (let i = 0; i < products.length; i++) {
-    if (id_product == products[i].productId)
-      if (result) {
-        products.splice(i, 1);
-        localStorage.setItem("json-products", JSON.stringify(products));
-        loadPage();
+async function btn_delete(id_product) {
+  let result = confirm("Bạn có chắc muốn xóa sản phẩm ID " + id_product + "?");
+
+  if (result) {
+    try {
+      // Gọi API xóa sản phẩm trên server
+      let response = await axiosInstance.delete(`/products/${id_product}`);
+
+      if (response.data.success) {
         showSuccess("Xóa sản phẩm thành công");
+        loadPage(); // Tải lại danh sách sau khi xóa
+      } else {
+        showError("Lỗi khi xóa sản phẩm!");
       }
+    } catch (error) {
+      console.error("❌ Lỗi khi xóa sản phẩm:", error);
+      showError("Lỗi kết nối đến server!");
+    }
   }
 }
+
 //search
 let search_text = document.querySelector("#search-product"); //ô input
 let search_brand = document.querySelector("#search-brand"); //tùy chọn brand
 //tìm theo hãng
-search_brand.addEventListener("change", (e) => {
-  document.querySelector(".products").innerHTML = `<li class="top-list">
-  <ul>
-    <li>#ID</li>
-    <li>ẢNH</li>
-    <li>TÊN SẢN PHẨM</li>
-    <li>HÃNG ĐIỆN THOẠI</li>
-    <li>GIÁ</li>
-    <li></li>
-  </ul>
-</li>`;
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  if (e.target.value == "")
-    //hiển thị tất cả sản phẩm
-    for (let i = 0; i < products.length; i++) {
-      if (
-        products[i].title
-          .toLowerCase()
-          .includes(search_text.value.trim().toLowerCase())
-      )
-        document.querySelector(".products").innerHTML += showProducts(
-          products[i]
-        );
-    }
-  else
-    for (let i = 0; i < products.length; i++) {
-      if (
-        products[i].title
-          .toLowerCase()
-          .includes(search_text.value.trim().toLowerCase()) &&
-        e.target.value == products[i].brand
-      )
-        //hiển thị theo hãng
-        document.querySelector(".products").innerHTML += showProducts(
-          products[i]
-        );
-    }
-  list = document.querySelectorAll(".products .item");
-  loadItem();
+search_brand.addEventListener("change", async (e) => {
+  try {
+    let productRes = await axiosInstance.get("/products");
+    let products = productRes.data; 
+
+    let imageRes = await axiosInstance.get("/images");
+    let images = imageRes.data;
+
+    products.forEach((item) => {
+      let imageItem = images.find(img => img.ProductID === item.ProductID);
+      item.imageURL = `http://localhost:3000/${imageItem.ImageURL}.jpg`;
+    });
+
+    // Reset nội dung .products
+    document.querySelector(".products").innerHTML = `<li class="top-list">
+      <ul>
+        <li>#ID</li>
+        <li>ẢNH</li>
+        <li>TÊN SẢN PHẨM</li>
+        <li>HÃNG ĐIỆN THOẠI</li>
+        <li>GIÁ</li>
+        <li></li>
+      </ul>
+    </li>`;
+
+    // Lọc sản phẩm
+    let filteredProducts = products.filter((item) => {
+      const matchesName = item.ProductName.toLowerCase().includes(search_text.value.trim().toLowerCase());
+      const matchesBrand = e.target.value === "" || e.target.value === item.Brand; // Nếu không chọn hãng, hiển thị tất cả
+      return matchesName && matchesBrand;
+    });
+
+    // Hiển thị sản phẩm đã lọc
+    filteredProducts.forEach((item) => {
+      document.querySelector(".products").innerHTML += showProducts(item);
+    });
+
+    // Cập nhật list và gọi loadItem (nếu có)
+    list = document.querySelectorAll(".products .item");
+    if (typeof loadItem === "function") loadItem();
+  } catch (error) {
+    console.error("Lỗi khi tìm kiếm theo hãng:", error);
+    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+  }
 });
-search_text.addEventListener("input", (e) => {
-  let txt = e.target.value.trim().toLowerCase(); //giá trị ô input
-  document.querySelector(".products").innerHTML = `<li class="top-list">
-  <ul>
-    <li>#ID</li>
-    <li>ẢNH</li>
-    <li>TÊN SẢN PHẨM</li>
-    <li>HÃNG ĐIỆN THOẠI</li>
-    <li>GIÁ</li>
-    <li></li>
-  </ul>
-</li>`;
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  if (search_brand.value == "")
-    //nếu tùy chọn hãng là tất cả
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].title.toLowerCase().includes(txt))
-        //hiển thị tất cả sản phẩm có tên chứa giá trị ô input
-        document.querySelector(".products").innerHTML += showProducts(
-          products[i]
-        );
-    }
-  //nếu tùy chọn theo 1 hãng bất kì
-  else
-    for (let i = 0; i < products.length; i++) {
-      if (
-        products[i].title.toLowerCase().includes(txt) &&
-        search_brand.value == products[i].brand
-      )
-        //lọc theo hãng và tên
-        document.querySelector(".products").innerHTML += showProducts(
-          products[i]
-        );
-    }
-  list = document.querySelectorAll(".products .item");
-  loadItem();
+
+// Sự kiện nhập văn bản (search_text)
+search_text.addEventListener("input", async (e) => {
+  try {
+    let txt = e.target.value.trim().toLowerCase();
+
+    let productRes = await axiosInstance.get("/products");
+    let products = productRes.data; 
+
+    let imageRes = await axiosInstance.get("/images");
+    let images = imageRes.data;
+
+    products.forEach((item) => {
+      let imageItem = images.find(img => img.ProductID === item.ProductID);
+      item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : 'default-image.jpg';
+    });
+
+    // Reset nội dung .products
+    document.querySelector(".products").innerHTML = `<li class="top-list">
+      <ul>
+        <li>#ID</li>
+        <li>ẢNH</li>
+        <li>TÊN SẢN PHẨM</li>
+        <li>HÃNG ĐIỆN THOẠI</li>
+        <li>GIÁ</li>
+        <li></li>
+      </ul>
+    </li>`;
+
+    // Lọc sản phẩm
+    let filteredProducts = products.filter((item) => {
+      const matchesName = item.ProductName.toLowerCase().includes(txt);
+      const matchesBrand = search_brand.value === "" || search_brand.value === item.Brand;
+      return matchesName && matchesBrand;
+    });
+
+    // Hiển thị sản phẩm đã lọc
+    filteredProducts.forEach((item) => {
+      document.querySelector(".products").innerHTML += showProducts(item);
+    });
+
+    // Cập nhật list và gọi loadItem (nếu có)
+    list = document.querySelectorAll(".products .item");
+    if (typeof loadItem === "function") loadItem();
+  } catch (error) {
+    console.error("Lỗi khi tìm kiếm theo tên:", error);
+    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+  }
 });
 
 //in thông báo
@@ -276,59 +395,42 @@ function showSuccess(message) {
   notification.appendChild(ntf_complete);
   ntf_complete.style.animation = "showNotification 3s linear";
 }
+
+// Đảm bảo hàm có thể gọi từ HTML
+window.checkInputForForm = checkInputForForm;
 //check input cả 2 box thêm và sửa
+function validateInput(ProductName, Price_show, Price_origin) {
+  if (!ProductName || !Price_show || !Price_origin) {
+    showError("Vui lòng nhập đầy đủ thông tin");
+    return false;
+  }
+  if (isNaN(Price_show) || isNaN(Price_origin) || parseFloat(Price_show) < 0 || parseFloat(Price_origin) < 0) {
+    showError("Giá không hợp lệ");
+    return false;
+  }
+  if (parseFloat(Price_origin) < parseFloat(Price_show)) {
+    showError("Giá hiển thị phải thấp hơn giá gốc");
+    return false;
+  }
+  return true;
+}
+
 function checkInputForForm() {
   if (!edit_product_bg.classList.contains("hide")) {
-    if (edit_title.value == "" || edit_price_show.value == "") {
-      showError("Vui lòng nhập đầy đủ thông tin");
-    } else if (
-      isNaN(edit_price_show.value) ||
-      isNaN(edit_price_origin.value) ||
-      parseInt(edit_price_show.value) < 0 ||
-      parseInt(edit_price_origin.value) < 0
-    ) {
-      showError("Giá không hợp lệ");
-    } else if (
-      parseInt(edit_price_origin.value) < parseInt(edit_price_show.value)
-    ) {
-      showError("Giá hiển thị phải thấp hơn giá gốc");
-    } else {
-      //không có lỗi thì sản phẩm sẽ được sửa
+    // Kiểm tra form chỉnh sửa
+    if (validateInput(edit_title.value, edit_price_show.value, edit_price_origin.value)) {
       showSuccess("Sửa sản phẩm thành công");
-      edit(index_edit);
+      edit(current_product_id);
     }
   } else {
-    if (product_title.value == "" || product_price_show.value == "") {
-      showError("Vui lòng nhập đầy đủ thông tin");
-    } else if (
-      isNaN(product_price_show.value) ||
-      isNaN(product_price_origin.value) ||
-      parseInt(product_price_show.value) < 0 ||
-      parseInt(product_price_origin.value) < 0
-    ) {
-      showError("Giá không hợp lệ");
-    } else if (
-      parseInt(product_price_origin.value) < parseInt(product_price_show.value)
-    ) {
-      showError("Giá hiển thị phải thấp hơn giá gốc");
-    } else {
-      //không có lỗi thì sản phẩm sẽ được thêm
+    // Kiểm tra form thêm sản phẩm
+    if (validateInput(product_title.value, product_price_show.value, product_price_origin.value)) {
       showSuccess("Thêm sản phẩm thành công");
       addProduct();
     }
   }
 }
-//đọc file ảnh
-function changeImg(file) {
-  const reader = new FileReader();
-  reader.onload = (evt) => {
-    if (!edit_product_bg.classList.contains("hide"))
-      //nếu box chỉnh sửa đang hiển thị thì sẽ chỉ hiển thị ảnh cho box chỉnh sửa
-      img_edit.src = evt.target.result;
-    else img_add.src = evt.target.result; //ngược lại là box thêm
-  };
-  reader.readAsDataURL(file.files[0]);
-}
+
 function loadItem() {
   let beginIndex = limit * (thisPage - 1);
   let endIndex = limit * thisPage - 1;
@@ -344,7 +446,7 @@ function listPage() {
   if (thisPage != 1) {
     let prev = document.createElement("li");
     prev.innerText = "Trước";
-    prev.setAttribute("onclick", "changePage(" + (thisPage - 1) + ")");
+    prev.addEventListener("click", () => changePage(thisPage - 1));
     document.querySelector(".list-page").appendChild(prev);
   }
   for (let i = 1; i <= count; i++) {
@@ -353,16 +455,17 @@ function listPage() {
     if (i == thisPage) {
       newPage.classList.add("page-current");
     }
-    newPage.setAttribute("onclick", "changePage(" + i + ")");
+    newPage.addEventListener("click", () => changePage(i));
     document.querySelector(".list-page").appendChild(newPage);
   }
   if (thisPage != count) {
     let next = document.createElement("li");
     next.innerText = "Sau";
-    next.setAttribute("onclick", "changePage(" + (thisPage + 1) + ")");
+    next.addEventListener("click", () => changePage(thisPage + 1));
     document.querySelector(".list-page").appendChild(next);
   }
 }
+
 function changePage(i) {
   thisPage = i;
   loadItem();
@@ -372,7 +475,7 @@ function price_format(price) {
   if (price == "") return "";
   let price_str = "";
   let tmp = price;
-  for (i = price.length; i > 3; i -= 3) {
+  for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
     tmp = tmp.substr(0, i - 3);
   }

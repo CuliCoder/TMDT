@@ -68,43 +68,61 @@ function close_search_box() {
 }
 //thực hiện tìm kiếm
 search();
-function search() {
-  let search_box = document.querySelector("#search"); //ô input
-  search_box.addEventListener("input", (e) => {
-    let txt_search = e.target.value.trim().toLowerCase(); //lấy giá trị của ô input
-    document.querySelector(".search-bg .products").innerHTML = ""; //reset lại phần hiển thị sản phẩm
-    let json_product = JSON.parse(localStorage.getItem("json-products")); //lấy dữ liệu trên localStorage sau đó chuyển về lại dạng đối tượng
-    for (let i = 0; i < json_product.length; i++)
-      if (json_product[i].title.toLowerCase().includes(txt_search))
-        //nếu tên của sản phẩm có chứa giá trị ô input thì show sản phẩm đó
-        document.querySelector(
-          ".search-bg .products"
-        ).innerHTML += `<div class="item-product" onclick="showProductInfo(${
-          json_product[i].productId
-        })"><img src="${
-          json_product[i].img
-        }" alt="" /><div class="info"><div class="title">${
-          json_product[i].title
-        }</div><div class="price-show">${price_format(
-          json_product[i].price_show
-        )}</div></div></div>`;
-    //cập nhật lại danh sách các sản phẩm được hiển thị
-    list_search = document.querySelectorAll(
-      ".search-bg .products .item-product"
-    );
-    loadItem_search(); //bắt đầu phân trang
+async function search() {
+  let search_box = document.querySelector("#search"); // Ô input tìm kiếm
+
+  search_box.addEventListener("input", async (e) => {
+    let txt_search = e.target.value.trim().toLowerCase(); // Chuẩn hóa từ khóa tìm kiếm
+    document.querySelector(".search-bg .products").innerHTML = ""; // Reset kết quả tìm kiếm
+
+    try {
+      // Gọi API lấy danh sách sản phẩm
+      let response = await axiosInstance.get("/products");
+      let products = response.data; // Danh sách sản phẩm từ API
+
+      // Gọi API lấy danh sách hình ảnh
+      let imageRes = await axiosInstance.get("/images");
+      let images = imageRes.data;
+
+      // Gán ảnh vào từng sản phẩm
+      products.forEach((item) => {
+        let imageItem = images.find((img) => img.ProductID === item.ProductID);
+        item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg";
+      });
+
+      // Lọc sản phẩm theo từ khóa tìm kiếm
+      let filteredProducts = products.filter((item) =>
+        item.ProductName.toLowerCase().includes(txt_search)
+      );
+
+      // Hiển thị danh sách sản phẩm tìm được
+      filteredProducts.forEach((item) => {
+        document.querySelector(".search-bg .products").innerHTML += `
+          <div class="item-product" onclick="showProductInfo(${item.ProductID})">
+            <img src="${item.imageURL}" alt="${item.ProductName}" />
+            <div class="info">
+              <div class="title">${item.ProductName}</div>
+              <div class="price-show">${price_format(item.Price_show)}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Cập nhật danh sách tìm kiếm
+      list_search = document.querySelectorAll(".search-bg .products .item-product");
+      loadItem_search(); // Phân trang nếu cần
+    } catch (error) {
+      console.error("Lỗi khi tìm kiếm sản phẩm:", error);
+      document.querySelector(".search-bg .products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+    }
   });
 }
+
 //chuyển qua chi tiết của sản phẩm khi ấn vào 1 sp
 function showProductInfo(id_product) {
-  let products = JSON.parse(localStorage.getItem("json-products"));
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].productId == id_product) {
-      localStorage.setItem("ProductInfo", JSON.stringify(products[i]));
-    }
-  }
-  location.href = "chitietsanpham.html";
+  window.location.href = `chitietsanpham.html?id=${id_product}`;
 }
+
 //---------Phân trang----------
 function loadItem_search() {
   let beginIndex = limit_search * (thisPage_search - 1); //vị trí bắt đầu của trang hiện tại
@@ -118,37 +136,36 @@ function loadItem_search() {
 }
 //hiển thị nút chuyển trang
 function listPage_search() {
-  let count = Math.ceil(list_search.length / limit_search); //tổng số trang cần có
-  document.querySelector(".search-bg .list-page-search").innerHTML = ""; //reset phần hiển thị các nút
-  //nếu trang hiện tại khác 1 thì sẽ xuất hiện nút "Trước"
-  if (thisPage_search != 1) {
+  let count = Math.ceil(list_search.length / limit_search); // Tổng số trang cần có
+  let listPageContainer = document.querySelector(".search-bg .list-page-search");
+  listPageContainer.innerHTML = ""; // Reset phần hiển thị các nút
+
+  // Tạo nút "Trước" nếu không ở trang đầu
+  if (thisPage_search > 1) {
     let prev = document.createElement("li");
     prev.innerText = "Trước";
-    prev.setAttribute(
-      "onclick",
-      "changePage_search(" + (thisPage_search - 1) + ")"
-    );
-    document.querySelector(".search-bg .list-page-search").appendChild(prev); //thêm vào phần hiển thị nút
+    prev.addEventListener("click", () => changePage_search(thisPage_search - 1));
+    listPageContainer.appendChild(prev);
   }
-  //hiển thị các nút tương ứng với số trang
+
+  // Hiển thị các nút số trang
   for (let i = 1; i <= count; i++) {
     let newPage = document.createElement("li");
     newPage.innerText = i;
-    if (i == thisPage_search) newPage.classList.add("page-current");
-    newPage.setAttribute("onclick", "changePage_search(" + i + ")");
-    document.querySelector(".search-bg .list-page-search").appendChild(newPage); //thêm vào phần hiển thị nút
+    if (i === thisPage_search) newPage.classList.add("page-current");
+    newPage.addEventListener("click", () => changePage_search(i));
+    listPageContainer.appendChild(newPage);
   }
-  //nếu khác trang cuối cùng thì xuất hiện nút "Sau"
-  if (thisPage_search != count) {
+
+  // Tạo nút "Sau" nếu không ở trang cuối
+  if (thisPage_search < count) {
     let next = document.createElement("li");
     next.innerText = "Sau";
-    next.setAttribute(
-      "onclick",
-      "changePage_search(" + (thisPage_search + 1) + ")"
-    );
-    document.querySelector(".search-bg .list-page-search").appendChild(next); //thêm vào phần hiển thị nút
+    next.addEventListener("click", () => changePage_search(thisPage_search + 1));
+    listPageContainer.appendChild(next);
   }
 }
+
 //cập nhật lại trang hiện tại
 function changePage_search(i) {
   thisPage_search = i;
@@ -159,7 +176,7 @@ function price_format(price) {
   if (price == "") return "";
   let price_str = "";
   let tmp = price;
-  for (i = price.length; i > 3; i -= 3) {
+  for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
     tmp = tmp.substr(0, i - 3);
   }

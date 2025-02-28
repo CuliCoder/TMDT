@@ -1,94 +1,75 @@
+import axiosInstance from "./configAxios.js";
+
 //định dạng giá
 function price_format(price) {
   if (price == "") return "";
   let price_str = "";
   let tmp = price;
-  for (i = price.length; i > 3; i -= 3) {
+  for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
     tmp = tmp.substr(0, i - 3);
   }
   tmp = tmp.slice(0);
   return tmp + price_str + "₫";
 }
-//show chi tiết
-showProductInfo();
-function showProductInfo() {
-  let product = JSON.parse(localStorage.getItem("ProductInfo"));
-  document.querySelector(".hdchitietsanpham p").innerHTML = product.title;
-  document.querySelector(".boxchitiet").innerHTML = `<img
-  src="${product.img}"
-/>
-<div class="inforchitiet">
-  <p>Thông số kỹ thuật</p>  
-  <table class="tbthongsokithuat">
-    <tr class="bgr">
-      <td>Kích thước màn hình</td>
-      <td>${product.screen_size}</td>
-    </tr>
-    <tr>
-      <td>Công nghệ màn hình</td>
-      <td>${product.screen_technology}</td>
-    </tr>
-    <tr class="bgr">
-      <td>Camera sau</td>
-      <td>
-      ${product.rear_camera}
-      </td>
-    </tr>
-    <tr>
-      <td>Camera trước</td>
-      <td>${product.front_camera}</td>
-    </tr>
-    <tr class="bgr">
-      <td>Chipset</td>
-      <td>${product.Chipset}</td>
-    </tr>
-    <tr>
-      <td>Dung lượng RAM</td>
-      <td>${product.RAM_capacit}</td>
-    </tr>
-    <tr class="bgr">
-      <td>Bộ nhớ trong</td>
-      <td>${product.internal_storage}</td>
-    </tr>
-    <tr>
-      <td>Pin</td>
-      <td>${product.Pin}</td>
-    </tr>
-    <tr class="bgr">
-      <td>Thẻ SIM</td>
-      <td>${product.SIM_card}</td>
-    </tr>
-    <tr>
-      <td>Hệ điều hành</td>
-      <td>${product.OS}</td>
-    </tr>
-    <tr class="bgr">
-      <td>Độ phân giải màn hình</td>
-      <td>${product.screen_resolution}</td>
-    </tr>
-    <tr>
-      <td>Tính năng màn hình</td>
-      <td>
-      ${product.screen_features}
-      </td>
-    </tr>
-  </table>
-  </div>`;
-  //nút mua ngay
-  document
-    .querySelector(".muangay")
-    .setAttribute("onclick", "pay_now(" + product.productId + ",1)");
-  //nút thêm vào giở
-  document
-    .querySelector(".addgiohang")
-    .setAttribute("onclick", "pay_now(" + product.productId + ",0)");
-  //hiển thị giá
-  document.querySelector(".price").innerHTML = `<p>${price_format(
-    product.price_show
-  )}</p>
-  <p>${price_format(product.price_origin)}</p>`;
+// Lấy thông tin chi tiết sản phẩm từ API và hiển thị lên trang
+async function showProductInfo() {
+  try {
+    let urlParams = new URLSearchParams(window.location.search);
+    let ProductID = urlParams.get("id"); // Lấy id từ URL
+
+    // Gọi API lấy thông tin sản phẩm theo ID
+    let res = await axiosInstance.get(`/products/${ProductID}`);
+    let product = res.data.data;
+
+    console.log("📌 Dữ liệu sản phẩm:", product);
+
+    let imageRes = await axiosInstance.get(`/images?ProductID=${ProductID}`);
+    let imageData = imageRes.data;
+
+    let imageItem = imageData.find(img => img.ProductID == ProductID); 
+    product.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg";
+
+    // Hiển thị tên sản phẩm
+    document.querySelector(".hdchitietsanpham p").innerHTML = product.ProductName;
+
+    // Hiển thị thông tin sản phẩm
+    document.querySelector(".boxchitiet").innerHTML = `
+      <img src="${product.imageURL}" alt="${product.ProductName}"/>
+      <div class="inforchitiet">
+        <p>Thông số kỹ thuật</p>  
+        <table class="tbthongsokithuat">
+          <tr class="bgr"><td>Kích thước màn hình</td><td>${product.screen_size}</td></tr>
+          <tr><td>Công nghệ màn hình</td><td>${product.screen_technology}</td></tr>
+          <tr class="bgr"><td>Camera sau</td><td>${product.rear_camera}</td></tr>
+          <tr><td>Camera trước</td><td>${product.front_camera}</td></tr>
+          <tr class="bgr"><td>Chipset</td><td>${product.Chipset}</td></tr>
+          <tr><td>Dung lượng RAM</td><td>${product.RAM_capacit}</td></tr>
+          <tr class="bgr"><td>Bộ nhớ trong</td><td>${product.internal_storage}</td></tr>
+          <tr><td>Pin</td><td>${product.pin}</td></tr>
+          <tr class="bgr"><td>Thẻ SIM</td><td>${product.SIM_card}</td></tr>
+          <tr><td>Hệ điều hành</td><td>${product.OS}</td></tr>
+          <tr class="bgr"><td>Độ phân giải màn hình</td><td>${product.screen_resolution}</td></tr>
+          <tr><td>Tính năng màn hình</td><td>${product.screen_features}</td></tr>
+        </table>
+      </div>`;
+
+    // Hiển thị giá
+    document.querySelector(".price").innerHTML = `
+      <p>${price_format(product.Price_show)}</p>
+      <p>${price_format(product.Price_origin)}</p>`;
+
+    // Gán sự kiện cho nút "Mua ngay" và "Thêm vào giỏ hàng"
+    document.querySelector(".muangay").setAttribute("onclick", `pay_now(${product.ProductID},1)`);
+    document.querySelector(".addgiohang").setAttribute("onclick", `pay_now(${product.ProductID},0)`);
+  } catch (error) {
+    console.error("Lỗi khi tải thông tin sản phẩm:", error);
+  }
 }
+
+// Gọi hàm khi trang tải xong
+showProductInfo();
+
 //thông báo
 function showntf(message) {
   let notification = document.querySelector(".notification");
