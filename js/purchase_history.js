@@ -1,17 +1,23 @@
+import axiosInstance from "./configAxios.js";
 let list; //danh sách các đơn được hiển thị
 let limit = 12; //số đơn trong 1 trang
 let thispage = 1; //trang hiện tại
 //show đơn hàng
-function show(order, products, date) {
+function show(order) {
+  const ordersElement = document.querySelector(".list-orders .orders");
+  if (!ordersElement) {
+    console.error("Phần tử .list-orders .orders không tồn tại");
+    return;
+  }
   document.querySelector(
     ".list-orders .orders"
   ).innerHTML += `<li class="order">
   <ul>
-    <li>${order.orderId}</li>
-    <li>${products}</li>
-    <li>${price_format("" + order.total_price)}</li>
-    <li>${date}</li>
-    <li>${order.status}</li>
+    <li>${order.OrderID}</li>
+    <li>${order.UserID}</li>
+    <li>${order.TotalAmount}</li>
+    <li>${order.OrderDate}</li>
+    <li>${order.Status}</li>
     <li>
       <button type="submit" class="cancel-order-active" onclick="cancel_order('${
         order.orderId
@@ -20,49 +26,49 @@ function show(order, products, date) {
   </ul>
 </li>`;
 }
+{/* <li>
+<button type="submit" class="cancel-order-active" onclick="cancel_order('${
+  order.orderId
+}')">Hủy đơn hàng</button>
+</li> */}
+//<li>${price_format("" + order.TotalAmount)}</li>
 //danh sách đơn hàn
-show_orders();
-function show_orders() {
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+async function dataOrder() {
+  try {
+    let userLoginID = JSON.parse(localStorage.getItem("userLogin")).id;
+    let res = await axiosInstance.get(`/orders/user/${userLoginID}`);
+    return res;
+  } catch (error) {
+    return null;
+  }
+}
+async function show_orders() {
+  let data = await dataOrder(); 
+  data = data.data;// Đợi kết quả của hàm dataOrder
+  if (!data) {
+    console.error("Không thể lấy dữ liệu đơn hàng");
+    return;
+  }
   document.querySelector(
     ".list-orders .orders"
   ).innerHTML = `<li class="top-list">
   <ul>
     <li>Mã đơn hàng</li>
-    <li>Sản phẩm</li>
+    <li>UserID</li>
     <li>Tổng tiền</li>
     <li>Ngày giờ</li>
     <li>Trạng thái</li>
     <li>Hành động</li>
   </ul>
 </li>`;
-  for (let i = 0; i < userLogin.order.length; i++) {
-    let products = "";
-    let d = new Date(userLogin.order[i].date_purchase);
-    for (let j = 0; j < userLogin.order[i].products.length; j++) {
-      if (j == userLogin.order[i].products.length - 1) {
-        products +=
-          userLogin.order[i].products[j].name +
-          "-" +
-          userLogin.order[i].products[j].color +
-          " [" +
-          userLogin.order[i].products[j].quantity +
-          "]";
-      } else {
-        products +=
-          userLogin.order[i].products[j].name +
-          "-" +
-          userLogin.order[i].products[j].color +
-          " [" +
-          userLogin.order[i].products[j].quantity +
-          "], ";
-      }
-    }
-    show(userLogin.order[i], products, d.toLocaleString()); //show đơn hàng
+  for (let i = 0; i < data.length; i++) {
+    console.log("Đơn hàng:", data[i]); // In thông tin đơn hàng ra console
+    show(data[i]); // Hiển thị đơn hàng
   }
-  list = document.querySelectorAll(".list-orders .orders .order"); //danh sách đơn hàng được hiển thị
-  loaditem(); //phân trang
+  list = document.querySelectorAll(".list-orders .orders .order"); // Danh sách đơn hàng được hiển thị
+  loaditem(); // Phân trang
 }
+show_orders();
 //định dạng giá
 function price_format(price) {
   if (price == "") return "";
