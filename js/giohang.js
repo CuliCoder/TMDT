@@ -1,10 +1,10 @@
 import axiosInstance from "./configAxios.js";
 //trở về trang trước
-function back() {
+window.back = function () {
   history.go(-1);
-}
+};
 //check ô chọn tất cả hoặc bỏ chọn tất cả
-function selectAll() {
+window.selectAll = async function () {
   let checkbox = document.querySelectorAll("input[type='checkbox']");
   if (document.querySelector("#myCheckbox").checked) {
     //nếu ô chọn tất cả được check sẽ thay đổi text thành "Bỏ chọn tất cả"
@@ -21,8 +21,8 @@ function selectAll() {
     }
   }
   sentence_at_begin(); //hidden or show "Xóa tất cả sản phẩm đã chọn"
-  total_price_bill(); //update tổng giá
-}
+  await total_price_bill(); //update tổng giá
+};
 //hidden or show "Xóa tất cả sản phẩm đã chọn"
 function sentence_at_begin() {
   let checkbox = document.querySelectorAll("input[type='checkbox']");
@@ -36,43 +36,58 @@ function sentence_at_begin() {
   }
 }
 //thay đổi số lượng sản phẩm
-function change_quantity(num, index) {
+window.change_quantity = async function (num, productID, index) {
   let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  if (userLogin.cart[index].quantity + num >= 1) {
-    userLogin.cart[index].quantity = userLogin.cart[index].quantity + num;
-    userLogin.cart[index].total_price =
-      userLogin.cart[index].quantity * userLogin.cart[index].price_show;
-    localStorage.setItem("userLogin", JSON.stringify(userLogin)); //up lại lên localStorage
-    updateUsers(); //cập nhật lại user
+  const res = await axiosInstance.put("/api/updateCart", {
+    userID: userLogin.id,
+    productID: productID,
+    quantity: num,
+  });
+
+  // if (userLogin.cart[index].quantity + num >= 1) {
+  //   userLogin.cart[index].quantity = userLogin.cart[index].quantity + num;
+  //   userLogin.cart[index].total_price =
+  //     userLogin.cart[index].quantity * userLogin.cart[index].price_show;
+  //   localStorage.setItem("userLogin", JSON.stringify(userLogin)); //up lại lên localStorage
+  //   updateUsers(); //cập nhật lại user
+  // }
+  if (res.data.error === 0) {
+    document.querySelectorAll(".addproduct input")[index].value =
+      res.data.quantity; //update số hiển thị
+    await total_price_bill(); //update tổng giá
   }
-  document.querySelectorAll(".addproduct input")[index].value =
-    userLogin.cart[index].quantity; //update số hiển thị
-  total_price_bill(); //update tổng giá
-}
+};
 //tính tổng giá
 let total_price;
-function total_price_bill() {
-  total_price = 0;
-  let count = 0;
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  let listItemSelect = document.querySelectorAll(".boxproduct >input");
-  for (let i = 0; i < listItemSelect.length; i++) {
-    if (listItemSelect[i].checked) {
-      total_price += userLogin.cart[i].total_price;
-      count += userLogin.cart[i].quantity;
+window.total_price_bill = async function () {
+  try {
+    total_price = 0;
+    let count = 0;
+    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    const res = await axiosInstance.get("/api/getCart?userID=" + userLogin.id);
+    const cart = res.data;
+    let listItemSelect = document.querySelectorAll(".boxproduct >input");
+    for (let i = 0; i < listItemSelect.length; i++) {
+      if (listItemSelect[i].checked) {
+        console.log(parseFloat(cart[i].Price) * cart[i].Quantity);
+        total_price += parseFloat(cart[i].Price) * cart[i].Quantity;
+        count += cart[i].Quantity;
+      }
     }
+    document.querySelector(".sotienthanhtoan p:nth-child(2)").innerHTML =
+      price_format("" + total_price + ".00");
+    if (count > 0) {
+      document.querySelector(".muangay").classList.add("muangay-active");
+      document.querySelector(".muangay").innerHTML = "Mua ngay (" + count + ")";
+    } else {
+      document.querySelector(".muangay").classList.remove("muangay-active");
+      document.querySelector(".muangay").innerHTML = "Mua ngay";
+    }
+    sentence_at_begin(); //hidden or show "Xóa tất cả sản phẩm đã chọn"
+  } catch (err) {
+    console.log(err);
   }
-  document.querySelector(".sotienthanhtoan p:nth-child(2)").innerHTML =
-    price_format("" + total_price);
-  if (count > 0) {
-    document.querySelector(".muangay").classList.add("muangay-active");
-    document.querySelector(".muangay").innerHTML = "Mua ngay (" + count + ")";
-  } else {
-    document.querySelector(".muangay").classList.remove("muangay-active");
-    document.querySelector(".muangay").innerHTML = "Mua ngay";
-  }
-  sentence_at_begin(); //hidden or show "Xóa tất cả sản phẩm đã chọn"
-}
+};
 //nút "mua ngay"
 function btn_pay_now() {
   if (
@@ -111,9 +126,10 @@ showCart();
 async function showCart() {
   try {
     let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-    const cart = await axiosInstance.get("/api/getCart?userID=" + userLogin.id);
+    const res = await axiosInstance.get("/api/getCart?userID=" + userLogin.id);
+    const cart = res.data;
+    console.log(cart);
     //làm api lấy tên với ảnh, giá của sản phẩm
-    console.log("📌 Lấy giỏ hàng:", cart.data);
     if (cart.length == 0) {
       //nếu không có sản phẩm trong giỏ sẽ xuất hiện "Giỏ hàng của bạn đang trống"
       document.querySelector(".boxgiohang").innerHTML = `<div class="hdtop">
@@ -145,20 +161,26 @@ async function showCart() {
         ).innerHTML += `<div class="boxproduct">
     <input type="checkbox" onchange="total_price_bill()"/>
     <img
-      src="${userLogin.cart[i].img}"
+      src="http://localhost:3000${cart[i].ImageURL}.jpg"
     />
     <div class="infor">
-      <p>${userLogin.cart[i].name}-${userLogin.cart[i].color}</p>
-      <p>${price_format(userLogin.cart[i].price_show)} <s>${price_format(
-          userLogin.cart[i].price_origin
+      <p>${cart[i].ProductName}</p>
+      <p>${price_format(cart[i].Price)} <s>${price_format(
+          cart[i].Price
         )}</s></p>
     </div>
     <div class="thaotac">
-      <div class="trash" onclick="delete_product_cart(${i})"><i class="fa-regular fa-trash-can"></i></div>
+      <div class="trash" onclick="delete_product_cart(${
+        cart[i].ProductID
+      })"><i class="fa-regular fa-trash-can"></i></div>
       <div class="addproduct">
-        <i class="fa-solid fa-minus" onclick="change_quantity(-1,${i})"></i>
-        <input type="text" value="${userLogin.cart[i].quantity}" readonly />
-        <i class="fa-solid fa-plus" onclick="change_quantity(1,${i})"></i>
+        <i class="fa-solid fa-minus" onclick="change_quantity(-1,${
+          cart[i].ProductID
+        },${i})"></i>
+        <input type="text" value="${cart[i].Quantity}" readonly />
+        <i class="fa-solid fa-plus" onclick="change_quantity(1,${
+          cart[i].ProductID
+        },${i})"></i>
       </div>
     </div>
   </div>`;
@@ -198,51 +220,75 @@ function newly_added_product() {
 }
 
 //xóa nhiều sản phẩm trong giỏ
-function delete_array_product_cart() {
-  let listCheckBox = document.querySelectorAll(".boxproduct >input"); //các ô check box của mỗi sản phẩm
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  let arraySelected = []; //mảng chứa id,color của mỗi sản phẩm được check box
-  for (let i = 0; i < listCheckBox.length; i++) {
-    if (listCheckBox[i].checked) {
-      let selected = {
-        productId: userLogin.cart[i].productId,
-        color: userLogin.cart[i].color,
-      };
-      arraySelected.push(selected);
+window.delete_array_product_cart = async function () {
+  try {
+    let listCheckBox = document.querySelectorAll(".boxproduct >input"); //các ô check box của mỗi sản phẩm
+    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    const res = await axiosInstance.get("/api/getCart?userID=" + userLogin.id);
+    const cart = res.data;
+    let arraySelected = []; //mảng chứa id,color của mỗi sản phẩm được check box
+    for (let i = 0; i < listCheckBox.length; i++) {
+      if (listCheckBox[i].checked) {
+        let selected = {
+          productId: cart[i].ProductID,
+          // color:cart[i].color,
+        };
+        arraySelected.push(selected);
+      }
     }
-  }
-  //xóa sản phẩm nào có id,color trong mảng arraySelected
-  for (let i = 0; i < arraySelected.length; i++) {
-    let j = 0;
-    while (j < userLogin.cart.length) {
-      if (
-        arraySelected[i].productId == userLogin.cart[j].productId &&
-        arraySelected[i].color == userLogin.cart[j].color
-      ) {
-        userLogin.cart.splice(j, 1);
+    //xóa sản phẩm nào có id,color trong mảng arraySelected
+    let success = 1;
+    for (let i = 0; i < arraySelected.length; i++) {
+      // let j = 0;
+      // while (j < userLogin.cart.length) {
+      //   if (
+      //     arraySelected[i].productId == userLogin.cart[j].productId &&
+      //     arraySelected[i].color == userLogin.cart[j].color
+      //   ) {
+      //     userLogin.cart.splice(j, 1);
+      //     break;
+      //   } else j++;
+      // }
+      console.log(arraySelected[i].productId);
+      const res = await axiosInstance.delete(
+        `/api/removeFromCart?userID=${userLogin.id}&productID=${arraySelected[i].productId}`
+      );
+      if (res.data.error !== 0) {
+        success = 0;
         break;
-      } else j++;
+      }
     }
+    if (success == 1) {
+      showCart();
+    }
+    // localStorage.setItem("userLogin", JSON.stringify(userLogin)); //up lên localStorage
+    // updateUsers(); //cập nhật lại user
+    // showCart(); //cập nhật hiển thị sản phẩm
+  } catch (error) {
+    console.log(error);
   }
-  localStorage.setItem("userLogin", JSON.stringify(userLogin)); //up lên localStorage
-  updateUsers(); //cập nhật lại user
-  showCart(); //cập nhật hiển thị sản phẩm
-}
+};
 //xóa 1 sản phẩm trong giỏ
-function delete_product_cart(index) {
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  userLogin.cart.splice(index, 1);
-  localStorage.setItem("userLogin", JSON.stringify(userLogin));
-  updateUsers();
-  showCart();
-}
+window.delete_product_cart = async function (ProductID) {
+  try {
+    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    const res = await axiosInstance.delete(
+      `/api/removeFromCart?userID=${userLogin.id}&productID=${ProductID}`
+    );
+    if (res.data.error === 0) {
+      showCart();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 //định dạng giá
 function price_format(price) {
   if (price == "") return "";
   let price_str = "";
   price = price.slice(0, -3);
   let tmp = price;
-  for (i = price.length; i > 3; i -= 3) {
+  for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
     tmp = tmp.substr(0, i - 3);
   }
@@ -250,15 +296,15 @@ function price_format(price) {
   return tmp + price_str + "₫";
 }
 //cập nhật lại user trong danh sách
-function updateUsers() {
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-  let users = JSON.parse(localStorage.getItem("users"));
+// function updateUsers() {
+//   let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+//   let users = JSON.parse(localStorage.getItem("users"));
 
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].user == userLogin.user) {
-      users[i] = userLogin;
-      break;
-    }
-  }
-  localStorage.setItem("users", JSON.stringify(users));
-}
+//   for (let i = 0; i < users.length; i++) {
+//     if (users[i].user == userLogin.user) {
+//       users[i] = userLogin;
+//       break;
+//     }
+//   }
+//   localStorage.setItem("users", JSON.stringify(users));
+// }

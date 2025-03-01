@@ -27,7 +27,7 @@ function show(item) {
         <h3 class="product-title">${item.ProductName}</h3>
         <div class="product-price">
           <p class="product-price-show">${price_format(item.Price)}</p>
-          <p class="product-price-origin">${item.Price_origin}</p>
+          <p class="product-price-origin">${price_format(item.Price)}</p>
         </div>
         <a href="chitietsanpham.html?id=${
           item.ProductID
