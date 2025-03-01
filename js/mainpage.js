@@ -3,6 +3,7 @@ import axiosInstance from "./configAxios.js";
 function price_format(price) {
   if (price == "") return "";
   let price_str = "";
+  price = price.slice(0, -3);
   let tmp = price;
   for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
@@ -25,10 +26,12 @@ function show(item) {
       <div class="product-info">
         <h3 class="product-title">${item.ProductName}</h3>
         <div class="product-price">
-          <p class="product-price-show">${price_format(item.Price_show)}</p>
-          <p class="product-price-origin">${price_format(item.Price_origin)}</p>
+          <p class="product-price-show">${price_format(item.Price)}</p>
+          <p class="product-price-origin">${item.Price_origin}</p>
         </div>
-        <a href="chitietsanpham.html?id=${item.ProductID}" class="product-btn">Chi tiết</a>
+        <a href="chitietsanpham.html?id=${
+          item.ProductID
+        }" class="product-btn">Chi tiết</a>
       </div>
     </div>
   </div>`;
@@ -50,8 +53,11 @@ async function showProductMainPage() {
 
       // Gán ảnh cho từng sản phẩm
       products.forEach((item) => {
-        let imageItem = images.find(img => img.ProductID === item.ProductID);
-        item.imageURL = imageItem && imageItem.ImageURL ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg"; 
+        let imageItem = images.find((img) => img.ProductID === item.ProductID);
+        item.imageURL =
+          imageItem && imageItem.ImageURL
+            ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+            : "default-image.jpg";
       });
 
       // Hiển thị danh sách sản phẩm
@@ -90,7 +96,7 @@ async function show_filter_brand() {
     let minPrice = parseInt(tmp[4]); // Giá thấp nhất
     let maxPrice = parseInt(tmp[5]); // Giá cao nhất
 
-    let filteredProducts = products.filter(product => {
+    let filteredProducts = products.filter((product) => {
       let matchesBrand = product.Brand.toUpperCase() === brandFilter; // Kiểm tra hãng
       let price = parseInt(product.Price_show);
 
@@ -101,12 +107,14 @@ async function show_filter_brand() {
     });
 
     // Gán URL ảnh cho sản phẩm
-    filteredProducts.forEach(item => {
-      let imageItem = images.find(img => img.ProductID === item.ProductID);
-      item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg";
+    filteredProducts.forEach((item) => {
+      let imageItem = images.find((img) => img.ProductID === item.ProductID);
+      item.imageURL = imageItem
+        ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+        : "default-image.jpg";
     });
 
-    filteredProducts.forEach(item => {
+    filteredProducts.forEach((item) => {
       document.querySelector(".all-products").innerHTML += show(item);
     });
 
@@ -119,43 +127,44 @@ async function show_filter_brand() {
 
 // lọc theo giá
 async function show_filter_price() {
-  
-    let tmp = location.href.split(/[?,=,-]/);
-    let minPrice = parseInt(tmp[2]);
-    let maxPrice = parseInt(tmp[3]);
-    document.querySelector(".all-products").innerHTML = "";
-    
-    try {
-      let res = await axiosInstance.get("/products");
-      let products = res.data;
+  let tmp = location.href.split(/[?,=,-]/);
+  let minPrice = parseInt(tmp[2]);
+  let maxPrice = parseInt(tmp[3]);
+  document.querySelector(".all-products").innerHTML = "";
 
-      let imageRes = await axiosInstance.get("/images");
-      let images = imageRes.data;
+  try {
+    let res = await axiosInstance.get("/products");
+    let products = res.data;
 
-      let filteredProducts = products;
+    let imageRes = await axiosInstance.get("/images");
+    let images = imageRes.data;
 
-      // Lọc sản phẩm theo khoảng giá
-      filteredProducts = products.filter(product => {
-        let price = parseInt(product.Price_show);
-        return price >= minPrice && price <= maxPrice;
-      });
-      
-      // Gán ảnh sản phẩm
-      filteredProducts.forEach(item => {
-        let imageItem = images.find(img => img.ProductID === item.ProductID);
-        item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg";
+    let filteredProducts = products;
+
+    // Lọc sản phẩm theo khoảng giá
+    filteredProducts = products.filter((product) => {
+      let price = parseInt(product.Price_show);
+      return price >= minPrice && price <= maxPrice;
     });
 
-      document.querySelector(".all-products").innerHTML = "";
-      filteredProducts.forEach(item => {
-        document.querySelector(".all-products").innerHTML += show(item);
-      });
+    // Gán ảnh sản phẩm
+    filteredProducts.forEach((item) => {
+      let imageItem = images.find((img) => img.ProductID === item.ProductID);
+      item.imageURL = imageItem
+        ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+        : "default-image.jpg";
+    });
 
-      list = document.querySelectorAll(".all-products .product");
-      loaditem();
-    } catch (err) {
-      console.error("Lỗi khi lọc sản phẩm theo giá: ", err);
-    }
+    document.querySelector(".all-products").innerHTML = "";
+    filteredProducts.forEach((item) => {
+      document.querySelector(".all-products").innerHTML += show(item);
+    });
+
+    list = document.querySelectorAll(".all-products .product");
+    loaditem();
+  } catch (err) {
+    console.error("Lỗi khi lọc sản phẩm theo giá: ", err);
+  }
 }
 
 function loaditem() {
@@ -173,25 +182,25 @@ function listPage() {
   pagination.innerHTML = "";
 
   if (thispage > 1) {
-      let prev = document.createElement("li");
-      prev.innerText = "Trước";
-      prev.addEventListener("click", () => changePage(thispage - 1));
-      pagination.appendChild(prev);
+    let prev = document.createElement("li");
+    prev.innerText = "Trước";
+    prev.addEventListener("click", () => changePage(thispage - 1));
+    pagination.appendChild(prev);
   }
 
   for (let i = 1; i <= count; i++) {
-      let newPage = document.createElement("li");
-      newPage.innerText = i;
-      if (i == thispage) newPage.classList.add("page-current");
-      newPage.addEventListener("click", () => changePage(i));
-      pagination.appendChild(newPage);
+    let newPage = document.createElement("li");
+    newPage.innerText = i;
+    if (i == thispage) newPage.classList.add("page-current");
+    newPage.addEventListener("click", () => changePage(i));
+    pagination.appendChild(newPage);
   }
 
   if (thispage < count) {
-      let next = document.createElement("li");
-      next.innerText = "Sau";
-      next.addEventListener("click", () => changePage(thispage + 1));
-      pagination.appendChild(next);
+    let next = document.createElement("li");
+    next.innerText = "Sau";
+    next.addEventListener("click", () => changePage(thispage + 1));
+    pagination.appendChild(next);
   }
 }
 

@@ -87,7 +87,9 @@ async function search() {
       // Gán ảnh vào từng sản phẩm
       products.forEach((item) => {
         let imageItem = images.find((img) => img.ProductID === item.ProductID);
-        item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : "default-image.jpg";
+        item.imageURL = imageItem
+          ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+          : "default-image.jpg";
       });
 
       // Lọc sản phẩm theo từ khóa tìm kiếm
@@ -98,7 +100,9 @@ async function search() {
       // Hiển thị danh sách sản phẩm tìm được
       filteredProducts.forEach((item) => {
         document.querySelector(".search-bg .products").innerHTML += `
-          <div class="item-product" onclick="showProductInfo(${item.ProductID})">
+          <div class="item-product" onclick="showProductInfo(${
+            item.ProductID
+          })">
             <img src="${item.imageURL}" alt="${item.ProductName}" />
             <div class="info">
               <div class="title">${item.ProductName}</div>
@@ -109,11 +113,14 @@ async function search() {
       });
 
       // Cập nhật danh sách tìm kiếm
-      list_search = document.querySelectorAll(".search-bg .products .item-product");
+      list_search = document.querySelectorAll(
+        ".search-bg .products .item-product"
+      );
       loadItem_search(); // Phân trang nếu cần
     } catch (error) {
       console.error("Lỗi khi tìm kiếm sản phẩm:", error);
-      document.querySelector(".search-bg .products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+      document.querySelector(".search-bg .products").innerHTML =
+        "<p>Không thể tải danh sách sản phẩm.</p>";
     }
   });
 }
@@ -137,14 +144,18 @@ function loadItem_search() {
 //hiển thị nút chuyển trang
 function listPage_search() {
   let count = Math.ceil(list_search.length / limit_search); // Tổng số trang cần có
-  let listPageContainer = document.querySelector(".search-bg .list-page-search");
+  let listPageContainer = document.querySelector(
+    ".search-bg .list-page-search"
+  );
   listPageContainer.innerHTML = ""; // Reset phần hiển thị các nút
 
   // Tạo nút "Trước" nếu không ở trang đầu
   if (thisPage_search > 1) {
     let prev = document.createElement("li");
     prev.innerText = "Trước";
-    prev.addEventListener("click", () => changePage_search(thisPage_search - 1));
+    prev.addEventListener("click", () =>
+      changePage_search(thisPage_search - 1)
+    );
     listPageContainer.appendChild(prev);
   }
 
@@ -161,7 +172,9 @@ function listPage_search() {
   if (thisPage_search < count) {
     let next = document.createElement("li");
     next.innerText = "Sau";
-    next.addEventListener("click", () => changePage_search(thisPage_search + 1));
+    next.addEventListener("click", () =>
+      changePage_search(thisPage_search + 1)
+    );
     listPageContainer.appendChild(next);
   }
 }
@@ -188,8 +201,6 @@ document.querySelector(".header .cart").addEventListener("click", () => {
   let userLogin = JSON.parse(localStorage.getItem("userLogin"));
   if (userLogin == null) {
     alert("Vui lòng đăng nhập!");
-  } else if (userLogin != null && userLogin.status != "Hoạt động") {
-    alert("Tài khoản bị khóa không thể vào giỏ hàng!");
   } else {
     location.href = "giohang.html";
   }

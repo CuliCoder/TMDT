@@ -6,7 +6,7 @@ let list;
 let notification = document.querySelector(".notification"); //phần thông báo
 //danh sách sản phẩm
 async function loadPage() {
-  try{
+  try {
     let productRes = await axiosInstance.get("/products");
     let product = productRes.data;
 
@@ -14,10 +14,13 @@ async function loadPage() {
     let images = imageRes.data;
 
     product.forEach((item) => {
-      let imageItem = images.find(img => img.ProductID === item.ProductID);
-      item.imageURL = imageItem && imageItem.ImageURL ? `http://localhost:3000/${imageItem.ImageURL}.jpg`: "default-image.jpg";
+      let imageItem = images.find((img) => img.ProductID === item.ProductID);
+      item.imageURL =
+        imageItem && imageItem.ImageURL
+          ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+          : "default-image.jpg";
     });
-    
+
     let html = `
       <li class="top-list">
         <ul>
@@ -35,12 +38,13 @@ async function loadPage() {
     });
 
     // Cập nhật toàn bộ danh sách sản phẩm một lần duy nhất
-    document.querySelector(".products").innerHTML = html;    
+    document.querySelector(".products").innerHTML = html;
     list = document.querySelectorAll(".products .item");
     loadItem();
-  } catch(error){
+  } catch (error) {
     console.error("Lỗi khi tải danh sách sản phẩm từ API:", error);
-    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+    document.querySelector(".products").innerHTML =
+      "<p>Không thể tải danh sách sản phẩm.</p>";
   }
 }
 loadPage();
@@ -58,12 +62,16 @@ function showProducts(item) {
             <li>${item.ProductName}</li>
             <li>${item.Brand}</li>
             <li>
-              <p class="price-show">${price_format(item.Price_show)}</p>
-              <p class="price-origin">${price_format(item.Price_origin)}</p>
+              <p class="price-show">${price_format(item.Price)}</p>
+              <p class="price-origin">${price_format(item.Price)}</p>
             </li>
             <li>
-              <button type="submit" class="delete-product" data-id="${item.ProductID}">X</button>
-              <button type="submit" class="edit-product" data-id="${item.ProductID}">SỬA</button>
+              <button type="submit" class="delete-product" data-id="${
+                item.ProductID
+              }">X</button>
+              <button type="submit" class="edit-product" data-id="${
+                item.ProductID
+              }">SỬA</button>
             </li>
           </ul>
         </li>`;
@@ -74,7 +82,8 @@ let product_brand = document.getElementById("brand");
 let product_price_show = document.getElementById("product-price-show");
 let product_price_origin = document.getElementById("product-price-origin");
 let img_add = document.querySelector(".img-add");
-let info = document.querySelectorAll(".add-product form > div:nth-child(2) input"
+let info = document.querySelectorAll(
+  ".add-product form > div:nth-child(2) input"
 );
 //thêm sản phẩm
 async function addProduct() {
@@ -101,7 +110,7 @@ async function addProduct() {
     };
 
     console.log("Dữ liệu gửi đi:", new_product);
-    
+
     // Gửi sản phẩm lên server trước
     let productRes = await axiosInstance.post("/products", new_product);
 
@@ -120,7 +129,7 @@ async function addProduct() {
           // 4️⃣ Cập nhật lại ImageURL và đảm bảo ProductID khớp
           await axiosInstance.post("/images/update", {
             ProductID: productId, // Đảm bảo ProductID đúng
-            ImageID: imageURL
+            ImageID: imageURL,
           });
 
           console.log("✅ Ảnh đã upload:", ImageID);
@@ -159,67 +168,69 @@ async function btn_edit(id_product) {
   // Hiển thị box chỉnh sửa
   edit_product_bg.classList.remove("hide");
   try {
-      let response = await axiosInstance.get(`/products/${id_product}`);
-      let product = response.data;
+    let response = await axiosInstance.get(`/products/${id_product}`);
+    let product = response.data;
 
-      // Lưu ID sản phẩm hiện tại
-      current_product_id = id_product;
+    // Lưu ID sản phẩm hiện tại
+    current_product_id = id_product;
 
-      // Điền dữ liệu vào form, khớp với tên thuộc tính từ showProducts
-      img_edit.src = product.imageURL || ""; // Dùng imageURL từ showProducts
-      edit_title.value = product.ProductName || "";
-      edit_brand.value = product.Brand || ""; // Giá trị phải khớp với các option trong select
-      edit_price_show.value = product.Price_show || "";
-      edit_price_origin.value = product.Price_origin || "";
-      info_edit[0].value = product.screen_size || "";
-      info_edit[1].value = product.screen_technology || "";
-      info_edit[2].value = product.rear_camera || "";
-      info_edit[3].value = product.front_camera || "";
-      info_edit[4].value = product.Chipset || "";
-      info_edit[5].value = product.RAM_capacit || "";
-      info_edit[6].value = product.internal_storage || "";
-      info_edit[7].value = product.pin || "";
-      info_edit[8].value = product.SIM_card || "";
-      info_edit[9].value = product.OS || "";
-      info_edit[10].value = product.screen_resolution || "";
-      info_edit[11].value = product.screen_features || "";
-
+    // Điền dữ liệu vào form, khớp với tên thuộc tính từ showProducts
+    img_edit.src = product.imageURL || ""; // Dùng imageURL từ showProducts
+    edit_title.value = product.ProductName || "";
+    edit_brand.value = product.Brand || ""; // Giá trị phải khớp với các option trong select
+    edit_price_show.value = product.Price_show || "";
+    edit_price_origin.value = product.Price_origin || "";
+    info_edit[0].value = product.screen_size || "";
+    info_edit[1].value = product.screen_technology || "";
+    info_edit[2].value = product.rear_camera || "";
+    info_edit[3].value = product.front_camera || "";
+    info_edit[4].value = product.Chipset || "";
+    info_edit[5].value = product.RAM_capacit || "";
+    info_edit[6].value = product.internal_storage || "";
+    info_edit[7].value = product.pin || "";
+    info_edit[8].value = product.SIM_card || "";
+    info_edit[9].value = product.OS || "";
+    info_edit[10].value = product.screen_resolution || "";
+    info_edit[11].value = product.screen_features || "";
   } catch (error) {
-      console.error('Lỗi khi lấy dữ liệu sản phẩm:', error);
+    console.error("Lỗi khi lấy dữ liệu sản phẩm:", error);
   }
 }
 // thực hiện sửa
 async function edit(id_product) {
   try {
-      let updatedProduct = {
-          img: img_edit.src,                    // Ảnh sản phẩm
-          ProductName: edit_title.value,             // Tiêu đề sản phẩm
-          Brand: edit_brand.value,             // Thương hiệu
-          Price_show: edit_price_show.value,   // Giá hiển thị
-          Price_origin: edit_price_origin.value, // Giá gốc
-          screen_size: info_edit[0].value,     // Kích thước màn hình
-          screen_technology: info_edit[1].value, // Công nghệ màn hình
-          rear_camera: info_edit[2].value,     // Camera sau
-          front_camera: info_edit[3].value,    // Camera trước
-          Chipset: info_edit[4].value,         // Chip xử lý
-          RAM_capacit: info_edit[5].value,     // Dung lượng RAM
-          internal_storage: info_edit[6].value, // Bộ nhớ trong
-          pin: info_edit[7].value,             // Dung lượng pin
-          SIM_card: info_edit[8].value,        // Thẻ SIM
-          OS: info_edit[9].value,              // Hệ điều hành
-          screen_resolution: info_edit[10].value, // Độ phân giải màn hình
-          screen_features: info_edit[11].value // Tính năng màn hình
-      };
+    let updatedProduct = {
+      img: img_edit.src, // Ảnh sản phẩm
+      ProductName: edit_title.value, // Tiêu đề sản phẩm
+      Brand: edit_brand.value, // Thương hiệu
+      Price_show: edit_price_show.value, // Giá hiển thị
+      Price_origin: edit_price_origin.value, // Giá gốc
+      screen_size: info_edit[0].value, // Kích thước màn hình
+      screen_technology: info_edit[1].value, // Công nghệ màn hình
+      rear_camera: info_edit[2].value, // Camera sau
+      front_camera: info_edit[3].value, // Camera trước
+      Chipset: info_edit[4].value, // Chip xử lý
+      RAM_capacit: info_edit[5].value, // Dung lượng RAM
+      internal_storage: info_edit[6].value, // Bộ nhớ trong
+      pin: info_edit[7].value, // Dung lượng pin
+      SIM_card: info_edit[8].value, // Thẻ SIM
+      OS: info_edit[9].value, // Hệ điều hành
+      screen_resolution: info_edit[10].value, // Độ phân giải màn hình
+      screen_features: info_edit[11].value, // Tính năng màn hình
+    };
 
-      let response = await axiosInstance.put(`/products/${id_product}`, updatedProduct,);
+    let response = await axiosInstance.put(
+      `/products/${id_product}`,
+      updatedProduct
+    );
 
-      // Dữ liệu trả về từ server (đã được axios tự động phân tích)
-      let updatedData = response.data;
+    // Dữ liệu trả về từ server (đã được axios tự động phân tích)
+    let updatedData = response.data;
 
-      // Xử lý khi cập nhật thành công
-      console.log('Sản phẩm đã được cập nhật thành công:', updatedData);
+    // Xử lý khi cập nhật thành công
+    console.log("Sản phẩm đã được cập nhật thành công:", updatedData);
   } catch (error) {
-      console.error('Lỗi khi cập nhật sản phẩm:', error);
+    console.error("Lỗi khi cập nhật sản phẩm:", error);
   }
 }
 
@@ -284,13 +295,13 @@ let search_brand = document.querySelector("#search-brand"); //tùy chọn brand
 search_brand.addEventListener("change", async (e) => {
   try {
     let productRes = await axiosInstance.get("/products");
-    let products = productRes.data; 
+    let products = productRes.data;
 
     let imageRes = await axiosInstance.get("/images");
     let images = imageRes.data;
 
     products.forEach((item) => {
-      let imageItem = images.find(img => img.ProductID === item.ProductID);
+      let imageItem = images.find((img) => img.ProductID === item.ProductID);
       item.imageURL = `http://localhost:3000/${imageItem.ImageURL}.jpg`;
     });
 
@@ -308,8 +319,11 @@ search_brand.addEventListener("change", async (e) => {
 
     // Lọc sản phẩm
     let filteredProducts = products.filter((item) => {
-      const matchesName = item.ProductName.toLowerCase().includes(search_text.value.trim().toLowerCase());
-      const matchesBrand = e.target.value === "" || e.target.value === item.Brand; // Nếu không chọn hãng, hiển thị tất cả
+      const matchesName = item.ProductName.toLowerCase().includes(
+        search_text.value.trim().toLowerCase()
+      );
+      const matchesBrand =
+        e.target.value === "" || e.target.value === item.Brand; // Nếu không chọn hãng, hiển thị tất cả
       return matchesName && matchesBrand;
     });
 
@@ -323,7 +337,8 @@ search_brand.addEventListener("change", async (e) => {
     if (typeof loadItem === "function") loadItem();
   } catch (error) {
     console.error("Lỗi khi tìm kiếm theo hãng:", error);
-    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+    document.querySelector(".products").innerHTML =
+      "<p>Không thể tải danh sách sản phẩm.</p>";
   }
 });
 
@@ -333,14 +348,16 @@ search_text.addEventListener("input", async (e) => {
     let txt = e.target.value.trim().toLowerCase();
 
     let productRes = await axiosInstance.get("/products");
-    let products = productRes.data; 
+    let products = productRes.data;
 
     let imageRes = await axiosInstance.get("/images");
     let images = imageRes.data;
 
     products.forEach((item) => {
-      let imageItem = images.find(img => img.ProductID === item.ProductID);
-      item.imageURL = imageItem ? `http://localhost:3000/${imageItem.ImageURL}.jpg` : 'default-image.jpg';
+      let imageItem = images.find((img) => img.ProductID === item.ProductID);
+      item.imageURL = imageItem
+        ? `http://localhost:3000/${imageItem.ImageURL}.jpg`
+        : "default-image.jpg";
     });
 
     // Reset nội dung .products
@@ -358,7 +375,8 @@ search_text.addEventListener("input", async (e) => {
     // Lọc sản phẩm
     let filteredProducts = products.filter((item) => {
       const matchesName = item.ProductName.toLowerCase().includes(txt);
-      const matchesBrand = search_brand.value === "" || search_brand.value === item.Brand;
+      const matchesBrand =
+        search_brand.value === "" || search_brand.value === item.Brand;
       return matchesName && matchesBrand;
     });
 
@@ -372,7 +390,8 @@ search_text.addEventListener("input", async (e) => {
     if (typeof loadItem === "function") loadItem();
   } catch (error) {
     console.error("Lỗi khi tìm kiếm theo tên:", error);
-    document.querySelector(".products").innerHTML = "<p>Không thể tải danh sách sản phẩm.</p>";
+    document.querySelector(".products").innerHTML =
+      "<p>Không thể tải danh sách sản phẩm.</p>";
   }
 });
 
@@ -404,7 +423,12 @@ function validateInput(ProductName, Price_show, Price_origin) {
     showError("Vui lòng nhập đầy đủ thông tin");
     return false;
   }
-  if (isNaN(Price_show) || isNaN(Price_origin) || parseFloat(Price_show) < 0 || parseFloat(Price_origin) < 0) {
+  if (
+    isNaN(Price_show) ||
+    isNaN(Price_origin) ||
+    parseFloat(Price_show) < 0 ||
+    parseFloat(Price_origin) < 0
+  ) {
     showError("Giá không hợp lệ");
     return false;
   }
@@ -418,13 +442,25 @@ function validateInput(ProductName, Price_show, Price_origin) {
 function checkInputForForm() {
   if (!edit_product_bg.classList.contains("hide")) {
     // Kiểm tra form chỉnh sửa
-    if (validateInput(edit_title.value, edit_price_show.value, edit_price_origin.value)) {
+    if (
+      validateInput(
+        edit_title.value,
+        edit_price_show.value,
+        edit_price_origin.value
+      )
+    ) {
       showSuccess("Sửa sản phẩm thành công");
       edit(current_product_id);
     }
   } else {
     // Kiểm tra form thêm sản phẩm
-    if (validateInput(product_title.value, product_price_show.value, product_price_origin.value)) {
+    if (
+      validateInput(
+        product_title.value,
+        product_price_show.value,
+        product_price_origin.value
+      )
+    ) {
       showSuccess("Thêm sản phẩm thành công");
       addProduct();
     }
@@ -474,6 +510,7 @@ function changePage(i) {
 function price_format(price) {
   if (price == "") return "";
   let price_str = "";
+  price = price.slice(0, -3);
   let tmp = price;
   for (let i = price.length; i > 3; i -= 3) {
     price_str = "." + tmp.slice(-3) + price_str;
