@@ -89,36 +89,39 @@ window.total_price_bill = async function () {
   }
 };
 //nút "mua ngay"
-function btn_pay_now() {
-  if (
-    document.querySelector(".muangay").classList.contains("muangay-active") ==
-    false
-  ) {
-    alert("Vui lòng chọn sản phẩm muốn mua");
-  } else {
-    let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-    let listItemSelect = document.querySelectorAll(".boxproduct >input");
-    let products = [];
-    for (let i = 0; i < listItemSelect.length; i++) {
-      if (listItemSelect[i].checked) {
-        products.push(userLogin.cart[i]);
+window.btn_pay_now = async function() {
+  try {
+    if (
+      document.querySelector(".muangay").classList.contains("muangay-active") ==
+      false
+    ) {
+      alert("Vui lòng chọn sản phẩm muốn mua");
+    } else {
+      let userLogin = JSON.parse(localStorage.getItem("userLogin"));
+      let listItemSelect = document.querySelectorAll(".boxproduct >input");
+      const res = await axiosInstance.get("/api/getCart?userID=" + userLogin.id);
+      const cart = res.data;
+      let order = {
+        UserID: userLogin.id,
+        TotalAmount : total_price,
+        detailOrder: [],
+      };
+      for (let i = 0; i < listItemSelect.length; i++) {
+        if (listItemSelect[i].checked) {
+          order.detailOrder.push({
+            ProductID: cart[i].ProductID,
+            Quantity: cart[i].Quantity,
+            Price: cart[i].Price,
+          });
+        }
       }
+      console.log(order);
+      await axiosInstance.post("/orders", order);
+      alert("Đặt hàng thành công!!");
+      delete_array_product_cart();
     }
-    let orderId = userLogin.user + "0" + (userLogin.order.length + 1); //tạo id cho đơn hàng
-    let d = new Date();
-    let date = d.toISOString(); //thời gian đặt đơn
-    let status = "Đang chờ xử lý";
-    let order_new = {
-      orderId: orderId,
-      products: products,
-      date_purchase: date,
-      status: status,
-      total_price: total_price,
-    };
-    userLogin.order.unshift(order_new);
-    localStorage.setItem("userLogin", JSON.stringify(userLogin));
-    updateUsers(); //update user
-    alert("Đặt hàng thành công!!");
+  } catch (error) {
+    
   }
 }
 //show sản phẩm trong giỏ hàng của người dùng
