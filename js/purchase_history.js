@@ -9,18 +9,24 @@ function show(order) {
     console.error("Phần tử .list-orders .orders không tồn tại");
     return;
   }
+  let orderDate = new Date(order.OrderDate);
+  let formattedDate = orderDate.toLocaleDateString('vi-VN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
   document.querySelector(
     ".list-orders .orders"
-  ).innerHTML += `<li class="order">
+  ).innerHTML += `<li class="order" onclick = "detail_order('${order.OrderID}')">
   <ul>
     <li>${order.OrderID}</li>
     <li>${order.UserID}</li>
     <li>${order.TotalAmount}</li>
-    <li>${order.OrderDate}</li>
+    <li>${formattedDate}</li>
     <li>${order.Status}</li>
     <li>
       <button type="submit" class="cancel-order-active" onclick="cancel_order('${
-        order.orderId
+        order.OrderID
       }')">Hủy đơn hàng</button>
     </li>
   </ul>
@@ -62,7 +68,7 @@ async function show_orders() {
   </ul>
 </li>`;
   for (let i = 0; i < data.length; i++) {
-    console.log("Đơn hàng:", data[i]); // In thông tin đơn hàng ra console
+    if (data[i].Status == "cancelled") continue
     show(data[i]); // Hiển thị đơn hàng
   }
   list = document.querySelectorAll(".list-orders .orders .order"); // Danh sách đơn hàng được hiển thị
@@ -199,32 +205,92 @@ function check_search(id, date_order) {
   }
 }
 //hủy đơn hàng
-function cancel_order(orderId) {
-  let users = JSON.parse(localStorage.getItem("users"));
-  let userLogin = JSON.parse(localStorage.getItem("userLogin"));
-
-  for (let i = 0; i < userLogin.order.length; i++) {
-    if (userLogin.order[i].orderId == orderId) {
-      if (userLogin.order[i].status == "Đơn hàng đã bị hủy") {
-        alert("Đơn hàng đã bị hủy!");
-      } else if (userLogin.order[i].status == "Đơn hàng đã được xác nhận")
-        alert("Không thể hủy đơn hàng đã được xác nhận!");
-      else {
-        let result = confirm(
-          "Bạn có chắc muốn hủy đơn hàng này. Hành động này sẽ không thể khôi phục lại !"
-        );
-        if (result) {
-          userLogin.order[i].status = "Đơn hàng đã bị hủy";
-          localStorage.setItem("userLogin", JSON.stringify(userLogin));
-        }
-        for (let j = 0; j < users.length; j++)
-          if (userLogin.user == users[j].user) {
-            users[j] = userLogin;
-            localStorage.setItem("users", JSON.stringify(users));
-          }
-      }
-      break;
-    }
-  }
+async function cancel_order(orderId) {
+try {
+  let res = await axiosInstance.get(`/orders/${orderId}`);
+  console.log("alo: ",res.data);
+  if (!res.data || res.data[0].Status != "pending")
+    return alert("Không thể hủy đơn hàng này!");
+// lấy hóa đơn cần đổi status
+  let update_order = {
+    OrderID: orderId,
+    Status: "cancelled",
+  };
+  let res_update = await axiosInstance.put(`/orders`, update_order);
+  return alert("Hủy đơn hàng thành công!");
   show_orders();
+} catch (error) {
+  return alert("Lỗi cơ sở dữ liệu!");
 }
+}
+window.cancel_order = cancel_order;
+window.detail_order = detail_order;
+async function detail_order(orderID) {
+  try {
+    let res = await axiosInstance.get(`/orderdetail/${orderID}`);
+    let res_od = await axiosInstance.get(`/orders/${orderID}`)
+    let res_customer = await axiosInstance.get(`/api/customers/${res_od.data[0].UserID}`)
+    let orderDate = new Date(res_od.data[0].OrderDate);
+    let formattedDate = orderDate.toLocaleDateString('vi-VN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+    // viết 1 đoạn html khi click vào hiện lên chi tiết đơn hàng
+    let detailOrder_HTML = "";
+    detailOrder_HTML += `<ul class="detail_orders">
+        <h3>CHI TIẾT HÓA ĐƠN</h3>
+        <p>Ngày lập: ${formattedDate}</p>
+        <p>Khách Hàng: ${res_customer.data[0].FullName}</p>
+        <table class="table_detail">
+          <tr>
+            <th style="width: 30%;">Sản phẩm</th>
+            <th style="width: 10%;">Số lượng</th>
+            <th style="width: 30%;">Đơn giá</th>
+            <th style="width: 30%;">Thành tiền</th>
+          </tr>
+        </table>
+      </ul>`
+      //console.log(detailOrder_HTML)
+    document.querySelector(".overlay").classList.remove('hide');
+    document.querySelector(".box_detailOrder").classList.remove('hide');
+    document.querySelector(".box_detailOrder").innerHTML += detailOrder_HTML;
+      let table = document.querySelector('.table_detail');
+      for (let i = 0; i < res.data[0].length; i++) {
+        let row = document.createElement('tr');
+        let res_product = await axiosInstance.get(`/products/${res.data[0][i].ProductID}`)
+        console.log("test", res_product.data.data.ProductName)
+        row.innerHTML = `
+          <td>${res_product.data.data.ProductName}</td>
+          <td>${res.data[0][i].Quantity}</td>
+          <td>${res.data[0][i].Price}</td>
+          <td>${Number(res.data[0][i].Quantity) * Number(res.data[0][i].Price)}</td>
+        `;
+        table.appendChild(row);
+        }
+        document.querySelector(".detail_orders").innerHTML += `<div class="totalAmout">Tổng tiền: ${res_od.data[0].TotalAmount}</div>`
+  }
+  catch (error) {
+    return null;
+  }
+}
+
+document.querySelector('.overlay').onclick = function() {
+  document.querySelector('.overlay').classList.add('hide');
+  document.querySelector('.box_detailOrder').classList.add('hide');
+  document.querySelector('.box_detailOrder').innerHTML = '';
+}
+// `<li class="order">
+//   <ul>
+//     <li>${order.OrderID}</li>
+//     <li>${order.UserID}</li>
+//     <li>${order.TotalAmount}</li>
+//     <li>${order.OrderDate}</li>
+//     <li>${order.Status}</li>
+//     <li>
+//       <button type="submit" class="cancel-order-active" onclick="cancel_order('${
+//         order.OrderID
+//       }')">Hủy đơn hàng</button>
+//     </li>
+//   </ul>
+// </li>`;
