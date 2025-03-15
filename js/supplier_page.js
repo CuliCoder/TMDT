@@ -36,6 +36,7 @@ function renderDataPagination(){
         }
     })
 }
+// tim kiem 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('sup-text_search').addEventListener('keyup', search);
 });
@@ -52,7 +53,48 @@ function search(){
     $('#sup-pagination').pagination('destroy');
     renderDataPagination()
 }
+//them 
+document.addEventListener('DOMContentLoaded', function() {
+    let btn = document.getElementById('sup-btn_add');
+    if (btn) {
+        btn.addEventListener('click', add);
+    } else {
+        console.error("Không tìm thấy phần tử có ID 'sup-btn_add'");
+    }
+});
 
+function add() {
+    // Hiển thị modal
+    let modal = new bootstrap.Modal(document.getElementById('addModal'));
+    modal.show();
+}
+
+// Lưu chỉnh sửa
+async function saveAdd() {
+    const response = await fetch(`http://localhost:3000/api/suppliers`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            SupplierName: document.getElementById("addSupplierName").value.trim(),
+            ContactName: document.getElementById("addContactName").value.trim(),
+            ContactEmail: document.getElementById("addContactEmail").value.trim(),
+            ContactPhone: document.getElementById("addContactPhone").value.trim(),
+            Address: document.getElementById("addAddress").value.trim()
+        })
+    });
+    const data_response = await response.json()
+    console.log(data_response)
+    getData()
+
+    // Đóng modal
+    bootstrap.Modal.getInstance(document.getElementById('addModal')).hide();
+}
+
+
+//================================================
+// chinh sua
 function edit(supplierID) {
     let supplier = data.find(item => item.SupplierID === supplierID);
     if (!supplier) return alert("Không tìm thấy nhà cung cấp!");
@@ -89,26 +131,6 @@ async function saveEdit() {
     const data_response = await response.json()
     console.log(data_response)
     getData()
-
-    // fetch(`http://localhost:3000/api/suppliers/${id}`, {
-    //     method: 'PUT',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         SupplierName: document.getElementById("editSupplierName").value.trim(),
-    //         ContactName: document.getElementById("editContactName").value.trim(),
-    //         ContactEmail: document.getElementById("editContactEmail").value.trim(),
-    //         ContactPhone: document.getElementById("editContactPhone").value.trim(),
-    //         Address: document.getElementById("editAddress").value.trim()
-    //     })
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log('Success:', data);
-    //     getData()
-    // })
-    // .catch(error => console.error('Error:', error));
 
     // Đóng modal
     bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();

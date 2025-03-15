@@ -105,7 +105,7 @@
     <div class="container pt-4">
       <div class="afsd" style="display: flex;justify-content: flex-end;">
           <input class="form-control me-2" id="sup-text_search"   type="text" placeholder="Search" aria-label="Search">
-          <div class="sup-btn_add" style="display: flex;padding: 4px;align-items: center;cursor: pointer;border-radius: 5px;background-color: rgb(30, 28, 83);color: white;margin-left: 50px;">
+          <div id="sup-btn_add" style="display: flex;padding: 4px;align-items: center;cursor: pointer;border-radius: 5px;background-color: rgb(30, 28, 83);color: white;margin-left: 50px;">
             <i class="fa-solid fa-plus"></i>
             <span>Thêm</span>
           </div>
@@ -156,7 +156,37 @@
     </div>
   </div>
 </div>
+<!-- Modal thêm Nhà Cung Cấp -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm nhà cung cấp</h5>
+      </div>
+      <div class="modal-body">
 
+        <label>Tên nhà cung cấp:</label>
+        <input type="text" id="addSupplierName" class="form-control mb-2">
+
+        <label>Người liên hệ:</label>
+        <input type="text" id="addContactName" class="form-control mb-2">
+
+        <label>Email liên hệ:</label>
+        <input type="email" id="addContactEmail" class="form-control mb-2">
+
+        <label>Số điện thoại:</label>
+        <input type="text" id="addContactPhone" class="form-control mb-2">
+
+        <label>Địa chỉ:</label>
+        <input type="text" id="addAddress" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" onclick="saveAdd()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Danh sách Nhà Cung Cấp -->
 <div id="sup-data"></div>
 
