@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href=".\css\vendor.min.css" />
+    <link rel="stylesheet" href=".\css\sidebar.css" />
+    <!-- CSS Front Template -->
+    <link rel="stylesheet" href=".\css\theme.min.css?v=1.0" />
+    <link rel="stylesheet" href=".\css\docs.css" />
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" /> -->
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css" />
+    <script
+      src="https://kit.fontawesome.com/d443b73be9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/variations_page.js"></script>
+    <title>Biến thể</title>
+  </head>
+  <body>
+    <!--Main Navigation-->
+    <header>
+      <!-- Sidebar -->
+      <nav
+        id="sidebarMenu"
+        class="collapse d-lg-block sidebar collapse bg-white"
+      >
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              aria-current="true"
+            >
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i
+              ><span>Tổng quan</span>
+            </a>
+            <a
+              href="products_page.html"
+              class="list-group-item list-group-item-action py-2 ripple active"
+            >
+              <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
+              ><span>Sản phẩm</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-file-invoice fa-fw me-3"></i
+              ><span>Đơn hàng</span></a
+            >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="far fa-address-card fa-fw me-3"></i
+              ><span>Khách hàng</span></a
+            >
+            <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>N</span>
+          </a> -->
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
+            >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
+            >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-building fa-fw me-3"></i
+              ><span>Nhà cung cấp</span></a
+            >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
+              ><span>Đăng xuất</span></a
+            >
+            <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
+          > -->
+          </div>
+        </div>
+      </nav>
+      <!-- Sidebar -->
+
+      <!-- Navbar -->
+      <nav
+        id="main-navbar"
+        class="navbar navbar-expand-lg navbar-dark bg-white fixed-top"
+      >
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <button
+            data-mdb-button-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-collapse-init
+            data-mdb-target="#sidebarMenu"
+            aria-controls="sidebarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Brand -->
+          <a class="navbar-brand" href="#">
+            <img
+              src="img/imgs/logo.png"
+              height="25"
+              alt="MDB Logo"
+              loading="lazy"
+            />
+          </a>
+          <!-- Search form -->
+          <!-- <form class="d-none d-md-flex input-group w-auto my-auto">
+          <input
+            autocomplete="off"
+            type="search"
+            class="form-control rounded"
+            placeholder='Search (ctrl + "/" to focus)'
+            style="min-width: 225px;"
+          />
+          <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+        </form> -->
+
+          <!-- Right links -->
+          <!-- <ul class="navbar-nav ms-auto d-flex flex-row">
+          
+          <li class="nav-item dropdown">
+            <a
+              data-mdb-dropdown-init class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-bell"></i>
+              <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="#">Some news</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Another news</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </li>
+  
+          
+          <li class="nav-item">
+            <a class="nav-link me-3 me-lg-0" href="#">
+              <i class="fas fa-fill-drip"></i>
+            </a>
+          </li>
+          
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="#">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+  
+          
+          <li class="nav-item dropdown">
+            <a
+              data-mdb-dropdown-init class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="flag-united-kingdom flag m-0"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="flag-united-kingdom flag"></i>English
+                  <i class="fa fa-check text-success ms-2"></i
+                ></a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+              </li>
+            </ul>
+          </li>
+  
+          
+          <li class="nav-item dropdown">
+            <a
+              data-mdb-dropdown-init class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                class="rounded-circle"
+                height="22"
+                alt="Avatar"
+                loading="lazy"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="#">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Settings</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul> -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main style="margin-top: 58px">
+      <!-- <div class="container pt-4">
+
+    </div> -->
+      <div class="container mt-5">
+        <div class="row tm-content-row">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+            <div class="tm-block tm-block-products">
+              <div class="tm-product-table-container">
+                <table
+                  class="table table-hover tm-table-small tm-product-table"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">&nbsp;</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">ID Sản phẩm</th>
+                      <th scope="col">SKU</th>
+                      <th scope="col">Số lượng</th>
+                      <th scope="col">Mô tả</th>
+                      <th scope="col">Giá</th>
+                      <!-- <th scope="col">EXPIRE DATE</th> -->
+                      <th scope="col">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody id="product-list">
+                    <!-- <tr>
+                    <th scope="row" class="w-25"><img
+                      src="img/imgs/products/100001.jpg"
+                      alt=""
+                      class="img-fluid w-50"
+                    /></th>
+                    <td>1,450</td>
+                    <td>550</td>
+                    <td class="truncate">28 March 20dddddddddddd19dddddddddddddddddddddddddddddddddddddddd</td>
+                    <td>28 March 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,250</td>
+                    <td>750</td>
+                    <td>21 March 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,100</td>
+                    <td>900</td>
+                    <td>18 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,400</td>
+                    <td>600</td>
+                    <td>24 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,800</td>
+                    <td>200</td>
+                    <td>22 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,000</td>
+                    <td>1,000</td>
+                    <td>20 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>500</td>
+                    <td>100</td>
+                    <td>10 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,000</td>
+                    <td>600</td>
+                    <td>08 Feb 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,200</td>
+                    <td>800</td>
+                    <td>24 Jan 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>1,600</td>
+                    <td>400</td>
+                    <td>22 Jan 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td>2,000</td>
+                    <td>400</td>
+                    <td>21 Jan 2019</td>
+                    <td>
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <!-- table container -->
+              <div class="button-add btn btn-primary btn-block text-uppercase mb-3">
+                Thêm biến thể
+              </div>
+              <!-- <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected products
+            </button> -->
+            </div>
+          </div>
+          <!-- <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+            <h2 class="tm-block-title">Product Categories</h2>
+            <div class="tm-product-table-container">
+              <table class="table tm-table-small tm-product-table">
+                <tbody>
+                  <tr>
+                    <th class="tm-product-name">Product Category 1</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 2</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 3</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 4</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 5</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 6</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 7</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 8</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 9</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 10</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-product-name">Product Category 11</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <button class="btn btn-primary btn-block text-uppercase mb-3">
+              Add new category
+            </button>
+          </div>
+        </div> -->
+        </div>
+      </div>
+    </main>
+    <!--Main layout-->
+  </body>
+</html>

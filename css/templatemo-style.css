@@ -5,7 +5,12 @@ Product Admin CSS Template
 https://templatemo.com/tm-524-product-admin
 
 */
-
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; /* Điều chỉnh kích thước theo nhu cầu của bạn */
+}
 html {
   font-size: 16px;
   overflow-x: hidden;
