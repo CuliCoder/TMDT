@@ -8,7 +8,7 @@
     <!-- CSS Front Template -->
     <link rel="stylesheet" href=".\css\theme.min.css?v=1.0" />
     <link rel="stylesheet" href=".\css\docs.css" />
-    <link rel="stylesheet" href="./css/customers_page.css">
+    <link rel="stylesheet" href="./css/supplier.css">
     <link
       rel="shortcut icon"
       href="img/favicon/favicon-16x16.png"
@@ -26,7 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css">
-    <script src="./js/customers_page.js"></script>
+    <script src="./js/supplier_page.js"></script>
   </head>
   <body>
     <!--Main Navigation-->
@@ -104,49 +104,51 @@
   <!--Main layout-->  
   <main style="margin-top: 58px;">
     <div class="container pt-4">
-      <div class="cus-nav" >
-          <input class="form-control me-2" id="cus-text_search"   type="text" placeholder="Search" aria-label="Search">
-          <!-- <div class="cus-btn" id="cus-btn_add" >
+      <div class="sup-nav" >
+          <input class="form-control me-2" id="sup-text_search"   type="text" placeholder="Search" aria-label="Search">
+          <div class="sup-btn" id="sup-btn_add" >
             <i class="fa-solid fa-plus"></i>
             <span>Thêm</span>
-          </div> -->
+          </div>
       </div>
       <div >
-          <div class="row border-bottom py-2 cus-header_table-data" >
-            <div class="col">Tên đăng nhập</div>
-            <div class="col">Email</div>
-            <div class="col">Họ và tên</div>
-            <div class="col">Số điện thoại </div>
-            <div class="col">Ngày tạo</div>
+          <div class="row border-bottom py-2 sup-header_table-data" >
+            <div class="col">SupplierName</div>
+            <div class="col">ContactName</div>
+            <div class="col">ContactEmail</div>
+            <div class="col">ContactPhone </div>
+            <div class="col">Address</div>
             <div class="col">Thao tác</div>
         </div>
-        <div id="cus-data" style="margin-bottom: 5px;">
+        <div id="sup-data" style="margin-bottom: 5px;">
         </div>
-        <div id="cus-pagination"></div>
+        <div id="sup-pagination"></div>
       </div>
     </div>
 <!-- Modal Sửa Nhà Cung Cấp -->
-<div class="modal fade" id="editCusModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Chỉnh sửa thông tin khách hàng</h5>
+        <h5 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h5>
       </div>
       <div class="modal-body">
-        <input type="hidden" id="editCusID">
+        <input type="hidden" id="editSupplierID">
 
-        <label>Tên đăng nhập:</label>
-        <input type="text" id="editCusUserName" class="form-control mb-2">
+        <label>Tên nhà cung cấp:</label>
+        <input type="text" id="editSupplierName" class="form-control mb-2">
 
-        <label>Email:</label>
-        <input type="text" id="editCusEmail" class="form-control mb-2">
+        <label>Người liên hệ:</label>
+        <input type="text" id="editContactName" class="form-control mb-2">
 
-        <label>Họ và tên:</label>
-        <input type="email" id="editCusFullName" class="form-control mb-2">
+        <label>Email liên hệ:</label>
+        <input type="email" id="editContactEmail" class="form-control mb-2">
 
         <label>Số điện thoại:</label>
-        <input type="text" id="editCusPhoneNumber" class="form-control mb-2">
+        <input type="text" id="editContactPhone" class="form-control mb-2">
 
+        <label>Địa chỉ:</label>
+        <input type="text" id="editAddress" class="form-control">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
@@ -155,12 +157,42 @@
     </div>
   </div>
 </div>
+<!-- Modal thêm Nhà Cung Cấp -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm nhà cung cấp</h5>
+      </div>
+      <div class="modal-body">
 
+        <label>Tên nhà cung cấp:</label>
+        <input type="text" id="addSupplierName" class="form-control mb-2">
+
+        <label>Người liên hệ:</label>
+        <input type="text" id="addContactName" class="form-control mb-2">
+
+        <label>Email liên hệ:</label>
+        <input type="email" id="addContactEmail" class="form-control mb-2">
+
+        <label>Số điện thoại:</label>
+        <input type="text" id="addContactPhone" class="form-control mb-2">
+
+        <label>Địa chỉ:</label>
+        <input type="text" id="addAddress" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" onclick="saveAdd()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Danh sách Nhà Cung Cấp -->
-<div id="cus-data"></div>
+<div id="sup-data"></div>
 
 <!-- Danh sách nhà cung cấp -->
-<div id="cus-data"></div>
+<div id="sup-data"></div>
    
   </main>
   <!--Main layout-->
