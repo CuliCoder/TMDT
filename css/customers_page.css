@@ -17,3 +17,7 @@
   display: flex;
   justify-content: flex-end
 }
+.cus-btn-search{
+  margin-left: 14px;
+  margin-right: 65px;
+}

@@ -105,20 +105,25 @@
   <main style="margin-top: 58px;">
     <div class="container pt-4">
       <div class="cus-nav" >
-          <input class="form-control me-2" id="cus-text_search"   type="text" placeholder="Search" aria-label="Search">
-          <!-- <div class="cus-btn" id="cus-btn_add" >
-            <i class="fa-solid fa-plus"></i>
-            <span>Thêm</span>
-          </div> -->
+        <div class="d-flex justify-content-center align-items-center">
+          <span>Từ</span>
+          <input type="date" id="cus-Date-From">  
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <span>Đến</span>
+          <input type="date" id="cus-Date-To">  
+        </div>
+        <button class="btn btn-primary cus-btn-search" id="cus-btn_search">Lọc</button>
+        <input class="form-control me-2" id="cus-text_search"   type="text" placeholder="Search" aria-label="Search">
       </div>
       <div >
-          <div class="row border-bottom py-2 cus-header_table-data" >
-            <div class="col">Tên đăng nhập</div>
-            <div class="col">Email</div>
-            <div class="col">Họ và tên</div>
-            <div class="col">Số điện thoại </div>
-            <div class="col">Ngày tạo</div>
-            <div class="col">Thao tác</div>
+        <div class="row border-bottom py-2 cus-header_table-data" >
+          <div class="col">Tên đăng nhập</div>
+          <div class="col">Email</div>
+          <div class="col">Họ và tên</div>
+          <div class="col">Số điện thoại </div>
+          <div class="col">Ngày tạo</div>
+          <div class="col">Thao tác</div>
         </div>
         <div id="cus-data" style="margin-bottom: 5px;">
         </div>

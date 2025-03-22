@@ -53,17 +53,27 @@ function renderDataPagination(){
 // tim kiem 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('cus-text_search').addEventListener('keyup', search);
+    document.getElementById('cus-btn_search').addEventListener('click', search);
 });
 
 function search(){
     var searchValue = document.getElementById('cus-text_search').value.toLowerCase().trim()
-    filterData = data.filter(item => 
-        item.Username.toLowerCase().includes(searchValue)
+    var dateFromValue =  document.getElementById('cus-Date-From').value
+    var dateToValue =document.getElementById('cus-Date-To').value
+    var dateFrom = dateFromValue ? new Date(dateFromValue) : null;
+    var dateTo = dateToValue ? new Date(dateToValue) : null;
+    console.log(dateFrom," , ",dateTo)
+    filterData = data.filter(item => {
+        var dateItem = item.CreatedAt ? new Date(item.CreatedAt) : null;
+        var matchText = !searchValue || item.Username.toLowerCase().includes(searchValue)
         || item.Email.toLowerCase().includes(searchValue)
         || item.FullName.toLowerCase().includes(searchValue)
         || item.PhoneNumber.toLowerCase().includes(searchValue)
         || item.CreatedAt.toLowerCase().includes(searchValue)
-    )
+        
+        var matchDate =(!dateFrom || dateItem >= dateFrom) && (!dateTo || dateItem <= dateTo)
+        return matchText && matchDate
+    })
     $('#cus-pagination').pagination('destroy');
     renderDataPagination()
 }
@@ -137,3 +147,5 @@ async function lock(UserID) {
     console.log(data_response)
     getData()
 }
+//search date
+document.addEventListener()
