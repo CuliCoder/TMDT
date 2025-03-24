@@ -382,3 +382,39 @@ li {
     top: 120px;
   }
 }
+/* kẹp bootstrap (start) */
+
+.box_Search {
+  padding: 0px;
+  margin-bottom: 5px;
+}
+.body_table tr:has(td:hover) {
+  background-color: aliceblue;
+  .actionTable{
+    background-color: white;
+  }
+  /* background-color: #c8c8c8; */
+  cursor: pointer;
+}
+.body_table tr:has(.actionTable:hover)
+{
+  background-color: white;
+}
+.box_action{
+  display: flex;
+  width: 167.9px;
+  gap: 5px;
+  .btnY{
+    width: 48%;
+  }
+  .btnN{
+    width: 48%;
+  }
+}
+.actionTable{
+  padding-left: 0px;
+  width: 167.9px;
+}
+.row_table th, td{
+  vertical-align: middle !important;
+}

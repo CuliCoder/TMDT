@@ -285,7 +285,7 @@ li {
   padding-bottom: 30px;
   box-shadow: 100px;
   border-radius: 5px;
-
+  font-family: "Open Sans", sans-serif; /* Đặt font chữ */
 }
 .overlay {
   position: fixed;
@@ -303,14 +303,17 @@ li {
   color: #000000; /* Đặt màu chữ */
   text-align: left; /* Căn giữa chữ */
   margin: 5px 0px 0px 5px; /* Khoảng cách dưới */
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
 }
 .detail_orders p{
-  font-family: 'Poppins', sans-serif; /* Đặt font chữ */
   font-size: 15px; /* Đặt kích thước chữ */
   font-weight: 450; /* Đặt độ đậm của chữ */
   color: #000000; /* Đặt màu chữ */
   text-align: left; /* Căn giữa chữ */
-  margin: 5px 0px 0px 5px; /* Khoảng cách dưới */
+  margin: 5px 0px 0px 16px; /* Khoảng cách dưới */
+  color: #677788;
 }
 .detail_orders table {
   width: 95% !important;
@@ -319,16 +322,34 @@ li {
   margin-left: 2.5%;
 }
 .detail_orders table tr th{
+  text-transform: uppercase;
+  border-spacing: 0;
   color: white;
-  background-color: #000000;
+  background-color: #132144;
+  border: 1.6px solid #132144;
+
+  padding: 8px;
+  font-weight: 600;
+  font-size: .75rem;
 }
-.detail_orders table tr th, td {
-  border: 1px solid black;
+.detail_orders table tr td{
+  /* border: 1px solid #132144; */
+  border-top: .0625rem solid rgba(231, 234, 243, .7);
   padding: 8px;
   text-align: left;
+  color: #677788;
 }
+/* .detail_orders 
+{ 
+    table tr th, td {
+    border-color: #132144;
+    padding: 8px;
+    text-align: left; 
+  }
+} */
 .totalAmout{
   margin-top: 20px;
   float: right;
   margin-right: 16px;
+  color: #677788;
 }
