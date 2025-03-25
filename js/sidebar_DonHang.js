@@ -48,12 +48,15 @@ async function searchOrder() {
             month: '2-digit',
             year: 'numeric'
         });
-        return String(item.OrderID).toLowerCase().includes(search) || String(item.UserID).toLowerCase().includes(search) || String(Dated).toLowerCase().includes(search) || String(item.Status).toLowerCase().includes(search);
+        return String(item.OrderID).toLowerCase().includes(search) 
+        || String(item.UserID).toLowerCase().includes(search) 
+        || String(Dated).toLowerCase().includes(search) 
+        || String(item.Status).toLowerCase().includes(search);
     });
     if (search.trim() == "") {
         result = data;
     }
-    if (result == null)
+    else if (result == null)
     {
         document.querySelector(".body_table").innerHTML = "";
     }
