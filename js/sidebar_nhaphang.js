@@ -122,6 +122,11 @@ document.querySelector(".overlay").addEventListener("click", function(){
     document.querySelector(".box_sl_gianhap").classList.add('hide');
     document.querySelector(".overlay").classList.add('hide');
 })
+function delete_item(id){
+    orderImport.detailImport = orderImport.detailImport.filter(item => item.id_item_product !== id);
+    event_show_detail_Import()
+}
+window.delete_item = delete_item
 // let orderImport = {
 //     detailImport: [],
 //     idNhanVien: null, // khi log quăng lên local để lấy id người nhập
