@@ -1,0 +1,30 @@
+.promo-header_table-data {
+    background-color: rgb(45, 44, 86);
+    color: white;
+}
+
+.prom-btn-container {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    justify-content: center; /* Canh giữa các nút trong cột */
+}
+
+.prom-btn {
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(30, 28, 83);
+    color: white;
+}
+
+.prom-nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.prom-btn-search {
+    margin-left: 14px;
+    margin-right: 65px;
+}

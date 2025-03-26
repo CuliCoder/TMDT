@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/vendor.min.css" />
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/theme.min.css?v=1.0" />
+    <link rel="stylesheet" href="./css/docs.css" />
+    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/promotion_page.css">
+    <link rel="shortcut icon" href="img/favicon/favicon-16x16.png" type="image/png" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/d443b73be9.js" crossorigin="anonymous"></script>
+    <title>Quản lý khuyến mãi</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css">
+    <script src="./js/promotion_page.js"></script>
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <header>
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Tổng quan</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fa-solid fa-mobile-screen fa-fw me-3"></i><span>Sản phẩm</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-file-invoice fa-fw me-3"></i><span>Đơn hàng</span></a>
+                    <a href="/customers_page.html" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="far fa-address-card fa-fw me-3"></i><span>Khách hàng</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a>
+                    <a href="/supplier_page.html" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-building fa-fw me-3"></i><span>Nhà cung cấp</span></a>
+                    <a href="/promotion_page.html" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="fa-solid fa-tag fa-fw me-3"></i><span>Khuyến mãi</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fa-solid fa-right-from-bracket fa-fw me-3"></i><span>Đăng xuất</span></a>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+
+        <!-- Navbar -->
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init
+                    data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Brand -->
+                <a class="navbar-brand" href="/">
+                    <img src="img/imgs/logo.png" height="25" alt="MDB Logo" loading="lazy" />
+                </a>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            <h2 class="mb-4">Quản lý khuyến mãi</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <input class="form-control me-2" id="promo-text_search" type="text" placeholder="Tìm kiếm" aria-label="Search" style="flex: 1;">
+                <button class="btn btn-success ml-3" data-bs-toggle="modal" data-bs-target="#addPromoModal">Thêm khuyến mãi</button>
+            </div>
+                <div class="row border-bottom py-2 promo-header_table-data">
+                    <div class="col">Tên khuyến mãi</div>
+                    <div class="col">Mô tả</div>
+                    <div class="col">Giảm giá (%)</div>
+                    <div class="col">Ngày bắt đầu</div>
+                    <div class="col">Ngày kết thúc</div>
+                    <div class="col">Ngày tạo</div>
+                    <div class="col">Thao tác</div>
+                </div>
+                <div id="promo-data" style="margin-bottom: 5px;"></div>
+                <div id="promo-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Modal để chọn sản phẩm -->
+        <div class="modal fade" id="chooseProductsModal" tabindex="-1" aria-labelledby="chooseProductsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="chooseProductsModalLabel">Chọn sản phẩm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="product-list">
+                            <!-- Danh sách sản phẩm sẽ được chèn vào đây -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="apply-products-btn">Áp dụng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal thêm khuyến mãi-->
+        <div class="modal fade" id="addPromoModal" tabindex="-1" aria-hidden="true" style="margin-top: 50px">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">THÊM KHUYẾN MÃI MỚI</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label">Tên Khuyến Mãi</label>
+                        <input type="text" class="form-control" id="promotionName" required />
+
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+
+                        <label class="form-label">Tỷ lệ Giảm Giá (%)</label>
+                        <input type="number" class="form-control" id="discountRate" required />
+
+                        <label class="form-label">Ngày Bắt Đầu</label>
+                        <input type="date" class="form-control" id="startDate" required />
+
+                        <label class="form-label">Ngày Kết Thúc</label>
+                        <input type="date" class="form-control" id="endDate" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button class="btn btn-success" onclick="submitPromotion()">Lưu Khuyến Mãi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal sửa khuyến mãi -->
+        <div class="modal fade" id="editPromoModal" tabindex="-1" aria-hidden="true" style="margin-top: 50px">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sửa Khuyến Mãi</h5>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editPromoID"> <!-- Lưu ID khuyến mãi -->
+                        <label class="form-label">Tên Khuyến Mãi</label>
+                        <input type="text" class="form-control" id="editPromotionName" required />
+
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="editDescription" rows="3"></textarea>
+
+                        <label class="form-label">Tỷ lệ Giảm Giá (%)</label>
+                        <input type="number" class="form-control" id="editDiscountRate" required />
+
+                        <label class="form-label">Ngày Bắt Đầu</label>
+                        <input type="date" class="form-control" id="editStartDate" required />
+
+                        <label class="form-label">Ngày Kết Thúc</label>
+                        <input type="date" class="form-control" id="editEndDate" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button class="btn btn-success" onclick="saveEdit()">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
