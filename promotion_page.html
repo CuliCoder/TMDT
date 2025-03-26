@@ -103,10 +103,20 @@
                         <h5 class="modal-title" id="chooseProductsModalLabel">Chọn sản phẩm</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <input type="hidden" id="promotion-id">
                     <div class="modal-body">
-                        <div id="product-list">
+                        <table id="product-list" class="isplay">
                             <!-- Danh sách sản phẩm sẽ được chèn vào đây -->
-                        </div>
+                             <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Khuyến mãi</th>
+                                </tr>
+                             </thead>
+                             <tbody>
+                             </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -181,6 +191,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script></body>
 
 </html>
