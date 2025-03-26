@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet" href=".\css\vendor.min.css" />
     <link rel="stylesheet" href=".\css\sidebar.css" />
     <!-- CSS Front Template -->
@@ -36,67 +36,56 @@
         id="sidebarMenu"
         class="collapse d-lg-block sidebar collapse bg-white"
       >
-        <div class="position-sticky">
-          <div class="list-group list-group-flush mx-3 mt-4">
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              aria-current="true"
-            >
-              <i class="fas fa-tachometer-alt fa-fw me-3"></i
-              ><span>Tổng quan</span>
-            </a>
-            <a
-              href="products_page.html"
-              class="list-group-item list-group-item-action py-2 ripple active"
-            >
-              <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
-              ><span>Sản phẩm</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fas fa-file-invoice fa-fw me-3"></i
-              ><span>Đơn hàng</span></a
-            >
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="far fa-address-card fa-fw me-3"></i
-              ><span>Khách hàng</span></a
-            >
-            <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>N</span>
-          </a> -->
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
-            >
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
-            >
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fas fa-building fa-fw me-3"></i
-              ><span>Nhà cung cấp</span></a
-            >
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
-              ><span>Đăng xuất</span></a
-            >
-            <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action py-2 ripple"
+            aria-current="true"
+          >
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i
+            ><span>Tổng quan</span>
+          </a>
+          <a
+            href="/products_page.html"
+            class="list-group-item list-group-item-action py-2 ripple active"
+          >
+            <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
+            ><span>Sản phẩm</span>
+          </a>
+          <a
+            href="/sidebar_DonHang.html"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-file-invoice fa-fw me-3"></i
+            ><span>Đơn hàng</span></a
+          >
+          <a
+            href="/customers_page.html"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="far fa-address-card fa-fw me-3"></i
+            ><span>Khách hàng</span></a
           >
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
-          > -->
-          </div>
+            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
+          >
+          <a
+            href="/supplier_page.html"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-building fa-fw me-3"></i
+            ><span>Nhà cung cấp</span></a
+          >
+          <a
+            href="/sidebar_nhaphang.html"
+            class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-truck-loading fa-fw me-3"></i
+            ><span>Nhập hàng</span></a
+          >
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
+            ><span>Đăng xuất</span></a
+          >
         </div>
       </nav>
       <!-- Sidebar -->
@@ -432,7 +421,9 @@
                 </table>
               </div>
               <!-- table container -->
-              <div class="button-add btn btn-primary btn-block text-uppercase mb-3">
+              <div
+                class="button-add btn btn-primary btn-block text-uppercase mb-3"
+              >
                 Thêm biến thể
               </div>
               <!-- <button class="btn btn-primary btn-block text-uppercase">
