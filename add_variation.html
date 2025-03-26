@@ -41,30 +41,29 @@
             <i class="fas fa-tachometer-alt fa-fw me-3"></i
             ><span>Tổng quan</span>
           </a>
-          <a
-            href="products_page.html"
-            class="list-group-item list-group-item-action py-2 ripple active"
-          >
-            <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
-            ><span>Sản phẩm</span>
+          <a href="/products_page.html" class="list-group-item list-group-item-action py-2 ripple active">
+            <i class="fa-solid fa-mobile-screen fa-fw me-3"></i><span>Sản phẩm</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-file-invoice fa-fw me-3"></i
-            ><span>Đơn hàng</span></a
+          <a href="/sidebar_DonHang.html" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-file-invoice fa-fw me-3"></i><span>Đơn hàng</span></a
           >
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="far fa-address-card fa-fw me-3"></i
-            ><span>Khách hàng</span></a
+          <a href="/customers_page.html" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="far fa-address-card fa-fw me-3"></i><span>Khách hàng</span></a
           >
+          <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>N</span>
+          </a> -->
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
           >
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
           >
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-building fa-fw me-3"></i
-            ><span>Nhà cung cấp</span></a
+          <a href="/supplier_page.html" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-building fa-fw me-3"></i><span>Nhà cung cấp</span></a
+          >
+          <a href="/sidebar_nhaphang.html" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-truck-loading fa-fw me-3"></i><span>Nhập hàng</span></a
           >
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
@@ -117,7 +116,10 @@
           <label class="form-label">Mô tả</label>
           <input type="text" class="form-control" id="description" required />
         </div>
-        
+        <div class="mb-3">
+          <label class="form-label">Lợi nhuận (%)</label>
+          <input type="number" class="form-control" id="profit_margin" required />
+        </div>
         <div class="row g-3 align-items-center mb-4">
           <div class="col-auto">
             <select id="attributeSelect" class="form-select">

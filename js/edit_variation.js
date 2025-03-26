@@ -20,6 +20,7 @@ const product_item = await get_product_item();
 variants = product_item.attributes;
 document.getElementById("sku").value = product_item.SKU;
 document.getElementById("description").value = product_item.description;
+document.getElementById("profit_margin").value = product_item.profit_margin;
 document.getElementById(
   "imagePreview"
 ).src = `http://localhost:3000${product_item.product_image}`;
@@ -169,6 +170,7 @@ window.submitVariants = async function () {
   formData.append("product_item_id", product_id);
   formData.append("sku", document.getElementById("sku").value);
   formData.append("description", document.getElementById("description").value);
+  formData.append("profit_margin", parseFloat(document.getElementById("profit_margin").value).toFixed(2));
   formData.append("image", file);
   formData.append("variants", JSON.stringify(variants));
   try {

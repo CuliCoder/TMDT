@@ -146,6 +146,7 @@ window.submitVariants = async function () {
   );
   formData.append("sku", document.getElementById("sku").value);
   formData.append("description", document.getElementById("description").value);
+  formData.append("profit_margin", parseFloat(document.getElementById("profit_margin").value).toFixed(2));
   formData.append("image", file);
   formData.append("variants", JSON.stringify(variants));
   try {
