@@ -27,7 +27,6 @@ const renderProductItems = async () => {
   const url = new URL(window.location.href);
   const id = url.searchParams.get("ProductID");
   const products = await getProductItem(id);
-  console.log(products);
   let productsContainer = document.getElementById("product-list");
   productsContainer.innerHTML = "";
   products.data.forEach((product) => {
@@ -42,6 +41,7 @@ const renderProductItems = async () => {
                     <td class="tm-product-name">${product.SKU}</td>
                     <td>${product.qty_in_stock}</td>
                     <td class="truncate">${product.description}</td>
+                    <td>${parseFloat(product.profit_margin)} %</td>
                     <td>${parseFloat(product.price)}</td>
                     <td>
                       <a href="#" class="btn-delete tm-product-delete-link">
