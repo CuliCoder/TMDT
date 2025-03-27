@@ -280,8 +280,6 @@ async function saveEdit(){
         $("#chooseProductsModal").modal("hide"); // Cách này dùng jQuery
     });
     
-
-
 }
 // // Hàm để lấy sản phẩm từ API
 // const getProducts = async () => {
