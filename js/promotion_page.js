@@ -45,15 +45,10 @@ function renderDataPagination() {
                         }</div> <!-- Thêm Ngày tạo -->
                         <div class="col">
                             <div class="prom-btn-container"> <!-- Thêm container để chứa các nút -->
-                                <button class="btn btn-warning btn-sm" onclick="editPromotion(${
-                                  item.PromotionID
-                                })">Sửa</button>
-                                <button class="btn btn-danger btn-sm" onclick="deletePromotion(${
-                                  item.PromotionID
-                                })">Xóa</button>
-                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#chooseProductsModal" onclick="setPromotionID(${
-                                  item.PromotionID
-                                })">Chọn sản phẩm</button>
+                                
+                                <button class="btn btn-warning btn-sm" onclick="editPromotion(${item.PromotionID})">Sửa</button>
+                                <button class="btn btn-danger btn-sm" onclick="deletePromotion(${item.PromotionID})">Xóa</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#chooseProductsModal" onclick="checkProduct(${item.PromotionID})">Chọn sản phẩm</button>
                             </div>
                         </div>
                     </div>
@@ -344,3 +339,162 @@ async function applySelectedProducts(promotionID) {
     console.error("Lỗi khi áp dụng sản phẩm:", error);
   }
 }
+
+window.checkProduct = async function (promotionId){
+    selectedProducts = []
+    const response = await fetch(`http://localhost:3000/api/promotions/${promotionId}/products`)
+    const data = await response.json();
+    openCheckboxProduct(data, promotionId)
+}
+var table;
+function openCheckboxProduct(data,promotionId){
+    if ($.fn.DataTable.isDataTable("#product-list")) {
+        table.destroy();
+    }
+    document.getElementById("promotion-id").value = promotionId;
+    var tableBody = document.querySelector("#product-list tbody")
+    tableBody.innerHTML = "";
+    data.forEach(products => {
+        var tableRow = document.createElement("tr");
+        tableRow.innerHTML = `
+            <td>${products.ProductID}</td>
+            <td>${products.ProductName}</td>
+            <td><input type="checkbox" ${products.IsPromotion ? 'checked' : ''}></td>
+        `;
+        tableBody.appendChild(tableRow);
+    })
+    table = $('#product-list').DataTable({
+        paging: true,
+        searching: true,
+        ordering: true,
+        lengthChange: false,
+        info: false,
+        pageLength: 5
+    });
+}
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("apply-products-btn").addEventListener("click", saveEdit);
+});
+async function saveEdit(){
+    var promotionId = document.getElementById("promotion-id").value;
+    var productList = []    
+    document.querySelectorAll("#product-list tbody tr").forEach(row => {
+        var checkProduct = row.querySelector("input[type=checkbox]")
+        if (checkProduct.checked){
+            var id = row.cells[0].textContent
+            productList.push(id)
+        }
+    })
+    try {
+        const response = await fetch(`http://localhost:3000/api/promotions/${promotionId}/apply`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                products: productList
+            })
+        });
+
+        const result = await response.json();
+        console.log("Server response:", result);
+    } catch (error) {
+        console.error("Lỗi khi gửi dữ liệu:", error);
+    }
+    document.getElementById("apply-products-btn").addEventListener("click", function () {
+        saveEdit();
+        $("#chooseProductsModal").modal("hide"); // Cách này dùng jQuery
+    });
+    
+}
+// // Hàm để lấy sản phẩm từ API
+// const getProducts = async () => {
+//     try {
+//         const response = await axiosInstance.get("/product/products");
+//         if (response.data && Array.isArray(response.data)) {
+//             return response.data;
+//         }
+//         throw new Error('Dữ liệu không hợp lệ');
+//     } catch (error) {
+//         console.error(error);
+//         alert('Lỗi khi lấy sản phẩm!');
+//         return [];
+//     }
+// };
+// async function getProductWithPromotionId(){
+
+// }
+// // Hàm để hiển thị danh sách sản phẩm vào modal
+// async function displayProductList() {
+//     const products = await getProducts();  // Lấy sản phẩm từ API
+
+//     const productListDiv = document.getElementById('product-list');
+//     productListDiv.innerHTML = ''; // Xóa dữ liệu cũ trong modal trước khi thêm mới
+
+//     if (products.length === 0) {
+//         productListDiv.innerHTML = '<p>Không có sản phẩm để hiển thị.</p>';
+//         return;
+//     }
+
+//     products.forEach(product => {
+//         const productItem = document.createElement('div');
+//         productItem.classList.add('form-check');
+//         productItem.innerHTML = `
+//             <input class="form-check-input" type="checkbox" value="${product.ProductID}" id="product-${product.ProductID}">
+//             <label class="form-check-label" for="product-${product.ProductID}">
+//                 ${product.ProductName}
+//             </label>
+//         `;
+//         productListDiv.appendChild(productItem);
+//     });
+
+//     // Lắng nghe sự kiện thay đổi trạng thái checkbox để cập nhật selectedProducts
+//     productListDiv.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+//         checkbox.addEventListener('change', () => {
+//             if (checkbox.checked) {
+//                 selectedProducts.push(checkbox.value);
+//             } else {
+//                 selectedProducts = selectedProducts.filter(productId => productId !== checkbox.value);
+//             }
+//         });
+//     });
+// }
+
+// // Lấy dữ liệu sản phẩm khi modal được mở
+// function setPromotionID(promotionID) {
+//     selectedProducts = [];  // Reset lại danh sách sản phẩm đã chọn
+//     displayProductList();  // Gọi hàm để hiển thị sản phẩm trong modal
+//     document.getElementById('apply-products-btn').onclick = () => applySelectedProducts(promotionID); // Gán sự kiện áp dụng
+// }
+
+// // Lấy danh sách sản phẩm đã chọn và gửi yêu cầu
+// async function applySelectedProducts(promotionID) {
+//     if (selectedProducts.length === 0) {
+//         alert('Vui lòng chọn ít nhất một sản phẩm!');
+//         return;
+//     }
+
+//     try {
+//         const response = await fetch(`http://localhost:3000/api/promotions/${promotionID}/apply`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ products: selectedProducts })
+//         });
+
+//         if (response.ok) {
+//             alert('Áp dụng sản phẩm cho khuyến mãi thành công!');
+//             $('#chooseProductsModal').modal('hide');  // Đóng modal
+//         } else {
+//             const errorData = await response.json();
+//             alert(`Áp dụng sản phẩm thất bại: ${errorData.message || 'Không rõ lỗi'}`);
+//         }
+//     } catch (error) {
+//         alert('Có lỗi xảy ra, vui lòng thử lại!');
+//         console.error('Lỗi khi áp dụng sản phẩm:', error);
+//     }
+// }
+
+
+
