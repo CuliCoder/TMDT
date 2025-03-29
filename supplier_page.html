@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href=".\css\vendor.min.css" />
-    <link rel="stylesheet" href=".\css\sidebar.css">
+    <link rel="stylesheet" href=".\css\sidebar.css" />
     <!-- CSS Front Template -->
     <link rel="stylesheet" href=".\css\theme.min.css?v=1.0" />
     <link rel="stylesheet" href=".\css\docs.css" />
-    <link rel="stylesheet" href="./css/supplier.css">
+    <link rel="stylesheet" href="./css/supplier.css" />
     <link
       rel="shortcut icon"
       href="img/favicon/favicon-16x16.png"
@@ -25,179 +25,277 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css"
+    />
     <script src="./js/supplier_page.js"></script>
   </head>
   <body>
     <!--Main Navigation-->
-<header>
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-2 ripple"
-            aria-current="true"
-          >
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Tổng quan</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-            <i class="fa-solid fa-mobile-screen fa-fw me-3"></i><span>Sản phẩm</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-file-invoice fa-fw me-3"></i><span>Đơn hàng</span></a
-          >
-          <a href="/customers_page.html" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="far fa-address-card fa-fw me-3"></i><span>Khách hàng</span></a
-          >
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
-          >
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
-          >
-          <a href="/supplier_page.html" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-building fa-fw me-3"></i><span>Nhà cung cấp</span></a
-          >
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i><span>Đăng xuất</span></a
-          >
+    <header>
+      <!-- Sidebar -->
+      <nav
+        id="sidebarMenu"
+        class="collapse d-lg-block sidebar collapse bg-white"
+      >
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              aria-current="true"
+            >
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i
+              ><span>Tổng quan</span>
+            </a>
+            <a
+              href="/products_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
+              ><span>Sản phẩm</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-file-invoice fa-fw me-3"></i
+              ><span>Đơn hàng</span></a
+            >
+            <a
+              href="/customers_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="far fa-address-card fa-fw me-3"></i
+              ><span>Khách hàng</span></a
+            >
+            <a
+              href="categories_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span></a
+            >
+            <a
+              href="brand_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span></a
+            >
+            <a
+              href="/supplier_page.html"
+              class="list-group-item list-group-item-action py-2 ripple active"
+              ><i class="fas fa-building fa-fw me-3"></i
+              ><span>Nhà cung cấp</span></a
+            >
+            <a
+              href="/sidebar_nhaphang.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fas fa-truck-loading fa-fw me-3"></i
+              ><span>Nhập hàng</span></a
+            >
+            <a
+              href="/promotion_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fa-solid fa-tag fa-fw me-3"></i
+              ><span>Khuyến mãi</span></a
+            >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
+              ><span>Đăng xuất</span></a
+            >
+          </div>
         </div>
-      </div>
-    </nav>
-    <!-- Sidebar -->
-  
-    <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <button data-mdb-button-init
-          class="navbar-toggler"
-          type="button"
-          data-mdb-collapse-init
-          data-mdb-target="#sidebarMenu"
-          aria-controls="sidebarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-  
-        <!-- Brand -->
-        <a class="navbar-brand" href="/">
-          <img
-            src="img/imgs/logo.png"
-            height="25"
-            alt="MDB Logo"
-            loading="lazy"
+      </nav>
+      <!-- Sidebar -->
+
+      <!-- Navbar -->
+      <nav
+        id="main-navbar"
+        class="navbar navbar-expand-lg navbar-dark bg-white fixed-top"
+      >
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <button
+            data-mdb-button-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-collapse-init
+            data-mdb-target="#sidebarMenu"
+            aria-controls="sidebarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Brand -->
+          <a class="navbar-brand" href="/">
+            <img
+              src="img/imgs/logo.png"
+              height="25"
+              alt="MDB Logo"
+              loading="lazy"
+            />
+          </a>
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main style="margin-top: 58px">
+      <div class="container pt-4">
+        <div class="sup-nav">
+          <input
+            class="form-control me-2"
+            id="sup-text_search"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
           />
-        </a>
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-  </header>
-  <!--Main Navigation-->
-  
-  <!--Main layout-->  
-  <main style="margin-top: 58px;">
-    <div class="container pt-4">
-      <div class="sup-nav" >
-          <input class="form-control me-2" id="sup-text_search"   type="text" placeholder="Search" aria-label="Search">
-          <div class="sup-btn" id="sup-btn_add" >
+          <div class="sup-btn" id="sup-btn_add">
             <i class="fa-solid fa-plus"></i>
             <span>Thêm</span>
           </div>
-      </div>
-      <div >
-          <div class="row border-bottom py-2 sup-header_table-data" >
+        </div>
+        <div>
+          <div class="row border-bottom py-2 sup-header_table-data">
             <div class="col">SupplierName</div>
             <div class="col">ContactName</div>
             <div class="col">ContactEmail</div>
-            <div class="col">ContactPhone </div>
+            <div class="col">ContactPhone</div>
             <div class="col">Address</div>
             <div class="col">Thao tác</div>
+          </div>
+          <div id="sup-data" style="margin-bottom: 5px"></div>
+          <div id="sup-pagination"></div>
         </div>
-        <div id="sup-data" style="margin-bottom: 5px;">
+      </div>
+      <!-- Modal Sửa Nhà Cung Cấp -->
+      <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h5>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="editSupplierID" />
+
+              <label>Tên nhà cung cấp:</label>
+              <input
+                type="text"
+                id="editSupplierName"
+                class="form-control mb-2"
+              />
+
+              <label>Người liên hệ:</label>
+              <input
+                type="text"
+                id="editContactName"
+                class="form-control mb-2"
+              />
+
+              <label>Email liên hệ:</label>
+              <input
+                type="email"
+                id="editContactEmail"
+                class="form-control mb-2"
+              />
+
+              <label>Số điện thoại:</label>
+              <input
+                type="text"
+                id="editContactPhone"
+                class="form-control mb-2"
+              />
+
+              <label>Địa chỉ:</label>
+              <input type="text" id="editAddress" class="form-control" />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Hủy
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="saveEdit()"
+              >
+                Lưu
+              </button>
+            </div>
+          </div>
         </div>
-        <div id="sup-pagination"></div>
       </div>
-    </div>
-<!-- Modal Sửa Nhà Cung Cấp -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h5>
+      <!-- Modal thêm Nhà Cung Cấp -->
+      <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Thêm nhà cung cấp</h5>
+            </div>
+            <div class="modal-body">
+              <label>Tên nhà cung cấp:</label>
+              <input
+                type="text"
+                id="addSupplierName"
+                class="form-control mb-2"
+              />
+
+              <label>Người liên hệ:</label>
+              <input
+                type="text"
+                id="addContactName"
+                class="form-control mb-2"
+              />
+
+              <label>Email liên hệ:</label>
+              <input
+                type="email"
+                id="addContactEmail"
+                class="form-control mb-2"
+              />
+
+              <label>Số điện thoại:</label>
+              <input
+                type="text"
+                id="addContactPhone"
+                class="form-control mb-2"
+              />
+
+              <label>Địa chỉ:</label>
+              <input type="text" id="addAddress" class="form-control" />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Hủy
+              </button>
+              <button type="button" class="btn btn-primary" onclick="saveAdd()">
+                Lưu
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <input type="hidden" id="editSupplierID">
+      <!-- Danh sách Nhà Cung Cấp -->
+      <div id="sup-data"></div>
 
-        <label>Tên nhà cung cấp:</label>
-        <input type="text" id="editSupplierName" class="form-control mb-2">
-
-        <label>Người liên hệ:</label>
-        <input type="text" id="editContactName" class="form-control mb-2">
-
-        <label>Email liên hệ:</label>
-        <input type="email" id="editContactEmail" class="form-control mb-2">
-
-        <label>Số điện thoại:</label>
-        <input type="text" id="editContactPhone" class="form-control mb-2">
-
-        <label>Địa chỉ:</label>
-        <input type="text" id="editAddress" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary" onclick="saveEdit()">Lưu</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal thêm Nhà Cung Cấp -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Thêm nhà cung cấp</h5>
-      </div>
-      <div class="modal-body">
-
-        <label>Tên nhà cung cấp:</label>
-        <input type="text" id="addSupplierName" class="form-control mb-2">
-
-        <label>Người liên hệ:</label>
-        <input type="text" id="addContactName" class="form-control mb-2">
-
-        <label>Email liên hệ:</label>
-        <input type="email" id="addContactEmail" class="form-control mb-2">
-
-        <label>Số điện thoại:</label>
-        <input type="text" id="addContactPhone" class="form-control mb-2">
-
-        <label>Địa chỉ:</label>
-        <input type="text" id="addAddress" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary" onclick="saveAdd()">Lưu</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Danh sách Nhà Cung Cấp -->
-<div id="sup-data"></div>
-
-<!-- Danh sách nhà cung cấp -->
-<div id="sup-data"></div>
-   
-  </main>
-  <!--Main layout-->
-  <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+      <!-- Danh sách nhà cung cấp -->
+      <div id="sup-data"></div>
+    </main>
+    <!--Main layout-->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
