@@ -25,7 +25,6 @@ async function show_orders() {
             year: 'numeric'
         });
         let formatMoney = parseInt(data[i].TotalAmount)
-
         document.querySelector(".body_table").innerHTML += `
         <tr class="row_table">
             <th scope="row" onclick="detail_order(${data[i].OrderID})">${data[i].OrderID}</th>
