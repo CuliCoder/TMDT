@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - HONGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <script src="./js/search.js" defer></script>
+    <script src="./js/cart.js" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.svg" alt="HONGO" width="150" height="40">
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Bạn tìm gì...">
+                    <button><i class="fas fa-search"></i></button>
+                    <div class="search-suggestions" id="search-suggestions">
+                        <!-- Suggestions will be inserted here by JavaScript -->
+                        <div class="suggestion-footer">
+                            <span id="results-count">0 kết quả</span>
+                            <button class="view-all-results">Xem tất cả</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-nav">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
+                        <li><a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
+                        <li class="menu-toggler"><a href="#"><i class="fas fa-bars"></i> Menu</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                    <li><a href="categories/smartphones.html"><i class="fas fa-mobile-alt"></i> Điện thoại</a></li>
+                    <li><a href="categories/laptops.html"><i class="fas fa-laptop"></i> Laptop</a></li>
+                    <li><a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a></li>
+                    <li><a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a></li>
+                    <li><a href="#"><i class="fas fa-watch"></i> Đồng hồ</a></li>
+                    <li><a href="#"><i class="fas fa-tv"></i> Smart TV</a></li>
+                    <li><a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Giỏ hàng</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="page-title">Giỏ hàng của bạn</h1>
+            
+            <div class="cart-content" id="cart-content">
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div class="product-col">Sản phẩm</div>
+                        <div class="price-col">Đơn giá</div>
+                        <div class="quantity-col">Số lượng</div>
+                        <div class="total-col">Thành tiền</div>
+                        <div class="action-col"></div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="product-col">
+                            <div class="product-info">
+                                <div class="product-image">
+                                    <i class="fas fa-mobile-alt fa-3x"></i>
+                                </div>
+                                <div class="product-details">
+                                    <h3>Samsung Galaxy S23 Ultra</h3>
+                                    <p class="product-variant">Màu: Đen | Bộ nhớ: 256GB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-col">
+                            <div class="price">26.990.000₫</div>
+                            <div class="original-price">28.990.000₫</div>
+                        </div>
+                        <div class="quantity-col">
+                            <div class="quantity-control">
+                                <button class="qty-btn decrease"><i class="fas fa-minus"></i></button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="10">
+                                <button class="qty-btn increase"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="total-col">
+                            <div class="total-price">26.990.000₫</div>
+                        </div>
+                        <div class="action-col">
+                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="product-col">
+                            <div class="product-info">
+                                <div class="product-image">
+                                    <i class="fas fa-headphones fa-3x"></i>
+                                </div>
+                                <div class="product-details">
+                                    <h3>Tai nghe không dây Samsung Galaxy Buds2 Pro</h3>
+                                    <p class="product-variant">Màu: Trắng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-col">
+                            <div class="price">4.990.000₫</div>
+                            <div class="original-price">5.990.000₫</div>
+                        </div>
+                        <div class="quantity-col">
+                            <div class="quantity-control">
+                                <button class="qty-btn decrease"><i class="fas fa-minus"></i></button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="10">
+                                <button class="qty-btn increase"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="total-col">
+                            <div class="total-price">4.990.000₫</div>
+                        </div>
+                        <div class="action-col">
+                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-sidebar">
+                    <div class="cart-summary">
+                        <h3>Tóm tắt đơn hàng</h3>
+                        <div class="summary-row total">
+                            <span>Tổng cộng</span>
+                            <span class="cart-total">28.980.000₫</span>
+                        </div>
+                        <div class="vat-note">Đã bao gồm VAT</div>
+                        <button class="checkout-btn">Tiến hành đặt hàng</button>
+                        <a href="index.html" class="continue-shopping">Tiếp tục mua hàng</a>
+                    </div>
+                    
+                    <div class="cart-notes">
+                        <div class="note-item">
+                            <div class="note-icon"><i class="fas fa-truck"></i></div>
+                            <div class="note-content">
+                                <h4>Miễn phí giao hàng</h4>
+                                <p>Cho đơn hàng từ 500.000₫</p>
+                            </div>
+                        </div>
+                        <div class="note-item">
+                            <div class="note-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="note-content">
+                                <h4>Bảo hành chính hãng</h4>
+                                <p>12 tháng theo quy định</p>
+                            </div>
+                        </div>
+                        <div class="note-item">
+                            <div class="note-icon"><i class="fas fa-undo"></i></div>
+                            <div class="note-content">
+                                <h4>Đổi trả dễ dàng</h4>
+                                <p>Trong vòng 15 ngày</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Empty Cart State (Hidden by default) -->
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-cart fa-4x"></i>
+                </div>
+                <h2>Giỏ hàng của bạn đang trống</h2>
+                <p>Hãy tiếp tục mua sắm để thêm sản phẩm vào giỏ hàng</p>
+                <a href="index.html" class="btn">Tiếp tục mua sắm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sản phẩm đề xuất cho bạn</h2>
+                <a href="index.html" class="view-all">Xem tất cả</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <span class="badge">Giảm 1.000.000₫</span>
+                    <a href="products/smartphone-detail.html">
+                        <div class="product-img">
+                            <i class="fas fa-mobile-alt fa-5x"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3>iPhone 14 Pro Max</h3>
+                            <div class="price">
+                                <span class="current">28.990.000₫</span>
+                                <span class="original">29.990.000₫</span>
+                            </div>
+                            <div class="specs">
+                                <span>A16 Bionic</span>
+                                <span>6GB RAM</span>
+                                <span>128GB</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>518 đánh giá</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <span class="badge">Giảm 1.200.000₫</span>
+                    <a href="products/smartphone-detail.html">
+                        <div class="product-img">
+                            <i class="fas fa-mobile-alt fa-5x"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3>Vivo V25 Pro</h3>
+                            <div class="price">
+                                <span class="current">12.790.000₫</span>
+                                <span class="original">13.990.000₫</span>
+                            </div>
+                            <div class="specs">
+                                <span>Dimensity 1300</span>
+                                <span>8GB RAM</span>
+                                <span>128GB</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>122 đánh giá</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <span class="badge">Giảm 500.000₫</span>
+                    <a href="products/smartphone-detail.html">
+                        <div class="product-img">
+                            <i class="fas fa-mobile-alt fa-5x"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3>iPhone 13</h3>
+                            <div class="price">
+                                <span class="current">16.990.000₫</span>
+                                <span class="original">17.490.000₫</span>
+                            </div>
+                            <div class="specs">
+                                <span>A15 Bionic</span>
+                                <span>4GB RAM</span>
+                                <span>128GB</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>567 đánh giá</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <span class="badge">Giảm 2.000.000₫</span>
+                    <a href="products/laptop-detail.html">
+                        <div class="product-img">
+                            <i class="fas fa-laptop fa-4x"></i>
+                        </div>
+                        <div class="product-info">
+                            <h3>ASUS TUF Gaming F15</h3>
+                            <div class="price">
+                                <span class="current">19.990.000₫</span>
+                                <span class="original">21.990.000₫</span>
+                            </div>
+                            <div class="specs">
+                                <span>Intel Core i5</span>
+                                <span>8GB RAM</span>
+                                <span>RTX 3050</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>135 đánh giá</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>Tổng đài hỗ trợ</h3>
+                    <ul class="contact-list">
+                        <li>Gọi mua hàng: <a href="tel:18001001">1800.1001</a> (8:00 - 21:00)</li>
+                        <li>Gọi khiếu nại: <a href="tel:18001002">1800.1002</a> (8:00 - 21:30)</li>
+                        <li>Gọi bảo hành: <a href="tel:18001003">1800.1003</a> (8:00 - 21:00)</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Thông tin</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu về công ty</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Quy chế hoạt động</a></li>
+                        <li><a href="#">Tin tuyển dụng</a></li>
+                        <li><a href="#">Tin khuyến mãi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Hướng dẫn mua hàng online</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách thanh toán</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách trả góp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Phương thức thanh toán</h3>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa fa-2x"></i>
+                        <i class="fab fa-cc-mastercard fa-2x"></i>
+                        <i class="fab fa-cc-jcb fa-2x"></i>
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                        <i class="fas fa-university fa-2x"></i>
+                    </div>
+                    <h3 class="mt-20">Kết nối với chúng tôi</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 - Bản quyền thuộc về Công ty HONGO</p>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh - Điện thoại: 028.3456.7890 - Email: cskh@hongo.vn</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
