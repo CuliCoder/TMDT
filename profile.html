@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tài khoản - HONGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/account.css">
+    <script src="./js/search.js" defer></script>
+    <script src="./js/account.js" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="./img/imgs/logo.png" alt="HONGO" width="150" height="40">
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Bạn tìm gì...">
+                    <button><i class="fas fa-search"></i></button>
+                    <div class="search-suggestions" id="search-suggestions">
+                        <!-- Suggestions will be inserted here by JavaScript -->
+                        <div class="suggestion-footer">
+                            <span id="results-count">0 kết quả</span>
+                            <button class="view-all-results">Xem tất cả</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-nav">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
+                        <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
+                        <li class="menu-toggler"><a href="#"><i class="fas fa-bars"></i> Menu</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
+                    <li><a href="categories/smartphones.html"><i class="fas fa-mobile-alt"></i> Điện thoại</a></li>
+                    <li><a href="categories/laptops.html"><i class="fas fa-laptop"></i> Laptop</a></li>
+                    <li><a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a></li>
+                    <li><a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a></li>
+                    <li><a href="#"><i class="fas fa-watch"></i> Đồng hồ</a></li>
+                    <li><a href="#"><i class="fas fa-tv"></i> Smart TV</a></li>
+                    <li><a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Tài khoản của tôi</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-layout">
+                <!-- Sidebar -->
+                <div class="profile-sidebar">
+                    <nav class="profile-nav">
+                        <ul>
+                            <li class="active">
+                                <a href="profile.html">
+                                    <i class="fas fa-user"></i> Thông tin tài khoản
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-box"></i> Đơn hàng của tôi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-heart"></i> Sản phẩm yêu thích
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-address-book"></i> Sổ địa chỉ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-bell"></i> Thông báo
+                                    <span class="notification-badge">3</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-ticket-alt"></i> Mã giảm giá
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-star"></i> Đánh giá sản phẩm
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-comment"></i> Hỏi đáp
+                                </a>
+                            </li>
+                            <li>
+                                <a href="login.html">
+                                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="profile-content">
+                    <div class="profile-header">
+                        <h1>Thông tin tài khoản</h1>
+                        <p>Quản lý thông tin cá nhân của bạn</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Thông tin cá nhân</h2>
+                            <button class="btn-edit" id="toggle-edit">
+                                <i class="fas fa-edit"></i> Sửa thông tin
+                            </button>
+                        </div>
+                        
+                        <div class="card-content">
+                            <form id="profile-form" class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group half">
+                                        <label for="fullname">Họ và tên</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" id="fullname" name="fullname" value="Nguyễn Văn A" disabled>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group half">
+                                        <label for="nickname">Tên hiển thị</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-user-tag"></i>
+                                            <input type="text" id="nickname" name="nickname" value="vancosan" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group half">
+                                        <label for="phone">Số điện thoại</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-phone"></i>
+                                            <input type="tel" id="phone" name="phone" value="0912345678" disabled>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group half">
+                                        <label for="email">Email</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" id="email" name="email" value="vannguyen@gmail.com" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group half">
+                                        <label>Giới tính</label>
+                                        <div class="radio-group" id="gender-group">
+                                            <div class="radio-option">
+                                                <input type="radio" id="male" name="gender" value="male" checked disabled>
+                                                <label for="male">Nam</label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="female" name="gender" value="female" disabled>
+                                                <label for="female">Nữ</label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="other" name="gender" value="other" disabled>
+                                                <label for="other">Khác</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group half">
+                                        <label for="birthdate">Ngày sinh</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-calendar"></i>
+                                            <input type="date" id="birthdate" name="birthdate" value="1990-05-15" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions" style="display: none;">
+                                    <button type="button" class="btn-cancel" id="cancel-edit">Hủy</button>
+                                    <button type="submit" class="btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Đổi mật khẩu</h2>
+                        </div>
+                        
+                        <div class="card-content">
+                            <form id="password-form" class="profile-form">
+                                <div class="form-group">
+                                    <label for="current-password">Mật khẩu hiện tại</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu hiện tại">
+                                        <i class="far fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new-password">Mật khẩu mới</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="new-password" name="new-password" placeholder="Nhập mật khẩu mới">
+                                        <i class="far fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm-new-password">Xác nhận mật khẩu mới</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="confirm-new-password" name="confirm-new-password" placeholder="Nhập lại mật khẩu mới">
+                                        <i class="far fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Đổi mật khẩu</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Liên kết tài khoản mạng xã hội</h2>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="social-connection">
+                                <div class="connection-item">
+                                    <div class="connection-icon facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </div>
+                                    <div class="connection-info">
+                                        <h4>Facebook</h4>
+                                        <p>Chưa liên kết</p>
+                                    </div>
+                                    <button class="btn-connect">Liên kết</button>
+                                </div>
+                                
+                                <div class="connection-item">
+                                    <div class="connection-icon google">
+                                        <i class="fab fa-google"></i>
+                                    </div>
+                                    <div class="connection-info">
+                                        <h4>Google</h4>
+                                        <p>Đã liên kết với vannguyen@gmail.com</p>
+                                    </div>
+                                    <button class="btn-disconnect">Hủy liên kết</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Thiết lập thông báo</h2>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="notification-settings">
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Thông báo qua email</h4>
+                                        <p>Nhận thông báo về đơn hàng, khuyến mãi và tin tức mới nhất</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Thông báo qua SMS</h4>
+                                        <p>Nhận thông báo về đơn hàng và giao hàng qua SMS</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Thông báo khuyến mãi</h4>
+                                        <p>Nhận thông tin về chương trình khuyến mãi, flash sale</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Thông báo về sản phẩm đã xem</h4>
+                                        <p>Nhận thông tin cập nhật về các sản phẩm đã xem</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>Tổng đài hỗ trợ</h3>
+                    <ul class="contact-list">
+                        <li>Gọi mua hàng: <a href="tel:18001001">1800.1001</a> (8:00 - 21:00)</li>
+                        <li>Gọi khiếu nại: <a href="tel:18001002">1800.1002</a> (8:00 - 21:30)</li>
+                        <li>Gọi bảo hành: <a href="tel:18001003">1800.1003</a> (8:00 - 21:00)</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Thông tin</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu về công ty</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Quy chế hoạt động</a></li>
+                        <li><a href="#">Tin tuyển dụng</a></li>
+                        <li><a href="#">Tin khuyến mãi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Hướng dẫn mua hàng online</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách thanh toán</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách trả góp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Phương thức thanh toán</h3>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa fa-2x"></i>
+                        <i class="fab fa-cc-mastercard fa-2x"></i>
+                        <i class="fab fa-cc-jcb fa-2x"></i>
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                        <i class="fas fa-university fa-2x"></i>
+                    </div>
+                    <h3 class="mt-20">Kết nối với chúng tôi</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 - Bản quyền thuộc về Công ty HONGO</p>
+                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh - Điện thoại: 028.3456.7890 - Email: cskh@hongo.vn</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
