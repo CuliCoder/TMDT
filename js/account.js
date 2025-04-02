@@ -53,6 +53,8 @@ if (loginForm) {
 
             if (data.error === 0) {
                 alert('Đăng nhập thành công! Chào mừng bạn quay trở lại.');
+                localStorage.setItem('Myid', data.data.id);
+                console.log("luu vao local:"+data.data.id)
                 window.location.href = 'profile.html';
             } else {
                 alert(data.message || 'Đăng nhập thất bại');
@@ -226,7 +228,7 @@ if (loginForm) {
     if (toggleEditBtn && profileForm) {
         toggleEditBtn.addEventListener('click', function () {
             // Enable inputs
-            const inputs = profileForm.querySelectorAll('input');
+            const inputs = profileForm.querySelectorAll('input:not(#createdate)');
             inputs.forEach(input => {
                 input.disabled = false;
             });
@@ -262,11 +264,55 @@ if (loginForm) {
             }
         });
     }
-
+    async function getData() {
+        let Myid = localStorage.getItem('Myid');
+        if (!Myid) {
+            console.error("Myid chưa được khởi tạo!");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:3000/api/customers/${Myid}`);
+            const data = await response.json();
+    
+            if (data) {
+                console.log("Dữ liệu đăng nhập:", data);
+    
+                // Gán dữ liệu vào form
+                document.getElementById('fullname').value = data.FullName || "";
+                document.getElementById('createdate').value = new Date(data.CreatedAt).toLocaleDateString("vi-VN") || "";
+                document.getElementById('phone').value = data.PhoneNumber || "";
+                document.getElementById('email').value = data.Email || "";
+            } else {
+                console.error("Không tìm thấy người dùng.");
+            }
+        } catch (error) {
+            console.error("Lỗi kết nối đến server:", error);
+            // alert("Lỗi kết nối đến server. Vui lòng thử lại!");
+        }
+    }
+    getData();
     if (profileForm) {
-        profileForm.addEventListener('submit', function (e) {
+        profileForm.addEventListener('submit', async function (e) {
+            let Myid = localStorage.getItem('Myid');
             e.preventDefault();
-
+            const updatedData = {
+                FullName: document.getElementById("fullname").value,
+                Email: document.getElementById("email").value,
+                PhoneNumber: document.getElementById("phone").value,
+            };
+            try {
+                const response = await fetch(`http://localhost:3000/api/customers/${Myid}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedData),
+                });
+    
+                const result = await response.json();
+            } catch (error) {
+                console.error("Lỗi cập nhật:", error);
+                alert("Lỗi server!");
+            }
             // Simulate update success (would be replaced with actual API call)
             alert('Cập nhật thông tin thành công!');
 
@@ -292,7 +338,7 @@ if (loginForm) {
     // Change password form submission
     const passwordForm = document.getElementById('password-form');
     if (passwordForm) {
-        passwordForm.addEventListener('submit', function (e) {
+        passwordForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             // Get form values
@@ -312,8 +358,37 @@ if (loginForm) {
             }
 
             // Simulate password change success (would be replaced with actual API call)
-            alert('Đổi mật khẩu thành công!');
+            const Myid = localStorage.getItem('Myid'); // Lấy id người dùng từ localStorage
 
+            try {
+                const response = await fetch(`http://localhost:3000/api/customers/change-password/${Myid}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        oldPassword: currentPassword,
+                        newPassword: newPassword
+                    })
+                });
+                if (!response.ok) {
+                    const error = await response.json();
+                    console.error("API Error:", error);
+                    alert(error.message || "Có lỗi xảy ra khi cập nhật mật khẩu.");
+                    return;
+                }
+                
+                const result = await response.json();
+                if (result.message === "Đổi mật khẩu thành công!") {
+                    alert('Đổi mật khẩu thành công!');
+                    passwordForm.reset(); // Reset form sau khi thành công
+                } else {
+                    alert(result.message || 'Có lỗi xảy ra, vui lòng thử lại');
+                }
+    
+            } catch (error) {
+                console.error("Lỗi cập nhật mật khẩu:", error);
+                alert("Lỗi server!");
+            }
+    
             // Reset form
             passwordForm.reset();
         });

@@ -47,7 +47,6 @@ function renderDataPagination() {
                             <div class="prom-btn-container"> <!-- Thêm container để chứa các nút -->
                                 
                                 <button class="btn btn-warning btn-sm" onclick="editPromotion(${item.PromotionID})">Sửa</button>
-                                <button class="btn btn-danger btn-sm" onclick="deletePromotion(${item.PromotionID})">Xóa</button>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#chooseProductsModal" onclick="checkProduct(${item.PromotionID})">Chọn sản phẩm</button>
                             </div>
                         </div>
@@ -60,6 +59,7 @@ function renderDataPagination() {
     },
   });
 }
+// <button class="btn btn-danger btn-sm" onclick="deletePromotion(${item.PromotionID})">Xóa</button>
 
 document.addEventListener("DOMContentLoaded", function () {
   document
