@@ -303,14 +303,21 @@ header {
     align-items: center;
     height: 160px;
     margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .product-img i {
     color: #0066cc;
 }
 
+.product-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 .product-info h3 {
-    font-size: 15px;
+    font-size: 13px;
     margin-bottom: 10px;
     height: 36px;
     overflow: hidden;
@@ -578,10 +585,17 @@ header {
     align-items: center;
     height: 300px;
     margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .product-main-image i {
     color: #0066cc;
+}
+
+.product-main-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .product-thumbnails {
@@ -618,6 +632,7 @@ header {
 }
 
 .discount {
+    background-color: #ee0000;
     color: #fff;
     padding: 2px 8px;
     border-radius: 4px;

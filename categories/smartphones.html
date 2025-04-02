@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thế Giới Di Động - Điện thoại, Laptop, Phụ kiện chính hãng</title>
+    <title>Điện thoại - Thế Giới Di Động</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/responsive.css" />
-    <link rel="stylesheet" href="./css/search_mainpage.css" />
-    <link rel="stylesheet" href="./css/product-status.css" />
-    <script type="module" src="./js/search.js" defer></script>
-    <script type="module" src="./js/index.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/search_mainpage.css" />
+    <link rel="stylesheet" href="../css/product-status.css" />
+    <script type="module" src="../js/search.js" defer></script>
+    <script type="module" src="../js/cate_smartphone.js" defer></script>
   </head>
   <body>
     <!-- Header Section -->
@@ -23,7 +23,7 @@
           <div class="logo">
             <a href="index.html">
               <img
-                src="./img/imgs/logo.png"
+                src="../img/imgs/logo.png"
                 alt="HONGO"
                 width="150"
                 height="40"
@@ -44,16 +44,12 @@
           <div class="top-nav">
             <ul>
               <li>
-                <!-- <a href="login.html"><i class="fas fa-user"></i> Đăng nhập</a> -->
-                <a href="profile.html"
-                  ><i class="fas fa-user-circle"></i> Tài khoản của tôi</a
-                >
-              </li>
-              <li>
                 <a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a>
               </li>
               <li>
-                <a href="#"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
+                <a href="../cart.html"
+                  ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+                >
               </li>
               <li class="menu-toggler">
                 <a href="#"><i class="fas fa-bars"></i> Menu</a>
@@ -66,17 +62,15 @@
         <div class="container">
           <ul>
             <li>
-              <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+              <a href="../index.html"><i class="fas fa-home"></i> Trang chủ</a>
             </li>
             <li>
-              <a href="categories/smartphones.html"
+              <a href="smartphones.html" class="active"
                 ><i class="fas fa-mobile-alt"></i> Điện thoại</a
               >
             </li>
             <li>
-              <a href="categories/laptops.html"
-                ><i class="fas fa-laptop"></i> Laptop</a
-              >
+              <a href="laptops.html"><i class="fas fa-laptop"></i> Laptop</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a>
@@ -98,40 +92,88 @@
       </nav>
     </header>
 
-    <!-- Banner Section -->
-    <section class="banner">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
       <div class="container">
-        <div class="slider">
-          <div class="slide active">
-            <div class="banner-content">
-              <h2>Đại tiệc Samsung Galaxy</h2>
-              <p>Giảm đến 5 triệu, trả góp 0%</p>
-              <a href="categories/smartphones.html" class="btn">Mua ngay</a>
-            </div>
-          </div>
+        <div class="breadcrumb">
+          <a href="../index.html">Trang chủ</a>
+          <span>/</span>
+          <span>Điện thoại</span>
         </div>
-        <div class="quick-links">
-          <a href="#"><i class="fas fa-bolt"></i> Flash Sale</a>
-          <a href="#"><i class="fas fa-fire"></i> Khuyến mãi hot</a>
-          <a href="#"><i class="fas fa-mobile-alt"></i> Điện thoại mới</a>
-          <a href="#"><i class="fas fa-laptop"></i> Laptop mới</a>
+      </div>
+    </div>
+
+    <!-- Category Banner -->
+    <section class="category-banner">
+      <div class="container">
+        <div class="banner-img">
+          <div class="banner-content">
+            <h1>Điện thoại chính hãng</h1>
+            <p>Giảm đến 30%, trả góp 0%, bảo hành chính hãng</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Products Section -->
-    <section class="featured-products">
+    <!-- Category Filter -->
+    <section class="category-filter">
       <div class="container">
-        <div class="section-header">
-          <h2>Điện thoại nổi bật</h2>
-          <a href="categories/smartphones.html" class="view-all">Xem tất cả</a>
+        <div class="filter-wrapper">
+          <div class="filter-group brand">
+            <h3>Hãng sản xuất</h3>
+            <div class="filter-options">
+              <a href="#" class="filter-option active">Tất cả</a>
+              <a href="#" class="filter-option">Apple</a>
+              <a href="#" class="filter-option">Samsung</a>
+              <a href="#" class="filter-option">Xiaomi</a>
+              <a href="#" class="filter-option">OPPO</a>
+              <a href="#" class="filter-option">Vivo</a>
+              <a href="#" class="filter-option">Realme</a>
+              <a href="#" class="filter-option">Nokia</a>
+            </div>
+          </div>
+          <div class="filter-group price">
+            <h3>Mức giá</h3>
+            <div class="filter-options">
+              <a href="#" class="filter-option active">Tất cả</a>
+              <a href="#" class="filter-option">Dưới 2 triệu</a>
+              <a href="#" class="filter-option">2 - 4 triệu</a>
+              <a href="#" class="filter-option">4 - 7 triệu</a>
+              <a href="#" class="filter-option">7 - 13 triệu</a>
+              <a href="#" class="filter-option">Trên 13 triệu</a>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h3>Tính năng đặc biệt</h3>
+            <div class="filter-options">
+              <a href="#" class="filter-option">Bảo mật vân tay</a>
+              <a href="#" class="filter-option">Nhận diện khuôn mặt</a>
+              <a href="#" class="filter-option">Sạc không dây</a>
+              <a href="#" class="filter-option">Hỗ trợ 5G</a>
+              <a href="#" class="filter-option">Kháng nước, bụi</a>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h3>Sắp xếp</h3>
+            <div class="filter-options">
+              <a href="#" class="filter-option active">Nổi bật</a>
+              <a href="#" class="filter-option">Giá thấp đến cao</a>
+              <a href="#" class="filter-option">Giá cao đến thấp</a>
+              <a href="#" class="filter-option">Khuyến mãi hot</a>
+              <a href="#" class="filter-option">Trả góp 0%</a>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="category-products">
+      <div class="container">
         <div class="product-grid">
           <div class="product-card">
             <span class="badge">Giảm 2.000.000₫</span>
-            <div class="out-of-stock">Hết hàng</div>
-            <span class="limited-badge">Còn 5 sản phẩm</span>
-            <a href="products/smartphone-detail.html">
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
                 <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
@@ -146,20 +188,20 @@
                   <span>8GB RAM</span>
                   <span>256GB</span>
                 </div>
-                <!-- <div class="rating">
+                <div class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                   <span>325 đánh giá</span>
-                </div> -->
+                </div>
               </div>
             </a>
           </div>
           <div class="product-card">
             <span class="badge">Giảm 1.000.000₫</span>
-            <a href="products/smartphone-detail.html">
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
                 <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
@@ -187,7 +229,7 @@
           </div>
           <div class="product-card">
             <span class="badge">Giảm 800.000₫</span>
-            <a href="products/smartphone-detail.html">
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
                 <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
@@ -215,7 +257,7 @@
           </div>
           <div class="product-card">
             <span class="badge">Giảm 1.500.000₫</span>
-            <a href="products/smartphone-detail.html">
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
                 <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
@@ -243,7 +285,7 @@
           </div>
           <div class="product-card">
             <span class="badge">Giảm 1.200.000₫</span>
-            <a href="products/smartphone-detail.html">
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
                 <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
@@ -269,34 +311,22 @@
               </div>
             </a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Laptop Section -->
-    <section class="laptop-products">
-      <div class="container">
-        <div class="section-header">
-          <h2>Laptop nổi bật</h2>
-          <a href="categories/laptops.html" class="view-all">Xem tất cả</a>
-        </div>
-        <div class="product-grid">
           <div class="product-card">
-            <span class="badge">Giảm 3.000.000₫</span>
-            <a href="products/laptop-detail.html">
+            <span class="badge">Giảm 2.500.000₫</span>
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
-                <i class="fas fa-laptop fa-4x"></i>
+                <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
               <div class="product-info">
-                <h3>MacBook Air M2</h3>
+                <h3>Samsung Galaxy S23</h3>
                 <div class="price">
-                  <span class="current">29.990.000₫</span>
-                  <span class="original">32.990.000₫</span>
+                  <span class="current">19.990.000₫</span>
+                  <span class="original">22.490.000₫</span>
                 </div>
                 <div class="specs">
-                  <span>Apple M2</span>
+                  <span>Snapdragon 8 Gen 2</span>
                   <span>8GB RAM</span>
-                  <span>256GB SSD</span>
+                  <span>128GB</span>
                 </div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
@@ -304,55 +334,111 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>156 đánh giá</span>
+                  <span>98 đánh giá</span>
                 </div>
               </div>
             </a>
           </div>
           <div class="product-card">
-            <span class="badge">Giảm 2.500.000₫</span>
-            <a href="products/laptop-detail.html">
+            <span class="badge">Giảm 500.000₫</span>
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
-                <i class="fas fa-laptop fa-4x"></i>
+                <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
               <div class="product-info">
-                <h3>Dell XPS 13</h3>
+                <h3>iPhone 13</h3>
                 <div class="price">
-                  <span class="current">33.490.000₫</span>
-                  <span class="original">35.990.000₫</span>
+                  <span class="current">16.990.000₫</span>
+                  <span class="original">17.490.000₫</span>
                 </div>
                 <div class="specs">
-                  <span>Intel Core i7</span>
-                  <span>16GB RAM</span>
-                  <span>512GB SSD</span>
+                  <span>A15 Bionic</span>
+                  <span>4GB RAM</span>
+                  <span>128GB</span>
                 </div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                  <i class="fas fa-star"></i>
+                  <span>567 đánh giá</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="product-card">
+            <span class="badge">Giảm 700.000₫</span>
+            <a href="../products/smartphone-detail.html">
+              <div class="product-img">
+                <i class="fas fa-mobile-alt fa-5x"></i>
+              </div>
+              <div class="product-info">
+                <h3>Realme C55</h3>
+                <div class="price">
+                  <span class="current">4.290.000₫</span>
+                  <span class="original">4.990.000₫</span>
+                </div>
+                <div class="specs">
+                  <span>Helio G88</span>
+                  <span>6GB RAM</span>
+                  <span>128GB</span>
+                </div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span>134 đánh giá</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="product-card">
+            <span class="badge">Giảm 900.000₫</span>
+            <a href="../products/smartphone-detail.html">
+              <div class="product-img">
+                <i class="fas fa-mobile-alt fa-5x"></i>
+              </div>
+              <div class="product-info">
+                <h3>Nokia G22</h3>
+                <div class="price">
+                  <span class="current">3.590.000₫</span>
+                  <span class="original">4.490.000₫</span>
+                </div>
+                <div class="specs">
+                  <span>Unisoc T606</span>
+                  <span>4GB RAM</span>
+                  <span>128GB</span>
+                </div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
                   <span>87 đánh giá</span>
                 </div>
               </div>
             </a>
           </div>
           <div class="product-card">
-            <span class="badge">Giảm 2.000.000₫</span>
-            <a href="products/laptop-detail.html">
+            <span class="badge">Giảm 600.000₫</span>
+            <a href="../products/smartphone-detail.html">
               <div class="product-img">
-                <i class="fas fa-laptop fa-4x"></i>
+                <i class="fas fa-mobile-alt fa-5x"></i>
               </div>
               <div class="product-info">
-                <h3>ASUS TUF Gaming F15</h3>
+                <h3>Motorola G73</h3>
                 <div class="price">
-                  <span class="current">19.990.000₫</span>
-                  <span class="original">21.990.000₫</span>
+                  <span class="current">5.990.000₫</span>
+                  <span class="original">6.590.000₫</span>
                 </div>
                 <div class="specs">
-                  <span>Intel Core i5</span>
+                  <span>Dimensity 930</span>
                   <span>8GB RAM</span>
-                  <span>RTX 3050</span>
+                  <span>128GB</span>
                 </div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
@@ -360,116 +446,16 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="far fa-star"></i>
-                  <span>135 đánh giá</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-card">
-            <span class="badge">Giảm 3.500.000₫</span>
-            <a href="products/laptop-detail.html">
-              <div class="product-img">
-                <i class="fas fa-laptop fa-4x"></i>
-              </div>
-              <div class="product-info">
-                <h3>Acer Nitro 5</h3>
-                <div class="price">
-                  <span class="current">22.490.000₫</span>
-                  <span class="original">25.990.000₫</span>
-                </div>
-                <div class="specs">
-                  <span>AMD Ryzen 7</span>
-                  <span>16GB RAM</span>
-                  <span>RTX 3060</span>
-                </div>
-                <div class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>224 đánh giá</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-card">
-            <span class="badge">Giảm 1.500.000₫</span>
-            <a href="products/laptop-detail.html">
-              <div class="product-img">
-                <i class="fas fa-laptop fa-4x"></i>
-              </div>
-              <div class="product-info">
-                <h3>Lenovo Ideapad 3</h3>
-                <div class="price">
-                  <span class="current">12.490.000₫</span>
-                  <span class="original">13.990.000₫</span>
-                </div>
-                <div class="specs">
-                  <span>Intel Core i5</span>
-                  <span>8GB RAM</span>
-                  <span>512GB SSD</span>
-                </div>
-                <div class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <span>189 đánh giá</span>
+                  <span>56 đánh giá</span>
                 </div>
               </div>
             </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Promotion Banner -->
-    <section class="promotion-banner">
-      <div class="container">
-        <div class="banner-wrapper">
-          <div class="promo-content">
-            <h2>Đại tiệc khuyến mãi tháng 7</h2>
-            <p>Giảm đến 50% cho hàng ngàn sản phẩm</p>
-            <a href="#" class="btn btn-white">Khám phá ngay</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Accessory Section -->
-    <section class="accessory-products">
-      <div class="container">
-        <div class="section-header">
-          <h2>Phụ kiện nổi bật</h2>
-          <a href="#" class="view-all">Xem tất cả</a>
-        </div>
-        <div class="accessory-categories">
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-headphones"></i></div>
-            <span>Tai nghe</span>
-          </a>
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-charging-station"></i></div>
-            <span>Sạc dự phòng</span>
-          </a>
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-bolt"></i></div>
-            <span>Cáp sạc</span>
-          </a>
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-            <span>Ốp lưng</span>
-          </a>
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-keyboard"></i></div>
-            <span>Chuột, bàn phím</span>
-          </a>
-          <a href="#" class="accessory-category">
-            <div class="icon"><i class="fas fa-memory"></i></div>
-            <span>Thẻ nhớ</span>
-          </a>
+        <div class="load-more">
+          <button id="load-more-btn" class="load-more-btn">
+            Xem thêm sản phẩm <i class="fas fa-angle-down"></i>
+          </button>
         </div>
       </div>
     </section>

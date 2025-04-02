@@ -124,7 +124,7 @@
 }
 
 .quantity-input {
-    width: 55px;
+    width: 65px;
     height: 32px;
     text-align: center;
     margin: 0 5px;
@@ -282,6 +282,71 @@
     color: #333;
 }
 
+/* Shipping Address Styles */
+.shipping-address {
+    margin-bottom: 20px;
+}
+
+.shipping-address h3,
+.payment-methods h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.address-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.address-input input,
+.address-input textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.address-input textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+/* Payment Methods Styles */
+.payment-methods {
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.payment-option:hover {
+    background-color: #f5f7fa;
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.option-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.option-content i {
+    color: #0066CC;
+}
+
 .note-content p {
     font-size: 13px;
     color: #666;
@@ -387,4 +452,7 @@
 /* Utility */
 .mt-20 {
     margin-top: 20px;
+}
+.payment-option input{
+    width: 10%;
 }

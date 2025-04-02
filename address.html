@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý địa chỉ - HONGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/account.css">
+    <script src="./js/account.js"></script>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.svg" alt="HONGO" width="150" height="40">
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Bạn tìm gì...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="top-nav">
+                    <ul>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Tài khoản</a></li>
+                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
+                        <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="profile.html">Tài khoản</a>
+                <span>/</span>
+                <span>Sổ địa chỉ</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="account-section">
+        <div class="container">
+            <div class="profile-layout">
+                <div class="profile-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="assets/avatar-placeholder.png" alt="Avatar">
+                        </div>
+                        <div class="user-details">
+                            <h3>Nguyễn Văn A</h3>
+                            <div class="user-rank">
+                                <i class="fas fa-medal"></i> Thành viên vàng
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-nav">
+                        <ul>
+                            <li><a href="profile.html"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a></li>
+                            <li><a href="#"><i class="fas fa-shopping-bag"></i> Quản lý đơn hàng</a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i> Sản phẩm yêu thích</a></li>
+                            <li class="active"><a href="address.html"><i class="fas fa-map-marker-alt"></i> Sổ địa chỉ</a></li>
+                            <li><a href="#"><i class="fas fa-bell"></i> Thông báo</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-header">
+                        <h1>Sổ địa chỉ</h1>
+                        <p>Quản lý địa chỉ giao hàng của bạn</p>
+                    </div>
+
+                    <div class="address-list">
+                        <button class="add-address-btn" onclick="showAddressForm('add')">
+                            <i class="fas fa-plus"></i>
+                            Thêm địa chỉ mới
+                        </button>
+
+                        <!-- Form thêm/sửa địa chỉ -->
+                        <div id="address-form" class="address-form" style="display: none;">
+                            <h3 id="form-title">Thêm địa chỉ mới</h3>
+                            <form id="delivery-address-form" class="account-form">
+                                <div class="form-group">
+                                    <label for="fullname">Họ và tên</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="fullname" name="fullname" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <input type="text" id="address" name="address" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="set-default" name="set-default">
+                                        <label for="set-default">Đặt làm địa chỉ mặc định</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn-cancel" onclick="hideAddressForm()">Hủy</button>
+                                    <button type="submit" class="btn-primary">Lưu địa chỉ</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="address-card">
+                            <div class="address-header">
+                                <h3>Nguyễn Văn A</h3>
+                                <span class="default-badge">Mặc định</span>
+                            </div>
+                            <div class="address-content">
+                                <p class="phone"><i class="fas fa-phone"></i> 0912345678</p>
+                                <p class="address"><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="edit-btn"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <div class="address-header">
+                                <h3>Nguyễn Văn A</h3>
+                            </div>
+                            <div class="address-content">
+                                <p class="phone"><i class="fas fa-phone"></i> 0987654321</p>
+                                <p class="address"><i class="fas fa-map-marker-alt"></i> 456 Lê Văn Lương, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="set-default-btn">Đặt làm mặc định</button>
+                                <button class="edit-btn"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Về HONGO</h3>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 HONGO. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

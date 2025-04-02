@@ -1,0 +1,80 @@
+/* Product Status Styles */
+
+/* Out of Stock Styles */
+.out-of-stock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+/* Sold Out Badge */
+.sold-out-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px; 
+    background-color: #777;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 1;
+    font-weight: bold;
+}
+
+/* Faded Style for Out of Stock Products */
+.product-card.out-of-stock-card {
+    opacity: 0.7;
+}
+
+/* Pre-order Badge */
+.pre-order-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 1;
+    font-weight: bold;
+}
+
+/* New Arrival Badge */
+.new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 1;
+    font-weight: bold;
+}
+
+/* Limited Stock Badge */
+.limited-badge {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 1;
+    font-weight: bold;
+}
