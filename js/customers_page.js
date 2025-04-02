@@ -24,7 +24,6 @@ function renderDataPagination(){
                 let isLocked = item.status == 0; 
                 return `
                     <div class="row border-bottom py-2">
-                        <div class="col">${item.Username || 'trống'}</div>
                         <div class="col">${item.Email || 'trống'}</div>
                         <div class="col">${item.FullName || 'trống'}</div>
                         <div class="col">${item.PhoneNumber || 'trống'}</div>
@@ -65,7 +64,7 @@ function search(){
     console.log(dateFrom," , ",dateTo)
     filterData = data.filter(item => {
         var dateItem = item.CreatedAt ? new Date(item.CreatedAt) : null;
-        var matchText = !searchValue || item.Username.toLowerCase().includes(searchValue)
+        var matchText = !searchValue 
         || item.Email.toLowerCase().includes(searchValue)
         || item.FullName.toLowerCase().includes(searchValue)
         || item.PhoneNumber.toLowerCase().includes(searchValue)
@@ -88,7 +87,6 @@ function edit(UserID) {
     console.log(customer.PasswordHash)
     // Gán giá trị vào modal
     document.getElementById("editCusID").value = customer.UserID;
-    document.getElementById("editCusUserName").value = customer.Username;
 
     document.getElementById("editCusEmail").value = customer.Email;
     document.getElementById("editCusFullName").value = customer.FullName;
@@ -108,7 +106,6 @@ async function saveEdit() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            Username: document.getElementById("editCusUserName").value.trim(),
             Email: document.getElementById("editCusEmail").value.trim(),
             FullName: document.getElementById("editCusFullName").value.trim(),
             PhoneNumber: document.getElementById("editCusPhoneNumber").value.trim(),
