@@ -1,0 +1,160 @@
+#address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.address-item {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.address-info {
+    flex: 1;
+}
+
+.address-info p {
+    margin: 5px 0;
+}
+
+.address-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.default-label {
+    color: white;
+    background: #28a745;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background: #007bff;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #a71d2a;
+}
+
+.set-default-btn {
+    background: #ffc107;
+    color: black;
+}
+
+.set-default-btn:hover {
+    background: #d39e00;
+}
+
+/* Định dạng chung cho form */
+#edit-address-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #3b9c9c; /* Viền màu xanh đậm */
+    border-radius: 8px;
+    background-color: #e8f8f8; /* Màu nền nhẹ */
+    display: none; /* Mặc định ẩn */
+}
+
+/* Tiêu đề của form */
+#edit-address-form h3 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3b9c9c; /* Màu xanh đậm */
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho các input */
+#edit-address-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#edit-address-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b3d9d9;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f1fdfd;
+}
+
+#edit-address-form input:focus {
+    border-color: #1f8f8f;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Container chứa 2 nút */
+#edit-address-form .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Định dạng chung cho button */
+#edit-address-form button {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Nút Lưu */
+#edit-address-form .save-btn {
+    background-color: #3b9c9c;
+}
+
+#edit-address-form .save-btn:hover {
+    background-color: #2e8080;
+}
+
+/* Nút Hủy */
+#edit-address-form .cancel-btn {
+    background-color: #ff6f6f;
+}
+
+#edit-address-form .cancel-btn:hover {
+    background-color: #ff4f4f;
+}
+
+
+
+

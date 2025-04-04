@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/account.css">
+    <link rel="stylesheet" href="./css/address.css">
     <script src="./js/account.js"></script>
+    <script src="./js/address.js"></script>
 </head>
+
 <body>
     <header>
         <div class="top-header">
@@ -55,7 +58,8 @@
                             <li><a href="profile.html"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a></li>
                             <li><a href="#"><i class="fas fa-shopping-bag"></i> Quản lý đơn hàng</a></li>
                             <li><a href="#"><i class="fas fa-heart"></i> Sản phẩm yêu thích</a></li>
-                            <li class="active"><a href="address.html"><i class="fas fa-map-marker-alt"></i> Sổ địa chỉ</a></li>
+                            <li class="active"><a href="address.html"><i class="fas fa-map-marker-alt"></i> Sổ địa
+                                    chỉ</a></li>
                             <li><a href="#"><i class="fas fa-bell"></i> Thông báo</a></li>
                         </ul>
                     </div>
@@ -84,7 +88,7 @@
                                         <input type="text" id="fullname" name="fullname" required>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="phone">Số điện thoại</label>
                                     <div class="input-wrapper">
@@ -110,44 +114,40 @@
 
                                 <div class="form-actions">
                                     <button type="button" class="btn-cancel" onclick="hideAddressForm()">Hủy</button>
-                                    <button type="submit" class="btn-primary">Lưu địa chỉ</button>
+                                    <button type="button" class="btn-primary" onclick="addAddress()">Lưu địa
+                                        chỉ</button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="address-card">
-                            <div class="address-header">
-                                <h3>Nguyễn Văn A</h3>
-                                <span class="default-badge">Mặc định</span>
-                            </div>
-                            <div class="address-content">
-                                <p class="phone"><i class="fas fa-phone"></i> 0912345678</p>
-                                <p class="address"><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh</p>
-                            </div>
-                            <div class="address-actions">
-                                <button class="edit-btn"><i class="fas fa-edit"></i> Sửa</button>
-                                <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        <!-- Form chỉnh sửa địa chỉ -->
+                        <div id="edit-address-form">
+                            <h3>Chỉnh sửa địa chỉ</h3>
+
+                            <label for="edit-fullname">Họ và tên:</label>
+                            <input type="text" id="edit-fullname" placeholder="Nhập tên">
+
+                            <label for="edit-phone">Số điện thoại:</label>
+                            <input type="text" id="edit-phone" placeholder="Nhập số điện thoại">
+
+                            <label for="edit-address">Địa chỉ:</label>
+                            <input type="text" id="edit-address" placeholder="Nhập địa chỉ">
+
+                            <!-- Nút Lưu & Hủy cùng hàng -->
+                            <div class="buttons-container">
+                                <button type="button" class="save-btn" onclick="saveEditAddress()">Lưu</button>
+                                <button type="button" class="cancel-btn" onclick="cancelEditAddress()">Hủy</button>
                             </div>
                         </div>
 
-                        <div class="address-card">
-                            <div class="address-header">
-                                <h3>Nguyễn Văn A</h3>
-                            </div>
-                            <div class="address-content">
-                                <p class="phone"><i class="fas fa-phone"></i> 0987654321</p>
-                                <p class="address"><i class="fas fa-map-marker-alt"></i> 456 Lê Văn Lương, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh</p>
-                            </div>
-                            <div class="address-actions">
-                                <button class="set-default-btn">Đặt làm mặc định</button>
-                                <button class="edit-btn"><i class="fas fa-edit"></i> Sửa</button>
-                                <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                            </div>
-                        </div>
+
+
+                        <!-- Danh sách địa chỉ sẽ được thêm vào đây -->
+                        <div id="address-list"></div>
                     </div>
                 </div>
+
             </div>
-        </div>
     </section>
 
     <footer>
@@ -168,4 +168,5 @@
         </div>
     </footer>
 </body>
+
 </html>
