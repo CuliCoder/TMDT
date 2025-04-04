@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./css/responsive.css">
     <link rel="stylesheet" href="./css/search.css">
     <link rel="stylesheet" href="./css/cart.css">
-    <script src="js/search.js" defer></script>
-    <script src="js/cart.js" defer></script>
+    <script src="./js/search.js" defer></script>
+    <script type="module" src="./js/cart.js" defer></script>
 </head>
 <body>
     <!-- Header Section -->
@@ -75,76 +75,7 @@
             <h1 class="page-title">Giỏ hàng của bạn</h1>
             
             <div class="cart-content" id="cart-content">
-                <div class="cart-items">
-                    <div class="cart-header">
-                        <div class="product-col">Sản phẩm</div>
-                        <div class="price-col">Đơn giá</div>
-                        <div class="quantity-col">Số lượng</div>
-                        <div class="total-col">Thành tiền</div>
-                        <div class="action-col"></div>
-                    </div>
-                    
-                    <div class="cart-item">
-                        <div class="product-col">
-                            <div class="product-info">
-                                <div class="product-image">
-                                    <i class="fas fa-mobile-alt fa-3x"></i>
-                                </div>
-                                <div class="product-details">
-                                    <h3>Samsung Galaxy S23 Ultra</h3>
-                                    <p class="product-variant">Màu: Đen | Bộ nhớ: 256GB</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price-col">
-                            <div class="price">26.990.000₫</div>
-                            <div class="original-price">28.990.000₫</div>
-                        </div>
-                        <div class="quantity-col">
-                            <div class="quantity-control">
-                                <button class="qty-btn decrease"><i class="fas fa-minus"></i></button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="10">
-                                <button class="qty-btn increase"><i class="fas fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <div class="total-col">
-                            <div class="total-price">26.990.000₫</div>
-                        </div>
-                        <div class="action-col">
-                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="cart-item">
-                        <div class="product-col">
-                            <div class="product-info">
-                                <div class="product-image">
-                                    <i class="fas fa-headphones fa-3x"></i>
-                                </div>
-                                <div class="product-details">
-                                    <h3>Tai nghe không dây Samsung Galaxy Buds2 Pro</h3>
-                                    <p class="product-variant">Màu: Trắng</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price-col">
-                            <div class="price">4.990.000₫</div>
-                            <div class="original-price">5.990.000₫</div>
-                        </div>
-                        <div class="quantity-col">
-                            <div class="quantity-control">
-                                <button class="qty-btn decrease"><i class="fas fa-minus"></i></button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="10">
-                                <button class="qty-btn increase"><i class="fas fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <div class="total-col">
-                            <div class="total-price">4.990.000₫</div>
-                        </div>
-                        <div class="action-col">
-                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
+                <div class="cart-items"> 
                 </div>
                 
                 <div class="cart-sidebar">
@@ -239,129 +170,6 @@
     </section>
 
     <!-- Related Products Section -->
-    <section class="related-products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Sản phẩm đề xuất cho bạn</h2>
-                <a href="index.html" class="view-all">Xem tất cả</a>
-            </div>
-            <div class="product-grid">
-                <div class="product-card">
-                    <span class="badge">Giảm 1.000.000₫</span>
-                    <a href="products/smartphone-detail.html">
-                        <div class="product-img">
-                            <i class="fas fa-mobile-alt fa-5x"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3>iPhone 14 Pro Max</h3>
-                            <div class="price">
-                                <span class="current">28.990.000₫</span>
-                                <span class="original">29.990.000₫</span>
-                            </div>
-                            <div class="specs">
-                                <span>A16 Bionic</span>
-                                <span>6GB RAM</span>
-                                <span>128GB</span>
-                            </div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>518 đánh giá</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-card">
-                    <span class="badge">Giảm 1.200.000₫</span>
-                    <a href="products/smartphone-detail.html">
-                        <div class="product-img">
-                            <i class="fas fa-mobile-alt fa-5x"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3>Vivo V25 Pro</h3>
-                            <div class="price">
-                                <span class="current">12.790.000₫</span>
-                                <span class="original">13.990.000₫</span>
-                            </div>
-                            <div class="specs">
-                                <span>Dimensity 1300</span>
-                                <span>8GB RAM</span>
-                                <span>128GB</span>
-                            </div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>122 đánh giá</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-card">
-                    <span class="badge">Giảm 500.000₫</span>
-                    <a href="products/smartphone-detail.html">
-                        <div class="product-img">
-                            <i class="fas fa-mobile-alt fa-5x"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3>iPhone 13</h3>
-                            <div class="price">
-                                <span class="current">16.990.000₫</span>
-                                <span class="original">17.490.000₫</span>
-                            </div>
-                            <div class="specs">
-                                <span>A15 Bionic</span>
-                                <span>4GB RAM</span>
-                                <span>128GB</span>
-                            </div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>567 đánh giá</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="product-card">
-                    <span class="badge">Giảm 2.000.000₫</span>
-                    <a href="products/laptop-detail.html">
-                        <div class="product-img">
-                            <i class="fas fa-laptop fa-4x"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3>ASUS TUF Gaming F15</h3>
-                            <div class="price">
-                                <span class="current">19.990.000₫</span>
-                                <span class="original">21.990.000₫</span>
-                            </div>
-                            <div class="specs">
-                                <span>Intel Core i5</span>
-                                <span>8GB RAM</span>
-                                <span>RTX 3050</span>
-                            </div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>135 đánh giá</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
