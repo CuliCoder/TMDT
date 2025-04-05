@@ -42,11 +42,11 @@ async function show_list_cart() {
             "Màu" : null,
         }
         let res_product_item = await axiosInstance.get(`/product/product_item_by_ID/${data[i].id}`); // lấy thông tin sản phẩm
-        let percent  = await axiosInstance.get(`/api/promotions/${data[i].id}/percent`) // lấy giảm giá của sản phâ,r
+        let percent  = await axiosInstance.get(`/api/promotions/${res_product_item.data.data.product_id}/percent`) // lấy giảm giá của sản phâm
+        console.log(percent.data);
         let price = data[i].price - (data[i].price * percent.data); // tính giá sau khi giảm
         let total = price * data[i].Quantity; // tính tổng tiền
         let productData = res_product_item.data?.data;
-
 // Chuyển chuỗi JSON thành mảng
         let attributesData = JSON.parse(productData?.attributes || "[]");
 
@@ -69,7 +69,6 @@ async function show_list_cart() {
             "Màu": color,
             "Bộ nhớ trong": gb,
           } = attributes;
-          console.log(ram, color, gb);  
         html +=`
         <div class="cart-item">
                         <div class="product-col">
@@ -136,7 +135,8 @@ async function totalOrder (){
     }
     for(let i= 0; i<data.length; i++)
     {
-        let percent  = await axiosInstance.get(`/api/promotions/${data[i].id}/percent`) // lấy giảm giá của sản phâ,r
+        let res_product_item = await axiosInstance.get(`/product/product_item_by_ID/${data[i].id}`); // lấy thông tin sản phẩm
+        let percent  = await axiosInstance.get(`/api/promotions/${res_product_item.data.data.product_id}/percent`) // lấy giảm giá của sản phâm
         let price = data[i].price - (data[i].price * percent.data); // tính giá sau khi giảm
         total += price * data[i].Quantity; // tính tổng tiền
     }
