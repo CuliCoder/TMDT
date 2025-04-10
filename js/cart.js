@@ -275,16 +275,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   window.set_Quantity_if_null = set_Quantity_if_null;
   window.nhap_so_luong = nhap_so_luong;
-  const getTrasaction = async () => {
-    try {
-      const response = await axiosInstance.get(
-        `https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiOg-sAcC9rGDRNi8_tKRwI6bl0O2FiWZIVAMYwpHXnNffyiWq3-F2X99sj_vw68mmevnif3Xy0pvFqId-NQC9JXP6TtpIaTRp_F4JZ3V9DDM94_lEX5IJTmrzo3mfr8Oz7SonujwtBca7br-YgA4GtdDp4fYyAlfc1uYyP0Zn4tfw9V5SrmpwS5FIS0LKKfLaRhE5f6v6Iybf-4B108DOH1myuyGfE_3Bdtz5WNGAEFCuSHKeUGqL_bba929TL1C5AUzdFBHyKJTC5OBYtm5mFcXOexQ&lib=MKj1leUfwx8Hkdy1qS-nB7v1w4pesPivH`
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching transaction:", error);
-    }
-  };
   const checkOrderStatus = async (idOrder) => {
     try {
       const response = await axiosInstance.get(`/orders/status/${idOrder}`);
@@ -333,12 +323,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       qrcode.innerHTML = `<img src="https://img.vietqr.io/image/970422-0000623239451-compact2.png?amount=${price}&addInfo=${description}&accountName=NGUYEN CONG TRUNG" alt=""/>`;
       qrModal.style.display = "flex";
       checkOrderStatusInterval = setInterval(async () => {
-        const orderStatus = await checkOrderStatus(idOrder);
-        if (orderStatus == null) {
+        const order = await checkOrderStatus(idOrder);
+        if (order == null) {
           clearInterval(checkOrderStatus);
           return;
         }
-        if (orderStatus != "Chờ duyệt") {
+        if (order.payment_status == "Đã thanh toán") {
           clearInterval(checkOrderStatus);
           alert("Thanh toán thành công!");
           qrModal.style.display = "none";
