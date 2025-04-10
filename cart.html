@@ -1,231 +1,315 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giỏ hàng - HONGO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/responsive.css">
-    <link rel="stylesheet" href="./css/search.css">
-    <link rel="stylesheet" href="./css/cart.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <link rel="stylesheet" href="./css/search.css" />
+    <link rel="stylesheet" href="./css/cart.css" />
     <script src="./js/search.js" defer></script>
     <script type="module" src="./js/cart.js" defer></script>
-</head>
-<body>
+    <style>
+      .qr-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .qr-modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      #qrcode {
+        margin: 20px 0;
+      }
+      #qrcode img {
+        width: 350px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <div class="top-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="assets/logo.svg" alt="HONGO" width="150" height="40">
-                    </a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Bạn tìm gì...">
-                    <button><i class="fas fa-search"></i></button>
-                    <div class="search-suggestions" id="search-suggestions">
-                        <!-- Suggestions will be inserted here by JavaScript -->
-                        <div class="suggestion-footer">
-                            <span id="results-count">0 kết quả</span>
-                            <button class="view-all-results">Xem tất cả</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-nav">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
-                        <li><a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
-                        <li class="menu-toggler"><a href="#"><i class="fas fa-bars"></i> Menu</a></li>
-                    </ul>
-                </div>
+      <div class="top-header">
+        <div class="container">
+          <div class="logo">
+            <a href="index.html">
+              <img src="assets/logo.svg" alt="HONGO" width="150" height="40" />
+            </a>
+          </div>
+          <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Bạn tìm gì..." />
+            <button><i class="fas fa-search"></i></button>
+            <div class="search-suggestions" id="search-suggestions">
+              <!-- Suggestions will be inserted here by JavaScript -->
+              <div class="suggestion-footer">
+                <span id="results-count">0 kết quả</span>
+                <button class="view-all-results">Xem tất cả</button>
+              </div>
             </div>
+          </div>
+          <div class="top-nav">
+            <ul>
+              <li>
+                <a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a>
+              </li>
+              <li>
+                <a href="cart.html" class="active"
+                  ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+                >
+              </li>
+              <li class="menu-toggler">
+                <a href="#"><i class="fas fa-bars"></i> Menu</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <nav class="main-nav">
-            <div class="container">
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
-                    <li><a href="categories/smartphones.html"><i class="fas fa-mobile-alt"></i> Điện thoại</a></li>
-                    <li><a href="categories/laptops.html"><i class="fas fa-laptop"></i> Laptop</a></li>
-                    <li><a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a></li>
-                    <li><a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a></li>
-                    <li><a href="#"><i class="fas fa-watch"></i> Đồng hồ</a></li>
-                    <li><a href="#"><i class="fas fa-tv"></i> Smart TV</a></li>
-                    <li><a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a></li>
-                </ul>
-            </div>
-        </nav>
+      </div>
+      <nav class="main-nav">
+        <div class="container">
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            </li>
+            <li>
+              <a href="categories/smartphones.html"
+                ><i class="fas fa-mobile-alt"></i> Điện thoại</a
+              >
+            </li>
+            <li>
+              <a href="categories/laptops.html"
+                ><i class="fas fa-laptop"></i> Laptop</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-watch"></i> Đồng hồ</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tv"></i> Smart TV</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-wrapper">
-        <div class="container">
-            <div class="breadcrumb">
-                <a href="index.html">Trang chủ</a>
-                <span>/</span>
-                <span>Giỏ hàng</span>
-            </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html">Trang chủ</a>
+          <span>/</span>
+          <span>Giỏ hàng</span>
         </div>
+      </div>
     </div>
 
     <!-- Cart Section -->
     <section class="cart-section">
-        <div class="container">
-            <h1 class="page-title">Giỏ hàng của bạn</h1>
-            
-            <div class="cart-content" id="cart-content">
-                <div class="cart-items"> 
-                </div>
-                
-                <div class="cart-sidebar">
-                    <div class="cart-summary">
-                        <h3>Tóm tắt đơn hàng</h3>
-                        <div class="summary-row">
-                            <span>Tạm tính</span>
-                            <span>31.980.000₫</span>
-                        </div>
-                        <!-- <div class="summary-row">
-                            <span>Giảm giá</span>
-                            <span>-3.000.000₫</span>
-                        </div> -->
-                        <!-- <div class="summary-row discount">
-                            <div class="discount-input">
-                                <input type="text" placeholder="Mã giảm giá">
-                                <button>Áp dụng</button>
-                            </div>
-                        </div> -->
-                        <div class="summary-row total">
-                            <span>Tổng cộng</span>
-                            <span class="cart-total">28.980.000₫</span>
-                        </div>
-                        <div class="shipping-address">
-                            <h3>Địa chỉ nhận hàng</h3>
-                            <div class="address-input">
-                                <input type="text" id="fullname" placeholder="Họ và tên người nhận">
-                                <input type="tel" id="phone" placeholder="Số điện thoại">
-                                <textarea id="address" placeholder="Địa chỉ nhận hàng"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="payment-methods">
-                            <h3>Phương thức thanh toán</h3>
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="cod" checked>
-                                <span class="option-content">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                    <span>Thanh toán khi nhận hàng (COD)</span>
-                                </span>
-                            </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="vnpay">
-                                <span class="option-content">
-                                    <i class="fas fa-credit-card"></i>
-                                    <span>Thanh toán qua VNPay</span>
-                                </span>
-                            </label>
-                        </div>
-
-                        <div class="vat-note">Đã bao gồm VAT</div>
-                        <button class="checkout-btn">Tiến hành đặt hàng</button>
-                        <a href="index.html" class="continue-shopping">Tiếp tục mua hàng</a>
-                    </div>
-                    
-                    <div class="cart-notes">
-                        <div class="note-item">
-                            <div class="note-icon"><i class="fas fa-truck"></i></div>
-                            <div class="note-content">
-                                <h4>Miễn phí giao hàng</h4>
-                                <p>Cho đơn hàng từ 500.000₫</p>
-                            </div>
-                        </div>
-                        <div class="note-item">
-                            <div class="note-icon"><i class="fas fa-shield-alt"></i></div>
-                            <div class="note-content">
-                                <h4>Bảo hành chính hãng</h4>
-                                <p>12 tháng theo quy định</p>
-                            </div>
-                        </div>
-                        <div class="note-item">
-                            <div class="note-icon"><i class="fas fa-undo"></i></div>
-                            <div class="note-content">
-                                <h4>Đổi trả dễ dàng</h4>
-                                <p>Trong vòng 15 ngày</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div id="qr-modal" class="qr-modal" style="display: none">
+          <div class="qr-modal-content">
+            <h3>Quét mã QR để thanh toán</h3>
+            <div id="qrcode">
+              <img
+                src="https://img.vietqr.io/image/vietinbank-113366668888-compact2.jpg?amount=790000&addInfo=dong%20gop%20quy%20vac%20xin&accountName=Quy%20Vac%20Xin%20Covid"
+                alt=""
+              />
             </div>
-            
-            <!-- Empty Cart State (Hidden by default) -->
-            <div class="empty-cart" id="empty-cart" style="display: none;">
-                <div class="empty-cart-icon">
-                    <i class="fas fa-shopping-cart fa-4x"></i>
-                </div>
-                <h2>Giỏ hàng của bạn đang trống</h2>
-                <p>Hãy tiếp tục mua sắm để thêm sản phẩm vào giỏ hàng</p>
-                <a href="index.html" class="btn">Tiếp tục mua sắm</a>
-            </div>
+            <p id="bank_des">Chuyển khoản với nội dung: <span>text</span></p>
+            <p >Đơn hàng sẽ được giữ trong 30 phút kể từ khi tạo</p>
+            <button id="close-qr-btn">Đóng</button>
+          </div>
         </div>
+        <h1 class="page-title">Giỏ hàng của bạn</h1>
+
+        <div class="cart-content" id="cart-content">
+          <div class="cart-items"></div>
+
+          <div class="cart-sidebar">
+            <div class="cart-summary">
+              <h3>Tóm tắt đơn hàng</h3>
+              <!-- <div class="summary-row">
+                <span>Tạm tính</span>
+                <span>31.980.000₫</span>
+              </div> -->
+              <div class="summary-row total">
+                <span>Tổng cộng</span>
+                <span class="cart-total">28.980.000₫</span>
+              </div>
+              <div class="shipping-address">
+                <h3>Địa chỉ nhận hàng</h3>
+                <div class="address-input">
+                  <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Họ và tên người nhận"
+                  />
+                  <input type="tel" id="phone" placeholder="Số điện thoại" />
+                  <textarea
+                    id="address"
+                    placeholder="Địa chỉ nhận hàng"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="payment-methods">
+                <h3>Phương thức thanh toán</h3>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="cod" checked />
+                  <span class="option-content">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Thanh toán khi nhận hàng (COD)</span>
+                  </span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="bank" />
+                  <span class="option-content">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Thanh toán bằng chuyển khoản</span>
+                  </span>
+                </label>
+              </div>
+
+              <div class="vat-note">Đã bao gồm VAT</div>
+              <button class="checkout-btn">Tiến hành đặt hàng</button>
+              <a href="index.html" class="continue-shopping"
+                >Tiếp tục mua hàng</a
+              >
+            </div>
+
+            <div class="cart-notes">
+              <div class="note-item">
+                <div class="note-icon"><i class="fas fa-truck"></i></div>
+                <div class="note-content">
+                  <h4>Miễn phí giao hàng</h4>
+                  <p>Cho đơn hàng từ 500.000₫</p>
+                </div>
+              </div>
+              <div class="note-item">
+                <div class="note-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="note-content">
+                  <h4>Bảo hành chính hãng</h4>
+                  <p>12 tháng theo quy định</p>
+                </div>
+              </div>
+              <div class="note-item">
+                <div class="note-icon"><i class="fas fa-undo"></i></div>
+                <div class="note-content">
+                  <h4>Đổi trả dễ dàng</h4>
+                  <p>Trong vòng 15 ngày</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty Cart State (Hidden by default) -->
+        <div class="empty-cart" id="empty-cart" style="display: none">
+          <div class="empty-cart-icon">
+            <i class="fas fa-shopping-cart fa-4x"></i>
+          </div>
+          <h2>Giỏ hàng của bạn đang trống</h2>
+          <p>Hãy tiếp tục mua sắm để thêm sản phẩm vào giỏ hàng</p>
+          <a href="index.html" class="btn">Tiếp tục mua sắm</a>
+        </div>
+      </div>
     </section>
 
     <!-- Related Products Section -->
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-column">
-                    <h3>Tổng đài hỗ trợ</h3>
-                    <ul class="contact-list">
-                        <li>Gọi mua hàng: <a href="tel:18001001">1800.1001</a> (8:00 - 21:00)</li>
-                        <li>Gọi khiếu nại: <a href="tel:18001002">1800.1002</a> (8:00 - 21:30)</li>
-                        <li>Gọi bảo hành: <a href="tel:18001003">1800.1003</a> (8:00 - 21:00)</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Thông tin</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Giới thiệu về công ty</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
-                        <li><a href="#">Quy chế hoạt động</a></li>
-                        <li><a href="#">Tin tuyển dụng</a></li>
-                        <li><a href="#">Tin khuyến mãi</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Hỗ trợ khách hàng</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Hướng dẫn mua hàng online</a></li>
-                        <li><a href="#">Chính sách giao hàng</a></li>
-                        <li><a href="#">Chính sách thanh toán</a></li>
-                        <li><a href="#">Chính sách đổi trả</a></li>
-                        <li><a href="#">Chính sách trả góp</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Phương thức thanh toán</h3>
-                    <div class="payment-methods">
-                        <i class="fab fa-cc-visa fa-2x"></i>
-                        <i class="fab fa-cc-mastercard fa-2x"></i>
-                        <i class="fab fa-cc-jcb fa-2x"></i>
-                        <i class="fas fa-money-bill-wave fa-2x"></i>
-                        <i class="fas fa-university fa-2x"></i>
-                    </div>
-                    <h3 class="mt-20">Kết nối với chúng tôi</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-column">
+            <h3>Tổng đài hỗ trợ</h3>
+            <ul class="contact-list">
+              <li>
+                Gọi mua hàng: <a href="tel:18001001">1800.1001</a> (8:00 -
+                21:00)
+              </li>
+              <li>
+                Gọi khiếu nại: <a href="tel:18001002">1800.1002</a> (8:00 -
+                21:30)
+              </li>
+              <li>
+                Gọi bảo hành: <a href="tel:18001003">1800.1003</a> (8:00 -
+                21:00)
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Thông tin</h3>
+            <ul class="footer-links">
+              <li><a href="#">Giới thiệu về công ty</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Quy chế hoạt động</a></li>
+              <li><a href="#">Tin tuyển dụng</a></li>
+              <li><a href="#">Tin khuyến mãi</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Hỗ trợ khách hàng</h3>
+            <ul class="footer-links">
+              <li><a href="#">Hướng dẫn mua hàng online</a></li>
+              <li><a href="#">Chính sách giao hàng</a></li>
+              <li><a href="#">Chính sách thanh toán</a></li>
+              <li><a href="#">Chính sách đổi trả</a></li>
+              <li><a href="#">Chính sách trả góp</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Phương thức thanh toán</h3>
+            <div class="payment-methods">
+              <i class="fab fa-cc-visa fa-2x"></i>
+              <i class="fab fa-cc-mastercard fa-2x"></i>
+              <i class="fab fa-cc-jcb fa-2x"></i>
+              <i class="fas fa-money-bill-wave fa-2x"></i>
+              <i class="fas fa-university fa-2x"></i>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 - Bản quyền thuộc về Công ty HONGO</p>
-                <p>Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh - Điện thoại: 028.3456.7890 - Email: cskh@hongo.vn</p>
+            <h3 class="mt-20">Kết nối với chúng tôi</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 - Bản quyền thuộc về Công ty HONGO</p>
+          <p>
+            Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh - Điện thoại:
+            028.3456.7890 - Email: cskh@hongo.vn
+          </p>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
