@@ -110,7 +110,7 @@ const renderProducts = () => {
                     ? `<span class='limited-badge'>Còn ${product.qty_in_stock} sản phẩm</span>`
                     : "<div class='out-of-stock'>Hết hàng</div>"
                 }
-                <a href="products/smartphone-detail.html?id=${product.id}">
+                <a href="../products/smartphone-detail.html?ProductItemID=${product.product_id}">
                   <div class="product-img">
                     <img src="http://localhost:3000${
                       product.product_image
