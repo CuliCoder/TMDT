@@ -1,4 +1,5 @@
 import axiosInstance from "./configAxios.js";
+document.addEventListener("DOMContentLoaded", function () {
 // let ProductID = new URL(window.location.href).searchParams.get("id");
 let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 //B1: Lấy sản phẩm dựa theo id product
@@ -65,7 +66,7 @@ async function default_variantOption(data) {
   document.querySelector(".thumbnail").classList.add("active");
   document.querySelector(
     ".product-main-image"
-  ).innerHTML = `<img src="../img/imgs${data[0].img}" alt="Ảnh sản phẩm">`;
+  ).innerHTML = `<img src="http://localhost:3000${data[0].img}" alt="Ảnh sản phẩm">`;
   default_Price_color(data); // mặc định là sản phẩm đầu tiên
 }
 async function default_Price_color(data) {
@@ -240,3 +241,4 @@ document.querySelector(".btn-add-cart").addEventListener("click", async () => {
     quantity: 1,
   });
 });
+})
