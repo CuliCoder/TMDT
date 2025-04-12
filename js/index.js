@@ -9,7 +9,6 @@ const getProductList = async (idcategory) => {
     return [];
   }
 };
-getProductList();
 const rederProductList = async () => {
   try {
     const smartphoneList = await getProductList(1);
@@ -55,7 +54,7 @@ const rederProductList = async () => {
                 ? `<span class='limited-badge'>Còn ${smartphoneList[i].qty_in_stock} sản phẩm</span>`
                 : "<div class='out-of-stock'>Hết hàng</div>"
             }
-            <a href="products/smartphone-detail.html?id=${smartphoneList[i].id}">
+            <a href="products/smartphone-detail.html?ProductItemID=${smartphoneList[i].product_id}">
               <div class="product-img">
                 <img src="http://localhost:3000${
                   smartphoneList[i].product_image
