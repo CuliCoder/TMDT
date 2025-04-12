@@ -1,10 +1,9 @@
 import axiosInstance from "./configAxios.js";
 // let ProductID = new URL(window.location.href).searchParams.get("id");
-// let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
+let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 //B1: Lấy sản phẩm dựa theo id product
 // B2: có bao nhiêu sản phẩm thì sẽ có bấy nhiêu sản phẩm liên quan
 //
-let ProductID = 61;
 let list = []; // danh sách các sản phẩm liên quan
 let product_item_ID_to_cart = null; // id sản phẩm trong giỏ hàng
 let list_img = []
@@ -50,7 +49,7 @@ async function showProductDetail() {
         document.querySelector(
           ".product-thumbnails"
         ).innerHTML += `<div class="thumbnail" onclick="click_img(event)">
-                                                                    <img class="img_prd" src="../img/imgs${item.img}" alt="Ảnh sản phẩm">
+                                                                    <img class="img_prd" src="http://localhost:3000${item.img}" alt="Ảnh sản phẩm">
                                                                     </div>`;
       }
       });
