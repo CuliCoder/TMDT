@@ -1,10 +1,10 @@
 import axiosInstance from "./configAxios.js";
+document.addEventListener("DOMContentLoaded", function () {
 // let ProductID = new URL(window.location.href).searchParams.get("id");
-// let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
+let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 //B1: Lấy sản phẩm dựa theo id product
 // B2: có bao nhiêu sản phẩm thì sẽ có bấy nhiêu sản phẩm liên quan
 //
-let ProductID = 61;
 let list = []; // danh sách các sản phẩm liên quan
 let product_item_ID_to_cart = null; // id sản phẩm trong giỏ hàng
 let list_img = []
@@ -50,7 +50,7 @@ async function showProductDetail() {
         document.querySelector(
           ".product-thumbnails"
         ).innerHTML += `<div class="thumbnail" onclick="click_img(event)">
-                                                                    <img class="img_prd" src="../img/imgs${item.img}" alt="Ảnh sản phẩm">
+                                                                    <img class="img_prd" src="http://localhost:3000${item.img}" alt="Ảnh sản phẩm">
                                                                     </div>`;
       }
       });
@@ -66,7 +66,7 @@ async function default_variantOption(data) {
   document.querySelector(".thumbnail").classList.add("active");
   document.querySelector(
     ".product-main-image"
-  ).innerHTML = `<img src="../img/imgs${data[0].img}" alt="Ảnh sản phẩm">`;
+  ).innerHTML = `<img src="http://localhost:3000${data[0].img}" alt="Ảnh sản phẩm">`;
   default_Price_color(data); // mặc định là sản phẩm đầu tiên
 }
 async function default_Price_color(data) {
@@ -241,3 +241,4 @@ document.querySelector(".btn-add-cart").addEventListener("click", async () => {
     quantity: 1,
   });
 });
+})
