@@ -1,11 +1,13 @@
 import axiosInstance from "./configAxios.js";
 // let ProductID = new URL(window.location.href).searchParams.get("id");
-let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
+// let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 //B1: Lấy sản phẩm dựa theo id product
 // B2: có bao nhiêu sản phẩm thì sẽ có bấy nhiêu sản phẩm liên quan
 //
+let ProductID = 61;
 let list = []; // danh sách các sản phẩm liên quan
 let product_item_ID_to_cart = null; // id sản phẩm trong giỏ hàng
+let list_img = []
 const colorMap = {
   Đỏ: "#FF0000", // Red
   Xanh: "#008000", // Green
@@ -29,14 +31,12 @@ async function showProductDetail() {
     const infor_product = await axiosInstance.get(
       `/products/get_product_by_productID/${ProductID}`
     );
-    let percent = await axiosInstance.get(
-      `/api/promotions/${ProductID}/percent`
-    );
+    let percent = await axiosInstance.get(`/api/promotions/${ProductID}/percent`);
     let html_bo_nho = ``;
     document.querySelector(
       ".product-title"
     ).innerHTML = `${infor_product.data.ProductName}`;
-
+    document.getElementById("nameProduct").innerHTML = `${infor_product.data.ProductName}`;
     document.querySelector(".product-thumbnails").innerHTML = ``;
     document.querySelector(".variants").innerHTML = ``;
     for (let i = 0; i < list.length; i++) {
@@ -44,11 +44,15 @@ async function showProductDetail() {
         list[i].ram + "-" + list[i].gb
       }</a>`;
       list[i].in_for.forEach((item) => {
+      let check = list_img.find((img) => img === item.color)
+      if (!check) {
+        list_img.push(item.color)
         document.querySelector(
           ".product-thumbnails"
         ).innerHTML += `<div class="thumbnail" onclick="click_img(event)">
                                                                     <img class="img_prd" src="../img/imgs${item.img}" alt="Ảnh sản phẩm">
                                                                     </div>`;
+      }
       });
     }
     document.querySelector(".variants").innerHTML += html_bo_nho;
@@ -152,6 +156,7 @@ async function click_color_option(event, price, product_item_ID) {
     `/products/product_item_by_ID/${product_item_ID}`
   );
   let html_chitiet = ``;
+  console.log( "test",product_item.data);
   product_item.data.data.attributes.forEach((attribute) => {
     if (attribute.variantName !== "Màu") {
       html_chitiet += `<tr>
@@ -179,6 +184,7 @@ async function Phan_Loai_Product_Item() {
   let data = await axiosInstance.get(
     `/products/product_item_by_productID/${ProductID}`
   );
+  console.log(data);
   const product_item_data = data.data.data.data;
   for (let i = 0; i < product_item_data.length; i++) {
     let attributes = {
@@ -193,7 +199,6 @@ async function Phan_Loai_Product_Item() {
       }
     });
     let { "Dung lượng RAM": ram, Màu: color, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
-    console.log(ram, gb, color);
     let check = list.find((item) => item.ram === ram && item.gb === gb);
     if (!check) {
       list.push({
