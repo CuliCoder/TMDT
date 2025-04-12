@@ -1,79 +1,117 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Samsung Galaxy S23 Ultra - Thế Giới Di Động</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/detail_product.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/detail_product.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
     <script type="module" src="../js/detail_product.js"></script>
-</head> 
-<body>
+    <script type="module" src="../js/checklogin.js"></script>
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <div class="top-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="../index.html">
-                        <img src="../img/imgs/logo.png" alt="HONGO" width="150" height="40">
-                    </a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Bạn tìm gì...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="top-nav">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
-                        <li><a href="../cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
-                        <li class="menu-toggler"><a href="#"><i class="fas fa-bars"></i> Menu</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="top-header">
+        <div class="container">
+          <div class="logo">
+            <a href="../index.html">
+              <img
+                src="../img/imgs/logo.png"
+                alt="HONGO"
+                width="150"
+                height="40"
+              />
+            </a>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Bạn tìm gì..." />
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="top-nav">
+            <ul>
+              <li id="account-menu"></li>
+              <li>
+                <a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a>
+              </li>
+              <li>
+                <a href="../cart.html"
+                  ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+                >
+              </li>
+              <li class="menu-toggler">
+                <a href="#"><i class="fas fa-bars"></i> Menu</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <nav class="main-nav">
-            <div class="container">
-                <ul>
-                    <li><a href="../index.html"><i class="fas fa-home"></i> Trang chủ</a></li>
-                    <li><a href="../categories/smartphones.html" class="active"><i class="fas fa-mobile-alt"></i> Điện thoại</a></li>
-                    <li><a href="../categories/laptops.html"><i class="fas fa-laptop"></i> Laptop</a></li>
-                    <li><a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a></li>
-                    <li><a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a></li>
-                    <li><a href="#"><i class="fas fa-watch"></i> Đồng hồ</a></li>
-                    <li><a href="#"><i class="fas fa-tv"></i> Smart TV</a></li>
-                    <li><a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a></li>
-                </ul>
-            </div>
-        </nav>
+      </div>
+      <nav class="main-nav">
+        <div class="container">
+          <ul>
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            </li>
+            <li>
+              <a href="../categories/smartphones.html" class="active"
+                ><i class="fas fa-mobile-alt"></i> Điện thoại</a
+              >
+            </li>
+            <li>
+              <a href="../categories/laptops.html"
+                ><i class="fas fa-laptop"></i> Laptop</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-watch"></i> Đồng hồ</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tv"></i> Smart TV</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-wrapper">
-        <div class="container">
-            <div class="breadcrumb">
-                <a href="../index.html">Trang chủ</a>
-                <span>/</span>
-                <a href="../categories/smartphones.html">Điện thoại</a>
-                <span>/</span>
-                <span id="nameProduct">Samsung Galaxy S23 Ultra</span>
-            </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html">Trang chủ</a>
+          <span>/</span>
+          <a href="../categories/smartphones.html">Điện thoại</a>
+          <span>/</span>
+          <span id="nameProduct">Samsung Galaxy S23 Ultra</span>
         </div>
+      </div>
     </div>
 
     <!-- Product Detail -->
     <section class="product-detail">
-        <div class="container">
-            <h1 class="product-title">Samsung Galaxy S23 Ultra 256GB</h1>
+      <div class="container">
+        <h1 class="product-title">Samsung Galaxy S23 Ultra 256GB</h1>
 
-            <div class="product-overview">
-                <div class="product-gallery">
-                    <div class="product-main-image">
-                        <i class="fas fa-mobile-alt fa-10x"></i>
-                    </div>
-                    <div class="product-thumbnails">
-                        <!-- <div class="thumbnail active">
+        <div class="product-overview">
+          <div class="product-gallery">
+            <div class="product-main-image">
+              <i class="fas fa-mobile-alt fa-10x"></i>
+            </div>
+            <div class="product-thumbnails">
+              <!-- <div class="thumbnail active">
                             <i class="fas fa-mobile-alt fa-2x"></i>
                         </div>
                         <div class="thumbnail">
@@ -85,102 +123,106 @@
                         <div class="thumbnail">
                             <i class="fas fa-mobile-alt fa-2x"></i>
                         </div> -->
-                    </div>
-                </div>
-                
-                <div class="product-info-wrap">
-                    <div class="product-price-block">
-                        <div class="price">
-                            <!-- <span class="current">26.990.000₫</span>
+            </div>
+          </div>
+
+          <div class="product-info-wrap">
+            <div class="product-price-block">
+              <div class="price">
+                <!-- <span class="current">26.990.000₫</span>
                             <span class="original">28.990.000₫</span>
                             <span class="discount">Giảm 7%</span> -->
-                        </div>
-                    </div>
+              </div>
+            </div>
 
-                    <div class="product-variants">
-                        <div class="variant-group">
-                            <h3>Bộ nhớ</h3>
-                            <div class="variants">
-                                <!-- <a href="#" class="variant-option">256GB</a>
+            <div class="product-variants">
+              <div class="variant-group">
+                <h3>Bộ nhớ</h3>
+                <div class="variants">
+                  <!-- <a href="#" class="variant-option">256GB</a>
                                 <a href="#" class="variant-option">512GB</a>
                                 <a href="#" class="variant-option">1TB</a> -->
-                            </div>
-                        </div>
-                        <div class="variant-group">
-                            <h3>Màu sắc</h3>
-                            <div class="variants colors">
-    
-                            </div>
-                        </div>
-                    </div>
+                </div>
+              </div>
+              <div class="variant-group">
+                <h3>Màu sắc</h3>
+                <div class="variants colors"></div>
+              </div>
+            </div>
 
-                    <div class="product-promotion">
-                        <h3>Khuyến mãi</h3>
-                        <div class="promotion-list">
-                            <div class="promotion-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Giảm thêm tới 1.000.000₫ khi thanh toán qua thẻ tín dụng</span>
-                            </div>
-                            <div class="promotion-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Giảm 5% tối đa 500.000₫ khi thanh toán qua ví Momo</span>
-                            </div>
-                            <div class="promotion-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Giảm 500.000₫ khi thanh toán qua VNPay</span>
-                            </div>
-                            <div class="promotion-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Thu cũ đổi mới trợ giá thêm 1.000.000₫</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="product-promotion">
+              <h3>Khuyến mãi</h3>
+              <div class="promotion-list">
+                <div class="promotion-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Giảm thêm tới 1.000.000₫ khi thanh toán qua thẻ tín
+                    dụng</span
+                  >
+                </div>
+                <div class="promotion-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    >Giảm 5% tối đa 500.000₫ khi thanh toán qua ví Momo</span
+                  >
+                </div>
+                <div class="promotion-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Giảm 500.000₫ khi thanh toán qua VNPay</span>
+                </div>
+                <div class="promotion-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Thu cũ đổi mới trợ giá thêm 1.000.000₫</span>
+                </div>
+              </div>
+            </div>
 
-                    <div class="product-actions">
-                        <button class="btn btn-primary btn-buy-now">
-                            <span>MUA NGAY</span>
-                            <small>Giao hàng tận nơi hoặc nhận tại cửa hàng</small>
-                        </button>
-                        <div class="action-buttons">
-                            <!-- <button class="btn btn-secondary btn-installment">
+            <div class="product-actions">
+              <button class="btn btn-primary btn-buy-now">
+                <span>MUA NGAY</span>
+                <small>Giao hàng tận nơi hoặc nhận tại cửa hàng</small>
+              </button>
+              <div class="action-buttons">
+                <!-- <button class="btn btn-secondary btn-installment">
                                 <i class="fas fa-credit-card"></i>
                                 <span>Trả góp 0%</span>
                             </button> -->
-                            <button class="btn btn-secondary btn-add-cart">
-                                <i class="fas fa-cart-plus"></i>
-                                <span>Thêm vào giỏ</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="product-policy">
-                        <div class="policy-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Bảo hành chính hãng 12 tháng</span>
-                        </div>
-                        <div class="policy-item">
-                            <i class="fas fa-exchange-alt"></i>
-                            <span>Đổi trả miễn phí trong 30 ngày</span>
-                        </div>
-                        <div class="policy-item">
-                            <i class="fas fa-truck"></i>
-                            <span>Giao hàng tận nơi</span>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btn-secondary btn-add-cart">
+                  <i class="fas fa-cart-plus"></i>
+                  <span>Thêm vào giỏ</span>
+                </button>
+              </div>
             </div>
 
-            <div class="product-details-tabs">
-                <div class="tabs-nav">
-                    <a href="#specifications" class="tab-link active">Thông số kỹ thuật</a>
-        
-                </div>
+            <div class="product-policy">
+              <div class="policy-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Bảo hành chính hãng 12 tháng</span>
+              </div>
+              <div class="policy-item">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Đổi trả miễn phí trong 30 ngày</span>
+              </div>
+              <div class="policy-item">
+                <i class="fas fa-truck"></i>
+                <span>Giao hàng tận nơi</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div id="specifications" class="tab-content active">
-                    <h2>Thông số kỹ thuật</h2>
-                    <table class="specs-table">
-                        <tbody class = "bodytable_infor_product">
-                            <!-- <tr>
+        <div class="product-details-tabs">
+          <div class="tabs-nav">
+            <a href="#specifications" class="tab-link active"
+              >Thông số kỹ thuật</a
+            >
+          </div>
+
+          <div id="specifications" class="tab-content active">
+            <h2>Thông số kỹ thuật</h2>
+            <table class="specs-table">
+              <tbody class="bodytable_infor_product">
+                <!-- <tr>
                                 <td>Màn hình</td>
                                 <td>Dynamic AMOLED 2X, 6.8", Quad HD+ (2K+)</td>
                             </tr>
@@ -216,347 +258,394 @@
                                 <td>Tính năng đặc biệt</td>
                                 <td>Kháng nước, kháng bụi, Bút S-Pen, Sạc không dây</td>
                             </tr> -->
-                        </tbody>
-                    </table>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="features" class="tab-content">
+            <h2>Đặc điểm nổi bật</h2>
+            <div class="feature-item">
+              <h3>Thiết kế đẳng cấp, sang trọng</h3>
+              <p>
+                Samsung Galaxy S23 Ultra được thiết kế với khung viền nhôm Armor
+                Aluminum cứng cáp, mặt lưng kính cường lực Gorilla Glass Victus+
+                và thiết kế bút S-Pen được tích hợp ngay trong thân máy.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>Camera độ phân giải siêu cao</h3>
+              <p>
+                Camera chính 200MP đầu tiên trên thế hệ Galaxy S, cho phép chụp
+                ảnh với chi tiết cực kỳ sắc nét, zoom quang học 10x, cung cấp
+                khả năng chụp ảnh thiếu sáng vượt trội.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>Hiệu năng vượt trội với chip độc quyền</h3>
+              <p>
+                Snapdragon 8 Gen 2 for Galaxy là phiên bản đặc biệt được tối ưu
+                riêng cho Samsung, mang lại hiệu năng mạnh mẽ hơn 30% so với thế
+                hệ trước.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>Bút S-Pen đa năng</h3>
+              <p>
+                Bút S-Pen tích hợp cho phép ghi chú, vẽ, điều khiển từ xa và
+                nhiều tính năng tiện ích khác với độ trễ thấp hơn cho cảm giác
+                sử dụng chân thực như bút thật.
+              </p>
+            </div>
+          </div>
+
+          <div id="reviews" class="tab-content">
+            <h2>Đánh giá & nhận xét</h2>
+            <div class="review-summary">
+              <div class="rating-summary">
+                <div class="rating-average">
+                  <span class="number">4.8</span>
+                  <span class="text">trên 5</span>
                 </div>
-
-                <div id="features" class="tab-content">
-                    <h2>Đặc điểm nổi bật</h2>
-                    <div class="feature-item">
-                        <h3>Thiết kế đẳng cấp, sang trọng</h3>
-                        <p>Samsung Galaxy S23 Ultra được thiết kế với khung viền nhôm Armor Aluminum cứng cáp, mặt lưng kính cường lực Gorilla Glass Victus+ và thiết kế bút S-Pen được tích hợp ngay trong thân máy.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Camera độ phân giải siêu cao</h3>
-                        <p>Camera chính 200MP đầu tiên trên thế hệ Galaxy S, cho phép chụp ảnh với chi tiết cực kỳ sắc nét, zoom quang học 10x, cung cấp khả năng chụp ảnh thiếu sáng vượt trội.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Hiệu năng vượt trội với chip độc quyền</h3>
-                        <p>Snapdragon 8 Gen 2 for Galaxy là phiên bản đặc biệt được tối ưu riêng cho Samsung, mang lại hiệu năng mạnh mẽ hơn 30% so với thế hệ trước.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Bút S-Pen đa năng</h3>
-                        <p>Bút S-Pen tích hợp cho phép ghi chú, vẽ, điều khiển từ xa và nhiều tính năng tiện ích khác với độ trễ thấp hơn cho cảm giác sử dụng chân thực như bút thật.</p>
-                    </div>
+                <div class="rating-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
                 </div>
-
-                <div id="reviews" class="tab-content">
-                    <h2>Đánh giá & nhận xét</h2>
-                    <div class="review-summary">
-                        <div class="rating-summary">
-                            <div class="rating-average">
-                                <span class="number">4.8</span>
-                                <span class="text">trên 5</span>
-                            </div>
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="rating-count">
-                                <span>325 đánh giá</span>
-                            </div>
-                        </div>
-                        <div class="rating-bars">
-                            <div class="rating-bar-item">
-                                <div class="rating-label">5 sao</div>
-                                <div class="rating-bar">
-                                    <div class="rating-bar-fill" style="width: 80%;"></div>
-                                </div>
-                                <div class="rating-percent">80%</div>
-                            </div>
-                            <div class="rating-bar-item">
-                                <div class="rating-label">4 sao</div>
-                                <div class="rating-bar">
-                                    <div class="rating-bar-fill" style="width: 15%;"></div>
-                                </div>
-                                <div class="rating-percent">15%</div>
-                            </div>
-                            <div class="rating-bar-item">
-                                <div class="rating-label">3 sao</div>
-                                <div class="rating-bar">
-                                    <div class="rating-bar-fill" style="width: 3%;"></div>
-                                </div>
-                                <div class="rating-percent">3%</div>
-                            </div>
-                            <div class="rating-bar-item">
-                                <div class="rating-label">2 sao</div>
-                                <div class="rating-bar">
-                                    <div class="rating-bar-fill" style="width: 1%;"></div>
-                                </div>
-                                <div class="rating-percent">1%</div>
-                            </div>
-                            <div class="rating-bar-item">
-                                <div class="rating-label">1 sao</div>
-                                <div class="rating-bar">
-                                    <div class="rating-bar-fill" style="width: 1%;"></div>
-                                </div>
-                                <div class="rating-percent">1%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-form">
-                        <h3>Gửi đánh giá của bạn</h3>
-                        <div class="form-group">
-                            <label>Chọn đánh giá</label>
-                            <div class="star-rating">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="review-title">Tiêu đề</label>
-                            <input type="text" id="review-title" placeholder="Nhập tiêu đề đánh giá">
-                        </div>
-                        <div class="form-group">
-                            <label for="review-content">Nội dung</label>
-                            <textarea id="review-content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm"></textarea>
-                        </div>
-                        <button class="btn btn-primary">Gửi đánh giá</button>
-                    </div>
-
-                    <div class="user-reviews">
-                        <h3>Nhận xét từ khách hàng</h3>
-                        
-                        <div class="review-item">
-                            <div class="reviewer-info">
-                                <div class="reviewer-name">Nguyễn Văn A</div>
-                                <div class="review-date">Đã mua ngày 10/06/2023</div>
-                            </div>
-                            <div class="review-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="review-title">Sản phẩm tuyệt vời, đáng đồng tiền</div>
-                            <div class="review-content">
-                                <p>Sau khi dùng được 1 tháng thì mình rất hài lòng với chiếc S23 Ultra này. Camera chụp quá đẹp, pin dùng cả ngày không lo hết, bút S-Pen tiện lợi khi cần ghi chú nhanh. Tốc độ máy cực nhanh, không bị giật lag. Màn hình hiển thị quá đẹp. Đáng đồng tiền bát gạo!</p>
-                            </div>
-                        </div>
-                        
-                        <div class="review-item">
-                            <div class="reviewer-info">
-                                <div class="reviewer-name">Trần Thị B</div>
-                                <div class="review-date">Đã mua ngày 05/06/2023</div>
-                            </div>
-                            <div class="review-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="review-title">Máy đẹp, chụp ảnh đỉnh</div>
-                            <div class="review-content">
-                                <p>Máy đẹp, cầm chắc tay. Camera chụp ảnh rất nét, zoom xa vẫn rõ. Điểm trừ là hơi nóng khi chơi game nặng và pin không được như mong đợi. Nhưng nhìn chung vẫn rất đáng mua ở tầm giá này.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="review-item">
-                            <div class="reviewer-info">
-                                <div class="reviewer-name">Lê Văn C</div>
-                                <div class="review-date">Đã mua ngày 28/05/2023</div>
-                            </div>
-                            <div class="review-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="review-title">Quá tuyệt vời, không thể chê vào đâu được</div>
-                            <div class="review-content">
-                                <p>Mình mua máy được 2 tuần, cảm nhận đầu tiên là máy đẹp, sang trọng. Chụp ảnh zoom 100x vẫn rõ nét. Camera chụp đêm cực kỳ tốt. Hệ điều hành mượt mà, đa nhiệm tốt. Pin dùng được cả ngày với nhu cầu cao. Bút S-Pen là điểm cộng lớn cho công việc của mình. Quá ưng ý với sản phẩm này!</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="rating-count">
+                  <span>325 đánh giá</span>
                 </div>
+              </div>
+              <div class="rating-bars">
+                <div class="rating-bar-item">
+                  <div class="rating-label">5 sao</div>
+                  <div class="rating-bar">
+                    <div class="rating-bar-fill" style="width: 80%"></div>
+                  </div>
+                  <div class="rating-percent">80%</div>
+                </div>
+                <div class="rating-bar-item">
+                  <div class="rating-label">4 sao</div>
+                  <div class="rating-bar">
+                    <div class="rating-bar-fill" style="width: 15%"></div>
+                  </div>
+                  <div class="rating-percent">15%</div>
+                </div>
+                <div class="rating-bar-item">
+                  <div class="rating-label">3 sao</div>
+                  <div class="rating-bar">
+                    <div class="rating-bar-fill" style="width: 3%"></div>
+                  </div>
+                  <div class="rating-percent">3%</div>
+                </div>
+                <div class="rating-bar-item">
+                  <div class="rating-label">2 sao</div>
+                  <div class="rating-bar">
+                    <div class="rating-bar-fill" style="width: 1%"></div>
+                  </div>
+                  <div class="rating-percent">1%</div>
+                </div>
+                <div class="rating-bar-item">
+                  <div class="rating-label">1 sao</div>
+                  <div class="rating-bar">
+                    <div class="rating-bar-fill" style="width: 1%"></div>
+                  </div>
+                  <div class="rating-percent">1%</div>
+                </div>
+              </div>
             </div>
 
-            <section class="related-products">
-                <h2>Sản phẩm tương tự</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <span class="badge">Giảm 1.000.000₫</span>
-                        <a href="smartphone-detail.html">
-                            <div class="product-img">
-                                <i class="fas fa-mobile-alt fa-5x"></i>
-                            </div>
-                            <div class="product-info">
-                                <h3>iPhone 14 Pro Max</h3>
-                                <div class="price">
-                                    <span class="current">28.990.000₫</span>
-                                    <span class="original">29.990.000₫</span>
-                                </div>
-                                <div class="specs">
-                                    <span>A16 Bionic</span>
-                                    <span>6GB RAM</span>
-                                    <span>128GB</span>
-                                </div>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>518 đánh giá</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product-card">
-                        <span class="badge">Giảm 2.500.000₫</span>
-                        <a href="smartphone-detail.html">
-                            <div class="product-img">
-                                <i class="fas fa-mobile-alt fa-5x"></i>
-                            </div>
-                            <div class="product-info">
-                                <h3>Samsung Galaxy S23</h3>
-                                <div class="price">
-                                    <span class="current">19.990.000₫</span>
-                                    <span class="original">22.490.000₫</span>
-                                </div>
-                                <div class="specs">
-                                    <span>Snapdragon 8 Gen 2</span>
-                                    <span>8GB RAM</span>
-                                    <span>128GB</span>
-                                </div>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>98 đánh giá</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product-card">
-                        <span class="badge">Giảm 1.200.000₫</span>
-                        <a href="smartphone-detail.html">
-                            <div class="product-img">
-                                <i class="fas fa-mobile-alt fa-5x"></i>
-                            </div>
-                            <div class="product-info">
-                                <h3>Vivo V25 Pro</h3>
-                                <div class="price">
-                                    <span class="current">12.790.000₫</span>
-                                    <span class="original">13.990.000₫</span>
-                                </div>
-                                <div class="specs">
-                                    <span>Dimensity 1300</span>
-                                    <span>8GB RAM</span>
-                                    <span>128GB</span>
-                                </div>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>122 đánh giá</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product-card">
-                        <span class="badge">Giảm 500.000₫</span>
-                        <a href="smartphone-detail.html">
-                            <div class="product-img">
-                                <i class="fas fa-mobile-alt fa-5x"></i>
-                            </div>
-                            <div class="product-info">
-                                <h3>iPhone 13</h3>
-                                <div class="price">
-                                    <span class="current">16.990.000₫</span>
-                                    <span class="original">17.490.000₫</span>
-                                </div>
-                                <div class="specs">
-                                    <span>A15 Bionic</span>
-                                    <span>4GB RAM</span>
-                                    <span>128GB</span>
-                                </div>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>567 đánh giá</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+            <div class="review-form">
+              <h3>Gửi đánh giá của bạn</h3>
+              <div class="form-group">
+                <label>Chọn đánh giá</label>
+                <div class="star-rating">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
                 </div>
-            </section>
+              </div>
+              <div class="form-group">
+                <label for="review-title">Tiêu đề</label>
+                <input
+                  type="text"
+                  id="review-title"
+                  placeholder="Nhập tiêu đề đánh giá"
+                />
+              </div>
+              <div class="form-group">
+                <label for="review-content">Nội dung</label>
+                <textarea
+                  id="review-content"
+                  rows="5"
+                  placeholder="Nhập nội dung đánh giá của bạn về sản phẩm"
+                ></textarea>
+              </div>
+              <button class="btn btn-primary">Gửi đánh giá</button>
+            </div>
+
+            <div class="user-reviews">
+              <h3>Nhận xét từ khách hàng</h3>
+
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <div class="reviewer-name">Nguyễn Văn A</div>
+                  <div class="review-date">Đã mua ngày 10/06/2023</div>
+                </div>
+                <div class="review-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="review-title">
+                  Sản phẩm tuyệt vời, đáng đồng tiền
+                </div>
+                <div class="review-content">
+                  <p>
+                    Sau khi dùng được 1 tháng thì mình rất hài lòng với chiếc
+                    S23 Ultra này. Camera chụp quá đẹp, pin dùng cả ngày không
+                    lo hết, bút S-Pen tiện lợi khi cần ghi chú nhanh. Tốc độ máy
+                    cực nhanh, không bị giật lag. Màn hình hiển thị quá đẹp.
+                    Đáng đồng tiền bát gạo!
+                  </p>
+                </div>
+              </div>
+
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <div class="reviewer-name">Trần Thị B</div>
+                  <div class="review-date">Đã mua ngày 05/06/2023</div>
+                </div>
+                <div class="review-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <div class="review-title">Máy đẹp, chụp ảnh đỉnh</div>
+                <div class="review-content">
+                  <p>
+                    Máy đẹp, cầm chắc tay. Camera chụp ảnh rất nét, zoom xa vẫn
+                    rõ. Điểm trừ là hơi nóng khi chơi game nặng và pin không
+                    được như mong đợi. Nhưng nhìn chung vẫn rất đáng mua ở tầm
+                    giá này.
+                  </p>
+                </div>
+              </div>
+
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <div class="reviewer-name">Lê Văn C</div>
+                  <div class="review-date">Đã mua ngày 28/05/2023</div>
+                </div>
+                <div class="review-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="review-title">
+                  Quá tuyệt vời, không thể chê vào đâu được
+                </div>
+                <div class="review-content">
+                  <p>
+                    Mình mua máy được 2 tuần, cảm nhận đầu tiên là máy đẹp, sang
+                    trọng. Chụp ảnh zoom 100x vẫn rõ nét. Camera chụp đêm cực kỳ
+                    tốt. Hệ điều hành mượt mà, đa nhiệm tốt. Pin dùng được cả
+                    ngày với nhu cầu cao. Bút S-Pen là điểm cộng lớn cho công
+                    việc của mình. Quá ưng ý với sản phẩm này!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <section class="related-products">
+          <h2>Sản phẩm tương tự</h2>
+          <div class="product-grid">
+            <div class="product-card">
+              <span class="badge">Giảm 1.000.000₫</span>
+              <a href="smartphone-detail.html">
+                <div class="product-img">
+                  <i class="fas fa-mobile-alt fa-5x"></i>
+                </div>
+                <div class="product-info">
+                  <h3>iPhone 14 Pro Max</h3>
+                  <div class="price">
+                    <span class="current">28.990.000₫</span>
+                    <span class="original">29.990.000₫</span>
+                  </div>
+                  <div class="specs">
+                    <span>A16 Bionic</span>
+                    <span>6GB RAM</span>
+                    <span>128GB</span>
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>518 đánh giá</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="product-card">
+              <span class="badge">Giảm 2.500.000₫</span>
+              <a href="smartphone-detail.html">
+                <div class="product-img">
+                  <i class="fas fa-mobile-alt fa-5x"></i>
+                </div>
+                <div class="product-info">
+                  <h3>Samsung Galaxy S23</h3>
+                  <div class="price">
+                    <span class="current">19.990.000₫</span>
+                    <span class="original">22.490.000₫</span>
+                  </div>
+                  <div class="specs">
+                    <span>Snapdragon 8 Gen 2</span>
+                    <span>8GB RAM</span>
+                    <span>128GB</span>
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>98 đánh giá</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="product-card">
+              <span class="badge">Giảm 1.200.000₫</span>
+              <a href="smartphone-detail.html">
+                <div class="product-img">
+                  <i class="fas fa-mobile-alt fa-5x"></i>
+                </div>
+                <div class="product-info">
+                  <h3>Vivo V25 Pro</h3>
+                  <div class="price">
+                    <span class="current">12.790.000₫</span>
+                    <span class="original">13.990.000₫</span>
+                  </div>
+                  <div class="specs">
+                    <span>Dimensity 1300</span>
+                    <span>8GB RAM</span>
+                    <span>128GB</span>
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>122 đánh giá</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="product-card">
+              <span class="badge">Giảm 500.000₫</span>
+              <a href="smartphone-detail.html">
+                <div class="product-img">
+                  <i class="fas fa-mobile-alt fa-5x"></i>
+                </div>
+                <div class="product-info">
+                  <h3>iPhone 13</h3>
+                  <div class="price">
+                    <span class="current">16.990.000₫</span>
+                    <span class="original">17.490.000₫</span>
+                  </div>
+                  <div class="specs">
+                    <span>A15 Bionic</span>
+                    <span>4GB RAM</span>
+                    <span>128GB</span>
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>567 đánh giá</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h3>Thông tin và chính sách</h3>
-                    <ul>
-                        <li><a href="#">Mua hàng và thanh toán Online</a></li>
-                        <li><a href="#">Mua hàng trả góp Online</a></li>
-                        <li><a href="#">Chính sách giao hàng</a></li>
-                        <li><a href="#">Chính sách đổi trả</a></li>
-                        <li><a href="#">Chính sách bảo hành</a></li>
-                        <li><a href="#">Chính sách giải quyết khiếu nại</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Dịch vụ và thông tin khác</h3>
-                    <ul>
-                        <li><a href="#">Khách hàng doanh nghiệp</a></li>
-                        <li><a href="#">Ưu đãi thanh toán</a></li>
-                        <li><a href="#">Quy chế hoạt động</a></li>
-                        <li><a href="#">Chính sách Bảo mật</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Tổng đài hỗ trợ (Miễn phí gọi)</h3>
-                    <ul class="contact-info">
-                        <li>Gọi mua hàng: <strong>1800.1060</strong> (7:30 - 22:00)</li>
-                        <li>Gọi khiếu nại: <strong>1800.1062</strong> (8:00 - 21:30)</li>
-                        <li>Gọi bảo hành: <strong>1800.1064</strong> (8:00 - 21:00)</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Theo dõi chúng tôi</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                    <div class="payment-methods">
-                        <h3>Phương thức thanh toán</h3>
-                        <div class="payment-icons">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-jcb"></i>
-                            <i class="fas fa-money-bill-wave"></i>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Thông tin và chính sách</h3>
+            <ul>
+              <li><a href="#">Mua hàng và thanh toán Online</a></li>
+              <li><a href="#">Mua hàng trả góp Online</a></li>
+              <li><a href="#">Chính sách giao hàng</a></li>
+              <li><a href="#">Chính sách đổi trả</a></li>
+              <li><a href="#">Chính sách bảo hành</a></li>
+              <li><a href="#">Chính sách giải quyết khiếu nại</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Dịch vụ và thông tin khác</h3>
+            <ul>
+              <li><a href="#">Khách hàng doanh nghiệp</a></li>
+              <li><a href="#">Ưu đãi thanh toán</a></li>
+              <li><a href="#">Quy chế hoạt động</a></li>
+              <li><a href="#">Chính sách Bảo mật</a></li>
+              <li><a href="#">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Tổng đài hỗ trợ (Miễn phí gọi)</h3>
+            <ul class="contact-info">
+              <li>Gọi mua hàng: <strong>1800.1060</strong> (7:30 - 22:00)</li>
+              <li>Gọi khiếu nại: <strong>1800.1062</strong> (8:00 - 21:30)</li>
+              <li>Gọi bảo hành: <strong>1800.1064</strong> (8:00 - 21:00)</li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Theo dõi chúng tôi</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
-            <div class="copyright">
-                <p>© 2023 - Thế Giới Di Động clone - Phát triển với HTML & CSS thuần</p>
+            <div class="payment-methods">
+              <h3>Phương thức thanh toán</h3>
+              <div class="payment-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-jcb"></i>
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="copyright">
+          <p>
+            © 2023 - Thế Giới Di Động clone - Phát triển với HTML & CSS thuần
+          </p>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

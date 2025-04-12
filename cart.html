@@ -10,10 +10,11 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/responsive.css" />
-    <link rel="stylesheet" href="./css/search.css" />
+    <link rel="stylesheet" href="./css/search_mainpage.css" />
     <link rel="stylesheet" href="./css/cart.css" />
-    <script src="./js/search.js" defer></script>
+    <script type="module" src="./js/search.js" defer></script>
     <script type="module" src="./js/cart.js" defer></script>
+    <script type="module" src="./js/checklogin.js" defer></script>
     <style>
       .qr-modal {
         position: fixed;
@@ -51,7 +52,12 @@
         <div class="container">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/logo.svg" alt="HONGO" width="150" height="40" />
+              <img
+                src="./img/imgs/logo.png"
+                alt="HONGO"
+                width="150"
+                height="40"
+              />
             </a>
           </div>
           <div class="search-bar">
@@ -67,6 +73,12 @@
           </div>
           <div class="top-nav">
             <ul>
+              <li id="account-menu">
+                <!-- <a href="login.html"><i class="fas fa-user"></i> Đăng nhập</a>
+                <a href="profile.html"
+                  ><i class="fas fa-user-circle"></i> Tài khoản của tôi</a
+                > -->
+              </li>
               <li>
                 <a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a>
               </li>

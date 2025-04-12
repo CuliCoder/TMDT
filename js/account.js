@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.error === 0) {
                     alert("Đăng nhập thành công! Chào mừng bạn quay trở lại.");
                     window.userId = data.data.id; 
+                    localStorage.setItem("Myid", JSON.stringify(data.data.id)); // Lưu thông tin người dùng vào localStorage
                     sessionStorage.setItem("userId", data.data.id); 
                     window.location.href = "profile.html";
                 } else {
@@ -451,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
 
             // Clear user data from localStorage
-            localStorage.removeItem("userData");
+            localStorage.removeItem("Myid");
 
             // Redirect to home page
             alert("Đăng xuất thành công!");
