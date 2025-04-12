@@ -9,41 +9,97 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/account.css">
     <link rel="stylesheet" href="./css/address.css">
+    <link rel="stylesheet" href="./css/search_mainpage.css">
     <script src="./js/account.js"></script>
     <script src="./js/address.js"></script>
+    <script type="module" src="./js/search.js"></script>
     <script type="module" src="./js/checklogin.js"></script>
 </head>
 
 <body>
     <header>
         <div class="top-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="assets/logo.svg" alt="HONGO" width="150" height="40">
-                    </a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Bạn tìm gì...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="top-nav">
-                    <ul>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> Tài khoản</a></li>
-                        <li><a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a></li>
-                        <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a></li>
-                    </ul>
-                </div>
+          <div class="container">
+            <div class="logo">
+              <a href="index.html">
+                <img
+                  src="./img/imgs/logo.png"
+                  alt="HONGO"
+                  width="150"
+                  height="40"
+                />
+              </a>
             </div>
+            <div class="search-bar">
+              <input type="text" id="search-input" placeholder="Bạn tìm gì..." />
+              <button><i class="fas fa-search"></i></button>
+              <div class="search-suggestions" id="search-suggestions">
+                <!-- Suggestions will be inserted here by JavaScript -->
+                <div class="suggestion-footer">
+                  <span id="results-count">0 kết quả</span>
+                  <button class="view-all-results">Xem tất cả</button>
+                </div>
+              </div>
+            </div>
+            <div class="top-nav">
+              <ul>
+                <li>
+                  <a href="#"><i class="fas fa-history"></i> Lịch sử đơn hàng</a>
+                </li>
+                <li>
+                  <a href="cart.html"
+                    ><i class="fas fa-shopping-cart"></i> Giỏ hàng</a
+                  >
+                </li>
+                <li class="menu-toggler">
+                  <a href="#"><i class="fas fa-bars"></i> Menu</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </header>
+        <nav class="main-nav">
+          <div class="container">
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+                  </li>
+                  <li>
+                    <a href="categories/smartphones.html"
+                      ><i class="fas fa-mobile-alt"></i> Điện thoại</a
+                    >
+                  </li>
+                  <!-- <li>
+                    <a href="categories/laptops.html"
+                      ><i class="fas fa-laptop"></i> Laptop</a
+                    >
+                  </li> -->
+                  <!-- <li>
+                    <a href="#"><i class="fas fa-tablet-alt"></i> Tablet</a>
+                  </li> -->
+                  <li>
+                    <a href="#"><i class="fas fa-headphones"></i> Phụ kiện</a>
+                  </li>
+                  <!-- <li>
+                    <a href="#"><i class="fas fa-watch"></i> Đồng hồ</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fas fa-tv"></i> Smart TV</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fas fa-tag"></i> Khuyến mãi</a>
+                  </li> -->
+            </ul>
+          </div>
+        </nav>
+      </header>
 
     <div class="breadcrumb-wrapper">
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.html">Trang chủ</a>
                 <span>/</span>
-                <a href="profile.html">Tài khoản</a>
+                <a href="profile.html">Tài khoản của tôi</a>
                 <span>/</span>
                 <span>Sổ địa chỉ</span>
             </div>
@@ -54,18 +110,29 @@
         <div class="container">
             <div class="profile-layout">
                 <div class="profile-sidebar">
-                    <div class="profile-nav">
-                        <ul>
-                            <li><a href="profile.html"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a></li>
-                            <li><a href="#"><i class="fas fa-shopping-bag"></i> Quản lý đơn hàng</a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i> Sản phẩm yêu thích</a></li>
-                            <li class="active"><a href="address.html"><i class="fas fa-map-marker-alt"></i> Sổ địa
-                                    chỉ</a></li>
-                            <li><a href="#"><i class="fas fa-bell"></i> Thông báo</a></li>
-                        </ul>
-                    </div>
-                </div>
-
+                    <nav class="profile-nav">
+                      <ul>
+                        <li >
+                          <a href="profile.html">
+                            <i class="fas fa-user"></i> Thông tin tài khoản
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#"> <i class="fas fa-box"></i> Đơn hàng của tôi </a>
+                        </li>
+                        <li class="active">
+                          <a href="address.html">
+                            <i class="fas fa-address-book"></i> Sổ địa chỉ
+                          </a>
+                        </li>
+                        <li id="logout-link">
+                          <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
                 <div class="profile-content">
                     <div class="profile-header">
                         <h1>Sổ địa chỉ</h1>
