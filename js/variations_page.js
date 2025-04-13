@@ -5,7 +5,7 @@ const getProductItem = async (id) => {
     const response = await axiosInstance.get(
       "/product/product_item_by_productID/" + id
     );
-    return response.data;
+    return response.data.data.data;
   } catch (error) {
     console.error(error);
   }
@@ -29,7 +29,7 @@ const renderProductItems = async () => {
   const products = await getProductItem(id);
   let productsContainer = document.getElementById("product-list");
   productsContainer.innerHTML = "";
-  products.data.forEach((product) => {
+  products.forEach((product) => {
     const productElement = `<tr class="tm-product" data-id="${product.id}">
                     <th scope="row" class="w-25"><img
                       src="http://localhost:3000${product.product_image}"
@@ -38,7 +38,7 @@ const renderProductItems = async () => {
                     /></th>
                     <td>${product.id}</td>
                     <td>${product.product_id}</td>
-                    <td class="tm-product-name">${product.SKU}</td>
+                    <td class="tm-product-name">${product.sku}</td>
                     <td>${product.qty_in_stock}</td>
                     <td class="truncate">${product.description}</td>
                     <td>${parseFloat(product.profit_margin)} %</td>

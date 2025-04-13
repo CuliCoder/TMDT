@@ -232,7 +232,7 @@ document.querySelector(".btn-buy-now").addEventListener("click", async () => {
     Product_Item_ID: product_item_ID_to_cart,
     quantity: 1,
   });
-  window.location.href = "http://127.0.0.1:5500/TMDT/cart.html"; // chuyển đến trang thanh toán
+  window.location.href = `../cart.html`; // chuyển đến trang thanh toán
 });
 document.querySelector(".btn-add-cart").addEventListener("click", async () => {
   await axiosInstance.post("/cart", {

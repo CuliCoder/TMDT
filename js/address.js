@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function getUserId() {
-    return sessionStorage.getItem("userId") || 0;
+    return sessionStorage.getItem("userId") || localStorage.getItem("Myid") || "0";
 }
 
 async function fetchUserAddresses() {

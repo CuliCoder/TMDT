@@ -1,5 +1,5 @@
 import axiosInstance from "./configAxios.js";
-document.addEventListener("DOMContentLoaded",async function () {
+document.addEventListener("DOMContentLoaded", async function () {
   async function dataOrder() {
     try {
       let res = await axiosInstance.get("/orders");
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",async function () {
   }
   async function show_orders() {
     let data = await dataOrder();
+    console.log(data.data);
     data = data.data; // Đợi kết quả của hàm dataOrder
     if (!data) {
       console.error("Không thể lấy dữ liệu đơn hàng");
@@ -38,11 +39,19 @@ document.addEventListener("DOMContentLoaded",async function () {
               data[i].OrderID
             })">${formatMoney.toLocaleString("vi-VN")} VNĐ</td>
             <td onclick="detail_order(${data[i].OrderID})">${
+        data[i].payment_method
+      }</td>
+            <td onclick="detail_order(${data[i].OrderID})">${
+        data[i].payment_status
+      }</td>
+            <td onclick="detail_order(${data[i].OrderID})">${
         data[i].Status
       }</td>
             <td class="actionTable">${action(
               data[i].Status,
-              data[i].OrderID
+              data[i].OrderID,
+              data[i].payment_status == "Chưa thanh toán" ? false : true,
+              data[i].payment_method
             )}</td>
         </tr>`;
     }
@@ -75,6 +84,7 @@ document.addEventListener("DOMContentLoaded",async function () {
     } else {
       document.querySelector(".body_table").innerHTML = "";
       for (let i = 0; i < result.length; i++) {
+        console.log(result[i]);
         let orderDate = new Date(result[i].OrderDate);
         let formattedDate = orderDate.toLocaleDateString("vi-VN", {
           day: "2-digit",
@@ -99,7 +109,9 @@ document.addEventListener("DOMContentLoaded",async function () {
         }</td>
                 <td class="actionTable">${action(
                   result[i].Status,
-                  result[i].OrderID
+                  result[i].OrderID,
+                  result[i].payment_status == "Chưa thanh toán" ? false : true,
+                  result[i].payment_method
                 )}</td>
             </tr>`;
       }
@@ -126,9 +138,13 @@ document.addEventListener("DOMContentLoaded",async function () {
           <p>Mã hóa đơn: ${res_od.data[0].OrderID}</p>
           <p>Ngày lập: ${formattedDate}</p>
           <p>Khách Hàng: ${res_customer.data.UserID} - ${res_customer.data.FullName}</p>
+          <p>Tên người nhận: ${res_od.data[0].name}</p>
+          <p>Số điện thoại: ${res_od.data[0].phonenumber}</p>
+          <p>Địa chỉ: ${res_od.data[0].address}</p>
           <table class="table_detail">
             <tr>
               <th>Sản phẩm</th>
+              <th>SKU</th>
               <th>Số lượng</th>
               <th>Đơn giá</th>
               <th>Thành tiền</th>
@@ -151,14 +167,12 @@ document.addEventListener("DOMContentLoaded",async function () {
         ); // lấy product thông qua id_product của product_item
         row.innerHTML = `
             <td>${res_product.data.ProductName}</td> 
+            <td>${res_product_item.data.data.sku}</td>
             <td>${res.data[0][i].Quantity}</td>
-            <td>${parseInt(res.data[0][i].Price).toLocaleString(
-              "vi-VN"
-            )} VNĐ</td>
-            <td>${
-              Number(res.data[0][i].Quantity) *
-              Number(res.data[0][i].Price).toLocaleString("vi-VN")
-            } VNĐ</td>
+            <td>${Number(
+              res.data[0][i].Price / res.data[0][i].Quantity
+            ).toLocaleString("vi-VN")} VNĐ</td>
+            <td>${Number(res.data[0][i].Price).toLocaleString("vi-VN")} VNĐ</td>
           `;
         table.appendChild(row);
       }
@@ -178,42 +192,68 @@ document.addEventListener("DOMContentLoaded",async function () {
     document.querySelector(".box_detailOrder").classList.add("hide");
     document.querySelector(".box_detailOrder").innerHTML = "";
   };
-  function action(status, orderID) {
-    if (status === "Đang xử lý")
-      return `<div class="box_action">
-                    <button type="button" class="btn btn-success btnY" onclick="event_Action('DongY',${orderID})">Đồng Ý</button>
-                    <button type="button" class="btn btn-danger btnN" onclick="event_Action('Huy',${orderID})">Hủy</button>
+  function action(status, orderID, payment, method) {
+    if (method === "bank" && payment === true) {
+      if (status === "Chuẩn bị hàng") {
+        return `<div class="box_action">
+                      <button type="button" class="btn btn-success danggiaohang" onclick="event_Action('Đang vận chuyển',${orderID},'${method}')">Đang vận chuyển</button>
+                  </div>`;
+      }
+      if (status === "Đang vận chuyển")
+        return `<div class="box_action">
+                      <button type="button" class="btn btn-success danggiaohang" onclick="event_Action('Đã giao',${orderID},'${method}')">Giao hàng thành công</button>
+                  </div>`;
+    }
+    if (method === "cod" && payment === false) {
+      if (status === "Chờ duyệt")
+        return `<div class="box_action d-flex flex-column">
+                      <button type="button" class="btn btn-success " onclick="event_Action('Chuẩn bị hàng',${orderID},'${method}')">Chuẩn bị hàng</button>
+                      <button type="button" class="btn btn-danger " onclick="event_Action('Hủy',${orderID},'${method}')">Hủy</button>
+                  </div>`;
+      if (status === "Chuẩn bị hàng") {
+        return `<div class="box_action d-flex flex-column">
+                      <button type="button" class="btn btn-success danggiaohang" onclick="event_Action('Đang vận chuyển',${orderID},'${method}')">Đang vận chuyển</button>
+                      <button type="button" class="btn btn-danger " onclick="event_Action('Hủy',${orderID},'${method}')">Hủy</button>
+                      </div>`;
+      }
+      if (status === "Đang vận chuyển")
+        return `<div class="box_action d-flex flex-column">
+                      <button type="button" class="btn btn-success danggiaohang" onclick="event_Action('Đã giao',${orderID},'${method}')">Giao hàng thành công</button>
+                      <button type="button" class="btn btn-danger " onclick="event_Action('Hủy',${orderID},'${method}')">Hủy</button>
                 </div>`;
-    else if (status === "Đang giao hàng")
-      return `<div class="box_action">
-                    <button type="button" class="btn btn-success danggiaohang" onclick="event_Action('Giaohangthanhcong',${orderID})">Giao hàng thành công</button>
-                </div>`;
-    else return `<p></p>`;
+    }
+    return `<p></p>`;
   }
   window.action = action;
-  async function event_Action(action, orderID) {
+  async function event_Action(action, orderID, method) {
     try {
-      if (action === "Huy") {
-        let body_infor = {
-          id: orderID,
-          Status: "Đã hủy",
-        };
-        await axiosInstance.put(`/orders`, body_infor);
-        console.log("loi");
-      } else if (action === "DongY") {
-        let body_infor = {
-          id: orderID,
-          Status: "Đang giao hàng",
-        };
-        await axiosInstance.put(`/orders`, body_infor);
-      } else if (action === "Giaohangthanhcong") {
-        let body_infor = {
-          id: orderID,
-          Status: "Giao thành công",
-        };
-        await axiosInstance.put(`/orders`, body_infor);
-      }
-      location.reload();
+      // if (action === "Huy") {
+      //   let body_infor = {
+      //     id: orderID,
+      //     Status: "Đã hủy",
+      //   };
+      //   await axiosInstance.put(`/orders`, body_infor);
+      //   console.log("loi");
+      // } else if (action === "DongY") {
+      //   let body_infor = {
+      //     id: orderID,
+      //     Status: "Đang giao hàng",
+      //   };
+      //   await axiosInstance.put(`/orders`, body_infor);
+      // } else if (action === "Giaohangthanhcong") {
+      //   let body_infor = {
+      //     id: orderID,
+      //     Status: "Giao thành công",
+      //   };
+      //   await axiosInstance.put(`/orders`, body_infor);
+      // }
+      let body_infor = {
+        id: orderID,
+        Status: action,
+        method,
+      };
+      await axiosInstance.put(`/orders`, body_infor);
+      await show_orders();
     } catch (error) {
       console.error("Không thể thực hiện hành động");
     }

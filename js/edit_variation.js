@@ -18,7 +18,7 @@ const get_product_item = async () => {
 };
 const product_item = await get_product_item();
 variants = product_item.attributes;
-document.getElementById("sku").value = product_item.SKU;
+document.getElementById("sku").value = product_item.sku;
 document.getElementById("description").value = product_item.description;
 document.getElementById("profit_margin").value = product_item.profit_margin;
 document.getElementById(
