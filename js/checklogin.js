@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "profile.html",
     "checkout.html",
     "order_history.html",
+    "cart.html",
   ];
   if (unauthorizedUrls.includes(currentUrl) && !user) {
     window.location.href = "login.html";

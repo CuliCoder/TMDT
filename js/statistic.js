@@ -50,10 +50,10 @@ function fetchTotalRevenue(startDate, endDate) {
         data: JSON.stringify(data),
         success: function (response) {
             console.log('Tổng doanh thu:', response); // Kiểm tra dữ liệu trả về
-            if (response && response.totalRevenue !== undefined && !isNaN(response.totalRevenue)) {
+            if (response && response.totalRevenue !== undefined && !isNaN(response.totalRevenue) && response.totalRevenue !== null) {
                 $('#totalRevenue').text('₫' + parseFloat(response.totalRevenue).toLocaleString()); // Hiển thị tổng doanh thu
             } else {
-                $('#totalRevenue').text('₫0'); // Nếu không có dữ liệu hợp lệ, hiển thị 0
+                $('#totalRevenue').text('0₫'); // Nếu không có dữ liệu hợp lệ, hiển thị 0
             }
         },
         error: function (error) {

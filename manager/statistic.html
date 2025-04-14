@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thống kê</title>
@@ -13,141 +12,222 @@
     <link rel="stylesheet" href="../css/docs.css" />
     <link rel="stylesheet" href="../css/statistic.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="shortcut icon" href="../img/favicon/favicon-16x16.png" type="image/png" />
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/d443b73be9.js" crossorigin="anonymous"></script>
+    <link
+      rel="shortcut icon"
+      href="../img/favicon/favicon-16x16.png"
+      type="image/png"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/d443b73be9.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../js/checkloginAdm.js"></script>
     <!-- Moment.js (bắt buộc trước daterangepicker) -->
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
     <!-- Daterangepicker CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
 
     <!-- Daterangepicker JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header>
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-            <div class="position-sticky">
-                <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="./statistic.html" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Tổng quan</span>
-                    </a>
-                    <a href="./products_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-mobile-screen fa-fw me-3"></i><span>Sản phẩm</span>
-                    </a>
-                    <a href="./sidebar_DonHang.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-file-invoice fa-fw me-3"></i><span>Đơn hàng</span>
-                    </a>
-                    <a href="./customers_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="far fa-address-card fa-fw me-3"></i><span>Khách hàng</span>
-                    </a>
-                    <a href="./categories_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span>
-                    </a>
-                    <a href="./brand_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span>
-                    </a>
-                    <a href="./supplier_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-building fa-fw me-3"></i><span>Nhà cung cấp</span>
-                    </a>
-                    <a href="./sidebar_nhaphang.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-truck-loading fa-fw me-3"></i><span>Nhập hàng</span>
-                    </a>
-                    <a href="./promotion_page.html" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-tag fa-fw me-3"></i><span>Khuyến mãi</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-right-from-bracket fa-fw me-3"></i><span>Đăng xuất</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
+      <nav
+        id="sidebarMenu"
+        class="collapse d-lg-block sidebar collapse bg-white"
+      >
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a
+              href="./statistic.html"
+              class="list-group-item list-group-item-action py-2 ripple active"
+            >
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i
+              ><span>Tổng quan</span>
+            </a>
+            <a
+              href="./products_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fa-solid fa-mobile-screen fa-fw me-3"></i
+              ><span>Sản phẩm</span>
+            </a>
+            <a
+              href="./sidebar_DonHang.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fas fa-file-invoice fa-fw me-3"></i
+              ><span>Đơn hàng</span>
+            </a>
+            <a
+              href="./customers_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="far fa-address-card fa-fw me-3"></i
+              ><span>Khách hàng</span>
+            </a>
+            <a
+              href="./categories_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fas fa-chart-bar fa-fw me-3"></i><span>Loại</span>
+            </a>
+            <a
+              href="./brand_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fas fa-globe fa-fw me-3"></i><span>Hãng</span>
+            </a>
+            <a
+              href="./supplier_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fas fa-building fa-fw me-3"></i
+              ><span>Nhà cung cấp</span>
+            </a>
+            <a
+              href="./sidebar_nhaphang.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fas fa-truck-loading fa-fw me-3"></i
+              ><span>Nhập hàng</span>
+            </a>
+            <a
+              href="./promotion_page.html"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fa-solid fa-tag fa-fw me-3"></i><span>Khuyến mãi</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple"
+            >
+              <i class="fa-solid fa-right-from-bracket fa-fw me-3"></i
+              ><span>Đăng xuất</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <nav
+        id="main-navbar"
+        class="navbar navbar-expand-lg navbar-dark bg-white fixed-top"
+      >
+        <div class="container-fluid">
+          <button
+            data-mdb-button-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-collapse-init
+            data-mdb-target="#sidebarMenu"
+            aria-controls="sidebarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <a class="navbar-brand" href="#">
+            <img
+              src="../img/imgs/logo.png"
+              height="25"
+              alt="MDB Logo"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </nav>
     </header>
 
     <main style="margin-top: 58px">
-        <div class="container pt-4">
-            <h2 class="mb-4">Thống kê tổng quan</h2>
+      <div class="container pt-4">
+        <h2 class="mb-4">Thống kê tổng quan</h2>
 
-            <!-- Bộ lọc theo khoảng thời gian -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <label for="revenue-date-range" class="form-label fw-bold">Chọn khoảng thời gian:</label>
-                    <input type="text" id="revenue-date-range" class="form-control" />
-                </div>
-            </div>
-
-            <!-- Gộp 3 phần vào 1 hàng -->
-            <div class="row mb-4">
-                <!-- Tổng doanh thu -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-success">
-                        <div class="card-body">
-                            <h5 class="card-title">Tổng doanh thu</h5>
-                            <p class="card-text fs-4" id="totalRevenue">₫0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Khách hàng mới -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary">
-                        <div class="card-body">
-                            <h5 class="card-title">Khách hàng mới</h5>
-                            <p class="card-text fs-4" id="newCustomers">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sản phẩm bán chạy nhất -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning">
-                        <div class="card-body">
-                            <h5 class="card-title">Top sản phẩm bán chạy</h5>
-                            <ul class="list-unstyled" id="topProducts">
-                                <!-- Đây là phần hiển thị sản phẩm bán chạy nhất -->
-                                <li class="p-2 mb-1" id="topProduct"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- Bảng cho đơn hàng hôm nay -->
-            <div class="card mt-3">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0">Đơn hàng hôm nay</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Mã đơn</th>
-                                    <th>Ngày đặt</th>
-                                    <th>Tổng tiền</th>
-                                    <th>Khách hàng</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Thanh toán</th>
-                                </tr>
-                            </thead>
-                            <tbody id="todayOrdersTable">
-                                <!-- Dữ liệu đơn hàng hôm nay sẽ render ở đây -->
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
+        <!-- Bộ lọc theo khoảng thời gian -->
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <label for="revenue-date-range" class="form-label fw-bold"
+              >Chọn khoảng thời gian:</label
+            >
+            <input type="text" id="revenue-date-range" class="form-control" />
+          </div>
         </div>
+
+        <!-- Gộp 3 phần vào 1 hàng -->
+        <div class="row mb-4">
+          <!-- Tổng doanh thu -->
+          <div class="col-md-4">
+            <div class="card text-white bg-success">
+              <div class="card-body">
+                <h5 class="card-title">Tổng doanh thu</h5>
+                <p class="card-text fs-4" id="totalRevenue">₫0</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Khách hàng mới -->
+          <div class="col-md-4">
+            <div class="card text-white bg-primary">
+              <div class="card-body">
+                <h5 class="card-title">Khách hàng mới</h5>
+                <p class="card-text fs-4" id="newCustomers">0</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sản phẩm bán chạy nhất -->
+          <div class="col-md-4">
+            <div class="card text-white bg-warning">
+              <div class="card-body">
+                <h5 class="card-title">Top sản phẩm bán chạy</h5>
+                <ul class="list-unstyled" id="topProducts">
+                  <!-- Đây là phần hiển thị sản phẩm bán chạy nhất -->
+                  <li class="p-2 mb-1" id="topProduct"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bảng cho đơn hàng hôm nay -->
+        <div class="card mt-3">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Đơn hàng hôm nay</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Mã đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Thanh toán</th>
+                  </tr>
+                </thead>
+                <tbody id="todayOrdersTable">
+                  <!-- Dữ liệu đơn hàng hôm nay sẽ render ở đây -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="../js/statistic.js"></script>
-</body>
-
+  </body>
 </html>
