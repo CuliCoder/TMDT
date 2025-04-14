@@ -1,0 +1,82 @@
+/* Phần cho input chọn khoảng thời gian */
+#revenue-date-range {
+    border: 2px solid #17a2b8;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+#revenue-date-range:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(23, 162, 184, 0.7);
+    border-color: #138496;
+}
+
+/* Định dạng cho phần chứa các box thống kê */
+.row.mb-4 {
+    display: flex;
+    justify-content: space-between; /* Căn đều giữa các phần tử */
+    gap: 15px; /* Khoảng cách giữa các box */
+}
+
+/* Đảm bảo các box trong .col-md-4 có chiều cao bằng nhau */
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; /* Các box sẽ chiếm đều không gian */
+}
+
+/* Đảm bảo card có chiều cao đồng đều */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Căn giữa các phần trong card */
+    height: 100%;
+}
+
+/* Đảm bảo card-body có đủ không gian */
+.card-body {
+    flex-grow: 1; /* Cho phép card body chiếm không gian còn lại */
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Định dạng cho tiêu đề và nội dung card */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Định dạng cho phần "Top sản phẩm bán chạy" */
+#topProducts {
+    list-style: none;
+    padding: 0;
+}
+
+#topProducts li {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Định dạng phần thông tin "atesst" để nó không bị nhỏ hoặc che khuất */
+#atesst {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #dc3545; /* Màu đỏ để nổi bật */
+    position: relative;
+    top: 5px;
+}
