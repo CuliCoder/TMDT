@@ -107,10 +107,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
 
       suggestionItem.addEventListener("click", function () {
+        const urls = [
+          "smartphone-detail.html",
+          "accessories-detail.html",
+          "smartphones.html",
+          "accessories.html",
+        ];
+        const currentUrl = window.location.pathname.split("/").pop();
+        const isSmartphonePage = urls.includes(currentUrl);
         const url =
-          product.category === "smartphone"
-            ? "products/smartphone-detail.html"
-            : "products/laptop-detail.html";
+          product.category_id === 1
+            ? `${isSmartphonePage?'..':'.'}/products/smartphone-detail.html?ProductItemID=${product.id}`
+            : `${isSmartphonePage?'..':'.'}/products/phukien-detail.html?ProductItemID=${product.product_id}`;
         window.location.href = url;
       });
 
