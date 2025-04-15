@@ -32,18 +32,22 @@ document.addEventListener("DOMContentLoaded", async function () {
     addresstxt.value = address.address;
   };
   await load_address();
-  async function removeProductFromCart(productId) {
+  window.removeProductFromCart = async function (productId) {
     try {
       if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?")) {
         const response = await axiosInstance.delete(
           `/cart/${productId}/${userID}`
         );
-        window.location.reload();
+        if (response.data.error == 1) {
+          alert(response.data.message);
+          return;
+        }
+        await show_list_cart(); // Cập nhật lại danh sách giỏ hàng sau khi xóa sản phẩm
       }
     } catch (error) {
       console.error("Error removing product from cart:", error);
     }
-  }
+  };
   async function getProductCart(userID) {
     try {
       const response = await axiosInstance.get("/cart?userID=" + userID);
@@ -52,13 +56,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Error fetching cart products:", error);
     }
   }
-  window.removeProductFromCart = removeProductFromCart;
-  show_list_cart();
-  window.show_list_cart = show_list_cart;
-  async function show_list_cart() {
-    let data = await getProductCart(userID);
+  window.show_list_cart = async function () {
+    const data = await getProductCart(userID);
     console.log(data);
     const cartContent = document.querySelector(".cart-items");
+    cartContent.innerHTML = "";
     let html = `
             <div class="cart-header">
                 <div class="product-col">Sản phẩm</div>
@@ -169,10 +171,16 @@ document.addEventListener("DOMContentLoaded", async function () {
                     </div>
         `;
     }
-    totalOrder(); // tính tổng tiền
+    await totalOrder(); // tính tổng tiền
     cartContent.innerHTML = html;
-  }
-  async function tang_giam_Value(value, event, product_item_ID, price) {
+  };
+  await show_list_cart();
+  window.tang_giam_Value = async function (
+    value,
+    event,
+    product_item_ID,
+    price
+  ) {
     const quantityInput = event.target
       .closest(".quantity-control")
       .querySelector(".quantity-input");
@@ -199,9 +207,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       .querySelector(".total-col")
       .querySelector(".total-price").textContent =
       (qtt * Number(price)).toLocaleString("vi-VN") + "₫";
-    totalOrder(); // tính tổng tiền
-  }
-  window.tang_giam_Value = tang_giam_Value;
+    await totalOrder(); // tính tổng tiền
+  };
   async function totalOrder() {
     let total = 0;
     let data = await getProductCart(userID);
@@ -220,7 +227,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       total.toLocaleString("vi-VN") + "₫";
     return total;
   }
-  async function nhap_so_luong(event, product_item_ID) {
+  window.nhap_so_luong = async function (event, product_item_ID) {
     const quantityInput = event.target
       .closest(".quantity-control")
       .querySelector(".quantity-input");
@@ -243,9 +250,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       .querySelector(".total-price").textContent =
       (quantityInput.value * Number(numericPrice)).toLocaleString("vi-VN") +
       "₫";
-    totalOrder(); // tính tổng tiền
-  }
-  async function set_Quantity_if_null(event, product_item_ID) {
+    await totalOrder(); // tính tổng tiền
+  };
+  window.set_Quantity_if_null = async function (event, product_item_ID) {
     const quantityInput = event.target
       .closest(".quantity-control")
       .querySelector(".quantity-input");
@@ -268,13 +275,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         product_item_ID: product_item_ID,
         quantity: quantityInput.value,
       });
-      totalOrder(); // tính tổng tiền
+      await totalOrder(); // tính tổng tiền
       return; // Không làm gì cả, đợi người dùng nhập tiếp
     }
     return;
-  }
-  window.set_Quantity_if_null = set_Quantity_if_null;
-  window.nhap_so_luong = nhap_so_luong;
+  };
   const checkOrderStatus = async (idOrder) => {
     try {
       const response = await axiosInstance.get(`/orders/status/${idOrder}`);
