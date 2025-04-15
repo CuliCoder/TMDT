@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Lịch Sử Hóa Đơn - TikInvoice</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/invoice-styles.css">
+  <script type="module" src="./js/oder_history.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Thanh tiêu đề phía trên -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-left">
+          <a href="#" class="back-button"><i class="fas fa-arrow-left"></i></a>
+          <h1>Lịch Sử Hóa Đơn</h1>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Phần tìm kiếm và lọc -->
+    <div class="search-filter-container">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" class="findOrder" placeholder="Tìm kiếm hóa đơn">
+      </div>
+      <div class="filter-options">
+        <button class="filter-button active tatca">Tất cả</button>
+        <button class="filter-button dathanhtoan">Đã thanh toán</button>
+        <button class="filter-button chuathanhtoan">Chưa thanh toán</button>
+        <button class="filter-button dahuy">Đã hủy</button>
+      </div>
+    </div>
+    <!-- Phần nội dung chính - Danh sách hóa đơn -->
+    <main class="invoice-feed">
+    </main>
+  </div>
+  <div class="popup_status hide">
+    <div class="tracking-timeline">
+  </div>
+  </div>
+  <div class="overlay hide"></div>
+</body>
+</html>
