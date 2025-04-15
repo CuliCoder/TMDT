@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? `<span class='limited-badge'>Còn ${earphoneList[i].qty_in_stock} sản phẩm</span>`
                 : "<div class='out-of-stock'>Hết hàng</div>"
             }
-            <a href="products/smartphone-detail.html?ProductItemID=${
+            <a href="products/phukien-detail.html?ProductItemID=${
               earphoneList[i].product_id
             }">
               <div class="product-img">
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? `<span class='limited-badge'>Còn ${charging_cableList[i].qty_in_stock} sản phẩm</span>`
                 : "<div class='out-of-stock'>Hết hàng</div>"
             }
-            <a href="products/smartphone-detail.html?ProductItemID=${
+            <a href="products/phukien-detail.html?ProductItemID=${
               charging_cableList[i].product_id
             }">
               <div class="product-img">
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? `<span class='limited-badge'>Còn ${power_bankList[i].qty_in_stock} sản phẩm</span>`
                 : "<div class='out-of-stock'>Hết hàng</div>"
             }
-            <a href="products/smartphone-detail.html?ProductItemID=${
+            <a href="products/phukien-detail.html?ProductItemID=${
               power_bankList[i].product_id
             }">
               <div class="product-img">

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const unauthorizedUrls = [
     "profile.html",
     "checkout.html",
-    "order_history.html",
+    "history_order.html",
     "cart.html",
   ];
   if (unauthorizedUrls.includes(currentUrl) && !user) {

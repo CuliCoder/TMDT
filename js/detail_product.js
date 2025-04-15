@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // B2: có bao nhiêu sản phẩm thì sẽ có bấy nhiêu sản phẩm liên quan
   //
   let list = []; // danh sách các sản phẩm liên quan
-  let product_item_ID_to_cart = null; // id sản phẩm trong giỏ hàng
+  let product_item_ID_to_cart = null; // id sản phẩm thêm vào giỏ hàng
   let list_img = [];
   const colorMap = {
     Đỏ: "#FF0000", // Red
@@ -36,13 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const infor_product = await axiosInstance.get(
         `/products/get_product_by_productID/${ProductID}`
       );
-      let percent = await axiosInstance.get(
-        `/api/promotions/${ProductID}/percent`
-      );
       let html_bo_nho = ``;
-      document.querySelector(
-        ".product-title"
-      ).innerHTML = `${infor_product.data.ProductName}`;
       document.getElementById(
         "nameProduct"
       ).innerHTML = `${infor_product.data.ProductName}`;
@@ -71,6 +65,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   async function default_variantOption(data) {
+    const infor_product = await axiosInstance.get(
+      `/products/get_product_by_productID/${ProductID}`
+    );
+    let html_bo_nho = ``;
+    document.querySelector(".product-title").innerHTML = `${
+      infor_product.data.ProductName +
+      " " +
+      (list[0].ram || list[0].gb ? list[0].ram + "/" + list[0].gb : "")
+    }`;
     document.querySelector(".variant-option").classList.add("active");
     document.querySelector(".thumbnail").classList.add("active");
     document.querySelector(
@@ -82,17 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
     let percent = await axiosInstance.get(
       `/api/promotions/${ProductID}/percent`
     );
-    document.querySelector(".price").innerHTML = `
+    if (percent.data > 0) {
+      document.querySelector(".price").innerHTML = `
                              <span class="current">${(
                                data[0].price -
-                               data[0].price * percent.data
+                               data[0].price * (percent.data / 100)
                              ).toLocaleString("vi-VN")}₫</span>
                              <span class="original">${(
                                data[0].price * 1
                              ).toLocaleString("vi-VN")}₫</span>
                              <span class="discount">Giảm ${
-                               percent.data * 100
+                               percent.data * 1
                              }%</span>`;
+    } else {
+      document.querySelector(".price").innerHTML = `
+                             <span class="current">${data[0].price.toLocaleString(
+                               "vi-VN"
+                             )}₫</span>`;
+    }
     let html = ``;
     document.querySelector(".bodytable_infor_product").innerHTML = html;
     document.querySelector(".colors").innerHTML = ``;
@@ -105,26 +115,38 @@ document.addEventListener("DOMContentLoaded", function () {
      <span>${data[i].color}</span>
      </a>`;
       }
-      const product_item = await axiosInstance.get(
-        `/products/product_item_by_ID/${data[0].id}`
-      );
-      let html_chitiet = ``;
-      product_item.data.data.attributes.forEach((attribute) => {
-        if (attribute.variantName !== "Màu") {
-          html_chitiet += `<tr>
+    }
+    const product_item = await axiosInstance.get(
+      `/products/product_item_by_ID/${data[0].id}`
+    );
+    let html_chitiet = ``;
+    product_item.data.data.attributes.forEach((attribute) => {
+      if (attribute.variantName !== "Màu") {
+        html_chitiet += `<tr>
         <td>${attribute.variantName}</td>
         <td>${attribute.values}</td>
         </tr>`;
-        }
-      });
-      document.querySelector(".bodytable_infor_product").innerHTML =
-        html_chitiet;
-      document.querySelector(".color-option")?.classList.add("active");
-      product_item_ID_to_cart = data[0].id; // lấy id sản phẩm để thêm vào giỏ hàng
-    }
-    window.default_Price_color = default_Price_color;
+      }
+    });
+    document.querySelector(".bodytable_infor_product").innerHTML = html_chitiet;
+    document.querySelector(".color-option")?.classList.add("active");
+    product_item_ID_to_cart = data[0].id; // lấy id sản phẩm để thêm vào giỏ hàng
   }
+  window.default_Price_color = default_Price_color;
   async function clickVariantOption(event, id_list) {
+    const infor_product = await axiosInstance.get(
+      `/products/get_product_by_productID/${ProductID}`
+    );
+    let html_bo_nho = ``;
+    document.querySelector(".product-title").innerHTML = `${
+      infor_product.data.ProductName +
+      " " +
+      (list[id_list].ram && list[id_list].gb
+        ? list[id_list].ram?.replace(" ", "") +
+          "/" +
+          list[id_list].gb?.replace(" ", "")
+        : "")
+    }`;
     document.querySelectorAll(".variant-option").forEach((el) => {
       el.classList.remove("active");
     });
@@ -154,17 +176,24 @@ document.addEventListener("DOMContentLoaded", function () {
       el.classList.remove("active");
     });
     event.target.closest(".color-option").classList.add("active");
-    document.querySelector(".price").innerHTML = `
-                             <span class="current">${(
-                               price -
-                               price * percent.data
-                             ).toLocaleString("vi-VN")}₫</span>
-                             <span class="original">${(
-                               price * 1
-                             ).toLocaleString("vi-VN")}₫</span>
-                             <span class="discount">Giảm ${
-                               percent.data * 100
-                             }%</span>`;
+    if (percent.data > 0) {
+      document.querySelector(".price").innerHTML = `
+                               <span class="current">${(
+                                 price -
+                                 price * (percent.data / 100)
+                               ).toLocaleString("vi-VN")}₫</span>
+                               <span class="original">${(
+                                 price * 1
+                               ).toLocaleString("vi-VN")}₫</span>
+                               <span class="discount">Giảm ${
+                                 percent.data * 1
+                               }%</span>`;
+    } else {
+      document.querySelector(".price").innerHTML = `
+                               <span class="current">${price.toLocaleString(
+                                 "vi-VN"
+                               )}₫</span>`;
+    }
 
     const product_item = await axiosInstance.get(
       `/products/product_item_by_ID/${product_item_ID}`
@@ -245,21 +274,137 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   document.querySelector(".btn-buy-now").addEventListener("click", async () => {
+    if (!userID) {
+      alert("Bạn cần đăng nhập");
+      return;
+    }
     const res = await axiosInstance.post("/cart", {
-      userID,
+      userID, // đưa thằng đăng nhập vào
       Product_Item_ID: product_item_ID_to_cart,
       quantity: 1,
     });
-    if (res.data.error == 0) window.location.href = `../cart.html`;
+    if (res.data.error == 0) {
+      window.location.href = `../cart.html`; // chuyển đến trang thanh toán
+    }
   });
   document
     .querySelector(".btn-add-cart")
     .addEventListener("click", async () => {
+      if (!userID) {
+        alert("Bạn cần đăng nhập để thêm vào giỏ hàng");
+        return;
+      }
       const res = await axiosInstance.post("/cart", {
-        userID, 
+        userID, // đưa thằng đăng nhập vào
         Product_Item_ID: product_item_ID_to_cart,
         quantity: 1,
       });
       alert(res.data.message);
     });
+  async function product_random() {
+    try {
+      let id_categori = await axiosInstance.get(
+        `/products/get_product_by_productID/${ProductID}`
+      );
+      id_categori = id_categori.data.category_id;
+      console.log(id_categori);
+      let list_product_random = await axiosInstance.get(
+        `/products/product_item_by_categoryID/${id_categori}`
+      );
+      list_product_random = list_product_random.data.data;
+      let list_product_random_show = [];
+      for (let i = 0; i < 3; i++) {
+        if (list_product_random.length < 3) {
+          list_product_random_show = list_product_random;
+          break;
+        }
+        const randomIndex = Math.floor(
+          Math.random() * list_product_random.length
+        );
+        const randomProduct = list_product_random[randomIndex];
+
+        // Kiểm tra trùng lặp id
+        const isDuplicate = list_product_random_show.find(
+          (item) => item.id === randomProduct.id
+        );
+
+        if (!isDuplicate) {
+          list_product_random_show.push(randomProduct);
+        } else {
+          i--; // Nếu trùng lặp, giảm i để thử lại
+        }
+      }
+      let html = ``;
+      for (let i = 0; i < list_product_random_show.length; i++) {
+        let percent = await axiosInstance.get(
+          `/api/promotions/${list_product_random_show[i].product_id}/percent`
+        );
+        let attributes = {
+          "Dung lượng RAM": null,
+          "Bộ nhớ trong": null,
+        };
+        list_product_random_show[i].attributes.forEach((attribute) => {
+          if (attributes.hasOwnProperty(attribute.variantName)) {
+            attributes[attribute.variantName] = attribute.values;
+          }
+        });
+        let { "Dung lượng RAM": ram, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
+        html += `<div class="product-card">
+            <span class="badge list_badge">${
+              percent.data > 0
+                ? "Giảm " +
+                  (
+                    list_product_random_show[i].price *
+                    (percent.data / 100)
+                  ).toLocaleString("vi-VN") +
+                  "₫"
+                : ""
+            }</span>
+            <a href="products/phukien-detail.html?ProductItemID=${
+              list_product_random_show[i].product_id
+            }">
+              <div class="product-img">
+                <img class="img_prd" src="http://localhost:3000${
+                  list_product_random_show[i].product_image
+                }" alt="Ảnh sản phẩm">
+              </div>
+              <div class="product-info">
+                <h3>${list_product_random_show[i].Name}</h3>
+                <div class="price">
+                  <span class="current">${
+                    percent.data > 0
+                      ? (
+                          list_product_random_show[i].price -
+                          list_product_random_show[i].price *
+                            (percent.data / 100)
+                        ).toLocaleString("vi-VN") + "₫"
+                      : list_product_random_show[i].price.toLocaleString(
+                          "vi-VN"
+                        ) + "₫"
+                  }</span>
+                  <span class="original">${
+                    percent.data > 0
+                      ? list_product_random_show[i].price.toLocaleString(
+                          "vi-VN"
+                        ) + "₫"
+                      : ""
+                  }</span>
+                </div>
+                <div class="specs">
+                  <span>${ram?.replace(" ", "")} RAM</span>
+                  <span>${gb?.replace(" ", "")}</span>
+                </div>
+              </div>
+            </a>
+          </div>`;
+      }
+      document.querySelector(".product-grid").innerHTML = html;
+      document.querySelectorAll(".list_badge").forEach((el) => {
+        if (el.textContent.trim() === "") el.classList.remove("badge");
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  product_random();
 });
