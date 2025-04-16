@@ -233,7 +233,7 @@ async function default_Price_color() {
       let { "Dung lượng RAM": ram, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
       html += `<div class="product-card">
               <span class="badge list_badge">${percent.data > 0? "Giảm " + (list_product_random_show[i].price*(percent.data/100)).toLocaleString("vi-VN") +"₫":""}</span>
-              <a href="products/phukien-detail.html?ProductItemID=${list_product_random_show[i].product_id}">
+              <a href="phukien-detail.html?ProductItemID=${list_product_random_show[i].product_id}">
                 <div class="product-img">
                   <img class="img_prd" src="http://localhost:3000${list_product_random_show[i].product_image}" alt="Ảnh sản phẩm">
                 </div>

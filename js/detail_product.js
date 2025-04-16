@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   "₫"
                 : ""
             }</span>
-            <a href="products/phukien-detail.html?ProductItemID=${
+            <a href="smartphone-detail.html?ProductItemID=${
               list_product_random_show[i].product_id
             }">
               <div class="product-img">
