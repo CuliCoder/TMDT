@@ -97,18 +97,17 @@ document.addEventListener("DOMContentLoaded", function () {
                              <span class="discount">Giảm ${
                                percent.data * 1
                              }%</span>`;
-    } else {
-      document.querySelector(".price").innerHTML = `
-                             <span class="current">${data[0].price.toLocaleString(
-                               "vi-VN"
-                             )}₫</span>`;
-    }
-    let html = ``;
-    document.querySelector(".bodytable_infor_product").innerHTML = html;
-    document.querySelector(".colors").innerHTML = ``;
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].color !== null && data[i].color !== "") {
-        document.querySelector(".colors").innerHTML += `
+  }
+  else{
+    document.querySelector(".price").innerHTML = `
+                             <span class="current">${((data[0].price)*1).toLocaleString("vi-VN")}₫</span>`;
+  }
+  let html = ``;
+  document.querySelector(".bodytable_infor_product").innerHTML = html;
+  document.querySelector(".colors").innerHTML = ``;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].color !== null && data[i].color !== "") {
+      document.querySelector(".colors").innerHTML += `
      <a href="#" class="variant-option color-option" onclick="click_color_option(event, ${
        data[i].price + "," + data[i].id
      })" style="background-color: ${colorMap[data[i].color]};">
@@ -369,7 +368,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }" alt="Ảnh sản phẩm">
               </div>
               <div class="product-info">
-                <h3>${list_product_random_show[i].Name}</h3>
+                <h3>${list_product_random_show[i].ProductName
+                
+                }</h3>
                 <div class="price">
                   <span class="current">${
                     percent.data > 0
