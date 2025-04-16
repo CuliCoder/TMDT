@@ -1,4 +1,5 @@
-let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
+// let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
+let ProductID = 62
 import axiosInstance from "./configAxios.js";
 let list = []
 let product_item_ID_to_cart = null;
@@ -52,6 +53,9 @@ const colorMap = {
         `/products/get_product_by_productID/${ProductID}`
       );
       let html_bo_nho = ``;
+      document.title = infor_product.data.ProductName
+      console.log(infor_product.data.ProductName)
+      document.getElementById("nameProduct").innerHTML = `${infor_product.data.ProductName}`
       document.querySelector(".colors").innerHTML = ``;
       document.querySelector(".product-thumbnails").innerHTML = ``;
       console.log(list)
@@ -107,7 +111,7 @@ async function default_Price_color() {
     }
     else{
       document.querySelector(".price").innerHTML = `
-                               <span class="current">${(list[0].price).toLocaleString("vi-VN")}₫</span>`;
+                               <span class="current">${((list[0].price)*1).toLocaleString("vi-VN")}₫</span>`;
     }
     document.querySelector(".bodytable_infor_product").innerHTML = ``;
       const product_item = await axiosInstance.get(

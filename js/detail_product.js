@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(
         "nameProduct"
       ).innerHTML = `${infor_product.data.ProductName}`;
+      document.title = infor_product.data.ProductName
       document.querySelector(".product-thumbnails").innerHTML = ``;
       document.querySelector(".variants").innerHTML = ``;
       for (let i = 0; i < list.length; i++) {
