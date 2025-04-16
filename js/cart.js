@@ -1,5 +1,4 @@
 import axiosInstance from "./configAxios.js";
-document.addEventListener("DOMContentLoaded", async function () {
   const fullnametxt = document.querySelector("#fullname");
   const phonenumbertxt = document.querySelector("#phone");
   const addresstxt = document.querySelector("#address");
@@ -47,17 +46,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
       console.error("Error removing product from cart:", error);
     }
-  };
-  async function getProductCart(userID) {
-    try {
-      const response = await axiosInstance.get("/cart?userID=" + userID);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching cart products:", error);
-    }
   }
-  window.show_list_cart = async function () {
-    const data = await getProductCart(userID);
+  window.removeProductFromCart = removeProductFromCart;
+  show_list_cart();
+  window.show_list_cart = show_list_cart;
+  async function show_list_cart() {
+    let data = await axiosInstance.get("/cart?userID=" + userID);
+    data = data.data
     console.log(data);
     const cartContent = document.querySelector(".cart-items");
     cartContent.innerHTML = "";
@@ -109,7 +104,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         Màu: color,
         "Bộ nhớ trong": gb,
       } = attributes;
-      console.log(ram, color, gb);
       html += `
         <div class="cart-item">
                         <div class="product-col">
@@ -121,10 +115,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                                 </div>
                                 <div class="product-details">
                                     <h3>${data[i].ProductName}</h3>
-                                    <p class="product-variant">Màu: ${
-                                      color ? color : ""
-                                    } | Bộ nhớ: ${ram ? ram : ""} - ${
-        gb ? gb : ""
+                                    <p class="product-variant">${
+                                      color ? "Màu: " + color : ""
+                                    } ${(color && ram) || (color && ram)? "|" : "" } ${ram ? "Bộ nhớ: "+ram : ""} ${
+        gb ? "-" +gb : ""
       }</p>
                                 </div>
                             </div>
@@ -211,7 +205,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   };
   async function totalOrder() {
     let total = 0;
-    let data = await getProductCart(userID);
+    let data = await axiosInstance.get("/cart?userID=" + userID);
+    data = data.data
     if (data.length === 0) {
       document.querySelector(".cart-total").textContent = "0₫";
       return;
@@ -351,4 +346,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     clearInterval(checkOrderStatusInterval);
     // window.location.reload();
   });
-});

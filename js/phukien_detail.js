@@ -270,26 +270,10 @@ async function product_random() {
                   }" alt="Ảnh sản phẩm">
                 </div>
                 <div class="product-info">
-                  <h3>${list_product_random_show[i].Name}</h3>
+                  <h3>${list_product_random_show[i].ProductName}</h3>
                   <div class="price">
-                    <span class="current">${
-                      percent.data > 0
-                        ? (
-                            list_product_random_show[i].price -
-                            list_product_random_show[i].price *
-                              (percent.data / 100)
-                          ).toLocaleString("vi-VN") + "₫"
-                        : list_product_random_show[i].price.toLocaleString(
-                            "vi-VN"
-                          ) + "₫"
-                    }</span>
-                    <span class="original">${
-                      percent.data > 0
-                        ? list_product_random_show[i].price.toLocaleString(
-                            "vi-VN"
-                          ) + "₫"
-                        : ""
-                    }</span>
+                    <span class="current">${percent.data > 0? (list_product_random_show[i].price - list_product_random_show[i].price*(percent.data/100)).toLocaleString("vi-VN") +"₫" : ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫"}</span>
+                    <span class="original">${percent.data > 0? ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫" : ""}</span>
                   </div>
                   <div class="specs">
                     <span>${ram?.replace(" ", "")} RAM</span>
