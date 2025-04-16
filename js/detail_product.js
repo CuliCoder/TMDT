@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   document.querySelector(".btn-buy-now").addEventListener("click", async () => {
     if (!userID) {
-      alert("Bạn cần đăng nhập");
+      alert("Bạn cần đăng nhập để mua hàng");
       return;
     }
     const res = await axiosInstance.post("/cart", {

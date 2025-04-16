@@ -51,7 +51,7 @@ function fetchTotalRevenue(startDate, endDate) {
         success: function (response) {
             console.log('Tổng doanh thu:', response); // Kiểm tra dữ liệu trả về
             if (response && response.totalRevenue !== undefined && !isNaN(response.totalRevenue) && response.totalRevenue !== null) {
-                $('#totalRevenue').text('₫' + parseFloat(response.totalRevenue).toLocaleString()); // Hiển thị tổng doanh thu
+                $('#totalRevenue').text(parseFloat(response.totalRevenue).toLocaleString()+'₫'); // Hiển thị tổng doanh thu
             } else {
                 $('#totalRevenue').text('0₫'); // Nếu không có dữ liệu hợp lệ, hiển thị 0
             }
