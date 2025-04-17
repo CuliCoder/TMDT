@@ -16,7 +16,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "login.html";
   }
   const account_menu = document.querySelector("#account-menu");
-  const productUrl = ["smartphone-detail.html", "smartphones.html","accessories.html"];
+  const productUrl = [
+    "smartphone-detail.html",
+    "smartphones.html",
+    "accessories.html",
+    "phukien-detail.html",
+  ];
   if (productUrl.includes(currentUrl)) {
     account_menu.innerHTML = !user
       ? `<a href="../login.html"><i class="fas fa-user"></i> Đăng nhập</a>`

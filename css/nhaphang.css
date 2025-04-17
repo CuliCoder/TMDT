@@ -35,7 +35,15 @@
 }
 .box_infor_product_import{
     width: 40%;
+    height: 150px;
 }
+
+.box_infor_product_import p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .box_product_import .box_infor_product_import p{
     font-size: 12px;
     font-weight: 700;
