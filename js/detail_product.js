@@ -1,5 +1,4 @@
 import axiosInstance from "./configAxios.js";
-document.addEventListener("DOMContentLoaded", function () {
   // let ProductID = new URL(window.location.href).searchParams.get("id");
   let ProductID = new URL(window.location.href).searchParams.get(
     "ProductItemID"
@@ -313,25 +312,27 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       list_product_random = list_product_random.data.data;
       let list_product_random_show = [];
-      for (let i = 0; i < 3; i++) {
-        if (list_product_random.length < 3) {
-          list_product_random_show = list_product_random;
-          break;
-        }
-        const randomIndex = Math.floor(
-          Math.random() * list_product_random.length
+      if (list_product_random.length <= 3) {
+        list_product_random_show = list_product_random.filter(
+          (item) => item.product_id !== ProductID
         );
-        const randomProduct = list_product_random[randomIndex];
+      } else {
+        while (list_product_random_show.length < 3) {
+          const randomIndex = Math.floor(
+            Math.random() * list_product_random.length
+          );
 
-        // Kiểm tra trùng lặp id
-        const isDuplicate = list_product_random_show.find(
-          (item) => item.id === randomProduct.id
-        );
-
-        if (!isDuplicate) {
-          list_product_random_show.push(randomProduct);
-        } else {
-          i--; // Nếu trùng lặp, giảm i để thử lại
+          const randomProduct = list_product_random[randomIndex];
+          const isDuplicate = list_product_random_show.some(
+            (item) => item.product_id === randomProduct.product_id
+          );
+          
+          if (
+            !isDuplicate &&
+            Number(randomProduct.product_id) !== Number(ProductID)
+          ) {
+            list_product_random_show.push(randomProduct);
+          }
         }
       }
       let html = ``;
@@ -380,13 +381,13 @@ document.addEventListener("DOMContentLoaded", function () {
                           list_product_random_show[i].price *
                             (percent.data / 100)
                         ).toLocaleString("vi-VN") + "₫"
-                      : list_product_random_show[i].price.toLocaleString(
+                      : ((list_product_random_show[i].price)*1).toLocaleString(
                           "vi-VN"
                         ) + "₫"
                   }</span>
                   <span class="original">${
                     percent.data > 0
-                      ? list_product_random_show[i].price.toLocaleString(
+                      ? ((list_product_random_show[i].price)*1).toLocaleString(
                           "vi-VN"
                         ) + "₫"
                       : ""
@@ -409,4 +410,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   product_random();
-});

@@ -212,6 +212,7 @@ async function product_random() {
     let list_product_random = await axiosInstance.get(
       `/products/product_item_by_categoryID/${id_categori}`
     );
+    console.log(list_product_random)
     list_product_random = list_product_random.data.data;
     let list_product_random_show = [];
     for (let i = 0; i < 3; i++) {

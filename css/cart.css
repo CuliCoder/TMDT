@@ -469,3 +469,16 @@
 .container{
     overflow: hidden;
 }
+.product-info{
+    height: auto;
+}
+.product-col{
+    height: auto;
+}
+.product-details h3{
+    height: auto;
+    max-width: 250px;
+}
+.product-info {
+    max-width: 360px;
+}
