@@ -1,5 +1,5 @@
-let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 import axiosInstance from "./configAxios.js";
+let ProductID = new URL(window.location.href).searchParams.get("ProductItemID");
 const userID = localStorage.getItem("Myid");
 let list = [];
 let product_item_ID_to_cart = null;
@@ -53,6 +53,11 @@ async function showProductDetail() {
       `/products/get_product_by_productID/${ProductID}`
     );
     let html_bo_nho = ``;
+    document.title = infor_product.data.ProductName;
+    console.log(infor_product.data.ProductName);
+    document.getElementById(
+      "nameProduct"
+    ).innerHTML = `${infor_product.data.ProductName}`;
     document.querySelector(".colors").innerHTML = ``;
     document.querySelector(".product-thumbnails").innerHTML = ``;
     console.log(list);
@@ -87,7 +92,7 @@ async function default_Price_color() {
   );
   document.querySelector(
     ".product-main-image"
-  ).innerHTML = `<img src="http://localhost:3000${list[0].img}" alt="Ảnh sản phẩm">`;
+  ).innerHTML = `<img src="http://localhost:3000${list[0]?.img}" alt="Ảnh sản phẩm">`;
   document.querySelector(
     ".product-title"
   ).innerHTML = `${infor_product.data.ProductName}`;
@@ -95,27 +100,27 @@ async function default_Price_color() {
   if (percent.data > 0) {
     document.querySelector(".price").innerHTML = `
                                <span class="current">${(
-                                 list[0].price -
-                                 list[0].price * (percent.data / 100)
+                                 list[0]?.price -
+                                 list[0]?.price * (percent.data / 100)
                                ).toLocaleString("vi-VN")}₫</span>
                                <span class="original">${(
-                                 list[0].price * 1
+                                 list[0]?.price * 1
                                ).toLocaleString("vi-VN")}₫</span>
                                <span class="discount">Giảm ${
                                  percent.data * 1
                                }%</span>`;
   } else {
     document.querySelector(".price").innerHTML = `
-                               <span class="current">${list[0].price.toLocaleString(
-                                 "vi-VN"
-                               )}₫</span>`;
+                               <span class="current">${(
+                                 list[0]?.price * 1
+                               ).toLocaleString("vi-VN")}₫</span>`;
   }
   document.querySelector(".bodytable_infor_product").innerHTML = ``;
   const product_item = await axiosInstance.get(
-    `/products/product_item_by_ID/${list[0].id}`
+    `/products/product_item_by_ID/${list[0]?.id}`
   );
   let html_chitiet = ``;
-  product_item.data.data.attributes.forEach((attribute) => {
+  product_item.data.data.attributes?.forEach((attribute) => {
     if (attribute.variantName !== "Màu") {
       html_chitiet += `<tr>
           <td>${attribute.variantName}</td>
@@ -125,7 +130,7 @@ async function default_Price_color() {
   });
   document.querySelector(".bodytable_infor_product").innerHTML = html_chitiet;
   document.querySelector(".color-option")?.classList.add("active");
-  product_item_ID_to_cart = list[0].id; // lấy id sản phẩm để thêm vào giỏ hàng
+  product_item_ID_to_cart = list[0]?.id; // lấy id sản phẩm để thêm vào giỏ hàng
 }
 async function click_color_option(event, price, product_item_ID) {
   let percent = await axiosInstance.get(`/api/promotions/${ProductID}/percent`);
@@ -180,22 +185,16 @@ function click_img(event) {
 }
 window.click_img = click_img;
 document.querySelector(".btn-buy-now").addEventListener("click", async () => {
-  if (!userID) {
-    alert("Vui lòng đăng nhập để mua sản phẩm.");
-    return;
-  }
   const res = await axiosInstance.post("/cart", {
     userID, // đưa thằng đăng nhập vào
     Product_Item_ID: product_item_ID_to_cart,
     quantity: 1,
   });
-  if (res.data.error == 0) window.location.href = "../cart.html"; // chuyển đến trang thanh toán
+  if (res.data.error == 0) {
+    window.location.href = "../cart.html"; // chuyển đến trang thanh toán
+  }
 });
 document.querySelector(".btn-add-cart").addEventListener("click", async () => {
-  if (!userID) {
-    alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
-    return;
-  }
   const res = await axiosInstance.post("/cart", {
     userID, // đưa thằng đăng nhập vào
     Product_Item_ID: product_item_ID_to_cart,
@@ -208,7 +207,8 @@ async function product_random() {
     let id_categori = await axiosInstance.get(
       `/products/get_product_by_productID/${ProductID}`
     );
-    id_categori = id_categori.category_id;
+    id_categori = id_categori.data.category_id;
+    console.log(id_categori);
     let list_product_random = await axiosInstance.get(
       `/products/product_item_by_categoryID/${id_categori}`
     );
@@ -261,7 +261,7 @@ async function product_random() {
                     "₫"
                   : ""
               }</span>
-              <a href="products/phukien-detail.html?ProductItemID=${
+              <a href="phukien-detail.html?ProductItemID=${
                 list_product_random_show[i].product_id
               }">
                 <div class="product-img">
@@ -272,8 +272,24 @@ async function product_random() {
                 <div class="product-info">
                   <h3>${list_product_random_show[i].ProductName}</h3>
                   <div class="price">
-                    <span class="current">${percent.data > 0? (list_product_random_show[i].price - list_product_random_show[i].price*(percent.data/100)).toLocaleString("vi-VN") +"₫" : ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫"}</span>
-                    <span class="original">${percent.data > 0? ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫" : ""}</span>
+                    <span class="current">${
+                      percent.data > 0
+                        ? (
+                            list_product_random_show[i].price -
+                            list_product_random_show[i].price *
+                              (percent.data / 100)
+                          ).toLocaleString("vi-VN") + "₫"
+                        : (
+                            list_product_random_show[i].price * 1
+                          ).toLocaleString("vi-VN") + "₫"
+                    }</span>
+                    <span class="original">${
+                      percent.data > 0
+                        ? (
+                            list_product_random_show[i].price * 1
+                          ).toLocaleString("vi-VN") + "₫"
+                        : ""
+                    }</span>
                   </div>
                   <div class="specs">
                     <span>${ram?.replace(" ", "")} RAM</span>

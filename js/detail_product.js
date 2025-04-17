@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(
         "nameProduct"
       ).innerHTML = `${infor_product.data.ProductName}`;
+      document.title = infor_product.data.ProductName
       document.querySelector(".product-thumbnails").innerHTML = ``;
       document.querySelector(".variants").innerHTML = ``;
       for (let i = 0; i < list.length; i++) {
@@ -359,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   "₫"
                 : ""
             }</span>
-            <a href="products/phukien-detail.html?ProductItemID=${
+            <a href="smartphone-detail.html?ProductItemID=${
               list_product_random_show[i].product_id
             }">
               <div class="product-img">
