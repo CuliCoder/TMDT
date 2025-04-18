@@ -212,28 +212,29 @@ async function product_random() {
     let list_product_random = await axiosInstance.get(
       `/products/product_item_by_categoryID/${id_categori}`
     );
-    console.log(list_product_random)
     list_product_random = list_product_random.data.data;
     let list_product_random_show = [];
-    for (let i = 0; i < 3; i++) {
-      if (list_product_random.length < 3) {
-        list_product_random_show = list_product_random;
-        break;
-      }
-      const randomIndex = Math.floor(
-        Math.random() * list_product_random.length
+    if (list_product_random.length <= 3) {
+      list_product_random_show = list_product_random.filter(
+        (item) => item.product_id !== ProductID
       );
-      const randomProduct = list_product_random[randomIndex];
+    } else {
+      while (list_product_random_show.length < 3
+      ) {
+        const randomIndex = Math.floor(
+          Math.random() * list_product_random.length
+        );
 
-      // Kiểm tra trùng lặp id
-      const isDuplicate = list_product_random_show.find(
-        (item) => item.id === randomProduct.id
-      );
-
-      if (!isDuplicate) {
-        list_product_random_show.push(randomProduct);
-      } else {
-        i--; // Nếu trùng lặp, giảm i để thử lại
+        const randomProduct = list_product_random[randomIndex];
+        const isDuplicate = list_product_random_show.some(
+          (item) => item.id === randomProduct.id
+        );
+        
+        if (
+          !isDuplicate && randomProduct.product_id != ProductID
+        ) {
+          list_product_random_show.push(randomProduct);
+        }
       }
     }
     let html = ``;
@@ -252,53 +253,55 @@ async function product_random() {
       });
       let { "Dung lượng RAM": ram, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
       html += `<div class="product-card">
-              <span class="badge list_badge">${
-                percent.data > 0
-                  ? "Giảm " +
-                    (
-                      list_product_random_show[i].price *
-                      (percent.data / 100)
-                    ).toLocaleString("vi-VN") +
-                    "₫"
-                  : ""
-              }</span>
-              <a href="phukien-detail.html?ProductItemID=${
-                list_product_random_show[i].product_id
-              }">
-                <div class="product-img">
-                  <img class="img_prd" src="http://localhost:3000${
-                    list_product_random_show[i].product_image
-                  }" alt="Ảnh sản phẩm">
-                </div>
-                <div class="product-info">
-                  <h3>${list_product_random_show[i].ProductName}</h3>
-                  <div class="price">
-                    <span class="current">${
-                      percent.data > 0
-                        ? (
-                            list_product_random_show[i].price -
-                            list_product_random_show[i].price *
-                              (percent.data / 100)
-                          ).toLocaleString("vi-VN") + "₫"
-                        : (
-                            list_product_random_show[i].price * 1
-                          ).toLocaleString("vi-VN") + "₫"
-                    }</span>
-                    <span class="original">${
-                      percent.data > 0
-                        ? (
-                            list_product_random_show[i].price * 1
-                          ).toLocaleString("vi-VN") + "₫"
-                        : ""
-                    }</span>
-                  </div>
-                  <div class="specs">
-                    <span>${ram?.replace(" ", "")} RAM</span>
-                    <span>${gb?.replace(" ", "")}</span>
-                  </div>
-                </div>
-              </a>
-            </div>`;
+          <span class="badge list_badge">${
+            percent.data > 0
+              ? "Giảm " +
+                (
+                  list_product_random_show[i].price *
+                  (percent.data / 100)
+                ).toLocaleString("vi-VN") +
+                "₫"
+              : ""
+          }</span>
+          <a href="phukien-detail.html?ProductItemID=${
+            list_product_random_show[i].product_id
+          }">
+            <div class="product-img">
+              <img class="img_prd" src="http://localhost:3000${
+                list_product_random_show[i].product_image
+              }" alt="Ảnh sản phẩm">
+            </div>
+            <div class="product-info">
+              <h3>${list_product_random_show[i].ProductName
+              
+              }</h3>
+              <div class="price">
+                <span class="current">${
+                  percent.data > 0
+                    ? (
+                        list_product_random_show[i].price -
+                        list_product_random_show[i].price *
+                          (percent.data / 100)
+                      ).toLocaleString("vi-VN") + "₫"
+                    : ((list_product_random_show[i].price)*1).toLocaleString(
+                        "vi-VN"
+                      ) + "₫"
+                }</span>
+                <span class="original">${
+                  percent.data > 0
+                    ? ((list_product_random_show[i].price)*1).toLocaleString(
+                        "vi-VN"
+                      ) + "₫"
+                    : ""
+                }</span>
+              </div>
+              <div class="specs">
+                <span>${ram?.replace(" ", "")} RAM</span>
+                <span>${gb?.replace(" ", "")}</span>
+              </div>
+            </div>
+          </a>
+        </div>`;
     }
     document.querySelector(".product-grid").innerHTML = html;
     document.querySelectorAll(".list_badge").forEach((el) => {
