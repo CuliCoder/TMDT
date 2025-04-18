@@ -115,6 +115,11 @@ async function saveAdd() {
         alert("Email không hợp lệ! Vui lòng nhập đúng định dạng email Gmail (ví dụ: tenban@gmail.com)");
         return;
     }
+    const phoneRegex = /^(0\d{9})$/;
+    if (!phoneRegex.test(contactPhone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (vd: 0337840995)");
+        return;
+    }
 
     const response = await fetch(`http://localhost:3000/api/suppliers`, {
         method: 'POST',
@@ -183,6 +188,11 @@ async function saveEdit() {
     const gmailRegex = /^[^\s@]+@gmail\.com$/;
     if (!gmailRegex.test(contactEmail)) {
         alert("Email không hợp lệ! Vui lòng nhập đúng định dạng Gmail (ví dụ: tenban@gmail.com)");
+        return;
+    }
+    const phoneRegex = /^(0\d{9})$/;
+    if (!phoneRegex.test(contactPhone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (vd: 0337840995)");
         return;
     }
 

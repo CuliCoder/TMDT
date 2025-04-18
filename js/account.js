@@ -303,11 +303,35 @@ document.addEventListener("DOMContentLoaded", function () {
     profileForm.addEventListener("submit", async function (e) {
       let Myid = localStorage.getItem("Myid");
       e.preventDefault();
+  
+      const fullName = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+  
+      // Kiểm tra dữ liệu trống
+      if (!fullName || !email || !phone) {
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return;
+      }
+  
+      // Kiểm tra cấu trúc email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Email không hợp lệ. Vui lòng nhập đúng định dạng (vd: example@mail.com)");
+        return;
+      }
+      const phoneRegex = /^(0\d{9})$/;
+      if (!phoneRegex.test(phone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (vd: 0337840995)");
+        return;
+      }
+      
       const updatedData = {
-        FullName: document.getElementById("fullname").value,
-        Email: document.getElementById("email").value,
-        PhoneNumber: document.getElementById("phone").value,
+        FullName: fullName,
+        Email: email,
+        PhoneNumber: phone,
       };
+  
       try {
         const response = await fetch(
           `http://localhost:3000/api/customers/${Myid}`,
@@ -317,33 +341,35 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify(updatedData),
           }
         );
-
+  
         const result = await response.json();
       } catch (error) {
         console.error("Lỗi cập nhật:", error);
         alert("Lỗi server!");
+        return;
       }
-      // Simulate update success (would be replaced with actual API call)
+  
       alert("Cập nhật thông tin thành công!");
-
+  
       // Disable inputs
       const inputs = profileForm.querySelectorAll("input");
       inputs.forEach((input) => {
         input.disabled = true;
       });
-
+  
       // Hide form actions
       const formActions = profileForm.querySelector(".form-actions");
       if (formActions) {
         formActions.style.display = "none";
       }
-
+  
       // Show edit button
       if (toggleEditBtn) {
         toggleEditBtn.style.display = "flex";
       }
     });
   }
+  
 
   // Change password form submission
   const passwordForm = document.getElementById("password-form");

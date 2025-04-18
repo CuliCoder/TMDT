@@ -116,6 +116,12 @@ async function saveEdit() {
         alert("Email không hợp lệ. Vui lòng nhập đúng định dạng (vd: example@mail.com)");
         return;
     }
+    const phoneRegex = /^(0\d{9})$/;
+    if (!phoneRegex.test(phone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (vd: 0337840995)");
+        return;
+    }
+
 
     const response = await fetch(`http://localhost:3000/api/customers/${id}`, {
         method: 'PUT',
