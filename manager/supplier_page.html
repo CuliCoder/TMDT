@@ -146,6 +146,17 @@
     <main style="margin-top: 58px">
       <div class="container pt-4">
         <div class="sup-nav">
+          <div class="d-flex justify-content-center align-items-center">
+            <span>Từ</span>
+            <input type="date" id="sup-Date-From" />
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <span>Đến</span>
+            <input type="date" id="sup-Date-To" />
+          </div>
+          <button class="btn btn-primary cus-btn-search" id="sup-btn_search">
+            Lọc
+          </button>
           <input
             class="form-control me-2"
             id="sup-text_search"
@@ -160,11 +171,12 @@
         </div>
         <div>
           <div class="row border-bottom py-2 sup-header_table-data">
-            <div class="col">SupplierName</div>
-            <div class="col">ContactName</div>
-            <div class="col">ContactEmail</div>
-            <div class="col">ContactPhone</div>
-            <div class="col">Address</div>
+            <div class="col">Tên nhà cung cấp</div>
+            <div class="col">Người liên hệ</div>
+            <div class="col">Email liên hệ</div>
+            <div class="col">Số điện thoại</div>
+            <div class="col">Địa chỉ</div>
+            <div class="col">Ngày tạo</div>
             <div class="col">Thao tác</div>
           </div>
           <div id="sup-data" style="margin-bottom: 5px"></div>
