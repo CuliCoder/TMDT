@@ -241,16 +241,6 @@ async function product_random() {
       let percent = await axiosInstance.get(
         `/api/promotions/${list_product_random_show[i].product_id}/percent`
       );
-      let attributes = {
-        "Dung lượng RAM": null,
-        "Bộ nhớ trong": null,
-      };
-      list_product_random_show[i].attributes.forEach((attribute) => {
-        if (attributes.hasOwnProperty(attribute.variantName)) {
-          attributes[attribute.variantName] = attribute.values;
-        }
-      });
-      let { "Dung lượng RAM": ram, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
       html += `<div class="product-card">
               <span class="badge list_badge">${
                 percent.data > 0
@@ -293,8 +283,6 @@ async function product_random() {
                     }</span>
                   </div>
                   <div class="specs">
-                    <span>${ram?.replace(" ", "")} RAM</span>
-                    <span>${gb?.replace(" ", "")}</span>
                   </div>
                 </div>
               </a>
