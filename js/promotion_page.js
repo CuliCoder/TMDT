@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("promo-btn_search").addEventListener("click", search);
 });
 
-async function submitPromotion() {
+window.submitPromotion = async function () {
   let promotionName = document.getElementById("promotionName").value.trim();
   let description = document.getElementById("description").value.trim();
   let discountRate = parseFloat(

@@ -100,28 +100,49 @@ function edit(UserID) {
 // Lưu chỉnh sửa
 async function saveEdit() {
     let id = parseInt(document.getElementById("editCusID").value);
-    const response = await fetch(`http://localhost:3000/api/customers/${id}`,{
+    let email = document.getElementById("editCusEmail").value.trim();
+    let fullName = document.getElementById("editCusFullName").value.trim();
+    let phone = document.getElementById("editCusPhoneNumber").value.trim();
+
+    // Kiểm tra dữ liệu rỗng
+    if (!email || !fullName || !phone) {
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
+
+    // Kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Email không hợp lệ. Vui lòng nhập đúng định dạng (vd: example@mail.com)");
+        return;
+    }
+
+    const response = await fetch(`http://localhost:3000/api/customers/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            Email: document.getElementById("editCusEmail").value.trim(),
-            FullName: document.getElementById("editCusFullName").value.trim(),
-            PhoneNumber: document.getElementById("editCusPhoneNumber").value.trim(),
+            Email: email,
+            FullName: fullName,
+            PhoneNumber: phone,
         })
     });
-    console.log(document.getElementById("editCusUserName").value.trim())
-    console.log(document.getElementById("editCusEmail").value.trim())
-    console.log(document.getElementById("editCusFullName").value.trim())
-    console.log(document.getElementById("editCusPhoneNumber").value.trim())
-    const data_response = await response.json()
-    console.log(data_response)
-    getData()
 
-    // Đóng modal
-    bootstrap.Modal.getInstance(document.getElementById('editCusModal')).hide();
+    if (response.ok) {
+        const data_response = await response.json();
+        console.log(data_response);
+        alert("Cập nhật thông tin khách hàng thành công!");
+        getData();
+
+        // Đóng modal
+        bootstrap.Modal.getInstance(document.getElementById('editCusModal')).hide();
+    } else {
+        alert("Có lỗi xảy ra khi cập nhật. Vui lòng thử lại.");
+    }
 }
+
+
 
 // khóa tài khoản
 async function lock(UserID) {

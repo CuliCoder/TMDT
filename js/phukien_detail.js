@@ -212,28 +212,29 @@ async function product_random() {
     let list_product_random = await axiosInstance.get(
       `/products/product_item_by_categoryID/${id_categori}`
     );
-    console.log(list_product_random)
     list_product_random = list_product_random.data.data;
     let list_product_random_show = [];
-    for (let i = 0; i < 3; i++) {
-      if (list_product_random.length < 3) {
-        list_product_random_show = list_product_random;
-        break;
-      }
-      const randomIndex = Math.floor(
-        Math.random() * list_product_random.length
+    if (list_product_random.length <= 3) {
+      list_product_random_show = list_product_random.filter(
+        (item) => item.product_id !== ProductID
       );
-      const randomProduct = list_product_random[randomIndex];
+    } else {
+      while (list_product_random_show.length < 3
+      ) {
+        const randomIndex = Math.floor(
+          Math.random() * list_product_random.length
+        );
 
-      // Kiểm tra trùng lặp id
-      const isDuplicate = list_product_random_show.find(
-        (item) => item.id === randomProduct.id
-      );
-
-      if (!isDuplicate) {
-        list_product_random_show.push(randomProduct);
-      } else {
-        i--; // Nếu trùng lặp, giảm i để thử lại
+        const randomProduct = list_product_random[randomIndex];
+        const isDuplicate = list_product_random_show.some(
+          (item) => item.id === randomProduct.id
+        );
+        
+        if (
+          !isDuplicate && randomProduct.product_id != ProductID
+        ) {
+          list_product_random_show.push(randomProduct);
+        }
       }
     }
     let html = ``;

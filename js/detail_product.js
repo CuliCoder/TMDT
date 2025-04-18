@@ -317,19 +317,19 @@ import axiosInstance from "./configAxios.js";
           (item) => item.product_id !== ProductID
         );
       } else {
-        while (list_product_random_show.length < 3) {
+        while (list_product_random_show.length < 3
+        ) {
           const randomIndex = Math.floor(
             Math.random() * list_product_random.length
           );
 
           const randomProduct = list_product_random[randomIndex];
           const isDuplicate = list_product_random_show.some(
-            (item) => item.product_id === randomProduct.product_id
+            (item) => item.id === randomProduct.id
           );
           
           if (
-            !isDuplicate &&
-            Number(randomProduct.product_id) !== Number(ProductID)
+            !isDuplicate && randomProduct.product_id != ProductID
           ) {
             list_product_random_show.push(randomProduct);
           }
