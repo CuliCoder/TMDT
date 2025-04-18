@@ -212,6 +212,7 @@ document
         result.push(item);
       }
     }
+    console.log(result)
     if (search === "") {
       result = res_product_item.data.data;
       console.log(result);
@@ -220,24 +221,48 @@ document
       document.querySelector(".list_product_import").innerHTML = "";
     } else {
       for (let i = 0; i < result.length; i++) {
+        let attributes = {
+          "Dung lượng RAM": null,
+          Màu: null,
+          "Bộ nhớ trong": null,
+        };
+  
+        result[i].attributes.forEach((attribute) => {
+          if (attributes.hasOwnProperty(attribute.variantName)) {
+            attributes[attribute.variantName] = attribute.values;
+          }
+        });
+  
+        let {
+          "Dung lượng RAM": ram,
+          Màu: color,
+          "Bộ nhớ trong": gb,
+        } = attributes;
         let res_product = await axiosInstance.get(
-          `/product/get_product_by_productID/${result[0].product_id}`
+          `/product/get_product_by_productID/${result[i].product_id}`
         );
         document.querySelector(
           ".list_product_import"
         ).innerHTML += `<div class = "box_product_import">
-                    <img src="img/imgs${result[i].product_image}" alt="">
-                    <div class = "box_infor_product_import">
-                        <p>${result[i].id}</p>
-                        <p>${res_product.data.ProductName}</p>
-                        <p>Dung lượng: 128GB</p>
-                        <p>Ram: 6GB</p>
-                        <p>Màu sắc: Vàng</p>
-                        <div class="box_quantity">
-                            <button type="button" class="btn btn-secondary value_quantity" onclick="show_popup(${res_product_item.data.data[i].id})">Nhập hàng</button>
-                        </div>
+                  <img src="http://localhost:3000${
+                    result[i].product_image
+                  }" alt="">
+                  <div class = "box_infor_product_import">
+                    <div class="text_if">
+                        <p>ID: ${result[i].id}</p>
+                        <p>ID product: ${result[i].product_id}</p>
+                        <p>${result[i].Name} ${ram ? ram : ""} ${
+                          gb ? gb : ""
+                        } ${color ? color : ""}</p>
+                        <p>SKU: ${result[i].SKU}</p>
                     </div>
-                <div>`;
+                    <div class="box_quantity">
+                          <button type="button" class="btn btn-secondary value_quantity" onclick="show_popup(${
+                            result[i].id
+                          })">Nhập hàng</button>
+                      </div>
+                  </div>
+              <div>`;
       }
     }
   });
