@@ -242,66 +242,52 @@ async function product_random() {
       let percent = await axiosInstance.get(
         `/api/promotions/${list_product_random_show[i].product_id}/percent`
       );
-      let attributes = {
-        "Dung lượng RAM": null,
-        "Bộ nhớ trong": null,
-      };
-      list_product_random_show[i].attributes.forEach((attribute) => {
-        if (attributes.hasOwnProperty(attribute.variantName)) {
-          attributes[attribute.variantName] = attribute.values;
-        }
-      });
-      let { "Dung lượng RAM": ram, "Bộ nhớ trong": gb } = attributes; // gán các giá trị để sử dụng
       html += `<div class="product-card">
-          <span class="badge list_badge">${
-            percent.data > 0
-              ? "Giảm " +
-                (
-                  list_product_random_show[i].price *
-                  (percent.data / 100)
-                ).toLocaleString("vi-VN") +
-                "₫"
-              : ""
-          }</span>
-          <a href="phukien-detail.html?ProductItemID=${
-            list_product_random_show[i].product_id
-          }">
-            <div class="product-img">
-              <img class="img_prd" src="http://localhost:3000${
-                list_product_random_show[i].product_image
-              }" alt="Ảnh sản phẩm">
-            </div>
-            <div class="product-info">
-              <h3>${list_product_random_show[i].ProductName
-              
-              }</h3>
-              <div class="price">
-                <span class="current">${
-                  percent.data > 0
-                    ? (
-                        list_product_random_show[i].price -
-                        list_product_random_show[i].price *
-                          (percent.data / 100)
-                      ).toLocaleString("vi-VN") + "₫"
-                    : ((list_product_random_show[i].price)*1).toLocaleString(
-                        "vi-VN"
-                      ) + "₫"
-                }</span>
-                <span class="original">${
-                  percent.data > 0
-                    ? ((list_product_random_show[i].price)*1).toLocaleString(
-                        "vi-VN"
-                      ) + "₫"
-                    : ""
-                }</span>
-              </div>
-              <div class="specs">
-                <span>${ram?.replace(" ", "")} RAM</span>
-                <span>${gb?.replace(" ", "")}</span>
-              </div>
-            </div>
-          </a>
-        </div>`;
+              <span class="badge list_badge">${
+                percent.data > 0
+                  ? "Giảm " +
+                    (
+                      list_product_random_show[i].price *
+                      (percent.data / 100)
+                    ).toLocaleString("vi-VN") +
+                    "₫"
+                  : ""
+              }</span>
+              <a href="phukien-detail.html?ProductItemID=${
+                list_product_random_show[i].product_id
+              }">
+                <div class="product-img">
+                  <img class="img_prd" src="http://localhost:3000${
+                    list_product_random_show[i].product_image
+                  }" alt="Ảnh sản phẩm">
+                </div>
+                <div class="product-info">
+                  <h3>${list_product_random_show[i].ProductName}</h3>
+                  <div class="price">
+                    <span class="current">${
+                      percent.data > 0
+                        ? (
+                            list_product_random_show[i].price -
+                            list_product_random_show[i].price *
+                              (percent.data / 100)
+                          ).toLocaleString("vi-VN") + "₫"
+                        : (
+                            list_product_random_show[i].price * 1
+                          ).toLocaleString("vi-VN") + "₫"
+                    }</span>
+                    <span class="original">${
+                      percent.data > 0
+                        ? (
+                            list_product_random_show[i].price * 1
+                          ).toLocaleString("vi-VN") + "₫"
+                        : ""
+                    }</span>
+                  </div>
+                  <div class="specs">
+                  </div>
+                </div>
+              </a>
+            </div>`;
     }
     document.querySelector(".product-grid").innerHTML = html;
     document.querySelectorAll(".list_badge").forEach((el) => {
