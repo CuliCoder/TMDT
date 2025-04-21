@@ -337,6 +337,21 @@ import axiosInstance from "./configAxios.js";
       }
       let html = ``;
       for (let i = 0; i < list_product_random_show.length; i++) {
+        let attributes = {
+          "Dung lượng RAM": null,
+          Chipset: null,
+          "Bộ nhớ trong": null,
+        };
+        list_product_random_show[i].attributes.forEach((attribute) => {
+          if (attributes.hasOwnProperty(attribute.variantName)) {
+            attributes[attribute.variantName] = attribute.values;
+          }
+        });
+        let {
+          "Dung lượng RAM": ram,
+          Chipset: chipset,
+          "Bộ nhớ trong": gb,
+        } = attributes;
         let percent = await axiosInstance.get(
           `/api/promotions/${list_product_random_show[i].product_id}/percent`
         );
@@ -364,24 +379,12 @@ import axiosInstance from "./configAxios.js";
                 
                 }</h3>
                 <div class="price">
-                  <span class="current">${
-                    percent.data > 0
-                      ? (
-                          list_product_random_show[i].price -
-                          list_product_random_show[i].price *
-                            (percent.data / 100)
-                        ).toLocaleString("vi-VN") + "₫"
-                      : ((list_product_random_show[i].price)*1).toLocaleString(
-                          "vi-VN"
-                        ) + "₫"
-                  }</span>
-                  <span class="original">${
-                    percent.data > 0
-                      ? ((list_product_random_show[i].price)*1).toLocaleString(
-                          "vi-VN"
-                        ) + "₫"
-                      : ""
-                  }</span>
+                  <span class="current">${percent.data > 0? (list_product_random_show[i].price - list_product_random_show[i].price*(percent.data/100)).toLocaleString("vi-VN") +"₫" : ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫"}</span>
+                  <span class="original">${percent.data > 0? ((list_product_random_show[i].price)*1).toLocaleString("vi-VN") +"₫" : ""}</span>
+                </div>
+                <div class="specs">
+                  <span>${ram?.replace(" ", "")} RAM</span>
+                  <span>${gb?.replace(" ", "")}</span>
                 </div>
               </div>
             </a>

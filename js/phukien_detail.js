@@ -60,11 +60,10 @@ async function showProductDetail() {
     ).innerHTML = `${infor_product.data.ProductName}`;
     document.querySelector(".colors").innerHTML = ``;
     document.querySelector(".product-thumbnails").innerHTML = ``;
-    console.log(list);
-    console.log(list.length);
+    if(list.length > 1)
+      document.querySelector(".textMausac").innerHTML += `<h3>Màu sắc</h3>`
     for (let i = 0; i < list.length; i++) {
       if (list[i].color !== null && list[i].color !== "") {
-        console.log(list[i].color);
         document.querySelector(".colors").innerHTML += `
            <a href="#" class="variant-option color-option" onclick="click_color_option(event, ${
              list[i].price + "," + list[i].id
@@ -90,6 +89,7 @@ async function default_Price_color() {
   const infor_product = await axiosInstance.get(
     `/products/get_product_by_productID/${ProductID}`
   );
+
   document.querySelector(
     ".product-main-image"
   ).innerHTML = `<img src="http://localhost:3000${list[0]?.img}" alt="Ảnh sản phẩm">`;
