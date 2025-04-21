@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "variations_page.html",
     "add_variation.html",
     "edit_variation.html",
+    "statistic.html",
   ];
   if (adminUrls.includes(currentUrl) && !admin) {
     window.location.href = "./login.html";
