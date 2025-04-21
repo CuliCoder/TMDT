@@ -46,6 +46,7 @@ async function show_list_product() {
         gb ? gb : ""
       } ${color ? color : ""}</p>
                     <p>SKU: ${res_product_item.data.data[i].SKU}</p>
+                    <p>Tồn kho: ${res_product_item.data.data[i].qty_in_stock}</p>
                     <div class="box_quantity">
                         <button type="button" class="btn btn-secondary value_quantity" onclick="show_popup(${
                           res_product_item.data.data[i].id
@@ -190,6 +191,7 @@ document
       total_price: Temp,
     });
     alert(response.data.message);
+    window.location.reload();
   });
 document
   .querySelector(".btn_search")
@@ -255,6 +257,7 @@ document
                           gb ? gb : ""
                         } ${color ? color : ""}</p>
                         <p>SKU: ${result[i].SKU}</p>
+                        <p>Tồn kho: ${res_product_item.data.data[i].qty_in_stock}</p>
                     </div>
                     <div class="box_quantity">
                           <button type="button" class="btn btn-secondary value_quantity" onclick="show_popup(${
